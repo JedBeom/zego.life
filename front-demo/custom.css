@@ -46,7 +46,7 @@ nav ul a {
     position: relative;
 }
 
-nav ul a:after {    
+nav ul a:after {
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
     content: "";
@@ -59,9 +59,9 @@ nav ul a:after {
     width: 0;
 }
 
-nav ul a:hover:after { 
-    width: 100%; 
-    left: 0; 
+nav ul a:hover:after {
+    width: 100%;
+    left: 0;
 }
 
 
@@ -70,8 +70,8 @@ nav ul a:hover:after {
 }
 
 .nav-active::after {
-    width: 100%; 
-    left: 0; 
+    width: 100%;
+    left: 0;
 }
 
 .card-box {
@@ -149,7 +149,7 @@ nav ul a:hover:after {
 IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
 */
 
-@media (min-width: 300px) { 
+@media (min-width: 300px) {
     .card-title {
         font-size: 1.25em;
     }
@@ -175,7 +175,7 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
     }
 }
 
-@media (min-width: 800px) { 
+@media (min-width: 800px) {
     .first-quote {
         font-size: 2em;
     }
@@ -213,13 +213,13 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
 
 @keyframes heartbeat {
     0%, 100% {
-        transform:scale(1);
+        transform: scale(1);
     }
     10%, 30% {
-        transform:scale(.9);
+        transform: scale(.9);
     }
     20%, 40%, 50%, 60%, 70%, 80% {
-        transform:scale(1.1);
+        transform: scale(1.1);
     }
 }
 
@@ -232,7 +232,7 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
     width: 1em;
     height: 1em;
     fill: currentColor;
-    display:inline-block
+    display: inline-block
 }
 
 .check-icon {

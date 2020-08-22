@@ -2,10 +2,11 @@ package main
 
 import (
 	"context"
-	"github.com/labstack/echo"
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/labstack/echo"
 )
 
 func run() {
@@ -15,7 +16,7 @@ func run() {
 	routes(e)
 
 	go func() {
-		e.Logger.Fatal(e.Start(os.Getenv("PORT")))
+		e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
 	}()
 
 	// Wait for interrupt signal to gracefully shutdown the server with

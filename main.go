@@ -1,21 +1,14 @@
 package main
 
 import (
-	"fmt"
-	sm "github.com/JedBeom/schoolmeal"
-	"time"
-
+	"github.com/JedBeom/zego.life/parse"
 	_ "github.com/joho/godotenv/autoload"
 )
 
 func main() {
-	school, err := sm.Find(sm.Jeonnam, "광양제철고등학교")
-	if err != nil {
-		panic(err)
-	}
+	connectDB()
 
-	fmt.Println(school.Code, school.Kind)
+	parse.GetDietIfNotExist(db)
 
-	meal, _ := school.GetWeekMeal("2020.08.11", sm.Dinner)
-	fmt.Println(meal[time.Tuesday])
+	run()
 }

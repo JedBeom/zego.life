@@ -5,26 +5,65 @@ import (
 )
 
 type Diet struct {
+	ID string `pg:",pk"`
+
 	Date      time.Time
 	Timestamp string
 
 	Type    int // MealType
 	Content string
+
+	CreatedAt time.Time `sql:"default:now()"`
 }
 
 type User struct {
-	ID int
+	ID string `pg:",pk"`
 
-	Grade  int
-	Class  int
-	Number int
+	Grade  int `sql:",unique:gcn"`
+	Class  int `sql:",unique:gcn"`
+	Number int `sql:",unique:gcn"`
 	Name   string
 
-	Card string
+	Email    string
+	Password string `json:"-"`
+
+	Barcode        string
+	KitchenMemCode string
 
 	BirthYear  int
 	BirthMonth int
 	BirthDay   int
 
-	KitchenMemCode string
+	CreatedAt time.Time `sql:"default:now()"`
+	UpdatedAt time.Time `sql:"default:now()"`
+}
+
+type Diet2User struct {
+	TableName struct{} `sql:"diet2users" json:"-"`
+
+	DietID  string `pg:",pk"`
+	Diet    *Diet  `json:"-"`
+	UserID  string `pg:",pk"`
+	User    *User  `json:"-"`
+	Applied bool   `pg:",use_zero" sql:",notnull"`
+
+	CreatedAt time.Time `sql:"default:now()" json:"-"`
+}
+
+type AccessLog struct {
+	ID        string `pg:",pk"`
+	SessionID string
+	IP        string
+	Method    string
+	Path      string
+	CreatedAt time.Time `sql:"default:now()"`
+}
+
+type ErrorLog struct {
+	ID          string `pg:",pk"`
+	UserID      string
+	AccessLogID string
+	Location    string
+	Content     string
+	CreatedAt   time.Time `sql:"default:now()"`
 }
