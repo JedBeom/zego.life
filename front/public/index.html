@@ -34,7 +34,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
-<noscript>You need to enable JavaScript to run this app.</noscript>
+<noscript>제고라이프를 즐기시려면 JavaScript가 필요합니다.</noscript>
 <div id="root"></div>
 <footer class="copyright">
   Made with
@@ -44,5 +44,18 @@
   by
   <a href="">06+17+19</a>
 </footer>
+<script>
+  let iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (iOS) {
+    let ua = window.navigator.userAgent;
+    let avoidBrowsers = ["FxiOS", "NAVER", "KAKAOTALK", "FB", "Chrome", "Firefox"];
+    for (let i = 0; i < avoidBrowsers.length; i++) {
+      if (ua.includes(avoidBrowsers[i])) {
+        alert("접속하신 브라우저는 지원하지 않습니다. Safari로 접속하여 주십시오.");
+        break
+      }
+    }
+  }
+</script>
 </body>
 </html>
