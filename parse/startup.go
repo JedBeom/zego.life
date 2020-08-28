@@ -2,6 +2,7 @@ package parse
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	sm "github.com/JedBeom/schoolmeal"
@@ -14,7 +15,8 @@ func GetDietIfNotExist(db *pg.DB) {
 
 	// check today
 	exists, err := models.DietByIDExists(db, fmt.Sprintf("%s-%d", sm.Timestamp(t), sm.Lunch))
-	if exists || err == nil {
+	if exists && err == nil {
+		log.Println("Diet Exists")
 		return
 	}
 

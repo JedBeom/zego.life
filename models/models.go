@@ -13,6 +13,8 @@ type Diet struct {
 	Type    int // MealType
 	Content string
 
+	Canceled bool
+
 	CreatedAt time.Time `sql:"default:now()"`
 }
 
@@ -24,11 +26,11 @@ type User struct {
 	Number int `sql:",unique:gcn"`
 	Name   string
 
-	Email    string
+	Email    string `sql:",unique"`
 	Password string `json:"-"`
 
-	Barcode        string
-	KitchenMemCode string
+	Barcode        string `sql:",unique"`
+	KitchenMemCode string `sql:",unique"`
 
 	BirthYear  int
 	BirthMonth int
@@ -50,12 +52,21 @@ type Diet2User struct {
 	CreatedAt time.Time `sql:"default:now()" json:"-"`
 }
 
+type Session struct {
+	ID        string
+	UserID    string
+	User      *User
+	CreatedAt time.Time `sql:"default:now()"`
+	DeletedAt time.Time `pg:",soft_delete"`
+}
+
 type AccessLog struct {
 	ID        string `pg:",pk"`
 	SessionID string
 	IP        string
 	Method    string
 	Path      string
+	Error     string
 	CreatedAt time.Time `sql:"default:now()"`
 }
 
@@ -66,4 +77,9 @@ type ErrorLog struct {
 	Location    string
 	Content     string
 	CreatedAt   time.Time `sql:"default:now()"`
+}
+
+type Setting struct {
+	Key   string `pk:",pk"`
+	Value string
 }

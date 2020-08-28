@@ -11,18 +11,26 @@ func routes(e *echo.Echo) {
 	e.Use(echoMw.CORS())
 	e.Use(echoMw.Recover())
 	e.Use(echoMw.RequestID())
-	e.Use(echoMw.Logger())
+	e.Use(middlewareLogger)
 
-	frontPrefix := "front/build"
-	e.File("/*", frontPrefix+"/index.html")
-	e.File("/favicon.ico", frontPrefix+"/favicon.ico")
-	e.Static("/static", frontPrefix+"/static")
+	front := "front/build"
+	e.File("/*", front+"/index.html")
+	e.Static("/static", front+"/static")
 
-	api := e.Group("/api/v1")
+	api := e.Group("/api/v1", middlewareTokenCheck)
 	{
+		u := api.Group("", middlewareUserOnly)
+		{
+			u.GET("/me", getMe)
+			u.GET("/logout", getLogout)
+			u.GET("/users/:user_id/diet2user/:diet_id", GetDiet2UserByDietAndUser)
+		}
+
+		api.POST("/register", postRegister)
+		api.POST("/login", postLogin)
+
 		// api.GET("/diets/by-month/:month", getDietsByMonth)
 		api.GET("/diets/:date", getDietsByDate)
-		api.GET("/users/:user_id/diet2user/:diet_id", GetDiet2UserByDietAndUser)
 
 		// 	api.GET("/events", getEvents)
 

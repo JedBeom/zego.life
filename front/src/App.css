@@ -1,11 +1,4 @@
 @font-face {
-  font-family: 'SDKukdetopokki-Lt';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/SDKukdetopokki-aLt00.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
   font-family: 'S-CoreDream-5Medium';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
   font-weight: normal;
@@ -13,50 +6,80 @@
 }
 
 @font-face {
-  font-family: 'TmoneyRoundWindExtraBold';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'TmoneyRoundWindExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 body {
-  font-family: "NanumSquareRound";
+    font-family: "NanumSquareRound", sans-serif;
+    background-color: var(--site-bg-color);
+}
+
+:root {
+    --site-text-color: black;
+    --site-bg-color: white;
+    --card-box-bg-color: #EEF1F5;
+    --card-box-text-color: black;
+    --diet-when-color: red;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --site-text-color: #ffffffd3;
+        --site-bg-color: #121212;
+        --card-box-bg-color: #ffffff23;
+        --card-box-text-color: white;
+        --diet-when-color: #fd99e1;
+    }
+
+    .calendar {
+        filter: invert(100%);
+    }
+
+    .dark-mode-explain::after {
+        content: "Dark mode enabled";
+        font-size: 0.5rem;
+    }
 }
 
 .site {
-  margin-left: auto;
-  margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--site-text-color);
 }
 
 .site-title {
-  font-family: 'TmoneyRoundWindExtraBold';
+    font-family: 'TmoneyRoundWindExtraBold', sans-serif;
+    background-color: var(--site-text-color);
 }
 
 nav ul {
-  padding: 1em;
-  list-style: none;
-  font-family: "S-CoreDream-5Medium";
-  font-size: 1.3em;
+    padding: 1em;
+    list-style: none;
+    font-family: "S-CoreDream-5Medium", sans-serif;
+    font-size: 1.3em;
 }
 
 nav ul a {
-  text-decoration: none;
-  color: black;
-  display: inline-block;
-  position: relative;
+    text-decoration: none;
+    color: var(--site-text-color);
+    display: inline-block;
+    position: relative;
 }
 
 nav ul a:after {
-  background: none repeat scroll 0 0 transparent;
-  bottom: 0;
-  content: "";
-  display: block;
-  height: 3px;
-  left: 50%;
-  position: absolute;
-  background: black;
-  transition: width 0.2s ease 0s, left 0.2s ease 0s;
-  width: 0;
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 3px;
+    left: 50%;
+    position: absolute;
+    background: var(--site-text-color);
+    transition: width 0.2s ease 0s, left 0.2s ease 0s;
+    width: 0;
 }
 
 nav ul a:hover:after {
@@ -64,9 +87,9 @@ nav ul a:hover:after {
   left: 0;
 }
 
-
 .nav-active {
-  color: #0f0f4c;
+    color: white;
+    background-color: black;
 }
 
 .nav-active::after {
@@ -75,50 +98,63 @@ nav ul a:hover:after {
 }
 
 .card-box {
-  margin-bottom: 2em;
-  padding: 1em;
-  border-radius: 0.7em;
+    margin-bottom: 2em;
+    padding: 1em;
+    border-radius: 0.7em;
+    background-color: var(--card-box-bg-color);
+    color: var(--card-box-text-color);
 }
 
 .card-button-more {
-  font-size: 1.0em;
+    font-size: 1.0em;
 }
 
 .card-box::after, .login-box::after {
-  content: "";
-  clear: both;
-  display: table;
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.login-box input {
+    color: var(--site-text-color);
+}
+
+.checkbox:checked + lable::before {
+    background: none;
 }
 
 .hover-shift-3:active {
-  transform: translateY(-3px);
+    transform: translateY(-3px);
 }
 
 .light-blue-horizion {
-  background-image: linear-gradient(to bottom, #82c0ff 0%, #5A4FCF 100%);
+    background-image: linear-gradient(to bottom, #82c0ff 0%, #5A4FCF 100%);
 }
 
 .first-quote {
-  /*font-family: "JSDongkang-Bold";*/
-  font-family: "NanumSquareRound";
-  font-weight: 800;
-  text-align: center;
+    font-family: "NanumSquareRound", sans-serif;
+    font-weight: 800;
+    text-align: center;
 }
 
 .font-s-core {
-  font-family: "S-CoreDream-5Medium";
+    font-family: "S-CoreDream-5Medium", sans-serif;
+}
+
+.diet-when {
+    color: var(--diet-when-color);
 }
 
 .diet-list {
-  list-style-type: square;
-  line-height: 1.8em;
-  font-weight: 500;
+    list-style-type: square;
+    line-height: 1.8em;
+    font-weight: 500;
 }
 
 .diet-apply {
-  padding-top: 1em;
-  font-weight: 700;
-  font-size: 1em;
+    padding: 0.1em;
+    font-weight: 700;
+    font-size: 1em;
 }
 
 .diet-apply span {
@@ -176,39 +212,51 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
 }
 
 @media (min-width: 800px) {
-  .first-quote {
-    font-size: 2em;
-  }
+    .first-quote {
+        font-size: 2em;
+    }
 
-  .site {
-    width: 500px;
-  }
+    .site {
+        width: 500px;
+    }
 
-  .site-title {
-    font-size: 3em;
-  }
+    .site-title {
+        font-size: 3em;
+    }
 
-  .diet-list {
-    font-size: 1.4em;
-  }
+    .diet-list {
+        font-size: 1.4em;
+    }
 
-  .card-title {
-    font-size: 1.5em;
-  }
+    .card-title {
+        font-size: 1.5em;
+    }
+}
+
+.calendar {
+    margin: auto;
+    width: auto !important;
+    border: none !important;
+    background: none !important;
+}
+
+.react-calendar__navigation__label__labelText {
+    font-size: 1rem;
+    color: black;
 }
 
 .copyright {
-  text-align: center;
-  min-height: 100%;
+    text-align: center;
+    min-height: 100%;
 
-  /* Equal to height of footer */
-  /* But also accounting for potential margin-bottom of last child */
-  margin-top: 4em;
-  margin-bottom: -50px;
-  font-weight: 300;
-  color: gray;
-  padding-bottom: 1.2em;
-  font-size: 1em;
+    /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    margin-top: 4em;
+    margin-bottom: -50px;
+    font-weight: 300;
+    color: gray;
+    padding-bottom: 1.2em;
+    font-size: 1em;
 }
 
 @keyframes heartbeat {
@@ -224,8 +272,10 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
 }
 
 .footer-icon {
-  animation: heartbeat 1.33s ease-in-out infinite;
-  fill: #f06292 !important;
+    animation: heartbeat 1.33s ease-in-out infinite;
+    fill: #f06292 !important;
+    margin-left: 6px;
+    margin-right: 6px;
 }
 
 .icon {

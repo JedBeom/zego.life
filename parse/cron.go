@@ -8,7 +8,7 @@ import (
 )
 
 func Cron(c *cron.Cron, db *pg.DB) {
-	// every saturday
+	// every month 28th
 	if _, err := c.AddFunc("0 0 0 28 * *", func() {
 		t := time.Now()
 		GetMonthDiets(db, t.Year(), int(t.Month()))

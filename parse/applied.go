@@ -9,6 +9,8 @@ import (
 	"sync"
 	"time"
 
+	sm "github.com/JedBeom/schoolmeal"
+
 	"github.com/JedBeom/zego.life/models"
 	"github.com/go-pg/pg"
 	"github.com/gocolly/colly"
@@ -100,6 +102,14 @@ func getAndCreateApplyList(db *pg.DB, u models.User, calendarType string, mealTy
 			du.Applied = true
 		}
 
+		// 점심이고 급식 없음이고 평일이면 신청됨으로 생각.
+		if mealType == sm.Lunch && e.Attr("bgcolor") == "#c0c0c0" {
+			wd := getHyphenTimestampWeekday(label)
+			if wd != time.Sunday && wd != time.Saturday { // 주말 아니면
+				du.Applied = true
+			}
+		}
+
 		dus = append(dus, du)
 	})
 
@@ -123,10 +133,10 @@ func getAndCreateApplyList(db *pg.DB, u models.User, calendarType string, mealTy
 }
 
 // TODO: 사용자 지정으로 작업 시작하도록 해야함. 급식 신청 날짜는 맨날 바뀌니까........
-func GetApplyListOfAllUsers(db *pg.DB) {
+func GetApplyListOfAllUsers(db *pg.DB, calendarType string) {
 	us, err := models.UsersAll(db)
 	if err != nil {
-		// TODO: handling
+		models.LogError(db, "", "", "GetApplyListOfAllUsers():models.UsersAll()", err)
 		return
 	}
 
@@ -144,8 +154,7 @@ func GetApplyListOfAllUsers(db *pg.DB) {
 			wg.Add(1)
 			go func(u models.User, mealType int) {
 				for try := 0; try < 2; try++ {
-					// TODO: calendarType 하드코딩 벗어나기
-					if err := getAndCreateApplyListWg(db, u, "D00030", mealType, &wg); err != nil {
+					if err := getAndCreateApplyListWg(db, u, calendarType, mealType, &wg); err != nil {
 						time.Sleep(time.Second)
 						continue
 					}

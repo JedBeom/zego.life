@@ -6,6 +6,7 @@ CREATE TABLE diets
     timestamp  TEXT        NOT NULL,
     type       INTEGER     NOT NULL,
     content    TEXT,
+    canceled   BOOL DEFAULT false NOT NULL,
     created_at TIMESTAMPTZ DEFAULT current_timestamp
 );
 
@@ -49,19 +50,31 @@ CREATE TABLE diet2users
     -- 참조하는 게 삭제되었을 때 같이 삭제됨
 );
 
-DROP TABLE IF EXISTS access_log;
-CREATE TABLE access_log
+DROP TABLE IF EXISTS sessions;
+CREATE TABLE sessions
+(
+    id TEXT PRIMARY KEY NOT NULL,
+    user_id TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+
+    created_at TIMESTAMPTZ DEFAULT current_timestamp,
+    deleted_at TIMESTAMPTZ
+)
+
+DROP TABLE IF EXISTS access_logs;
+CREATE TABLE access_logs
 (
     id         TEXT PRIMARY KEY,
     session_id TEXT,
     ip         INET,
     method     TEXT,
     path       TEXT,
+    error TEXT,
     created_at TIMESTAMPTZ DEFAULT current_timestamp
 );
 
-DROP TABLE IF EXISTS error_log;
-CREATE TABLE error_log
+DROP TABLE IF EXISTS error_logs;
+CREATE TABLE error_logs
 (
     id            TEXT PRIMARY KEY,
     user_id       TEXT,
@@ -71,5 +84,12 @@ CREATE TABLE error_log
     created_at    TIMESTAMPTZ DEFAULT current_timestamp,
 
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE SET DEFAULT,
-    FOREIGN KEY (access_log_id) REFERENCES access_log (id) ON DELETE SET DEFAULT
+    FOREIGN KEY (access_log_id) REFERENCES access_logs (id) ON DELETE SET DEFAULT
+)
+
+DROP TABLE IF EXISTS settings;
+CREATE TABLE settings
+(
+    key TEXT PRIMARY KEY,
+    value TEXT
 )

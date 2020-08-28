@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import Root from './Root';
 import * as serviceWorker from './serviceWorker';
+import axios from 'axios'
+
+let server = "http://" + window.location.hostname + ":" + "8080";
+axios.defaults.baseURL = server + "/api/v1/"
+axios.interceptors.request.use(config => {
+    let token = localStorage.getItem("token")
+    if (token != null) {
+        config.headers.common["Heartbeat-Overheat"] = token
+    }
+    return config
+})
+axios.defaults.headers.common["Content-Type"] = "application/json;charset=utf8"
 
 ReactDOM.render(
     <React.StrictMode>
-        <App/>
+        <Root/>
     </React.StrictMode>,
     document.getElementById('root')
 );

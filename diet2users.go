@@ -1,14 +1,23 @@
 package main
 
 import (
+	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
 )
 
 func GetDiet2UserByDietAndUser(c echo.Context) error {
-	// TODO: 유저가 자기 정보만 GET 하도록
+	u, ok := c.Get("user").(models.User)
+	if !ok {
+		return apierror.ErrInterface.Send(c)
+	}
+
 	userID := c.Param("user_id")
 	dietID := c.Param("diet_id")
+
+	if userID != u.ID {
+		return echo.ErrForbidden
+	}
 
 	d2u, err := models.Diet2UserByDietAndUser(db, dietID, userID)
 	if err != nil {
