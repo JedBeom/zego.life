@@ -15,6 +15,12 @@
 body {
     font-family: "NanumSquareRound", sans-serif;
     background-color: var(--site-bg-color);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 :root {
@@ -32,10 +38,6 @@ body {
         --card-box-bg-color: #ffffff23;
         --card-box-text-color: white;
         --diet-when-color: #fd99e1;
-    }
-
-    .calendar {
-        filter: invert(100%);
     }
 
     .dark-mode-explain::after {
@@ -105,6 +107,18 @@ nav ul a:hover:after {
     color: var(--card-box-text-color);
 }
 
+.card-box h2 {
+    font-weight: 800;
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
+}
+
+.card-box p {
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+    line-height: 2rem;
+}
+
 .card-button-more {
     font-size: 1.0em;
 }
@@ -117,10 +131,26 @@ nav ul a:hover:after {
 
 .login-box input {
     color: var(--site-text-color);
+    font-size: 1.2rem;
 }
 
-.checkbox:checked + lable::before {
+.register-step2-box input {
+    color: var(--site-text-color);
+    font-size: 1.2rem;
+}
+
+.checkbox:checked + label::before {
     background: none;
+}
+
+.register-scan-button {
+    display: grid;
+    place-items: center;
+    width: 100%;
+}
+
+.register-scan-button button {
+    margin: 5rem;
 }
 
 .hover-shift-3:active {
@@ -167,38 +197,88 @@ nav ul a:hover:after {
 }
 
 .dday-name {
-  text-align: center;
-  font-size: 1.5em;
+    text-align: center;
+    font-size: 1.5em;
 }
 
 .dday-dday {
-  text-align: center;
-  font-size: 2em;
-  font-weight: 900;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 900;
+}
+
+.react-datepicker, .react-datepicker__header {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.react-datepicker__today-button {
+    background-color: rgb(162, 92, 255) !important;
+    border-top: none !important;
+    width: 50% !important;
+    border-radius: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.react-datepicker__day--disabled {
+    visibility: hidden;
+}
+
+[class^="react-datepicker"] {
+    width: 100%;
+    color: var(--card-box-text-color) !important;
+}
+
+.react-datepicker__day, .react-datepicker__day-name {
+    width: 1.7rem !important;
+}
+
+.react-datepicker__navigation {
+    width: 10px !important;
 }
 
 .loading-text {
-  font-size: 1.2em;
+    font-size: 1.2em;
 }
+
+.diet-page input {
+    color: var(--card-box-text-color);
+    height: calc(1.5rem + 1rem + 2px);
+    padding: 0.5rem calc(1rem + .5rem);
+    font-size: 1rem;
+
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: 1px solid #B7C4CD;
+    border-radius: 4px;
+    vertical-align: middle;
+
+    text-align: center;
+}
+
 
 /*
 IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
 */
 
 @media (min-width: 300px) {
-  .card-title {
-    font-size: 1.25em;
-  }
+    .card-title {
+        font-size: 1.5em;
+    }
 
-  .diet-badge {
-    font-size: 1em;
-  }
+    .diet-badge {
+        font-size: 1em;
+    }
 
-  .first-quote {
-    font-size: 2em;
-  }
+    .first-quote {
+        font-size: 2em;
+    }
 
-  .card-box {
+    .card-box {
     padding: .75em;
   }
 
@@ -229,20 +309,8 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
     }
 
     .card-title {
-        font-size: 1.5em;
+        font-size: 1.7em;
     }
-}
-
-.calendar {
-    margin: auto;
-    width: auto !important;
-    border: none !important;
-    background: none !important;
-}
-
-.react-calendar__navigation__label__labelText {
-    font-size: 1rem;
-    color: black;
 }
 
 .copyright {
@@ -254,21 +322,26 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
     margin-top: 4em;
     margin-bottom: -50px;
     font-weight: 300;
-    color: gray;
+    color: var(--site-text-color);
     padding-bottom: 1.2em;
     font-size: 1em;
 }
 
 @keyframes heartbeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  10%, 30% {
-    transform: scale(.9);
-  }
-  20%, 40%, 50%, 60%, 70%, 80% {
-    transform: scale(1.1);
-  }
+    0%, 100% {
+        transform: scale(1);
+    }
+    10%, 30% {
+        transform: scale(.9);
+    }
+    20%, 40%, 50%, 60%, 70%, 80% {
+        transform: scale(1.1);
+    }
+}
+
+a[href="/about"] {
+    margin-left: 6px;
+    color: var(--site-text-color);
 }
 
 .footer-icon {
@@ -279,13 +352,27 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
 }
 
 .icon {
-  width: 1em;
-  height: 1em;
-  fill: currentColor;
-  display: inline-block
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    display: inline-block
 }
 
 .check-icon {
-  fill: green;
-  color: green;
+    fill: green;
+    color: green;
+}
+
+.check-green-circle {
+    width: 3em;
+    height: 3em;
+    margin-top: 2em;
+}
+
+.check-green-circle polygon {
+    fill: white;
+}
+
+.check-green-circle path {
+    fill: green;
 }

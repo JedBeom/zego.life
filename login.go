@@ -41,7 +41,18 @@ func postLogin(c echo.Context) error {
 
 // TODO: logout
 func getLogout(c echo.Context) error {
+	sID, ok := c.Get("s_id").(string)
+	if !ok {
+		return apierror.ErrInterface.Send(c)
+	}
+
+	s := models.Session{ID: sID}
+	err := s.Delete(db)
+	if err != nil {
+		return apierror.ErrDBErr.Send(c)
+	}
+
 	return c.JSONPretty(200, Map{
-		"message": "in progress",
+		"message": "success",
 	}, JSONIndent)
 }

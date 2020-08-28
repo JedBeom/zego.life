@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
+	"github.com/JedBeom/zego.life/parse"
 	"github.com/go-pg/pg"
 	"github.com/labstack/echo"
 )
@@ -41,8 +42,8 @@ func postRegister(c echo.Context) error {
 		pgErr, ok := err.(pg.Error)
 		if ok && pgErr.Field(models.ErrPgErrCodeField) == models.ErrPgUniqueViolation {
 			ure := apierror.UserRegisterError{
-				Field:   "gcn",
-				Content: "학번을 다시 한번 확인해주세요. 이미 존재하는 학번입니다.",
+				Field:   "hakbun",
+				Content: "이미 존재하는 학번입니다.",
 			}
 			return ure.Send(c)
 		}
@@ -52,5 +53,35 @@ func postRegister(c echo.Context) error {
 
 	return c.JSONPretty(200, Map{
 		"message": "register successful",
+	}, JSONIndent)
+}
+
+func getFirstParse(c echo.Context) error {
+	email := c.Param("email")
+	if email == "" {
+		return echo.ErrBadRequest
+	}
+
+	u, err := models.UserByEmail(db, email)
+	if err != nil {
+		return echo.ErrBadRequest
+	}
+
+	exists, err := models.Diet2UserUserExists(db, u)
+	if err != nil {
+		return apierror.ErrDBErr.Send(c)
+	}
+
+	if exists {
+		return apierror.ErrFirstParse.Send(c)
+	}
+
+	if err := parse.GetApplyListOfUser(db, u, models.SettingByKey(db, "d2u_calendar")); err != nil {
+		models.LogError(db, u.ID, c.Request().Header.Get(echo.HeaderXRequestID), "getFirstParse():parse.GetApplyListOfUser()", err)
+		return apierror.ErrFirstParse.Send(c)
+	}
+
+	return c.JSONPretty(200, Map{
+		"message": "first parse successful",
 	}, JSONIndent)
 }

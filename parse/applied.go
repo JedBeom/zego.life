@@ -166,3 +166,20 @@ func GetApplyListOfAllUsers(db *pg.DB, calendarType string) {
 	wg.Wait()
 
 }
+
+func GetApplyListOfUser(db *pg.DB, u models.User, calendarType string) error {
+	if err := reloadFlyKitchenSess(); err != nil {
+		return err
+	}
+
+	for mealType := 1; mealType <= 3; mealType++ {
+		for try := 0; try < 2; try++ {
+			if err := getAndCreateApplyList(db, u, calendarType, mealType); err != nil {
+				time.Sleep(time.Second / 2)
+				continue
+			}
+			break
+		}
+	}
+	return nil
+}

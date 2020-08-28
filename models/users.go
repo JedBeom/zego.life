@@ -77,6 +77,8 @@ func (u *User) Create(db *pg.DB) error {
 		return err
 	}
 
-	u.KitchenMemCode = barcodeToKitchenMemcode(u.Barcode)
+	if u.Grade < 3 {
+		u.KitchenMemCode = barcodeToKitchenMemcode(u.Barcode)
+	}
 	return db.Insert(u)
 }

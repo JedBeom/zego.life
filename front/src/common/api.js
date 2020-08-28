@@ -1,5 +1,4 @@
 import axios from "axios"
-import timestamp from "../utils/timestamp"
 import dietMake from "../utils/dietMake"
 
 async function asyncForEach(array, callback) {
@@ -9,13 +8,13 @@ async function asyncForEach(array, callback) {
 }
 
 const getDietByDate = async (date) => {
-    let key = "diet-" + timestamp(date)
+    let key = "diet-" + date
     let item = localStorage.getItem(key)
     if (item != null) {
         return JSON.parse(item)
     }
 
-    const resp = await axios.get("diets/" + timestamp(date))
+    const resp = await axios.get("diets/" + date)
     let diets = []
     await asyncForEach(resp.data, d => {
         diets.push(dietMake(d))

@@ -37,6 +37,8 @@ var (
 	ErrLoginFailed    = NewApiError(http.StatusUnauthorized, -100, "email or password is invalid")
 	ErrInvalidKey     = NewApiError(http.StatusUnauthorized, -101, "bad token")
 	ErrEmailNotUnique = NewApiError(http.StatusBadRequest, -102, "email already exists")
+
+	ErrFirstParse = NewApiError(http.StatusInternalServerError, -200, "error on first d2u parse")
 )
 
 type UserRegisterError struct {

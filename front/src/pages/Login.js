@@ -1,4 +1,5 @@
-import React, {Fragment, useState} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
+import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 
 const Login = () => {
@@ -7,6 +8,10 @@ const Login = () => {
     const [isLoading, setLoading] = useState("button float-right")
     const [okMsg, setOkMsg] = useState("")
     const [errMsg, setErrMsg] = useState("")
+
+    useEffect(() => {
+        document.title = "로그인 | 제고라이프"
+    }, [])
 
     if (localStorage.getItem("me.name") != null) {
         window.location = "/"
@@ -39,11 +44,11 @@ const Login = () => {
             {okMsg !== "" ?
                 <div className={"bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green"}>
                     {okMsg}
-                </div> : <Fragment/>}
+                </div> : null}
             {errMsg !== "" ?
-                <div className={"bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
+                <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
                     {errMsg}
-                </div> : <Fragment/>}
+                </div> : null}
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg className={"icon mr-3"} height="512pt" viewBox="0 -32 512 512" width="512pt"
@@ -57,29 +62,30 @@ const Login = () => {
                     </svg>
                     로그인
                 </h2>
+                <p>제고라이프의 기능을 더 즐겨보세요!</p>
                 <div className={"login-box"}>
                     <form className={"p-2"} onSubmit={onSubmit}>
                         <div className={"flex flex-column"}>
                             <label className={"my-2"} htmlFor={"email-input"}>이메일 주소</label>
                             <input type="email" value={email} onChange={event => setEmail(event.target.value)}
-                                   className={"input"} id="email-input"/>
+                                   className={"input"} id="email-input" required/>
                         </div>
                         <div className={"flex flex-column mt-3"}>
                             <label className={"my-2"} htmlFor="password-input">암호</label>
                             <input type="password" value={password} onChange={event => setPassword(event.target.value)}
-                                   className={"input"} id="password-input"/>
-                        </div>
-                        <div className={"flex items-center mt-4"}>
-                            <input type="checkbox" className={"checkbox mr-3"} id="tnc-input"/>
-                            <label className={"form-check-label"} htmlFor="tnc-input">이용약관과 개인정보 취급 동의서를 읽었으며 이에
-                                동의합니다.
-                            </label>
+                                   className={"input"} id="password-input" required/>
                         </div>
                         <div className={"mt-4"}>
                             <button type="submit" className={isLoading}>로그인</button>
                         </div>
                     </form>
                 </div>
+            </article>
+            <article className={"card-box shadow-3"}>
+                <h2 className={"card-title font-s-core px-2"}>
+                    암호를 잊으셨나요? 아니면 로그인 하는데 문제가 있나요?
+                </h2>
+                <p>구글 클래스룸 이메일로 jh@beom.dev에 암호를 잊었다고 이메일을 보내시면, 조치를 취해드립니다.</p>
             </article>
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
@@ -94,6 +100,9 @@ const Login = () => {
                     계정이 없으신가요?
                 </h2>
                 <p>광양제철고등학교 학생증으로 가입할 수 있습니다.</p>
+                <NavLink to="/register">
+                    <button className={"button float-right"}>회원가입 하기</button>
+                </NavLink>
             </article>
         </Fragment>
 

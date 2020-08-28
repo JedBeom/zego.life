@@ -1,11 +1,14 @@
 import React, {Fragment} from 'react'
-import {NavLink, Route} from 'react-router-dom'
+import {NavLink, Route, Switch} from 'react-router-dom'
 import './App.css';
 import Nav from './components/Nav'
 import Main from './pages/Main'
 import DietPage from './pages/DietPage'
 import Login from './pages/Login'
+import Me from './pages/Me'
+import Register from './pages/Register'
 import About from './pages/About'
+import NotFound from './pages/NotFound'
 
 function App() {
 	return (
@@ -20,10 +23,15 @@ function App() {
 			</header>
 			<div className={"site"}>
 				<Nav/>
-				<Route exact path="/" component={Main}/>
-				<Route path="/diets" component={DietPage}/>
-				<Route path="/login" component={Login}/>
-				<Route path="/about" component={About}/>
+				<Switch>
+					<Route exact path="/" component={Main}/>
+					<Route path="/diets" component={DietPage}/>
+					<Route path="/login" component={Login}/>
+					<Route path="/me" component={Me}/>
+					<Route path="/register" component={Register}/>
+					<Route path="/about" component={About}/>
+					<Route component={NotFound}/>
+				</Switch>
 			</div>
 			<footer className={"copyright"}>
 				Made with

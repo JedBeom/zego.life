@@ -1,11 +1,11 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
 const DietCard = ({diet, applied}) => {
 	return (
-		<article className={`card-box shadow-3 hover-shift-t-3 ease-300`}>
+		<article className={`card-box shadow-3`}>
 			<div className={"flex justify-between"}>
-				<h2 className={"card-title font-s-core px-2"}>
-					<svg className={"icon mr-3"} version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+				<h2 className={"card-title font-s-core"}>
+					<svg className={"icon mr-3"} version="1.1" xmlns="http://www.w3.org/2000/svg"
 						 viewBox="0 0 512 512">
 						<g>
 							<g>
@@ -41,7 +41,7 @@ const DietCard = ({diet, applied}) => {
 				}) : <li>급식이 없어요.</li>}
 			</ul>
 			<div className={"flex justify-between mt-3"}>
-				{localStorage.getItem("token") != null ? (diet.dietList.length > 1 ? (applied
+				{diet.dietList.length > 1 ? (localStorage.getItem("token") != null ? (applied
 					? <div className={"diet-apply inline-block bg-green-lightest green px-2 br-round"}>
 						<svg className={"icon check-icon"} xmlns="http://www.w3.org/2000/svg" height="417pt"
 							 viewBox="0 -46 417.81333 417" width="417pt">
@@ -53,11 +53,15 @@ const DietCard = ({diet, applied}) => {
 						</span>
 					</div>
 					: <div className={"diet-apply inline-block bg-red-lightest red px-2 br-round"}>
-						❗
+						<svg className={"icon"} viewBox="0 0 365.696 365.696" width="365.696pt"
+							 xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="m243.1875 182.859375 113.132812-113.132813c12.5-12.5 12.5-32.765624 0-45.246093l-15.082031-15.082031c-12.503906-12.503907-32.769531-12.503907-45.25 0l-113.128906 113.128906-113.132813-113.152344c-12.5-12.5-32.765624-12.5-45.246093 0l-15.105469 15.082031c-12.5 12.503907-12.5 32.769531 0 45.25l113.152344 113.152344-113.128906 113.128906c-12.503907 12.503907-12.503907 32.769531 0 45.25l15.082031 15.082031c12.5 12.5 32.765625 12.5 45.246093 0l113.132813-113.132812 113.128906 113.132812c12.503907 12.5 32.769531 12.5 45.25 0l15.082031-15.082031c12.5-12.503906 12.5-32.769531 0-45.25zm0 0"/>
+						</svg>
 						<span>
 							미신청
 						</span>
-					</div>) : <Fragment/>)
+					</div>)
 					: <div className={"diet-apply inline-block bg-blue-lightest blue px-2 br-round"}>
 						<svg className={"icon"} viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
 							<g>
@@ -67,7 +71,7 @@ const DietCard = ({diet, applied}) => {
 							</g>
 						</svg>
 						<span>로그인 후 확인가능</span>
-					</div>}
+					</div>) : null}
 				{/*<button
 					className={"card-button-more button bg-blue-lightest blue border-blue focus-blue mt-3 pl-3 pr-3"}>다른
 					급식도 확인하실래요?

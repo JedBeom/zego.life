@@ -13,7 +13,7 @@ type Diet struct {
 	Type    int // MealType
 	Content string
 
-	Canceled bool
+	Canceled bool `pg:",use_zero" sql:",notnull"`
 
 	CreatedAt time.Time `sql:"default:now()"`
 }

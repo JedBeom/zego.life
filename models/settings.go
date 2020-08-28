@@ -1,11 +1,11 @@
 package models
 
-import "github.com/go-pg/pg"
+import (
+	"github.com/go-pg/pg"
+)
 
 func SettingByKey(db *pg.DB, key string) string {
-	s := &Setting{
-		Key: key,
-	}
-	_ = db.Model(s).WherePK().Select()
+	s := Setting{}
+	_ = db.Model(&s).Where("key = ?", key).Select()
 	return s.Value
 }

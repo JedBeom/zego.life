@@ -27,6 +27,7 @@ func routes(e *echo.Echo) {
 		}
 
 		api.POST("/register", postRegister)
+		api.GET("/first-parse/:email", getFirstParse)
 		api.POST("/login", postLogin)
 
 		// api.GET("/diets/by-month/:month", getDietsByMonth)
