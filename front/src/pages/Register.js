@@ -8,7 +8,7 @@ const Register = () => {
     useEffect(() => {
         document.title = "회원가입 | 제고라이프"
         if (window.navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform)) {
-            alert("회원가입은 홈앱에서는 불가능합니다. (바코드 인식 때문)\nSafari에서 부탁드립니다.")
+            alert("iOS 구버전의 경우 회원가입은 홈앱에서는 불가능합니다. (바코드 인식 때문)\n iOS 최신 버전이 아니면 Safari에서 부탁드립니다.")
         }
     }, [])
 
@@ -40,6 +40,12 @@ const Register = () => {
             setErrMsg("카메라를 실행할 수 없습니다. 카메라를 거부하지 않았는지 확인해주십시오.")
         }
     }
+
+    useEffect(() => {
+        return () => {
+            codeReader.reset()
+        }
+    }, [])
 
     const postRegister = async e => {
         setErrMsg("")

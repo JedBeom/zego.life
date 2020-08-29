@@ -22,7 +22,7 @@ var (
 )
 
 func init() {
-	bgcolor = map[string]bool{"#FFFFFF": false, "#F2F2F2": false, "#c0c0c0": true, "#fef9da": true}
+	bgcolor = map[string]bool{"#FFFFFF": false, "#F2F2F2": false, "#c0c0c0": false, "#fef9da": true}
 	// #FFFFFF: 급식 신청 가능하지만 미신청
 	// #F2F2F2: 날짜 없는 칸
 	// #c0c0c0: 급식 없음(의무급식도 이렇게 생김 ㅋㅎㅋㅎㅋㅎ), 급식이 없으면 메뉴(diet)도 없을테니까 그냥 true로 하겠음.

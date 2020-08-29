@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS diets CASCADE;
-CREATE TABLE diets
+CREATE TABLE IF NOT EXISTS diets
 (
     id         TEXT PRIMARY KEY,
     date       TIMESTAMPTZ NOT NULL,
@@ -10,8 +9,7 @@ CREATE TABLE diets
     created_at TIMESTAMPTZ DEFAULT current_timestamp
 );
 
-DROP TABLE IF EXISTS users CASCADE;
-CREATE TABLE users
+CREATE TABLE IF NOT EXISTS users
 (
     id               TEXT PRIMARY KEY,
 
@@ -35,8 +33,7 @@ CREATE TABLE users
     updated_at       TIMESTAMPTZ
 );
 
-DROP TABLE IF EXISTS diet2users;
-CREATE TABLE diet2users
+CREATE TABLE IF NOT EXISTS diet2users
 (
     diet_id    TEXT,
     user_id    TEXT,
@@ -50,8 +47,7 @@ CREATE TABLE diet2users
     -- 참조하는 게 삭제되었을 때 같이 삭제됨
 );
 
-DROP TABLE IF EXISTS sessions;
-CREATE TABLE sessions
+CREATE TABLE IF NOT EXISTS sessions
 (
     id TEXT PRIMARY KEY NOT NULL,
     user_id TEXT NOT NULL,
@@ -59,10 +55,9 @@ CREATE TABLE sessions
 
     created_at TIMESTAMPTZ DEFAULT current_timestamp,
     deleted_at TIMESTAMPTZ
-)
+);
 
-DROP TABLE IF EXISTS access_logs;
-CREATE TABLE access_logs
+CREATE TABLE IF NOT EXISTS access_logs
 (
     id         TEXT PRIMARY KEY,
     session_id TEXT,
@@ -73,8 +68,7 @@ CREATE TABLE access_logs
     created_at TIMESTAMPTZ DEFAULT current_timestamp
 );
 
-DROP TABLE IF EXISTS error_logs;
-CREATE TABLE error_logs
+CREATE TABLE IF NOT EXISTS error_logs
 (
     id            TEXT PRIMARY KEY,
     user_id       TEXT,
@@ -85,11 +79,10 @@ CREATE TABLE error_logs
 
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE SET DEFAULT,
     FOREIGN KEY (access_log_id) REFERENCES access_logs (id) ON DELETE SET DEFAULT
-)
+);
 
-DROP TABLE IF EXISTS settings;
-CREATE TABLE settings
+CREATE TABLE IF NOT EXISTS settings
 (
     key TEXT PRIMARY KEY,
     value TEXT
-)
+);
