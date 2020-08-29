@@ -21,4 +21,8 @@ func GetDietIfNotExist(db *pg.DB) {
 	}
 
 	GetMonthDiets(db, t.Year(), int(t.Month()))
+
+	if t.Day() >= 28 {
+		GetMonthDiets(db, t.Year(), int(t.Month())+1)
+	}
 }

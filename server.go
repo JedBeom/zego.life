@@ -15,8 +15,14 @@ func run() {
 
 	routes(e)
 
+	sslMode := os.Getenv("SSL_MODE")
+
 	go func() {
-		e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
+		if sslMode == "MANUAL" {
+			e.Logger.Fatal(e.StartTLS(":443", os.Getenv("SSL_CRT"), os.Getenv("SSL_PRI")))
+		} else {
+			e.Logger.Fatal(e.Start(os.Getenv("PORT")))
+		}
 	}()
 
 	// Wait for interrupt signal to gracefully shutdown the server with

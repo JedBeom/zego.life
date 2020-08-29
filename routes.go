@@ -15,6 +15,11 @@ func routes(e *echo.Echo) {
 
 	front := "front/build"
 	e.File("/*", front+"/index.html")
+	e.File("/manifest.json", front+"/manifest.json")
+	e.File("/logo192.png", front+"/logo192.png")
+	e.File("/logo512.png", front+"/logo512.png")
+	e.File("/robots.txt", front+"/robots.txt")
+	e.File("/favicon.ico", front+"/favicon.ico")
 	e.Static("/static", front+"/static")
 
 	api := e.Group("/api/v1", middlewareTokenCheck)
