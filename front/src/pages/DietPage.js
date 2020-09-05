@@ -9,10 +9,10 @@ import "react-datepicker/dist/react-datepicker.css";
 const DietPage = () => {
     let now = new Date()
     let maxDate = new Date()
-    maxDate.setDate(31)
+    maxDate.setMonth(now.getMonth() + 1)
+    maxDate.setDate(0) // last day of this month
     if (now.getDate() >= 28) {
         maxDate.setDate(7)
-        maxDate.setMonth(now.getMonth() + 1)
     }
 
     let minDate = new Date()
@@ -20,7 +20,7 @@ const DietPage = () => {
 
     const [diets, setDiets] = useState([])
     const [applieds, setApplieds] = useState([])
-    const [isLoading, setLoading] = useState(true)
+    const [isLoading, setLoading] = useState(false)
     const [date, setDate] = useState(now)
     const getDietOnClick = async (d) => {
         if (d === undefined || d === null) {
@@ -50,7 +50,7 @@ const DietPage = () => {
 
     useEffect(() => {
         document.title = "급식 | 제고라이프"
-        getDietOnClick(now)
+        // getDietOnClick(now)
     }, [])
 
     return (

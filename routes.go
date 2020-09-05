@@ -20,6 +20,7 @@ func routes(e *echo.Echo) {
 	e.File("/logo512.png", front+"/logo512.png")
 	e.File("/robots.txt", front+"/robots.txt")
 	e.File("/favicon.ico", front+"/favicon.ico")
+	e.File("/og.png", front+"/og.png")
 	e.Static("/static", front+"/static")
 
 	api := e.Group("/api/v1", middlewareTokenCheck)

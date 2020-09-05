@@ -45,6 +45,7 @@ const Register = () => {
         return () => {
             codeReader.reset()
         }
+        // eslint-disable-next-line
     }, [])
 
     const postRegister = async e => {

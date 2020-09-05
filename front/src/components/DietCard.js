@@ -29,7 +29,7 @@ const DietCard = ({diet, applied}) => {
 					<span className={"diet-when"}>{diet.when}</span>
 					급식
 				</h2>
-				<div className={"diet-badge inline-block bg-mint-lightest mint-darkest px-2 br-round"}>
+				<div className={"diet-badge inline-block px-2 br-round"}>
 					<time>{diet.year}년 {diet.month}월 {diet.day}일</time>
 				</div>
 			</div>
@@ -40,7 +40,6 @@ const DietCard = ({diet, applied}) => {
 					)
 				}) : <li>급식이 없어요.</li>}
 			</ul>
-			<div className={"flex justify-between mt-3"}>
 				{diet.dietList.length > 1 ? (localStorage.getItem("token") != null ? (applied
 					? <div className={"diet-apply inline-block bg-green-lightest green px-2 br-round"}>
 						<svg className={"icon check-icon"} xmlns="http://www.w3.org/2000/svg" height="417pt"
@@ -62,7 +61,7 @@ const DietCard = ({diet, applied}) => {
 							미신청
 						</span>
 					</div>)
-					: <div className={"diet-apply inline-block bg-blue-lightest blue px-2 br-round"}>
+					: <div className={"float-right diet-apply inline-block bg-blue-lightest blue px-2 br-round"}>
 						<svg className={"icon"} viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg">
 							<g>
 								<circle cx="256" cy="452" r="60"/>
@@ -76,7 +75,6 @@ const DietCard = ({diet, applied}) => {
 					className={"card-button-more button bg-blue-lightest blue border-blue focus-blue mt-3 pl-3 pr-3"}>다른
 					급식도 확인하실래요?
 				</button>*/}
-			</div>
 		</article>
 	)
 };
