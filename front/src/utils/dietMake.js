@@ -4,7 +4,7 @@ const dietMake = (d) => {
     d.year = d.Timestamp.slice(0, 4);
     d.month = d.Timestamp.slice(5, 7);
     d.day = d.Timestamp.slice(8, 10);
-    d.dietList = htmlDecode(d.Content).replace(/(\d?\d\.){1,}/, "").split("\n")
+    d.dietList = htmlDecode(d.Content).replace(/(\d?\d\.){1,}/g, "").split("\n")
     if (d.Type === 1) {
         d.when = "아침"
     } else if (d.Type === 2) {
