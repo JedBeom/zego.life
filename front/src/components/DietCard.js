@@ -41,7 +41,7 @@ const DietCard = ({diet, applied}) => {
 				}) : <li>급식이 없어요.</li>}
 			</ul>
 				{diet.dietList.length > 1 ? (localStorage.getItem("token") != null ? (applied
-					? <div className={"diet-apply float-right px-2 green-lightest bg-green-dark"}>
+					? <div className={"diet-apply float-right px-2 br-round green-lightest bg-green-dark"}>
 						<svg className={"icon check-icon"} xmlns="http://www.w3.org/2000/svg" height="417pt"
 							 viewBox="0 -46 417.81333 417" width="417pt">
 							<path
@@ -51,7 +51,7 @@ const DietCard = ({diet, applied}) => {
 							신청됨
 						</span>
 					</div>
-					: <div className={"diet-apply float-right px-2 red-lightest red-dark"}>
+					: <div className={"diet-apply float-right px-2 br-round red-lightest red-dark"}>
 						<svg className={"icon"} viewBox="0 0 365.696 365.696" width="365.696pt"
 							 xmlns="http://www.w3.org/2000/svg">
 							<path
