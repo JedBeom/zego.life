@@ -32,18 +32,5 @@
 <body>
 <noscript>제고라이프를 즐기시려면 JavaScript가 필요합니다.</noscript>
 <div id="root"></div>
-<script>
-  let iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  if (iOS) {
-    let ua = window.navigator.userAgent;
-    let avoidBrowsers = ["FxiOS", "NAVER", "KAKAOTALK", "FB", "Chrome", "Firefox"];
-    for (let i = 0; i < avoidBrowsers.length; i++) {
-      if (ua.includes(avoidBrowsers[i])) {
-        alert("접속하신 브라우저는 지원하지 않습니다. Safari로 접속하여 주십시오.");
-        break
-      }
-    }
-  }
-</script>
 </body>
 </html>

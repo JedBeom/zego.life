@@ -1,11 +1,8 @@
 package parse
 
 import (
-	"errors"
 	"fmt"
 	"net/http"
-	"net/url"
-	"strings"
 	"sync"
 	"time"
 
@@ -33,37 +30,10 @@ func init() {
 var flyKitchenSess *http.Cookie
 
 func reloadFlyKitchenSess() error {
-	form := url.Values{}
-	data := map[string]string{
-		"mode":     "login_proc",
-		"log_code": "SC0071",
-		"t_chk":    "n",
-		"log_hak":  "1",
-		"log_ban":  "1",
-		"log_num":  "1",
-		"mem_pass": "1",
-		"pp":       "on",
-	}
-	for k, v := range data {
-		form.Add(k, v)
-	}
-	res, err := http.Post("http://gwang.i-zone.kr/login.php", "application/x-www-form-urlencoded", strings.NewReader(form.Encode()))
-	if err != nil {
-		return err
-	}
 	flyKitchenSess = nil
-	for _, c := range res.Cookies() {
-		if c.Name == "PHPSESSID" {
-			flyKitchenSess = c
-			break
-		}
-	}
-
-	if flyKitchenSess == nil {
-		return errors.New("cannot find cookie")
-	}
-
-	return nil
+	var err error
+	flyKitchenSess, err = getKitchenCookie(1, 1, 1, "1")
+	return err
 }
 
 func getAndCreateApplyListWg(db *pg.DB, u models.User, calendarType string, mealType int, wg *sync.WaitGroup) error {

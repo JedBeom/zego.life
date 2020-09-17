@@ -8,7 +8,7 @@ import whatMeal from '../utils/whatMeal'
 
 const Main = () => {
     const [diet, setDiet] = useState({when: "웬?", dietList: [], isLoading: true})
-    const [applied, setApplied] = useState(false)
+    const [applied, setApplied] = useState(-1)
     useEffect(() => {
         document.title = "제고라이프"
 

@@ -25,15 +25,17 @@ const getDietByDate = async (date) => {
 
 const getD2UByDiet = async (id) => {
     let userID = localStorage.getItem("me.id")
-    let key = "d2u-" + userID + "-" + id
-    let item = localStorage.getItem(key)
-    if (item != null) {
-        return item === "true"
+    let applied = "0"
+    try {
+        const {data} = await axios.get(`users/${userID}/diet2user/${id}`)
+        if (data.Applied) {
+            applied = "1"
+        }
+    } catch (e) {
+        alert(e)
+        applied = "2"
     }
-
-    const {data} = await axios.get(`users/${userID}/diet2user/${id}`)
-    localStorage.setItem(key, data.Applied)
-    return data.Applied
+    return applied
 }
 
 export {getDietByDate, getD2UByDiet}

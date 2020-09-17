@@ -15,9 +15,7 @@ const Login = () => {
 
     if (localStorage.getItem("me.name") != null) {
         window.location = "/"
-        return (
-            <h1>이미 로그인되어 있습니다.</h1>
-        )
+        return null
     }
 
     const onSubmit = async event => {
@@ -83,9 +81,10 @@ const Login = () => {
             </article>
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
-                    암호를 잊으셨나요? 아니면 로그인 하는데 문제가 있나요?
+                    암호를 잊으셨나요?
                 </h2>
-                <p>구글 클래스룸 이메일로 jh@beom.dev에 암호를 잊었다고 이메일을 보내시면, 조치를 취해드립니다.</p>
+                <p>가입할 때 사용한 구글 클래스룸 이메일로 <a href="mailto:jh@beom.dev?subject=제고라이프 암호를 잊었습니다">jh@beom.dev</a>로 문의
+                    부탁드립니다.</p>
             </article>
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>

@@ -37,7 +37,7 @@ const Register = () => {
             setStep1Ok(true)
         } catch (e) {
             setVideoActive(false)
-            setErrMsg("카메라를 실행할 수 없습니다. 카메라를 거부하지 않았는지 확인해주십시오.")
+            setErrMsg("카메라를 실행할 수 없어요. 설정에서 카메라 엑세스를 허용해주세요.")
         }
     }
 
@@ -54,7 +54,7 @@ const Register = () => {
         e.preventDefault()
 
         if (tosRead !== "on") {
-            setErrMsg("이용약관과 개인정보 취급 동의서를 동의하지 않으면 진행할 수 없습니다.")
+            setErrMsg("이용약관과 개인정보 취급 동의서를 동의하지 않으면 진행할 수 없어요.")
             setLoading("button float-right")
             return
         }
@@ -93,7 +93,7 @@ const Register = () => {
                 await axios.get(`first-parse/${email}`)
                 alert("회원가입의 모든 과정이 끝났어요.\n회원이 된 것을 축하합니다!\n이제 로그인 화면으로 가요.")
             } catch (e) {
-                alert("급식 정보를 가져오는 것을 실패했어요. 관리자에게 로그가 발송됐어요. 내일 로그인하면 해결되어 있을거에요.")
+                alert("급식 정보를 가져오는 것을 실패했어요. 관리자에게 로그가 발송됐어요. 내일 로그인하면 해결되어 있을 거예요.")
             }
             window.location = "/login"
         } catch (e) {

@@ -19,7 +19,7 @@ const DietPage = () => {
     minDate.setDate(now.getDate() - 7)
 
     const [diets, setDiets] = useState([])
-    const [applieds, setApplieds] = useState([])
+    const [applieds, setApplieds] = useState([undefined, undefined, undefined])
     const [isLoading, setLoading] = useState(false)
     const [date, setDate] = useState(now)
     const getDietOnClick = async (d) => {
@@ -29,23 +29,23 @@ const DietPage = () => {
 
         setDate(d)
         setDiets([])
-        setApplieds([])
+        setApplieds([undefined, undefined, undefined])
         setLoading(true)
         try {
             let ds = await getDietByDate(timestampDot(d))
+            setDiets(ds)
+            setLoading(false)
             if (localStorage.getItem("token") != null) {
-                let aps = []
+                let aps = [...applieds]
                 for (let i = 0; i < 3; i++) {
                     let applied = await getD2UByDiet(ds[i].ID)
-                    aps.push(applied)
+                    aps[i] = applied
                 }
                 setApplieds(aps)
             }
-            setDiets(ds)
         } catch (e) {
             alert(e)
         }
-        setLoading(false)
     }
 
     useEffect(() => {

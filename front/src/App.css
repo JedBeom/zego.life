@@ -68,7 +68,13 @@ header a {
 
 .site-title {
     font-family: 'TmoneyRoundWindExtraBold', sans-serif;
-    background-color: var(--site-text-color);
+}
+
+header h2 {
+    font-family: 'TmoneyRoundWindExtraBold', sans-serif;
+    color: var(--site-text-color);
+    font-size: 1em;
+    text-align: center;
 }
 
 nav ul {
@@ -148,6 +154,10 @@ nav ul a:hover:after {
     font-size: 1.2rem;
 }
 
+p a {
+    color: var(--card-box-text-color)
+}
+
 .register-step2-box input {
     color: var(--site-text-color);
     font-size: 1.2rem;
@@ -187,6 +197,7 @@ nav ul a:hover:after {
 
 .diet-when {
     color: var(--diet-when-color);
+    margin-right: .25rem;
 }
 
 .diet-list {
@@ -370,7 +381,9 @@ a[href="/about"] {
     width: 1em;
     height: 1em;
     fill: currentColor;
-    display: inline-block
+    vertical-align: text-top;
+    display: inline-block;
+    margin-right: .25rem;
 }
 
 .check-icon {

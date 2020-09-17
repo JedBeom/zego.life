@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react'
 import {NavLink, Route, Switch} from 'react-router-dom'
 import './App.css';
+import NotSupported from './components/NotSupported'
 import Nav from './components/Nav'
 import Main from './pages/Main'
 import DietPage from './pages/DietPage'
@@ -16,13 +17,15 @@ function App() {
 			<header>
 				<NavLink exact to="/">
 					<h1
-						className={"site-title text-center underline-double underline-yellow mt-8 ls-tightest pattern-triangles-xl mint text-pattern"}>
+						className={"site-title bg-gray-lighter text-center underline-double underline-yellow mt-8 ls-tightest pattern-triangles-xl mint text-pattern"}>
 						ZEGO.LIFE
 					</h1>
 				</NavLink>
+				<h2>알파 테스터 여러분을 환영합니다</h2>
 			</header>
 			<div className={"site"}>
 				<Nav/>
+				<NotSupported/>
 				<Switch>
 					<Route exact path="/" component={Main}/>
 					<Route path="/diets" component={DietPage}/>

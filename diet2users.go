@@ -24,5 +24,7 @@ func GetDiet2UserByDietAndUser(c echo.Context) error {
 		// TODO: 세분화된 에러
 		return echo.ErrNotFound
 	}
+
+	c.Request().Header.Set("Cache-Control", "max-age=43200")
 	return c.JSON(200, d2u)
 }
