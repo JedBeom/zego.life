@@ -13,6 +13,7 @@
 }
 
 :root {
+    --site-logo-color: black;
     --site-text-color: black;
     --site-bg-color: white;
     --card-box-bg-color: #EEF1F5;
@@ -33,6 +34,7 @@ body::-webkit-scrollbar {
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --site-logo-color: #E4E8EB;
         --site-text-color: #ffffffd3;
         --site-bg-color: #121212;
         --card-box-bg-color: #2a2a2a;
@@ -68,6 +70,7 @@ header a {
 
 .site-title {
     font-family: 'TmoneyRoundWindExtraBold', sans-serif;
+    background-color: var(--site-logo-color);
 }
 
 header h2 {
@@ -120,7 +123,7 @@ nav ul a:hover:after {
 }
 
 .card-box {
-    margin-bottom: 2em;
+    margin-bottom: 1.2em;
     padding: 1em;
     border-radius: 0.7em;
     background-color: var(--card-box-bg-color);
@@ -163,6 +166,19 @@ p a {
     font-size: 1.2rem;
 }
 
+.checkbox + label::after, .checkbox-round + label::after {
+    color: white !important;
+    fill: white !important;
+}
+
+.register-step2-box .spinner {
+    margin: 0.8em;
+}
+
+.button-auth-choose {
+    margin: .5em;
+}
+
 .checkbox:checked + label::before {
     background: none;
 }
@@ -175,6 +191,10 @@ p a {
 
 .register-scan-button button {
     margin: 5rem;
+}
+
+::placeholder {
+    opacity: 30%;
 }
 
 .hover-shift-3:active {
@@ -204,6 +224,7 @@ p a {
     list-style-type: square;
     line-height: 1.8em;
     font-weight: 500;
+    font-size: 1.1em;
 }
 
 .diet-apply {
@@ -224,13 +245,14 @@ p a {
 
 .dday-name {
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1.1em !important;
 }
 
 .dday-dday {
     text-align: center;
-    font-size: 2em;
+    font-size: 3em !important;
     font-weight: 900;
+    margin-top: .25em;
 }
 
 .react-datepicker, .react-datepicker__header {
@@ -286,6 +308,10 @@ p a {
     text-align: center;
 }
 
+.card-box-me svg {
+    width: 70%;
+    height: 70%;
+}
 
 /*
 IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
@@ -305,7 +331,7 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
     }
 
     .card-box {
-    padding: .75em;
+        /*padding: .75em;*/
   }
 
   .site {

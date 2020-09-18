@@ -17,7 +17,7 @@ function App() {
 			<header>
 				<NavLink exact to="/">
 					<h1
-						className={"site-title bg-gray-lighter text-center underline-double underline-yellow mt-8 ls-tightest pattern-triangles-xl mint text-pattern"}>
+						className={"site-title text-center underline-double underline-yellow mt-8 ls-tightest pattern-triangles-xl mint text-pattern"}>
 						ZEGO.LIFE
 					</h1>
 				</NavLink>

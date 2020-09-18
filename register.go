@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
 	"github.com/JedBeom/zego.life/parse"
@@ -14,21 +16,27 @@ func postRegister(c echo.Context) error {
 		Password             string
 		Grade, Class, Number int
 		Name                 string
-		Barcode              string
+		Barcode              string `json:",omitempty"`
+		KitchenMemCode       string `json:",omitempty"`
 	}{}
 
 	if err := c.Bind(&p); err != nil {
 		return echo.ErrBadRequest
 	}
 
+	if p.KitchenMemCode == "" && p.Barcode == "" {
+		return echo.ErrBadRequest
+	}
+
 	u := models.User{
-		Grade:    p.Grade,
-		Class:    p.Class,
-		Number:   p.Number,
-		Name:     p.Name,
-		Email:    p.Email,
-		Password: p.Password,
-		Barcode:  p.Barcode,
+		Grade:          p.Grade,
+		Class:          p.Class,
+		Number:         p.Number,
+		Name:           p.Name,
+		Email:          p.Email,
+		Password:       p.Password,
+		Barcode:        p.Barcode,
+		KitchenMemCode: p.KitchenMemCode,
 	}
 
 	if ure := u.ValidateUserRegister(); ure != nil {
@@ -56,6 +64,23 @@ func postRegister(c echo.Context) error {
 	}, JSONIndent)
 }
 
+func postKitchenLogin(c echo.Context) error {
+	p := struct {
+		Grade, Class, Number int
+		Password             string
+	}{}
+	if err := c.Bind(&p); err != nil {
+		return echo.ErrBadRequest
+	}
+
+	code, err := parse.GetMemCode(p.Grade, p.Class, p.Number, p.Password)
+	if code == "" || err != nil {
+		return echo.ErrNotFound
+	}
+
+	return c.JSON(200, Map{"Code": code})
+}
+
 func getFirstParse(c echo.Context) error {
 	email := c.Param("email")
 	if email == "" {
@@ -77,6 +102,7 @@ func getFirstParse(c echo.Context) error {
 	}
 
 	if err := parse.GetApplyListOfUser(db, u, models.SettingByKey(db, "d2u_calendar")); err != nil {
+		fmt.Println(err)
 		models.LogError(db, u.ID, c.Request().Header.Get(echo.HeaderXRequestID), "getFirstParse():parse.GetApplyListOfUser()", err)
 		return apierror.ErrFirstParse.Send(c)
 	}

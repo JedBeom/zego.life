@@ -14,16 +14,30 @@ const Register = () => {
 
     const [videoActive, setVideoActive] = useState(false)
     const [barcode, setBarcode] = useState("")
+    const [memCode, setMemCode] = useState("")
+    const [step0Ok, setStep0Ok] = useState(false)
+    const [isAuthBarcode, setIsAuthBarcode] = useState(false)
     const [step1Ok, setStep1Ok] = useState(false)
     const [step2Ok, setStep2Ok] = useState(false)
     const [errMsg, setErrMsg] = useState("")
 
+    const [kitchenPass, setKitchenPass] = useState("")
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [hakbun, setHakbun] = useState("")
     const [tosRead, setTosRead] = useState("")
     const [isLoading, setLoading] = useState("button float-right")
+    const [kitchenLoading, setKitchenLoading] = useState(false)
+
+    const authScan = () => {
+        setIsAuthBarcode(true)
+        setStep0Ok(true)
+    }
+
+    const authLogin = () => {
+        setStep0Ok(true)
+    }
 
     let codeReader = new BrowserBarcodeReader()
     const startRead = async () => {
@@ -33,10 +47,11 @@ const Register = () => {
             const result = await codeReader.decodeFromInputVideoDevice(undefined, 'video')
             setBarcode(result.text)
             codeReader.reset()
-            setVideoActive(false)
+            setVideoActive(true)
             setStep1Ok(true)
         } catch (e) {
-            setVideoActive(false)
+            console.log(e)
+            setVideoActive(true)
             setErrMsg("카메라를 실행할 수 없어요. 설정에서 카메라 엑세스를 허용해주세요.")
         }
     }
@@ -47,6 +62,33 @@ const Register = () => {
         }
         // eslint-disable-next-line
     }, [])
+
+    const postKitchen = async e => {
+        setErrMsg("")
+        setKitchenLoading(true)
+        e.preventDefault()
+
+        let {g, c, n} = hakbunToGCN(hakbun)
+        if (
+            (g < 1 || g > 3)
+            || (c < 1 || c > 9)
+            || (n < 1 || n > 31)) {
+            console.log(g, c, n)
+            setErrMsg("학번이 유효하지 않습니다.")
+            setKitchenLoading(false)
+            return
+        }
+
+        let req = {Grade: g, Class: c, Number: n, Password: kitchenPass}
+        try {
+            let {data} = await axios.post(`register/kitchen`, req)
+            setMemCode(data.Code)
+            setStep1Ok(true)
+        } catch {
+            setErrMsg("로그인에 실패했습니다. 학번과 비밀번호를 확인해주세요.")
+        }
+        setKitchenLoading(false)
+    }
 
     const postRegister = async e => {
         setErrMsg("")
@@ -64,7 +106,7 @@ const Register = () => {
             || (g < 1 || g > 3)
             || (c < 1 || c > 9)
             || (n < 1 || n > 31)) {
-            setErrMsg("학번이 유효하지 않습니다.")
+            setErrMsg("이메일이 유효하지 않습니다.")
             setLoading("button float-right")
             return
         }
@@ -82,7 +124,12 @@ const Register = () => {
             Class: c,
             Number: n,
             Name: name,
-            Barcode: barcode
+        }
+
+        if (barcode !== "") {
+            req.Barcode = barcode
+        } else {
+            req.KitchenMemCode = memCode
         }
 
         try {
@@ -101,51 +148,84 @@ const Register = () => {
             setErrMsg(msg)
         }
         setLoading("button float-right")
-
-
     }
 
-    return (
-        <Fragment>
-            <article className={`card-box shadow-3`}>
-                <h2 className={"card-title font-s-core px-2"}>
-                    <svg className={"icon mr-3"} viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="m12.25 2h-1.1c-.33-1.15-1.39-2-2.65-2s-2.32.85-2.65 2h-1.1c-.41 0-.75.34-.75.75v1.5c0 .96.79 1.75 1.75 1.75h5.5c.96 0 1.75-.79 1.75-1.75v-1.5c0-.41-.34-.75-.75-.75z"/>
-                        <path
-                            d="m14.25 3h-.25v1.25c0 1.52-1.23 2.75-2.75 2.75h-5.5c-1.52 0-2.75-1.23-2.75-2.75v-1.25h-.25c-1.52 0-2.75 1.23-2.75 2.75v12.5c0 1.52 1.23 2.75 2.75 2.75h7.38l.22-1.23c.1-.56.36-1.06.76-1.47l.8-.8h-8.16c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h9.5c.05 0 .09 0 .14.02h.01l3.6-3.6v-6.67c0-1.52-1.23-2.75-2.75-2.75zm-1 11.25h-9.5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h9.5c.41 0 .75.34.75.75s-.34.75-.75.75zm0-3.25h-9.5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h9.5c.41 0 .75.34.75.75s-.34.75-.75.75z"/>
-                        <path
-                            d="m12.527 24c-.197 0-.389-.078-.53-.22-.173-.173-.251-.419-.208-.661l.53-3.005c.026-.151.1-.291.208-.4l7.425-7.424c.912-.914 1.808-.667 2.298-.177l1.237 1.237c.683.682.683 1.792 0 2.475l-7.425 7.425c-.108.109-.248.182-.4.208l-3.005.53c-.043.008-.087.012-.13.012zm3.005-1.28h.01z"/>
-                    </svg>
-                    회원가입
-                </h2>
-                <p>제고라이프 회원가입은 아래 단계를 거쳐야해요.</p>
-                <ol className={"ml-6"}>
-                    <li>학생증 바코드 스캔</li>
-                    <li>개인정보 입력</li>
-                </ol>
-                <p>iOS의 경우에는 Safari를, 안드로이드의 경우에는 Chrome을 사용해주세요. </p>
-            </article>
-            <article className={`card-box shadow-3 register-scan-box`}>
-                <h2 className={"card-title font-s-core px-2"}>STEP 1: 학생증 바코드 스캔</h2>
-                <div className={"register-scan-button"}>
-                    {barcode === "" ?
-                        <Fragment>
-                            {videoActive ? <video id="video"/>
-                                : <button onClick={startRead} className={"button"}>스캔하기</button>
-                            }
-                        </Fragment>
-                        : <Fragment>
-                            <CheckGreen/>
-                            <h2>완료!</h2>
-                        </Fragment>}
-                </div>
-            </article>
-            {errMsg !== "" ?
-                <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
-                    {errMsg}
-                </div> : null}
-            {step1Ok ?
+    const [step1, setStep1] = useState(null)
+
+    useEffect(() => {
+        if (!step0Ok) {
+            setStep1(
+                <article className="card-box shadow-3">
+                    <h2 className="card-title font-s-core px-2">STEP 0: 인증 방법 선택</h2>
+                    <p>본인 인증 및 급식 정보를 가져오기 위한 인증이에요. 학생증 인증이 빠르고 쉬워요. 하지만 3학년의 경우는 학생증 인증을 사용할 수 없습니다.</p>
+                    <div className="flex flex-column">
+                        <button className="button button-auth-choose" onClick={authScan}>학생증 스캔</button>
+                        <button className="button button-auth-choose" onClick={authLogin}>급식신청사이트 로그인</button>
+                    </div>
+                </article>
+            )
+        } else {
+            if (isAuthBarcode) {
+                setStep1(
+                    <Fragment>
+                        <article className={`card-box shadow-3 register-scan-box`}>
+                            <h2 className={"card-title font-s-core px-2"}>STEP 1: 학생증 바코드 스캔</h2>
+                            <div className={"register-scan-button"}>
+                                {barcode === "" ?
+                                    <Fragment>
+                                        {videoActive ? <video id="video"/>
+                                            : <button onClick={startRead} className={"button"}>스캔하기</button>
+                                        }
+                                    </Fragment>
+                                    : <Fragment>
+                                        <CheckGreen/>
+                                        <h2>완료!</h2>
+                                    </Fragment>}
+                            </div>
+                        </article>
+                    </Fragment>
+                )
+            } else {
+                setStep1(
+                    <article className={`card-box shadow-3 register-step2-box`}>
+                        <h2 className={"card-title font-s-core px-2"}>STEP 1: 급식신청사이트(플라이키친) 로그인</h2>
+                        {!step1Ok ?
+                            <form className={"p-2"} onSubmit={postKitchen}>
+                                <div className={"flex flex-column"}>
+                                    <label className={"my-2"} htmlFor={"hakbun-input"}>학번</label>
+                                    <input type="text" value={hakbun} onChange={event => setHakbun(event.target.value)}
+                                           className={"input"} id="hakbun-input" pattern="\d{5}"
+                                           placeholder={"ex) 10106"}
+                                           required/>
+                                </div>
+                                <div className={"flex flex-column"}>
+                                    <label className={"my-2"} htmlFor="password-input">비밀번호</label>
+                                    <input type="password" value={kitchenPass}
+                                           onChange={event => setKitchenPass(event.target.value)}
+                                           className={"input"} id="password-input" required
+                                           minLength={1} placeholder={"플라이키친 비밀번호"} required/>
+                                </div>
+                                <div className={"mt-4"}>
+                                    <button type="submit"
+                                            className={kitchenLoading ? "loading button float-right" : "button float-right"}>플라이키친
+                                        로그인
+                                    </button>
+                                </div>
+                            </form>
+                            : <div className={"register-scan-box"}>
+                                <CheckGreen/>
+                                <h2>인증 완료!</h2>
+                            </div>}
+                    </article>
+                )
+            }
+        }
+    }, [step0Ok, videoActive, barcode, hakbun, kitchenPass, kitchenLoading])
+
+    const [step2, setStep2] = useState(null)
+    useEffect(() => {
+        if (step1Ok) {
+            setStep2(
                 <article className={`card-box shadow-3 register-step2-box`}>
                     <h2 className={"card-title font-s-core px-2"}>STEP 2: 개인정보 입력</h2>
                     {!step2Ok ?
@@ -170,7 +250,7 @@ const Register = () => {
                                        placeholder={"ex) gch20-10901@h.jne.go.kr"} required/>
                             </div>
                             <div className={"flex flex-column"}>
-                                <label className={"my-2"} htmlFor="password-input">암호</label>
+                                <label className={"my-2"} htmlFor="password-input">암호(8글자 이상, 대문자 포함)</label>
                                 <input type="password" value={password}
                                        onChange={event => setPassword(event.target.value)}
                                        className={"input"} id="password-input" pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
@@ -197,17 +277,50 @@ const Register = () => {
                             <p>하지만 아직 끝난 게 아니에요... STEP 3까지 기다려주세요!</p>
                         </div>}
                 </article>
-                : null}
-            {step2Ok ?
+            )
+        }
+    }, [step1Ok, name, hakbun, email, password, tosRead, isLoading])
+
+    const [step3, setStep3] = useState(null)
+    useEffect(() => {
+        if (step2Ok) {
+            setStep3(
                 <article className={`card-box shadow-3 register-step2-box in-progress`}>
                     <h2 className={"card-title font-s-core"}>STEP 3: 급식 정보 가져오는 중...</h2>
                     <div className={"register-scan-box"}>
                         <div className={"spinner bw-6"}/>
                         <h2>잠시만 기다려주세요...</h2>
-                        <p>급식 정보를 가져오고 있어요. 끝나면 로그인 화면으로 갈거에요.</p>
+                        <p>급식 정보를 가져오고 있어요. 이 화면을 유지해주세요! 끝나면 로그인 화면으로 갈 거예요.</p>
                     </div>
                 </article>
-                : null}
+            )
+        }
+    }, [step2Ok])
+
+    return (
+        <Fragment>
+            <article className={`card-box shadow-3`}>
+                <h2 className={"card-title font-s-core px-2"}>
+                    <svg className={"icon mr-3"} viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="m12.25 2h-1.1c-.33-1.15-1.39-2-2.65-2s-2.32.85-2.65 2h-1.1c-.41 0-.75.34-.75.75v1.5c0 .96.79 1.75 1.75 1.75h5.5c.96 0 1.75-.79 1.75-1.75v-1.5c0-.41-.34-.75-.75-.75z"/>
+                        <path
+                            d="m14.25 3h-.25v1.25c0 1.52-1.23 2.75-2.75 2.75h-5.5c-1.52 0-2.75-1.23-2.75-2.75v-1.25h-.25c-1.52 0-2.75 1.23-2.75 2.75v12.5c0 1.52 1.23 2.75 2.75 2.75h7.38l.22-1.23c.1-.56.36-1.06.76-1.47l.8-.8h-8.16c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h9.5c.05 0 .09 0 .14.02h.01l3.6-3.6v-6.67c0-1.52-1.23-2.75-2.75-2.75zm-1 11.25h-9.5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h9.5c.41 0 .75.34.75.75s-.34.75-.75.75zm0-3.25h-9.5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h9.5c.41 0 .75.34.75.75s-.34.75-.75.75z"/>
+                        <path
+                            d="m12.527 24c-.197 0-.389-.078-.53-.22-.173-.173-.251-.419-.208-.661l.53-3.005c.026-.151.1-.291.208-.4l7.425-7.424c.912-.914 1.808-.667 2.298-.177l1.237 1.237c.683.682.683 1.792 0 2.475l-7.425 7.425c-.108.109-.248.182-.4.208l-3.005.53c-.043.008-.087.012-.13.012zm3.005-1.28h.01z"/>
+                    </svg>
+                    회원가입
+                </h2>
+                <p>제고라이프는 광양제철고등학교 학생 누구나 이용할 수 있습니다.</p>
+                <p>iOS의 경우에는 Safari를, 안드로이드의 경우에는 Chrome을 사용해주세요. </p>
+            </article>
+            {step1}
+            {errMsg !== "" ?
+                <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
+                    {errMsg}
+                </div> : null}
+            {step2}
+            {step3}
         </Fragment>
     )
 }

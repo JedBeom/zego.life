@@ -9,6 +9,7 @@ import (
 var (
 	rEmail   = regexp.MustCompile("gch(18|19|20)-1[01]\\d[0-3]\\d@h.jne.go.kr")
 	rBarcode = regexp.MustCompile("100(18|19|20)00\\d\\d\\d")
+	rMemCode = regexp.MustCompile("ST20(18|19|20)0\\d\\d\\d") // ST20200001
 )
 
 func (u *User) ValidateUserRegister() (ure *apierror.UserRegisterError) {
@@ -20,10 +21,18 @@ func (u *User) ValidateUserRegister() (ure *apierror.UserRegisterError) {
 		return
 	}
 
-	if !rBarcode.MatchString(u.Barcode) {
+	if u.Barcode != "" && !rBarcode.MatchString(u.Barcode) {
 		ure = &apierror.UserRegisterError{
 			Field:   "barcode",
 			Content: "학생증이 올바르지 않습니다.",
+		}
+		return
+	}
+
+	if u.KitchenMemCode != "" && !rMemCode.MatchString(u.KitchenMemCode) {
+		ure = &apierror.UserRegisterError{
+			Field:   "kitchenMemCode",
+			Content: "플라이키친 정보가 올바르지 않습니다. 다시 시도해보실래요?",
 		}
 		return
 	}

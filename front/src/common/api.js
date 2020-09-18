@@ -32,7 +32,6 @@ const getD2UByDiet = async (id) => {
             applied = "1"
         }
     } catch (e) {
-        alert(e)
         applied = "2"
     }
     return applied

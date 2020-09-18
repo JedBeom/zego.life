@@ -64,6 +64,15 @@ func barcodeToKitchenMemcode(barcode string) (memcode string) {
 	return
 }
 
+func kitchenMemCodeToBarcode(memCode string) (barcode string) {
+	if len(memCode) != 10 {
+		return
+	}
+
+	barcode += "100" + memCode[4:6] + "0" + memCode[6:10]
+	return
+}
+
 func (u *User) Create(db *pg.DB) error {
 	id, _ := uuid.NewRandom()
 	u.ID = id.String()
@@ -78,7 +87,11 @@ func (u *User) Create(db *pg.DB) error {
 	}
 
 	if u.Grade < 3 {
-		u.KitchenMemCode = barcodeToKitchenMemcode(u.Barcode)
+		if u.Barcode != "" {
+			u.KitchenMemCode = barcodeToKitchenMemcode(u.Barcode)
+		} else {
+			u.Barcode = kitchenMemCodeToBarcode(u.KitchenMemCode)
+		}
 	}
 	return db.Insert(u)
 }

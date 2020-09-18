@@ -76,6 +76,7 @@ func parseAndCreateMonthDiet(db *pg.DB, year, month int) (err error) {
 				if ok && pgErr.Field(models.ErrPgErrCodeField) == models.ErrPgUniqueViolation { // if err is unique violation
 					continue
 				}
+				models.LogError(db, "", "", "parseAndCreateMonthDiet", err)
 				return
 			}
 		}

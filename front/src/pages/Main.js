@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react'
 import LoadingCard from '../components/LoadingCard'
-import DietCard from "../components/DietCard";
+import DietCard from "../components/DietCard"
+import DdayCounter from "../components/DdayCounter"
 
 import {getD2UByDiet, getDietByDate} from '../common/api'
 import {timestampDot} from '../utils/timestamp'
@@ -39,6 +40,7 @@ const Main = () => {
 
     return (
         <Fragment>
+            <DdayCounter/>
             {diet.isLoading
                 ? <LoadingCard/>
                 : <DietCard diet={diet} applied={applied}/>}

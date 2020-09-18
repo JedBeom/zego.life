@@ -33,6 +33,7 @@ func routes(e *echo.Echo) {
 		}
 
 		api.POST("/register", postRegister)
+		api.POST("/register/kitchen", postKitchenLogin)
 		api.GET("/first-parse/:email", getFirstParse)
 		api.POST("/login", postLogin)
 

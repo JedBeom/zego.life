@@ -30,6 +30,7 @@ const Login = () => {
             const respMe = await axios.get("me")
             localStorage.setItem("me.name", respMe.data.Name)
             localStorage.setItem("me.id", respMe.data.ID)
+            localStorage.setItem("me.barcode", respMe.data.Barcode)
         } catch (e) {
             setOkMsg("")
             setErrMsg("이메일 또는 암호가 올바르지 않습니다.")
@@ -83,7 +84,7 @@ const Login = () => {
                 <h2 className={"card-title font-s-core px-2"}>
                     암호를 잊으셨나요?
                 </h2>
-                <p>가입할 때 사용한 구글 클래스룸 이메일로 <a href="mailto:jh@beom.dev?subject=제고라이프 암호를 잊었습니다">jh@beom.dev</a>로 문의
+                <p>가입할 때 사용한 구글 클래스룸 이메일로 <a href="mailto:jh@beom.dev?subject=제고라이프 암호를 잊었습니다">jh@beom.dev</a>에 문의
                     부탁드립니다.</p>
             </article>
             <article className={"card-box shadow-3"}>
