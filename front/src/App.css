@@ -311,6 +311,12 @@ p a {
 .card-box-me svg {
     width: 70%;
     height: 70%;
+    display: block;
+}
+
+.barcode-wrap {
+    width: 100%;
+    padding-top: 1.3em;
 }
 
 /*

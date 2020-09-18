@@ -27,13 +27,12 @@ const Me = () => {
 
     return (
         <article className="card-box shadow-3 card-box-me">
-            <div className="flex justify-between">
-                <h2 className="card-box-title font-s-core">안녕하세요, {localStorage.getItem("me.name")} 님!</h2>
-                <button className={isLoading ? "loading button" : "button"} onClick={onClick}>로그아웃</button>
-            </div>
-            <div className="flex justify-center mt-3">
+            <h2 className="card-box-title font-s-core">안녕하세요, {localStorage.getItem("me.name")} 님!</h2>
+            <button className={isLoading ? "loading button float-right" : "button float-right"} onClick={onClick}>로그아웃
+            </button>
+            <div className="flex justify-center display-block barcode-wrap">
                 {barcode !== null && barcode !== "" ?
-                    <Barcode value={barcode} format="CODE128" height="40" displayValue={false}/> : null}
+                    <Barcode value={barcode} format={"CODE128"} height={40} displayValue={false}/> : null}
             </div>
         </article>
     )
