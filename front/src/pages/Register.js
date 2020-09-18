@@ -202,7 +202,7 @@ const Register = () => {
                                     <label className={"my-2"} htmlFor="password-input">비밀번호</label>
                                     <input type="password" value={kitchenPass}
                                            onChange={event => setKitchenPass(event.target.value)}
-                                           className={"input"} id="password-input" required
+                                           className={"input"} id="password-input"
                                            minLength={1} placeholder={"플라이키친 비밀번호"} required/>
                                 </div>
                                 <div className={"mt-4"}>
@@ -220,7 +220,7 @@ const Register = () => {
                 )
             }
         }
-    }, [step0Ok, videoActive, barcode, hakbun, kitchenPass, kitchenLoading])
+    }, [step0Ok, step1Ok, videoActive, barcode, hakbun, kitchenPass, kitchenLoading])
 
     const [step2, setStep2] = useState(null)
     useEffect(() => {
@@ -279,7 +279,7 @@ const Register = () => {
                 </article>
             )
         }
-    }, [step1Ok, name, hakbun, email, password, tosRead, isLoading])
+    }, [step1Ok, step2Ok, name, hakbun, email, password, tosRead, isLoading])
 
     const [step3, setStep3] = useState(null)
     useEffect(() => {
