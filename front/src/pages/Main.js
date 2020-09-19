@@ -12,13 +12,14 @@ const Main = () => {
     const [applied, setApplied] = useState(-1)
     useEffect(() => {
         document.title = "제고라이프"
+        
+        let day = new Date()
+        if (day.getHours() + (day.getMinutes() / 60) > 18.5 ) {
+            day.setDate(day.getDate() + 1)
+        }
 
         const fetchDiet = async () => {
             try {
-                let day = new Date()
-                if (day.getHours() + (day.getMinutes() / 60) > 18.5 ) {
-                    day.setDate(day.getDate() + 1)
-                }
                 let ds = await getDietByDate(timestampDot(day))
                 setDiet(ds[whatMeal()])
             } catch (e) {
@@ -28,7 +29,7 @@ const Main = () => {
 
         const fetchD2U = async () => {
             try {
-                let dietID = timestampDot(new Date()) + "-" + (whatMeal() + 1)
+                let dietID = timestampDot(day) + "-" + (whatMeal() + 1)
                 let ap = await getD2UByDiet(dietID)
                 setApplied(ap)
             } catch (e) {

@@ -7,9 +7,6 @@ import axios from 'axios'
 const Register = () => {
     useEffect(() => {
         document.title = "회원가입 | 제고라이프"
-        if (window.navigator.standalone && (/iphone|ipod|ipad/gi).test(navigator.platform)) {
-            alert("iOS 구버전의 경우 회원가입은 홈앱에서는 불가능합니다. (바코드 인식 때문)\n iOS 최신 버전이 아니면 Safari에서 부탁드립니다.")
-        }
     }, [])
 
     const [videoActive, setVideoActive] = useState(false)

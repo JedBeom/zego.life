@@ -1,17 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Barcode from 'react-barcode'
 
 const Me = () => {
+    useEffect(() => {
+        document.title = "내 페이지 | 제고라이프"
+    }, [])
     const [isLoading, setLoading] = useState(false)
+
     if (localStorage.getItem("token") === null) {
         window.location = "/login"
         return
     }
-
-    useEffect(() => {
-        document.title = "내 페이지 | 제고라이프"
-    }, [])
 
     const onClick = async () => {
         setLoading(true)
