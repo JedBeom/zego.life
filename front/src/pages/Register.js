@@ -157,7 +157,7 @@ const Register = () => {
             setStep1(
                 <article className="card-box shadow-3">
                     <h2 className="card-title font-s-core px-2">STEP 0: 인증 방법 선택</h2>
-                    <p>본인 인증 및 급식 정보를 가져오기 위한 인증이에요. 학생증 인증이 빠르고 쉬워요. 하지만 3학년의 경우는 학생증 인증을 사용할 수 없습니다.</p>
+                    <p>본인 인증 및 급식 정보를 가져오기 위한 인증이에요. 학생증 인증이 빠르고 쉬워요. 하지만 3학년의 경우는 학생증 인증을 사용할 수 없어요.</p>
                     <div className="flex flex-column">
                         <button className="button button-auth-choose" onClick={authScan}>학생증 스캔</button>
                         <button className="button button-auth-choose" onClick={authLogin}>급식신청사이트 로그인</button>

@@ -336,8 +336,6 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
         font-size: 2em;
     }
 
-    .card-box {
-        /*padding: .75em;*/
   }
 
   .site {
@@ -347,6 +345,7 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
   .site-title {
     font-size: 3.5em;
   }
+
 }
 
 @media (min-width: 800px) {

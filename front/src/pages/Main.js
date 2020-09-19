@@ -15,7 +15,11 @@ const Main = () => {
 
         const fetchDiet = async () => {
             try {
-                let ds = await getDietByDate(timestampDot(new Date()))
+                let day = new Date()
+                if (day.getHours() + (day.getMinutes() / 60) > 18.5 ) {
+                    day.setDate(day.getDate() + 1)
+                }
+                let ds = await getDietByDate(timestampDot(day))
                 setDiet(ds[whatMeal()])
             } catch (e) {
                 alert(e)

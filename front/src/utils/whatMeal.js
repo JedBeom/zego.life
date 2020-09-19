@@ -7,7 +7,7 @@ const whatMeal = () => {
     let what = 0; // breakfast
     if (h >= 8.25 && h <= 12.80) {
         what = 1 // lunch
-    } else if (h > 12.80 && h <= 18) {
+    } else if (h > 12.80 && h <= 18.5) {
         what = 2 // dinner
     }
 

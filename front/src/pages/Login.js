@@ -99,7 +99,7 @@ const Login = () => {
                     </svg>
                     계정이 없으신가요?
                 </h2>
-                <p>광양제철고등학교 학생증으로 가입할 수 있습니다.</p>
+                <p>광양제철고등학교 학생이라면 누구나 가입할 수 있습니다.</p>
                 <NavLink to="/register">
                     <button className={"button float-right"}>회원가입 하기</button>
                 </NavLink>
