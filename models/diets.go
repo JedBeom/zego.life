@@ -10,9 +10,6 @@ func (d *Diet) Create(db *pg.DB) error {
 
 func DietByID(db *pg.DB, id string) (d Diet, err error) {
 	err = db.Model(&d).Where("id = ?", id).Select()
-	if d.Canceled {
-		d.Content = ""
-	}
 	return
 }
 

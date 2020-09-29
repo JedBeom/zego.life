@@ -8,7 +8,7 @@ import {timestampDot} from '../utils/timestamp'
 import whatMeal from '../utils/whatMeal'
 
 const Main = () => {
-    const [diet, setDiet] = useState({when: "웬?", dietList: [], isLoading: true})
+    const [diet, setDiet] = useState({when: "", dietList: [], isLoading: true})
     const [applied, setApplied] = useState(-1)
     useEffect(() => {
         document.title = "제고라이프"
@@ -45,6 +45,7 @@ const Main = () => {
 
     return (
         <Fragment>
+            <h1 className="page-title">시작</h1>
             <DdayCounter/>
             {diet.isLoading
                 ? <LoadingCard/>

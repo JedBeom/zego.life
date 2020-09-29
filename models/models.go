@@ -52,6 +52,20 @@ type Diet2User struct {
 	CreatedAt time.Time `sql:"default:now()" json:"-"`
 }
 
+type Schedule struct {
+	ID         string
+	Name       string
+	Date       time.Time
+	DateString string
+	Type       int `pg:",use_zero" sql:",notnull"`
+
+	Grade1 bool `pg:",use_zero" sql:",notnull"`
+	Grade2 bool `pg:",use_zero" sql:",notnull"`
+	Grade3 bool `pg:",use_zero" sql:",notnull"`
+
+	CreatedAt time.Time `sql:"default:now()" json:"-"`
+}
+
 type Session struct {
 	ID        string
 	UserID    string

@@ -1,31 +1,31 @@
-@font-face {
-    font-family: 'S-CoreDream-5Medium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/S-CoreDream-5Medium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'TmoneyRoundWindExtraBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+@viewport {
+    viewport-fit: cover;
 }
 
 :root {
     --site-logo-color: black;
+    --site-logo-bg-color: rgba(250, 251, 253, 0.459);
     --site-text-color: black;
-    --site-bg-color: white;
-    --card-box-bg-color: #EEF1F5;
+    --site-bg-color: #EEF1F5;
+    --card-box-bg-color: white;
     --card-box-text-color: black;
     --diet-when-color: red;
+    --nav-bar-default-color: #00000034;
+    --nav-bar-bg-color: white;
+    --nav-bar-active-color: black;
+}
+
+html {
+    height: 100%;
 }
 
 body {
-    font-family: "NanumSquareRound", sans-serif;
+    font-family: "Spoqa Han Sans", sans-serif;
     background-color: var(--site-bg-color);
     scrollbar-width: none;
     -ms-overflow-style: none;
+    height: 100%;
+    margin-bottom: env(safe-area-inset-bottom);
 }
 
 body::-webkit-scrollbar {
@@ -37,9 +37,13 @@ body::-webkit-scrollbar {
         --site-logo-color: #E4E8EB;
         --site-text-color: #ffffffd3;
         --site-bg-color: #121212;
-        --card-box-bg-color: #2a2a2a;
+        --card-box-bg-color: #272727;
         --card-box-text-color: white;
         --diet-when-color: #fd99e1;
+        --site-logo-bg-color: #12121285;
+        --nav-bar-default-color: #ffffff8e;
+        --nav-bar-bg-color: black;
+        --nav-bar-active-color: white;
     }
 
     .dark-mode-explain::after {
@@ -53,58 +57,106 @@ body::-webkit-scrollbar {
     }
 }
 
+@media (prefers-color-scheme: light) {
+    .logo-img {
+        filter: invert(100%)
+    }
+}
+
 .button {
+    margin-top: .25rem;
     font-size: 1rem;
-    border-radius: 1.2rem;
+    border-radius: 6px;
 }
 
 .site {
     margin-left: auto;
     margin-right: auto;
+    max-width: 600px;
     color: var(--site-text-color);
+    padding: 1em;
+    padding-top: calc(env(safe-area-inset-top) + 2em);
+    min-height: 100%;
+}
+
+#root {
+    height: 100%;
+}
+
+.logo-img {
+    position: absolute;
+    display: block;
+    width: auto;
+    height: 4.5em;
+    right: 0;
+
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+header {
+    font-family: "Roboto", sans-serif;
+
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    padding: .25rem;
+
+    z-index: 1;
+    padding-top: env(safe-area-inset-top);
+
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
+    color: var(--site-logo-color);
+    backdrop-filter: blur(2px);
+    background-color: var(--site-logo-bg-color);
 }
 
 header a {
     text-decoration: none;
 }
 
-.site-title {
-    font-family: 'TmoneyRoundWindExtraBold', sans-serif;
-    background-color: var(--site-logo-color);
-}
-
 header h2 {
-    font-family: 'TmoneyRoundWindExtraBold', sans-serif;
     color: var(--site-text-color);
     font-size: 1em;
     text-align: center;
 }
 
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    padding-bottom: env(safe-area-inset-bottom, .75em);
+
+    background-color: var(--nav-bar-bg-color);
+}
+
 nav ul {
-    padding: 1em;
+    padding: .5em;
     list-style: none;
-    font-family: "S-CoreDream-5Medium", sans-serif;
     font-size: 1.3em;
+    font-weight: 700;
 }
 
 nav ul a {
     text-decoration: none;
-    color: var(--site-text-color);
+    color: var(--nav-bar-default-color);
     display: inline-block;
     position: relative;
-}
-
-nav ul a:after {
-    background: none repeat scroll 0 0 transparent;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 3px;
-    left: 50%;
-    position: absolute;
-    background: var(--site-text-color);
-    transition: width 0.2s ease 0s, left 0.2s ease 0s;
-    width: 0;
+    transition: color 0.2s ease 0s, left 0.2s ease 0s;
 }
 
 nav ul a:hover:after {
@@ -113,25 +165,25 @@ nav ul a:hover:after {
 }
 
 .nav-active {
-    color: white;
-    background-color: black;
+    color: var(--nav-bar-active-color);
 }
 
-.nav-active::after {
-  width: 100%;
-  left: 0;
+.page-title {
+    font-size: 2.3em;
+    margin-bottom: .75rem;
+    margin-left: .25em;
 }
 
 .card-box {
-    margin-bottom: 1.2em;
     padding: 1em;
-    border-radius: 0.7em;
+    margin-bottom: 1em;
+    border-radius: 8px;
     background-color: var(--card-box-bg-color);
     color: var(--card-box-text-color);
 }
 
 .card-box h2 {
-    font-weight: 800;
+    font-weight: 300;
     padding-left: .5rem !important;
     padding-right: .5rem !important;
 }
@@ -176,7 +228,7 @@ p a {
 }
 
 .button-auth-choose {
-    margin: .5em;
+    margin: .25em;
 }
 
 .checkbox:checked + label::before {
@@ -211,10 +263,6 @@ p a {
     text-align: center;
 }
 
-.font-s-core {
-    font-family: "S-CoreDream-5Medium", sans-serif;
-}
-
 .diet-when {
     color: var(--diet-when-color);
     margin-right: .25rem;
@@ -234,8 +282,8 @@ p a {
 }
 
 .diet-apply span {
-  line-height: 1em;
-  height: 1em;
+    line-height: 1em;
+    height: 1em;
 }
 
 .diet-badge {
@@ -252,7 +300,7 @@ p a {
     text-align: center;
     font-size: 3em !important;
     font-weight: 900;
-    margin-top: .25em;
+    margin-bottom: .25em;
 }
 
 .react-datepicker, .react-datepicker__header {
@@ -261,7 +309,7 @@ p a {
 }
 
 .react-datepicker__today-button {
-    background-color: rgb(162, 92, 255) !important;
+    background-color: #4c80f1 !important;
     border-top: none !important;
     width: 50% !important;
     border-radius: 1rem;
@@ -319,10 +367,6 @@ p a {
     padding-top: 1.3em;
 }
 
-/*
-IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
-*/
-
 @media (min-width: 300px) {
     .card-title {
         font-size: 1.5em;
@@ -332,29 +376,12 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
         font-size: 1em;
     }
 
-    .first-quote {
-        font-size: 2em;
+    .page-title {
+        margin-top: 1em;
     }
-
-  .site {
-    width: 90%;
-  }
-
-  .site-title {
-    font-size: 3.5em;
-  }
 }
 
-
 @media (min-width: 800px) {
-    .first-quote {
-        font-size: 2em;
-    }
-
-    .site {
-        width: 500px;
-    }
-
     .site-title {
         font-size: 3em;
     }
@@ -366,16 +393,19 @@ IDEA: site를 media로 구분하는 것보다 margin 주고 max-width 주자.
     .card-title {
         font-size: 1.7em;
     }
+
+    .page-title {
+        margin-top: 1em;
+    }
 }
 
 .copyright {
     text-align: center;
-    min-height: 100%;
 
     /* Equal to height of footer */
     /* But also accounting for potential margin-bottom of last child */
-    margin-top: 4em;
-    margin-bottom: -50px;
+    margin-top: 7em;
+    margin-bottom: -100px;
     font-weight: 300;
     color: var(--site-text-color);
     padding-bottom: 1.2em;
@@ -410,7 +440,7 @@ a[href="/about"] {
     width: 1em;
     height: 1em;
     fill: currentColor;
-    vertical-align: text-top;
+    vertical-align: revert;
     display: inline-block;
     margin-right: .25rem;
 }

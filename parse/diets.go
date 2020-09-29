@@ -1,6 +1,8 @@
 package parse
 
 import (
+	"fmt"
+	"log"
 	"strconv"
 	"time"
 
@@ -96,4 +98,21 @@ func meal2Diet(m sm.Meal) models.Diet {
 
 	d.ID = sm.Timestamp(m.Date) + "-" + strconv.Itoa(m.Type)
 	return d
+}
+
+func GetDietIfNotExist(db *pg.DB) {
+	t := time.Now()
+
+	// check today
+	exists, err := models.DietByIDExists(db, fmt.Sprintf("%s-%d", sm.Timestamp(t), sm.Lunch))
+	if exists && err == nil {
+		log.Println("Diet Exists")
+		return
+	}
+
+	GetMonthDiets(db, t.Year(), int(t.Month()))
+
+	if t.Day() >= 28 {
+		GetMonthDiets(db, t.Year(), int(t.Month())+1)
+	}
 }

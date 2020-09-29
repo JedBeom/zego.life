@@ -296,6 +296,7 @@ const Register = () => {
 
     return (
         <Fragment>
+            <h1 className="page-title">회원가입</h1>
             <article className={`card-box shadow-3`}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg className={"icon mr-3"} viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">

@@ -4,7 +4,9 @@ import Root from './Root';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios'
 
-let server = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
+// let server = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
+// let server = "https://dev1.zego.life"
+let server = "http://localhost:8080"
 axios.defaults.baseURL = server + "/api/v1/"
 axios.interceptors.request.use(config => {
     let token = localStorage.getItem("token")

@@ -5,7 +5,7 @@ import (
 	"github.com/robfig/cron/v3"
 )
 
-func schedule() {
+func crontab() {
 	c := cron.New()
 	parse.Cron(c, db)
 	c.Start()

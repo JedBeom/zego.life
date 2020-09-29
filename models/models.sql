@@ -47,10 +47,25 @@ CREATE TABLE IF NOT EXISTS diet2users
     -- 참조하는 게 삭제되었을 때 같이 삭제됨
 );
 
+CREATE TABLE IF NOT EXISTS schedules
+(
+    id          TEXT PRIMARY KEY,
+    name        TEXT                      NOT NULL,
+    date        DATE                      NOT NULL, -- TODO: 실험 필요
+    date_string TEXT                      NOT NULL,
+    type        INTEGER                   NOT NULL,
+
+    grade1      BOOL        DEFAULT FALSE NOT NULL,
+    grade2      BOOL        DEFAULT FALSE NOT NULL,
+    grade3      BOOL        DEFAULT FALSE NOT NULL,
+
+    created_at  TIMESTAMPTZ DEFAULT current_timestamp
+);
+
 CREATE TABLE IF NOT EXISTS sessions
 (
-    id TEXT PRIMARY KEY NOT NULL,
-    user_id TEXT NOT NULL,
+    id         TEXT PRIMARY KEY NOT NULL,
+    user_id    TEXT             NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id),
 
     created_at TIMESTAMPTZ DEFAULT current_timestamp,

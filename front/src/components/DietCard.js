@@ -68,7 +68,7 @@ const DietCard = ({diet, applied}) => {
 	return (
 		<article className={`card-box shadow-3`}>
 			<div className={"flex justify-between"}>
-				<h2 className={"card-title font-s-core"}>
+				<h2 className={"card-title"}>
 					<svg className="icon mr-2" version="1.1" xmlns="http://www.w3.org/2000/svg"
 						 viewBox="0 0 512 512">
 						<g>

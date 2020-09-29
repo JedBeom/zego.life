@@ -40,8 +40,9 @@ const Login = () => {
 
     return (
         <Fragment>
+            <h1 className="page-title">로그인</h1>
             {okMsg !== "" ?
-                <div className={"bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green"}>
+                <div className={"mb-5 bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green"}>
                     {okMsg}
                 </div> : null}
             {errMsg !== "" ?

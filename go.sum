@@ -1,7 +1,7 @@
 cloud.google.com/go v0.26.0/go.mod h1:aQUYkXzVsufM+DwF1aE+0xfcU+56JwCaLick0ClmMTw=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
-github.com/JedBeom/schoolmeal v0.1.11 h1:wTf6Rx5tbDXSsjB72rbMGZqYJkSUskJdQNEDKrzpVug=
-github.com/JedBeom/schoolmeal v0.1.11/go.mod h1:ka2DTjdQ1ND42crtzh3aRk4R2EdNoEQCiJeEGa9UjgE=
+github.com/JedBeom/schoolmeal v0.1.12 h1:Q0DA2CzYTd1MY6zAgGJM9usBdy8Do0yDMKAu6q9LbcE=
+github.com/JedBeom/schoolmeal v0.1.12/go.mod h1:ka2DTjdQ1ND42crtzh3aRk4R2EdNoEQCiJeEGa9UjgE=
 github.com/PuerkitoBio/goquery v1.5.1 h1:PSPBGne8NIUWw+/7vFBV+kG2J/5MOjbzc7154OaKCSE=
 github.com/PuerkitoBio/goquery v1.5.1/go.mod h1:GsLWisAFVj4WgDibEWF4pvYnkVQBpKBKeU+7zCJoLcc=
 github.com/andybalholm/cascadia v1.1.0/go.mod h1:GsXiBklL0woXo1j/WYWtSYYC4ouU9PqHO0sqidkEA4Y=

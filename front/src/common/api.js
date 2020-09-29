@@ -37,4 +37,9 @@ const getD2UByDiet = async (id) => {
     return applied
 }
 
-export {getDietByDate, getD2UByDiet}
+const getSchedule = async () => {
+    const {data} = await axios.get(`schedules`)
+    return data
+}
+
+export {getDietByDate, getD2UByDiet, getSchedule}

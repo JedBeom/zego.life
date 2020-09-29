@@ -39,6 +39,7 @@ func routes(e *echo.Echo) {
 
 		// api.GET("/diets/by-month/:month", getDietsByMonth)
 		api.GET("/diets/:date", getDietsByDate)
+		api.GET("/schedules", getSchedules)
 
 		// 	api.GET("/events", getEvents)
 

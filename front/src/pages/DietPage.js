@@ -12,6 +12,7 @@ const DietPage = () => {
     maxDate.setMonth(now.getMonth() + 1)
     maxDate.setDate(0) // last day of this month
     if (now.getDate() >= 28) {
+        maxDate.setMonth(now.getMonth() + 1)
         maxDate.setDate(7)
     }
 
@@ -38,8 +39,7 @@ const DietPage = () => {
             if (localStorage.getItem("token") != null) {
                 let aps = [...applieds]
                 for (let i = 0; i < 3; i++) {
-                    let applied = await getD2UByDiet(ds[i].ID)
-                    aps[i] = applied
+                    aps[i] = await getD2UByDiet(ds[i].ID)
                 }
                 setApplieds(aps)
             }
@@ -55,6 +55,7 @@ const DietPage = () => {
 
     return (
         <Fragment>
+            <h1 className="page-title">급식</h1>
             <article className={`card-box shadow-3 diet-page`}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg className={"icon mr-3"} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">

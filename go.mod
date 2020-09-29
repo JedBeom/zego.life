@@ -3,7 +3,7 @@ module github.com/JedBeom/zego.life
 go 1.14
 
 require (
-	github.com/JedBeom/schoolmeal v0.1.11
+	github.com/JedBeom/schoolmeal v0.1.12
 	github.com/PuerkitoBio/goquery v1.5.1 // indirect
 	github.com/andybalholm/cascadia v1.2.0 // indirect
 	github.com/antchfx/htmlquery v1.2.3 // indirect

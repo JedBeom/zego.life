@@ -6,11 +6,15 @@ const Nav = () => {
         <nav>
             <ul className={"flex justify-between gray"}>
                 <li>
+                    <NavLink to="/" activeClassName={"nav-active"} exact>시작</NavLink>
+                </li>
+                <li>/</li>
+                <li>
                     <NavLink to="/diets" activeClassName={"nav-active"}>급식</NavLink>
                 </li>
                 <li>/</li>
                 <li>
-                    <NavLink to="/events" activeClassName={"nav-active"}>일정</NavLink>
+                    <NavLink to="/schedule" activeClassName={"nav-active"}>일정</NavLink>
                 </li>
                 <li>/</li>
                 {localStorage.getItem("token") != null ?

@@ -29,9 +29,11 @@ var db *pg.DB
 func main() {
 	db = models.Connect()
 	parse.GetDietIfNotExist(db)
+	parse.GetSchedulesIfNotExists(db)
 
 	fmt.Println(banner)
 	log.Println("始めましょう!")
 
+	crontab()
 	run()
 }

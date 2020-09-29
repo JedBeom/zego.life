@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
 import axios from 'axios'
 import Barcode from 'react-barcode'
 
@@ -30,16 +30,21 @@ const Me = () => {
     let barcode = localStorage.getItem("me.barcode")
 
     return (
-        <article className="card-box shadow-3 card-box-me">
-            <h2 className="card-box-title font-s-core">안녕하세요, {localStorage.getItem("me.name")} 님!</h2>
-            <button className={isLoading ? "loading button float-right" : "button float-right"} onClick={onClick}>로그아웃
-            </button>
-            <div className="flex justify-center display-block barcode-wrap">
-                {barcode !== null && barcode !== "" ?
-                    <Barcode value={barcode} format={"CODE128"} height={40} displayValue={false}/> : <p>바코드가 없습니다.</p>}
-            </div>
-            <p>이 바코드는 학생증 바코드예요. 급식실에서 사용할 수 있어요.</p>
-        </article>
+        <Fragment>
+            <h1 className="page-title">내 페이지</h1>
+            <article className="card-box shadow-3 card-box-me">
+                <h2 className="card-box-title font-s-core">안녕하세요, {localStorage.getItem("me.name")} 님!</h2>
+                <button className={isLoading ? "loading button float-right" : "button float-right"}
+                        onClick={onClick}>로그아웃
+                </button>
+                <div className="flex justify-center display-block barcode-wrap">
+                    {barcode !== null && barcode !== "" ?
+                        <Barcode value={barcode} format={"CODE128"} height={40} displayValue={false}/> :
+                        <p>바코드가 없습니다.</p>}
+                </div>
+                <p>이 바코드는 학생증 바코드예요. 급식실에서 사용할 수 있어요.</p>
+            </article>
+        </Fragment>
     )
 }
 
