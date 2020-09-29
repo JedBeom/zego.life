@@ -11,6 +11,7 @@ func (s *Schedule) Create(db *pg.DB) (err error) {
 }
 
 func ScheduleIDLikeExists(db *pg.DB, like string) (bool, error) {
+	like += "%"
 	return db.Model(&Schedule{}).Where("id like ?", like).Exists()
 }
 

@@ -16,11 +16,12 @@ func routes(e *echo.Echo) {
 	front := "front/build"
 	e.File("/*", front+"/index.html")
 	e.File("/manifest.json", front+"/manifest.json")
-	e.File("/logo192.png", front+"/logo192.png")
-	e.File("/logo512.png", front+"/logo512.png")
+	e.File("/192.png", front+"/192.png")
+	e.File("/512.png", front+"/512.png")
 	e.File("/robots.txt", front+"/robots.txt")
 	e.File("/favicon.ico", front+"/favicon.ico")
-	e.File("/og.png", front+"/og.png")
+	e.File("/favicon.png", front+"/favicon.png")
+	e.File("/og_20200929.png", front+"/og_20200929.png")
 	e.Static("/static", front+"/static")
 
 	api := e.Group("/api/v1", middlewareTokenCheck)
