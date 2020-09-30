@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS diet2users
     -- 참조하는 게 삭제되었을 때 같이 삭제됨
 );
 
-CREATE TABLE IF NOT EXISTS schedules
+CREATE TABLE IF NOT EXISTS events
 (
     id          TEXT PRIMARY KEY,
     name        TEXT                      NOT NULL,
