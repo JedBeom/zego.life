@@ -21,7 +21,7 @@ func routes(e *echo.Echo) {
 	e.File("/robots.txt", front+"/robots.txt")
 	e.File("/favicon.ico", front+"/favicon.ico")
 	e.File("/favicon.png", front+"/favicon.png")
-	e.File("/og_20200929.png", front+"/og_20200929.png")
+	e.File("/og-20200929.png", front+"/og-20200929.png")
 	e.Static("/static", front+"/static")
 
 	api := e.Group("/api/v1", middlewareTokenCheck)
@@ -40,7 +40,7 @@ func routes(e *echo.Echo) {
 
 		// api.GET("/diets/by-month/:month", getDietsByMonth)
 		api.GET("/diets/:date", getDietsByDate)
-		api.GET("/schedules", getSchedules)
+		api.GET("/events", getEvents)
 
 		// 	api.GET("/events", getEvents)
 

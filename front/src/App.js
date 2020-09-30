@@ -6,7 +6,7 @@ import NotSupported from './components/NotSupported'
 import Nav from './components/Nav'
 import Main from './pages/Main'
 import DietPage from './pages/DietPage'
-import Schedule from './pages/Schedule'
+import Events from './pages/Events'
 import Login from './pages/Login'
 import Me from './pages/Me'
 import Register from './pages/Register'
@@ -21,7 +21,7 @@ function App() {
                 <Switch>
                     <Route exact path="/" component={Main}/>
                     <Route path="/diets" component={DietPage}/>
-                    <Route path="/schedule" component={Schedule}/>
+                    <Route path="/events" component={Events}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/me" component={Me}/>
                     <Route path="/register" component={Register}/>
