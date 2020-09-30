@@ -39,7 +39,7 @@ const getD2UByDiet = async (id) => {
 }
 
 const getEvents = async () => {
-    const {data} = await axios.get(`schedules`)
+    const {data} = await axios.get(`events`)
 
     let events = []
     await asyncForEach(data, d => {
