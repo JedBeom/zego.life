@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react'
 
-let className = "inline-block px-2 fs-s2 br-round mr-2 "
+let className = "inline-block px-2 fs-s2 br-round ml-2 "
 
 const eventMake = event => {
     event.date = new Date(event.Date)
