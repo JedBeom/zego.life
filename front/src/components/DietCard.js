@@ -7,7 +7,6 @@ import React from 'react';
 // 2: 모름
 
 const DietCard = ({diet, applied}) => {
-	console.log("card:", applied)
 	let badgeMsg = ""
 	let badgeIcon = ""
 	let badgeColor = ""

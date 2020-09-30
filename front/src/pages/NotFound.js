@@ -3,6 +3,7 @@ import React, {Fragment, useEffect} from 'react'
 const NotFound = () => {
     useEffect(() => {
         document.title = "404 | 제고라이프"
+        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [])
 
     return (

@@ -3,6 +3,7 @@ import React, {Fragment, useEffect} from 'react'
 const About = () => {
     useEffect(() => {
         document.title = "About | 제고라이프"
+        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [])
 
     return (

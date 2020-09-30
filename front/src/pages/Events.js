@@ -9,6 +9,7 @@ const Schedule = () => {
 
     useEffect(() => {
         document.title = "일정 | 제고라이프"
+        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
         const fetchData = async () => {
             try {
                 const data = await getEvents()
@@ -44,6 +45,7 @@ const Schedule = () => {
                             })}
                         </table>
                     </div>
+                    <p>일정은 빠르게 갱신되지 않습니다.</p>
                 </article>
 
                 : <LoadingCard/>}

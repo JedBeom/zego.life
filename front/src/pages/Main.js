@@ -12,6 +12,7 @@ const Main = () => {
     const [applied, setApplied] = useState(-1)
     useEffect(() => {
         document.title = "제고라이프"
+        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
         
         let day = new Date()
         if (day.getHours() + (day.getMinutes() / 60) > 18.5 ) {

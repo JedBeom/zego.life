@@ -5,6 +5,7 @@ import Barcode from 'react-barcode'
 const Me = () => {
     useEffect(() => {
         document.title = "내 페이지 | 제고라이프"
+        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [])
     const [isLoading, setLoading] = useState(false)
 

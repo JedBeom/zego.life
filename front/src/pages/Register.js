@@ -7,6 +7,7 @@ import axios from 'axios'
 const Register = () => {
     useEffect(() => {
         document.title = "회원가입 | 제고라이프"
+        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [])
 
     const [videoActive, setVideoActive] = useState(false)

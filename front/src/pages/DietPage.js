@@ -50,7 +50,7 @@ const DietPage = () => {
 
     useEffect(() => {
         document.title = "급식 | 제고라이프"
-        // getDietOnClick(now)
+        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [])
 
     return (

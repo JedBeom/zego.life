@@ -11,6 +11,7 @@ const Login = () => {
 
     useEffect(() => {
         document.title = "로그인 | 제고라이프"
+        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [])
 
     if (localStorage.getItem("me.name") != null) {
