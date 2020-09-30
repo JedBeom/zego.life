@@ -6,16 +6,16 @@ import (
 	"github.com/go-pg/pg"
 )
 
-func (s *Schedule) Create(db *pg.DB) (err error) {
+func (s *Event) Create(db *pg.DB) (err error) {
 	return db.Insert(s)
 }
 
-func ScheduleIDLikeExists(db *pg.DB, like string) (bool, error) {
+func EventIDLikeExists(db *pg.DB, like string) (bool, error) {
 	like += "%"
-	return db.Model(&Schedule{}).Where("id like ?", like).Exists()
+	return db.Model(&Event{}).Where("id like ?", like).Exists()
 }
 
-func ScheduleByMonth(db *pg.DB, year, month int) (sches []Schedule, err error) {
+func EventsByMonth(db *pg.DB, year, month int) (events []Event, err error) {
 	yyyymm := fmt.Sprintf("%d-%02d-", year, month)
 	start := yyyymm + "01"
 
@@ -34,6 +34,6 @@ func ScheduleByMonth(db *pg.DB, year, month int) (sches []Schedule, err error) {
 		end += "28"
 	}
 
-	err = db.Model(&sches).Where("date between ? and ?", start, end).Order("date ASC").Select()
+	err = db.Model(&events).Where("date between ? and ?", start, end).Order("date ASC").Select()
 	return
 }

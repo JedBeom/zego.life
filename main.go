@@ -29,7 +29,7 @@ var db *pg.DB
 func main() {
 	db = models.Connect()
 	parse.GetDietIfNotExist(db)
-	parse.GetSchedulesIfNotExists(db)
+	parse.GetEventsIfNotExists(db)
 
 	fmt.Println(banner)
 	log.Println("始めましょう!")

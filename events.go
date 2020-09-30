@@ -7,12 +7,12 @@ import (
 	"github.com/labstack/echo"
 )
 
-func getSchedules(c echo.Context) error {
+func getEvents(c echo.Context) error {
 	t := time.Now()
-	sches, err := models.ScheduleByMonth(db, t.Year(), int(t.Month()))
+	events, err := models.EventsByMonth(db, t.Year(), int(t.Month()))
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
 
-	return c.JSONPretty(200, sches, JSONIndent)
+	return c.JSONPretty(200, events, JSONIndent)
 }

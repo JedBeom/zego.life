@@ -52,7 +52,7 @@ type Diet2User struct {
 	CreatedAt time.Time `sql:"default:now()" json:"-"`
 }
 
-type Schedule struct {
+type Event struct {
 	ID         string
 	Name       string
 	Date       time.Time

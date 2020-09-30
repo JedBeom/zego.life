@@ -3,7 +3,7 @@ module github.com/JedBeom/zego.life
 go 1.14
 
 require (
-	github.com/JedBeom/schoolmeal v0.1.12
+	github.com/JedBeom/schoolmeal v1.0.0
 	github.com/PuerkitoBio/goquery v1.5.1 // indirect
 	github.com/andybalholm/cascadia v1.2.0 // indirect
 	github.com/antchfx/htmlquery v1.2.3 // indirect
@@ -25,6 +25,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca // indirect
 	github.com/temoto/robotstxt v1.1.1 // indirect
+	github.com/urfave/cli/v2 v2.2.0
 	golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
 	golang.org/x/net v0.0.0-20200602114024-627f9648deb9 // indirect
 	google.golang.org/appengine v1.6.6 // indirect

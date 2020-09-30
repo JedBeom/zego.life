@@ -39,7 +39,7 @@ const Me = () => {
                 </button>
                 <div className="flex justify-center display-block barcode-wrap">
                     {barcode !== null && barcode !== "" ?
-                        <Barcode value={barcode} format={"CODE128"} height={40} displayValue={false}/> :
+                        <Barcode value={barcode} format={"CODE128"} height={37} displayValue={false}/> :
                         <p>바코드가 없습니다.</p>}
                 </div>
                 <p>이 바코드는 학생증 바코드예요. 급식실에서 사용할 수 있어요.</p>
