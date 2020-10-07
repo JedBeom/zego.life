@@ -30,7 +30,7 @@ func scheToEvent(sche sm.Schedule) models.Event {
 	event := models.Event{
 		ID:         sche.DateString + "-" + sche.Name,
 		Name:       sche.Name,
-		Date:       sche.Date,
+		Date:       sche.Date.Add(24 * time.Hour),
 		DateString: sche.DateString,
 		Type:       sche.Type,
 		Grade1:     sche.Grade1,
