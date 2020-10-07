@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 
@@ -40,7 +40,7 @@ const Login = () => {
     }
 
     return (
-        <Fragment>
+        <>
             <h1 className="page-title">로그인</h1>
             {okMsg !== "" ?
                 <div className={"mb-5 bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green"}>
@@ -106,8 +106,7 @@ const Login = () => {
                     <button className={"button float-right"}>회원가입 하기</button>
                 </NavLink>
             </article>
-        </Fragment>
-
+        </>
     )
 }
 

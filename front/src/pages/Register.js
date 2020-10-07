@@ -314,12 +314,12 @@ const Register = () => {
                 <p>iOS의 경우에는 Safari를, 안드로이드의 경우에는 Chrome을 사용해주세요. </p>
             </article>
             {step1}
+            {step2}
+            {step3}
             {errMsg !== "" ?
                 <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
                     {errMsg}
                 </div> : null}
-            {step2}
-            {step3}
         </Fragment>
     )
 }

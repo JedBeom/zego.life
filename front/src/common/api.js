@@ -1,6 +1,6 @@
 import axios from "axios"
 import dietMake from "../utils/dietMake"
-import eventMake from "../utils/eventMake"
+import eventsMake from "../utils/eventsMake"
 
 async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
@@ -41,11 +41,7 @@ const getD2UByDiet = async (id) => {
 const getEvents = async () => {
     const {data} = await axios.get(`events`)
 
-    let events = []
-    await asyncForEach(data, d => {
-        events.push(eventMake(d))
-    })
-    return events
+    return await eventsMake(data)
 }
 
 export {getDietByDate, getD2UByDiet, getEvents}

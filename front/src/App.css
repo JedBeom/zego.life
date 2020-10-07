@@ -332,6 +332,12 @@ p a {
 
 .events {
     border: none !important;
+    min-width: 70% !important;
+}
+
+.event-date {
+    border-right: var(--card-box-text-color) dashed 2px;
+    vertical-align: top;
 }
 
 .loading-text {

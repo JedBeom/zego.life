@@ -39,7 +39,7 @@ const Main = () => {
         }
 
         fetchDiet();
-        if (localStorage.getItem("token") != null) {
+        if (localStorage.getItem("token") != null && diet.dietList.length > 1) {
             fetchD2U()
         }
     }, [])
