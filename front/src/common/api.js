@@ -10,7 +10,7 @@ async function asyncForEach(array, callback) {
 
 const getDietByDate = async (date) => {
     let key = "diet-" + date
-    let item = localStorage.getItem(key)
+    let item = sessionStorage.getItem(key)
     if (item != null) {
         return JSON.parse(item)
     }
@@ -20,7 +20,7 @@ const getDietByDate = async (date) => {
     await asyncForEach(resp.data, d => {
         diets.push(dietMake(d))
     })
-    localStorage.setItem(key, JSON.stringify(diets))
+    sessionStorage.setItem(key, JSON.stringify(diets))
     return diets
 }
 

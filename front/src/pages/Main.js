@@ -29,6 +29,9 @@ const Main = () => {
         };
 
         const fetchD2U = async () => {
+			if (localStorage.getItem("token") === null) {
+				return
+			}
             try {
                 let dietID = timestampDot(day) + "-" + (whatMeal() + 1)
                 let ap = await getD2UByDiet(dietID)
@@ -38,10 +41,8 @@ const Main = () => {
             }
         }
 
-        fetchDiet();
-        if (localStorage.getItem("token") != null && diet.dietList.length > 1) {
-            fetchD2U()
-        }
+        fetchDiet()
+		fetchD2U()
     }, [])
 
     return (
