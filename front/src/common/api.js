@@ -9,7 +9,7 @@ async function asyncForEach(array, callback) {
 }
 
 const getDietByDate = async (date) => {
-    let key = "diet-" + date
+    let key = "diet/" + date
     let item = sessionStorage.getItem(key)
     if (item != null) {
         return JSON.parse(item)
@@ -26,6 +26,13 @@ const getDietByDate = async (date) => {
 
 const getD2UByDiet = async (id) => {
     let userID = localStorage.getItem("me.id")
+    let key = `d2u/${userID}/${id}`
+
+    let item = sessionStorage.getItem(key)
+    if (item != null) {
+        return item
+    }
+
     let applied = "0"
     try {
         const {data} = await axios.get(`users/${userID}/diet2user/${id}`)
@@ -35,6 +42,8 @@ const getD2UByDiet = async (id) => {
     } catch (e) {
         applied = "2"
     }
+
+    sessionStorage.setItem(key, applied)
     return applied
 }
 

@@ -69,7 +69,7 @@ const Register = () => {
         let {g, c, n} = hakbunToGCN(hakbun)
         if (
             (g < 1 || g > 3)
-            || (c < 1 || c > 9)
+            || (c < 1 || (g === 1 && c > 8) || (g >= 2 && c > 10))
             || (n < 1 || n > 31)) {
             console.log(g, c, n)
             setErrMsg("학번이 유효하지 않습니다.")

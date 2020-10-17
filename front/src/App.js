@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react'
 import {NavLink, Route, Switch} from 'react-router-dom'
+import "shorthandcss/scss/shorthand.scss"
 import './App.css';
 import Logo from './components/Logo'
 import NotSupported from './components/NotSupported'

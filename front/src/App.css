@@ -45,6 +45,7 @@ body::-webkit-scrollbar {
         --nav-bar-default-color: #ffffff8e;
         --nav-bar-bg-color: black;
         --nav-bar-active-color: white;
+        --asdf: "adsf";
     }
 
     .dark-mode-explain::after {
@@ -54,7 +55,7 @@ body::-webkit-scrollbar {
 
     .button {
         color: #fcfdff !important;
-        background-color: #65666a;
+        background-color: #837ae6;
     }
 }
 
