@@ -102,7 +102,7 @@ const Register = () => {
         let {g, c, n} = hakbunToGCN(hakbun)
         if ((g === 1 && hakbun !== email.slice(6, 11))
             || (g < 1 || g > 3)
-            || (c < 1 || c > 9)
+            || (c < 1 || (g === 1 && c > 8) || (g >= 2 && c > 10))
             || (n < 1 || n > 31)) {
             setErrMsg("이메일이 유효하지 않습니다.")
             setLoading("button float-right")
@@ -192,16 +192,17 @@ const Register = () => {
                                 <div className={"flex flex-column"}>
                                     <label className={"my-2"} htmlFor={"hakbun-input"}>학번</label>
                                     <input type="text" value={hakbun} onChange={event => setHakbun(event.target.value)}
-                                           className={"input"} id="hakbun-input" pattern="\d{5}"
-                                           placeholder={"ex) 10106"}
-                                           required/>
+                                           className={"input"} id="hakbun-input" pattern="[0-9]*"
+                                           placeholder="ex) 10106" maxLength={5} minLength={5}
+                                           required autoComplete="off" inputMode="numeric"/>
                                 </div>
                                 <div className={"flex flex-column"}>
                                     <label className={"my-2"} htmlFor="password-input">비밀번호</label>
                                     <input type="password" value={kitchenPass}
                                            onChange={event => setKitchenPass(event.target.value)}
                                            className={"input"} id="password-input"
-                                           minLength={1} placeholder={"플라이키친 비밀번호"} required/>
+                                           minLength={1} placeholder={"플라이키친 비밀번호"} required autoComplete="off"
+                                           />
                                 </div>
                                 <div className={"mt-4"}>
                                     <button type="submit"
@@ -237,22 +238,25 @@ const Register = () => {
                             <div className={"flex flex-column"}>
                                 <label className={"my-2"} htmlFor={"hakbun-input"}>학번</label>
                                 <input type="text" value={hakbun} onChange={event => setHakbun(event.target.value)}
-                                       className={"input"} id="hakbun-input" pattern="\d{5}" placeholder={"ex) 10106"}
-                                       required/>
+                                       className={"input"} id="hakbun-input" pattern="[0-9]*" placeholder={"ex) 10106"}
+                                       required autoComplete={"off"} inputMode="numeric" minLength={5} maxLength={5}/>
                             </div>
                             <div className={"flex flex-column"}>
                                 <label className={"my-2"} htmlFor={"email-input"}>구글 클래스룸 이메일 주소</label>
                                 <input type="email" value={email} onChange={event => setEmail(event.target.value)}
                                        className={"input"} id="email-input"
                                        pattern="gch(18|19|20)-1[01]\d[0-3]\d@h.jne.go.kr"
-                                       placeholder={"ex) gch20-10901@h.jne.go.kr"} required/>
+                                       placeholder={"ex) gch20-10901@h.jne.go.kr"} required
+                                       inputMode="email"/>
                             </div>
                             <div className={"flex flex-column"}>
                                 <label className={"my-2"} htmlFor="password-input">암호(8글자 이상, 대문자 포함)</label>
                                 <input type="password" value={password}
                                        onChange={event => setPassword(event.target.value)}
-                                       className={"input"} id="password-input" pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                       minLength={8} placeholder={"8글자 이상, 대문자 포함"} required/>
+                                       className={"input"} id="password-input" 
+                                       minLength={8} pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                       placeholder={"8글자 이상, 대문자 포함"} required
+                                       autoComplete="new-password"/>
                             </div>
                             <div className={"flex items-center mt-4"}>
                                 <input type="checkbox" className={"checkbox mr-3"} id="tnc-input"
