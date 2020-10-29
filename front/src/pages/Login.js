@@ -63,8 +63,9 @@ const Login = () => {
                     계정이 없으신가요?
                 </h2>
                 <p>광양제철고등학교 학생이라면 누구나 가입할 수 있습니다.</p>
-                <NavLink to="/register">
-                    <button className={"button float-right"}>회원가입 하기</button>
+                <p>OBT 등록 중지로 회원가입을 지금 할 수 없습니다. 정식 출시 때 만나요!</p>
+                <NavLink to="/">
+                    <button disabled className={"button float-right"}>회원가입 하기</button>
                 </NavLink>
             </article>
             <article className={"card-box shadow-3"}>

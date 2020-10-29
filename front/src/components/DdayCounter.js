@@ -11,8 +11,8 @@ const DdayCounter = () => {
     return (
         <article className="card-box shadow-3">
             <h2 className="card-title">📅 <span className="diet-when">얼마나</span>남았나?</h2>
-            <p className="dday-name mt-3">중간고사 시작까지</p>
-            <p className="dday-dday">D{day}</p>
+            <p className="dday-name mt-3">중간고사</p>
+            <p className="dday-dday">끗!</p>
         </article>
     )
 }

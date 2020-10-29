@@ -3,6 +3,7 @@ import {BrowserBarcodeReader} from '@zxing/library'
 import CheckGreen from '../components/CheckGreen'
 import hakbunToGCN from '../utils/hakbunToGCN'
 import axios from 'axios'
+import DatePicker from 'react-datepicker'
 
 const Register = () => {
     useEffect(() => {
@@ -13,9 +14,9 @@ const Register = () => {
     const [videoActive, setVideoActive] = useState(false)
     const [barcode, setBarcode] = useState("")
     const [memCode, setMemCode] = useState("")
-    const [step0Ok, setStep0Ok] = useState(false)
+    const [step0Ok, setStep0Ok] = useState(true)
     const [isAuthBarcode, setIsAuthBarcode] = useState(false)
-    const [step1Ok, setStep1Ok] = useState(false)
+    const [step1Ok, setStep1Ok] = useState(true)
     const [step2Ok, setStep2Ok] = useState(false)
     const [errMsg, setErrMsg] = useState("")
 
@@ -24,9 +25,22 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [hakbun, setHakbun] = useState("")
+    const [date, setDate] = useState(new Date(2004, 8, 8))
+    const [residenceDom, setResidenceDom] = useState(true)
     const [tosRead, setTosRead] = useState("")
     const [isLoading, setLoading] = useState("button float-right")
     const [kitchenLoading, setKitchenLoading] = useState(false)
+
+    let r = Math.random()
+    let rm = true
+    if (r > 0.5) {
+        rm = false
+    }
+    const [isMale, setIsMale] = useState(rm)
+
+
+    let minDate = new Date(2002, 0, 1)
+    let maxDate = new Date(2005, 11, 31)
 
     const authScan = () => {
         setIsAuthBarcode(true)
@@ -115,12 +129,20 @@ const Register = () => {
             return
         }
 
+        let y = date.getUTCFullYear()
+        let m = date.getUTCMonth() + 1
+        let d = date.getUTCDate()
+
         let req = {
             Email: email,
             Password: password,
             Grade: g,
             Class: c,
             Number: n,
+            BirthdayYear: y,
+            BirthdayMonth: m,
+            BirthdayDay: d,
+            IsDom: residenceDom,
             Name: name,
         }
 
@@ -241,6 +263,37 @@ const Register = () => {
                                        className={"input"} id="hakbun-input" pattern="[0-9]*" placeholder={"ex) 10106"}
                                        required autoComplete={"off"} inputMode="numeric" minLength={5} maxLength={5}/>
                             </div>
+                            <div className="flex flex-column">
+                                <label className="my-2" htmlFor="residence-input">거주</label>
+                                <div className="horizontal-group register-select">
+                                    <button type="button" className={residenceDom ? "button bg-green" : "button"}
+                                            onClick={() => setResidenceDom(true)}>기숙사
+                                    </button>
+                                    <button type="button" className={!residenceDom ? "button bg-green" : "button"}
+                                            onClick={() => setResidenceDom(false)}>비기숙사
+                                    </button>
+                                </div>
+                            </div>
+                            <div className="flex flex-column">
+                                <label className="my-2" htmlFor="birthday-input">생년월일</label>
+                                <DatePicker className="input register-birthday" disabledKeyboardNavigation
+                                            dateFormat="yyyy년 MM월 dd일" onChange={(d) => {
+                                    console.log(d);
+                                    setDate(d)
+                                }}
+                                            selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
+                            </div>
+                            <div className="flex flex-column">
+                                <label className="my-2" htmlFor="residence-input">성별(주민등록상)</label>
+                                <div className="horizontal-group register-select">
+                                    <button type="button" className={isMale ? "button bg-blue" : "button"}
+                                            onClick={() => setIsMale(true)}>남
+                                    </button>
+                                    <button type="button" className={!isMale ? "button bg-red" : "button"}
+                                            onClick={() => setIsMale(false)}>여
+                                    </button>
+                                </div>
+                            </div>
                             <div className={"flex flex-column"}>
                                 <label className={"my-2"} htmlFor={"email-input"}>구글 클래스룸 이메일 주소</label>
                                 <input type="email" value={email} onChange={event => setEmail(event.target.value)}
@@ -250,12 +303,12 @@ const Register = () => {
                                        inputMode="email"/>
                             </div>
                             <div className={"flex flex-column"}>
-                                <label className={"my-2"} htmlFor="password-input">암호(8글자 이상, 대문자 포함)</label>
+                                <label className={"my-2"} htmlFor="password-input">암호(8글자 이상)</label>
                                 <input type="password" value={password}
                                        onChange={event => setPassword(event.target.value)}
-                                       className={"input"} id="password-input" 
-                                       minLength={8} pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                       placeholder={"8글자 이상, 대문자 포함"} required
+                                       className={"input"} id="password-input"
+                                       minLength={8} maxLength={30}
+                                       placeholder="8글자 이상" required
                                        autoComplete="new-password"/>
                             </div>
                             <div className={"flex items-center mt-4"}>
@@ -281,7 +334,7 @@ const Register = () => {
                 </article>
             )
         }
-    }, [step1Ok, step2Ok, name, hakbun, email, password, tosRead, isLoading])
+    }, [step1Ok, step2Ok, name, hakbun, email, password, tosRead, isLoading, date, residenceDom, isMale])
 
     const [step3, setStep3] = useState(null)
     useEffect(() => {
@@ -316,10 +369,11 @@ const Register = () => {
                 </h2>
                 <p>제고라이프는 광양제철고등학교 학생 누구나 이용할 수 있습니다.</p>
                 <p>iOS의 경우에는 Safari를, 안드로이드의 경우에는 Chrome을 사용해주세요. </p>
+                <p>OBT 등록 중지로 회원가입을 지금 할 수 없어요. 정식 출시 때 만나요!</p>
             </article>
-            {step1}
+            {/*step1}
             {step2}
-            {step3}
+    {step3*/}
             {errMsg !== "" ?
                 <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
                     {errMsg}

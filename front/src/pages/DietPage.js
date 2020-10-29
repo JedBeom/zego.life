@@ -77,7 +77,8 @@ const DietPage = () => {
                     </svg>
                     날짜를 선택하세요
                 </h2>
-                <DatePicker inline disabledKeyboardNavigation dateFormat="yyyy-MM-dd" onChange={getDietOnClick}
+                <DatePicker className="inline-calendar" inline disabledKeyboardNavigation dateFormat="yyyy-MM-dd"
+                            onChange={getDietOnClick}
                             selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
             </article>
             {isLoading ? <LoadingCard/> : diets.map((value, index) => {

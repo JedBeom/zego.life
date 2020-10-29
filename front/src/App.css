@@ -247,6 +247,19 @@ p a {
     margin: 5rem;
 }
 
+.register-select {
+    display: block;
+}
+
+.register-select button {
+    border: 1px solid white !important;
+    background-color: grey;
+}
+
+.register-birthday input {
+    pointer-events: none;
+}
+
 ::placeholder {
     opacity: 50%;
 }
@@ -299,12 +312,12 @@ p a {
     margin-bottom: .25em;
 }
 
-.react-datepicker, .react-datepicker__header {
+.inline-calendar .react-datepicker, .inline-calendar .react-datepicker__header {
     background-color: transparent !important;
     border: none !important;
 }
 
-.react-datepicker__today-button {
+.inline-calendar .react-datepicker__today-button {
     background-color: #4c80f1 !important;
     border-top: none !important;
     width: 50% !important;
@@ -313,20 +326,20 @@ p a {
     margin-right: auto;
 }
 
-.react-datepicker__day--disabled {
+.inline-calendar .react-datepicker__day--disabled {
     visibility: hidden;
 }
 
-[class^="react-datepicker"] {
+.inline-calendar [class^="react-datepicker"] {
     width: 100%;
     color: var(--card-box-text-color) !important;
 }
 
-.react-datepicker__day, .react-datepicker__day-name {
+.inline-calendar .react-datepicker__day, .inline-calendar .react-datepicker__day-name {
     width: 1.7rem !important;
 }
 
-.react-datepicker__navigation {
+.inline-calendar .react-datepicker__navigation {
     width: 10px !important;
 }
 

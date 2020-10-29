@@ -26,6 +26,8 @@ type User struct {
 	Number int `sql:",unique:gcn"`
 	Name   string
 
+	Sex int // 1: male 2: female
+
 	Email    string `sql:",unique"`
 	Password string `json:"-"`
 
@@ -35,6 +37,8 @@ type User struct {
 	BirthYear  int
 	BirthMonth int
 	BirthDay   int
+
+	Residence int // 1: 기숙 2: 광양
 
 	CreatedAt time.Time `sql:"default:now()"`
 	UpdatedAt time.Time `sql:"default:now()"`

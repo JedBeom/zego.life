@@ -19,6 +19,8 @@ CREATE TABLE IF NOT EXISTS users
     UNIQUE (grade, class, number),
     name             VARCHAR(10) NOT NULL,
 
+    sex              INTEGER,
+
     email            TEXT UNIQUE,
     password         TEXT,
 
@@ -28,6 +30,8 @@ CREATE TABLE IF NOT EXISTS users
     birth_year       INTEGER,
     birth_month      INTEGER,
     birth_day        INTEGER,
+
+    residence        INTEGER,
 
     created_at       TIMESTAMPTZ DEFAULT current_timestamp,
     updated_at       TIMESTAMPTZ
