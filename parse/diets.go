@@ -105,14 +105,21 @@ func GetDietIfNotExist(db *pg.DB) {
 
 	// check today
 	exists, err := models.DietByIDExists(db, fmt.Sprintf("%s-%d", sm.Timestamp(t), sm.Lunch))
-	if exists && err == nil {
-		log.Println("Diet Exists")
+	if !exists || err != nil {
+		log.Println("Diet NOT Exists")
+		GetMonthDiets(db, t.Year(), int(t.Month()))
 		return
 	}
 
-	GetMonthDiets(db, t.Year(), int(t.Month()))
+	if t.Day() < 28 {
+		return
+	}
 
-	if t.Day() >= 28 {
-		GetMonthDiets(db, t.Year(), int(t.Month())+1)
+	// check next month
+	exists, err = models.DietByIDExists(db, fmt.Sprintf("%d.%d.1-%d", t.Year(), int(t.Month()), sm.Lunch))
+	if !exists || err != nil {
+		log.Println("next month Diet NOT Exists")
+		GetMonthDiets(db, t.Year(), int(t.Month()+1))
+		return
 	}
 }
