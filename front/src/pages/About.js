@@ -1,4 +1,5 @@
-import React, {Fragment, useEffect} from 'react'
+import React, {useEffect} from 'react'
+import Back from '../components/Back'
 
 const About = () => {
     useEffect(() => {
@@ -7,10 +8,10 @@ const About = () => {
     }, [])
 
     return (
-        <Fragment>
-            <h1 className="page-title">제작자</h1>
+        <>
+            <h1 className="page-title"><Back content="제작자"/></h1>
             <article className="card-box shadow-3">
-                <h2 className="card-title font-s-core">
+                <h2 className="card-title">
                     06+17+19
                 </h2>
                 <p>
@@ -39,7 +40,7 @@ const About = () => {
                 <h2 className="card-title font-s-core">테스트: 19</h2>
                 <p>테스트하고, 피드백합니다.</p>
             </article>
-        </Fragment>
+        </>
     )
 }
 

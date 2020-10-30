@@ -108,10 +108,9 @@ func GetDietIfNotExist(db *pg.DB) {
 	if !exists || err != nil {
 		log.Println("Diet NOT Exists")
 		GetMonthDiets(db, t.Year(), int(t.Month()))
-		return
 	}
 
-	if t.Day() < 28 {
+	if t.Day() < 27 {
 		return
 	}
 

@@ -2,17 +2,14 @@
     viewport-fit: cover;
 }
 
-:root {
-    --site-logo-color: black;
-    --site-logo-bg-color: rgba(250, 251, 253, 0.459);
-    --site-text-color: black;
-    --site-bg-color: #EEF1F5;
-    --card-box-bg-color: white;
-    --card-box-text-color: black;
-    --diet-when-color: red;
-    --nav-bar-default-color: #00000034;
-    --nav-bar-bg-color: white;
-    --nav-bar-active-color: black;
+.root-div {
+    height: 100vh;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 html {
@@ -22,11 +19,11 @@ html {
 
 body {
     font-family: "Spoqa Han Sans", sans-serif;
-    background-color: var(--site-bg-color);
     scrollbar-width: none;
     -ms-overflow-style: none;
     height: 100%;
     margin-bottom: env(safe-area-inset-bottom);
+    background-color: #EEF1F5;
 }
 
 body::-webkit-scrollbar {
@@ -34,28 +31,8 @@ body::-webkit-scrollbar {
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --site-logo-color: #E4E8EB;
-        --site-text-color: #ffffffd3;
-        --site-bg-color: #121212;
-        --card-box-bg-color: #272727;
-        --card-box-text-color: white;
-        --diet-when-color: #fd99e1;
-        --site-logo-bg-color: #12121285;
-        --nav-bar-default-color: #ffffff8e;
-        --nav-bar-bg-color: black;
-        --nav-bar-active-color: white;
-        --asdf: "adsf";
-    }
-
-    .dark-mode-explain::after {
-        content: "Dark mode enabled";
-        font-size: 0.5rem;
-    }
-
-    .button {
-        color: #fcfdff !important;
-        background-color: #837ae6;
+    body {
+        background-color: #121212;
     }
 }
 
@@ -69,6 +46,9 @@ body::-webkit-scrollbar {
     margin-top: .25rem;
     font-size: 1rem;
     border-radius: 6px;
+
+    color: var(--card-box-text-color);
+    background-color: var(--button-primary-color);
 }
 
 .site {
@@ -77,6 +57,7 @@ body::-webkit-scrollbar {
     max-width: 600px;
     color: var(--site-text-color);
     padding: 1em;
+    padding-bottom: 10em;
     padding-top: calc(env(safe-area-inset-top) + 2em);
     min-height: 100%;
 }
@@ -119,7 +100,7 @@ header {
     -ms-user-select: none;
 
     color: var(--site-logo-color);
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(5px);
     background-color: var(--site-logo-bg-color);
 }
 
@@ -144,6 +125,8 @@ nav {
     padding-bottom: env(safe-area-inset-bottom, .75em);
 
     background-color: var(--nav-bar-bg-color);
+    backdrop-filter: blur(5px);
+
 }
 
 nav ul {
@@ -159,6 +142,13 @@ nav ul a {
     display: inline-block;
     position: relative;
     transition: color 0.2s ease 0s, left 0.2s ease 0s;
+
+    user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 nav ul a:hover:after {
@@ -174,6 +164,8 @@ nav ul a:hover:after {
     font-size: 2.3em;
     margin-bottom: .75rem;
     margin-left: .25em;
+
+    -webkit-text-stroke-color: var(--page-title-bg-color);
 }
 
 .card-box {
@@ -182,6 +174,10 @@ nav ul a:hover:after {
     border-radius: 8px;
     background-color: var(--card-box-bg-color);
     color: var(--card-box-text-color);
+
+    word-break: keep-all;
+
+    opacity: var(--card-box-opacity);
 }
 
 .card-box h2 {
@@ -191,9 +187,8 @@ nav ul a:hover:after {
 }
 
 .card-box p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-left: 0.5rem;
-    line-height: 2rem;
 }
 
 .card-button-more {
@@ -452,6 +447,10 @@ a[href="/about"] {
     color: var(--site-text-color);
 }
 
+ol {
+    margin-left: 2em;
+}
+
 .footer-icon {
     animation: heartbeat 1.33s ease-in-out infinite;
     fill: #f06292 !important;
@@ -466,6 +465,8 @@ a[href="/about"] {
     vertical-align: revert;
     display: inline-block;
     margin-right: .25rem;
+
+    color: var(--card-box-text-color);
 }
 
 .check-icon {

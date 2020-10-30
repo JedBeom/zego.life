@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react'
+import React, {Suspense, useEffect, useState} from 'react'
 import LoadingCard from '../components/LoadingCard'
 import DietCard from "../components/DietCard"
 import DdayCounter from "../components/DdayCounter"
@@ -7,15 +7,18 @@ import {getD2UByDiet, getDietByDate} from '../common/api'
 import {timestampDot} from '../utils/timestamp'
 import whatMeal from '../utils/whatMeal'
 
+const AddToHome = React.lazy(() => import("../components/AddToHome"))
+const DormInspector = React.lazy(() => import("../components/DormInspector"))
+
 const Main = () => {
     const [diet, setDiet] = useState({when: "", dietList: [], isLoading: true})
     const [applied, setApplied] = useState(-1)
     useEffect(() => {
         document.title = "제고라이프"
         document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
-        
+
         let day = new Date()
-        if (day.getHours() + (day.getMinutes() / 60) > 18.5 ) {
+        if (day.getHours() + (day.getMinutes() / 60) > 18.5) {
             day.setDate(day.getDate() + 1)
         }
 
@@ -46,13 +49,19 @@ const Main = () => {
     }, [])
 
     return (
-        <Fragment>
+        <>
             <h1 className="page-title">시작</h1>
+            <Suspense fallback={null}>
+                <AddToHome/>
+            </Suspense>
             <DdayCounter/>
             {diet.isLoading
                 ? <LoadingCard/>
                 : <DietCard diet={diet} applied={applied}/>}
-        </Fragment>
+            <Suspense fallback={null}>
+                <DormInspector/>
+            </Suspense>
+        </>
     )
 }
 

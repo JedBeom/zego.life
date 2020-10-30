@@ -10,10 +10,11 @@ const DietPage = () => {
     let now = new Date()
     let maxDate = new Date()
     maxDate.setMonth(now.getMonth() + 1)
-    maxDate.setDate(0) // last day of this month
     if (now.getDate() >= 28) {
         maxDate.setMonth(now.getMonth() + 1)
         maxDate.setDate(7)
+    } else {
+        maxDate.setDate(0) // last day of this month
     }
 
     let minDate = new Date()

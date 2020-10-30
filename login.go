@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"time"
 
 	"github.com/JedBeom/zego.life/apierror"
@@ -19,13 +20,17 @@ func postLogin(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
+	log.Println(p)
+
 	u, err := models.UserByEmail(db, p.Email)
 	if err != nil {
 		time.Sleep(time.Second * 3) // fake wait
+		log.Println(err)
 		return apierror.ErrLoginFailed.Send(c)
 	}
 
 	if err := bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(p.Password)); err != nil {
+		log.Println("여기다2")
 		return apierror.ErrLoginFailed.Send(c)
 	}
 

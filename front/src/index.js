@@ -20,6 +20,31 @@ axios.interceptors.request.use(config => {
 })
 axios.defaults.headers.common["Content-Type"] = "application/json;charset=utf8"
 
+let theme = localStorage.getItem("theme")
+if (theme === null) {
+    if (window.matchMedia(`(prefers-color-scheme: dark)`).matches) {
+        theme = "dark"
+    } else {
+        theme = "light"
+    }
+    localStorage.setItem("theme", theme)
+}
+
+switch (theme) {
+    case "light":
+        document.body.style.backgroundColor = "#eef1f5"
+        break
+    case "dark":
+        break
+    case "persona5":
+        document.body.style.backgroundColor = "#f90100"
+        document.body.style.backgroundImage = "url(\"/img/persona5.jpg\")"
+        document.body.style.backgroundPosition = "86%"
+        break
+    default:
+        break
+}
+
 ReactDOM.render(
     <React.StrictMode>
         <Root/>
@@ -30,4 +55,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

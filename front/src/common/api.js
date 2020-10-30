@@ -49,7 +49,6 @@ const getD2UByDiet = async (id) => {
 
 const getEvents = async () => {
     const {data} = await axios.get(`events`)
-
     return await eventsMake(data)
 }
 

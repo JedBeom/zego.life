@@ -1,0 +1,23 @@
+.theme-persona5 {
+    --site-logo-color: black;
+    --site-logo-bg-color: #f90000da;
+    --site-text-color: white;
+    --site-bg-color: #f90100;
+
+    --page-title-bg-color: white;
+
+    --card-box-text-color: white;
+    --card-box-bg-color: black;
+    --card-box-opacity: 80%;
+
+    --diet-when-color: red;
+
+    --nav-bar-default-color: #00000034;
+    --nav-bar-active-color: black;
+    --nav-bar-bg-color: var(--site-logo-bg-color);
+
+    --button-primary-color: #837ae6;
+
+    --background-image: url("/img/persona5.jpg");
+    --background-position: 86%;
+}
