@@ -51,11 +51,26 @@ CREATE TABLE IF NOT EXISTS diet2users
     -- 참조하는 게 삭제되었을 때 같이 삭제됨
 );
 
+CREATE TABLE IF NOT EXISTS diet_reviews
+(
+    diet_id    TEXT,
+    user_id    TEXT,
+    PRIMARY KEY (diet_id, user_id),
+
+    rate       INTEGER NOT NULL,
+    best_index INTEGER,
+    best_menu  TEXT,
+    created_at TIMESTAMPTZ DEFAULT current_timestamp,
+
+    FOREIGN KEY (diet_id) REFERENCES diets (id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS events
 (
     id          TEXT PRIMARY KEY,
     name        TEXT                      NOT NULL,
-    date        DATE                      NOT NULL, -- TODO: 실험 필요
+    date        DATE                      NOT NULL,
     date_string TEXT                      NOT NULL,
     type        INTEGER                   NOT NULL,
 
@@ -64,6 +79,15 @@ CREATE TABLE IF NOT EXISTS events
     grade3      BOOL        DEFAULT FALSE NOT NULL,
 
     created_at  TIMESTAMPTZ DEFAULT current_timestamp
+);
+
+CREATE TABLE IF NOT EXISTS dday_events
+(
+    id         TEXT PRIMARY KEY,
+    name       TEXT,
+    date       DATE,
+    target     INTEGER,
+    created_at TIMESTAMPTZ DEFAULT current_timestamp
 );
 
 CREATE TABLE IF NOT EXISTS sessions

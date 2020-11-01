@@ -38,6 +38,9 @@ type User struct {
 	BirthMonth int
 	BirthDay   int
 
+	Roles      string
+	RolesSlice []string `pg:"-" json:"-"`
+
 	Residence int // 1: 기숙 2: 광양
 
 	CreatedAt time.Time `sql:"default:now()"`
@@ -56,6 +59,19 @@ type Diet2User struct {
 	CreatedAt time.Time `sql:"default:now()" json:"-"`
 }
 
+type DietReview struct {
+	DietID string `pg:",pk"`
+	Diet   *Diet  `json:"-"`
+	UserID string `pg:",pk"`
+	User   *User  `json:"-"`
+
+	Rate      int `sql:",notnull"`
+	BestIndex int
+	BestMenu  string
+
+	CreatedAt time.Time `sql:"default:now()" json:"-"`
+}
+
 type Event struct {
 	ID         string
 	Name       string
@@ -66,6 +82,16 @@ type Event struct {
 	Grade1 bool `pg:",use_zero" sql:",notnull"`
 	Grade2 bool `pg:",use_zero" sql:",notnull"`
 	Grade3 bool `pg:",use_zero" sql:",notnull"`
+
+	CreatedAt time.Time `sql:"default:now()" json:"-"`
+}
+
+type DDayEvent struct {
+	ID   string
+	Name string
+	Date time.Time
+
+	Target int // -1: all, 1: grade1, 2: grade2, 3: grade3
 
 	CreatedAt time.Time `sql:"default:now()" json:"-"`
 }

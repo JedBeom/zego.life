@@ -18,6 +18,13 @@ func postRegister(c echo.Context) error {
 		Name                 string
 		Barcode              string `json:",omitempty"`
 		KitchenMemCode       string `json:",omitempty"`
+
+		BirthdayYear  int
+		BirthdayMonth int
+		BirthdayDay   int
+
+		IsDorm bool
+		IsMale bool
 	}{}
 
 	if err := c.Bind(&p); err != nil {
@@ -37,6 +44,21 @@ func postRegister(c echo.Context) error {
 		Password:       p.Password,
 		Barcode:        p.Barcode,
 		KitchenMemCode: p.KitchenMemCode,
+
+		BirthYear:  p.BirthdayYear,
+		BirthMonth: p.BirthdayMonth,
+		BirthDay:   p.BirthdayDay,
+
+		Residence: 1,
+		Sex:       1,
+	}
+
+	if !p.IsDorm {
+		u.Residence = 2 // 광양
+	}
+
+	if !p.IsMale {
+		u.Sex = 2 // 여자
 	}
 
 	if ure := u.ValidateUserRegister(); ure != nil {

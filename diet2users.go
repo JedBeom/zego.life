@@ -6,7 +6,7 @@ import (
 	"github.com/labstack/echo"
 )
 
-func GetDiet2UserByDietAndUser(c echo.Context) error {
+func getDiet2UserByDietAndUser(c echo.Context) error {
 	u, ok := c.Get("user").(models.User)
 	if !ok {
 		return apierror.ErrInterface.Send(c)
