@@ -17,6 +17,7 @@ import About from './pages/About'
 import NotFound from './pages/NotFound'
 
 import AddToHome from './pages/help/AddToHome'
+import TokenExpired from './pages/help/TokenExpired'
 
 function App() {
     return (
@@ -31,7 +32,10 @@ function App() {
                     <Route path="/me" component={Me}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/about" component={About}/>
+
                     <Route path="/help/add-to-home" component={AddToHome}/>
+                    <Route path="/help/token-expired" component={TokenExpired}/>
+
                     <Route component={NotFound}/>
                 </Switch>
                 <NotSupported/>

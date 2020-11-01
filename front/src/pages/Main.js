@@ -1,4 +1,5 @@
 import React, {Suspense, useEffect, useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import LoadingCard from '../components/LoadingCard'
 import DietCard from "../components/DietCard"
 import DdayCounter from "../components/DdayCounter"
@@ -13,6 +14,13 @@ const DormInspector = React.lazy(() => import("../components/DormInspector"))
 const Main = () => {
     const [diet, setDiet] = useState({when: "", dietList: [], isLoading: true})
     const [applied, setApplied] = useState(-1)
+    const [expired, setExpired] = useState(false)
+    const history = useHistory()
+    useEffect(() => {
+        if (expired) {
+            history.push("/help/token-expired")
+        }
+    }, [expired])
     useEffect(() => {
         document.title = "제고라이프"
         document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
@@ -27,9 +35,12 @@ const Main = () => {
                 let ds = await getDietByDate(timestampDot(day))
                 setDiet(ds[whatMeal()])
             } catch (e) {
-                alert(e)
+                if (e.response.status === 401) {
+                    setExpired(true)
+                }
             }
         };
+
 
         const fetchD2U = async () => {
 			if (localStorage.getItem("token") === null) {

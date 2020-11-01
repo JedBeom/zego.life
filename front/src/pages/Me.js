@@ -22,10 +22,7 @@ const Me = () => {
         } catch (e) {
             alert("로그아웃 실패! 그러나 로그인 전 상태로 돌아갑니다.")
         }
-        localStorage.removeItem("me.name")
-        localStorage.removeItem("me.id")
-        localStorage.removeItem("me.barcode")
-        localStorage.removeItem("token")
+        localStorage.clear()
         window.location = "/login"
     }
 

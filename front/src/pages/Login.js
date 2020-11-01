@@ -28,10 +28,15 @@ const Login = () => {
             const {data} = await axios.post("login", req)
             setOkMsg("로그인 성공! 곧 메인 페이지로 이동합니다.")
             localStorage.setItem("token", data.token)
+
             const respMe = await axios.get("me")
+
             localStorage.setItem("me.name", respMe.data.Name)
             localStorage.setItem("me.id", respMe.data.ID)
             localStorage.setItem("me.barcode", respMe.data.Barcode)
+            localStorage.setItem("me.grade", respMe.data.Grade)
+            localStorage.setItem("me.residence", respMe.data.Residence)
+            localStorage.setItem("me.roles", respMe.data.Roles)
         } catch (e) {
             setOkMsg("")
             setErrMsg("이메일 또는 암호가 올바르지 않습니다.")

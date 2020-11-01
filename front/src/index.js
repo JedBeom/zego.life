@@ -35,6 +35,7 @@ switch (theme) {
         document.body.style.backgroundColor = "#eef1f5"
         break
     case "dark":
+        document.body.style.backgroundColor = "#121212"
         break
     case "persona5":
         document.body.style.backgroundColor = "#f90100"

@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {BrowserBarcodeReader} from '@zxing/library'
 import CheckGreen from '../components/CheckGreen'
 import hakbunToGCN from '../utils/hakbunToGCN'
@@ -26,7 +26,7 @@ const Register = () => {
     const [password, setPassword] = useState("")
     const [hakbun, setHakbun] = useState("")
     const [date, setDate] = useState(new Date(2004, 8, 8))
-    const [residenceDom, setResidenceDom] = useState(true)
+    const [residenceDorm, setResidenceDorm] = useState(true)
     const [tosRead, setTosRead] = useState("")
     const [isLoading, setLoading] = useState("button float-right")
     const [kitchenLoading, setKitchenLoading] = useState(false)
@@ -142,7 +142,8 @@ const Register = () => {
             BirthdayYear: y,
             BirthdayMonth: m,
             BirthdayDay: d,
-            IsDom: residenceDom,
+            IsDorm: residenceDorm,
+            IsMale: isMale,
             Name: name,
         }
 
@@ -187,23 +188,22 @@ const Register = () => {
         } else {
             if (isAuthBarcode) {
                 setStep1(
-                    <Fragment>
-                        <article className={`card-box shadow-3 register-scan-box`}>
-                            <h2 className={"card-title font-s-core px-2"}>STEP 1: 학생증 바코드 스캔</h2>
-                            <div className={"register-scan-button"}>
-                                {barcode === "" ?
-                                    <Fragment>
-                                        {videoActive ? <video id="video"/>
-                                            : <button onClick={startRead} className={"button"}>스캔하기</button>
-                                        }
-                                    </Fragment>
-                                    : <Fragment>
-                                        <CheckGreen/>
-                                        <h2>완료!</h2>
-                                    </Fragment>}
-                            </div>
-                        </article>
-                    </Fragment>
+                    <article className={`card-box shadow-3 register-scan-box`}>
+                        <h2 className={"card-title font-s-core px-2"}>STEP 1: 학생증 바코드 스캔</h2>
+                        <div className={"register-scan-button"}>
+                            {barcode === "" ?
+                                <>
+                                    {videoActive ? <video id="video"/>
+                                        : <button onClick={startRead} className={"button"}>스캔하기</button>
+                                    }
+                                    <p>기종에 따라 초점이 잘 맞지 않을 수 있어요.</p>
+                                </>
+                                : <>
+                                    <CheckGreen/>
+                                    <h2>완료!</h2>
+                                </>}
+                        </div>
+                    </article>
                 )
             } else {
                 setStep1(
@@ -266,11 +266,11 @@ const Register = () => {
                             <div className="flex flex-column">
                                 <label className="my-2" htmlFor="residence-input">거주</label>
                                 <div className="horizontal-group register-select">
-                                    <button type="button" className={residenceDom ? "button bg-green" : "button"}
-                                            onClick={() => setResidenceDom(true)}>기숙사
+                                    <button type="button" className={residenceDorm ? "button bg-green" : "button"}
+                                            onClick={() => setResidenceDorm(true)}>기숙사
                                     </button>
-                                    <button type="button" className={!residenceDom ? "button bg-green" : "button"}
-                                            onClick={() => setResidenceDom(false)}>비기숙사
+                                    <button type="button" className={!residenceDorm ? "button bg-green" : "button"}
+                                            onClick={() => setResidenceDorm(false)}>비기숙사
                                     </button>
                                 </div>
                             </div>
@@ -334,7 +334,7 @@ const Register = () => {
                 </article>
             )
         }
-    }, [step1Ok, step2Ok, name, hakbun, email, password, tosRead, isLoading, date, residenceDom, isMale])
+    }, [step1Ok, step2Ok, name, hakbun, email, password, tosRead, isLoading, date, residenceDorm, isMale])
 
     const [step3, setStep3] = useState(null)
     useEffect(() => {
@@ -353,7 +353,7 @@ const Register = () => {
     }, [step2Ok])
 
     return (
-        <Fragment>
+        <>
             <h1 className="page-title">회원가입</h1>
             <article className={`card-box shadow-3`}>
                 <h2 className={"card-title font-s-core px-2"}>
@@ -378,7 +378,7 @@ const Register = () => {
                 <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
                     {errMsg}
                 </div> : null}
-        </Fragment>
+        </>
     )
 }
 
