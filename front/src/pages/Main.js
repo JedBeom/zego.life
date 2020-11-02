@@ -20,6 +20,7 @@ const Main = () => {
         if (expired) {
             history.push("/help/token-expired")
         }
+        // eslint-disable-next-line
     }, [expired])
     useEffect(() => {
         document.title = "제고라이프"

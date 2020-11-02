@@ -266,8 +266,8 @@ p a {
     background-color: grey;
 }
 
-.register-birthday input {
-    pointer-events: none;
+input.register-birthday {
+    color: var(--card-box-text-color) !important;
 }
 
 ::placeholder {

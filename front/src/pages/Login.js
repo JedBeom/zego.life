@@ -12,12 +12,12 @@ const Login = () => {
     useEffect(() => {
         document.title = "로그인 | 제고라이프"
         document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+        if (localStorage.getItem("me.name") != null) {
+            window.location = "/"
+            return null
+        }
     }, [])
 
-    if (localStorage.getItem("me.name") != null) {
-        window.location = "/"
-        return null
-    }
 
     const onSubmit = async event => {
         setErrMsg("")
@@ -37,6 +37,13 @@ const Login = () => {
             localStorage.setItem("me.grade", respMe.data.Grade)
             localStorage.setItem("me.residence", respMe.data.Residence)
             localStorage.setItem("me.roles", respMe.data.Roles)
+
+            if (respMe.data.Residence === undefined || respMe.data.Residence === 0) {
+                window.location = "/help/slot-filling"
+            } else {
+                window.location = "/"
+            }
+
         } catch (e) {
             setOkMsg("")
             setErrMsg("이메일 또는 암호가 올바르지 않습니다.")
@@ -70,7 +77,7 @@ const Login = () => {
                 <p>광양제철고등학교 학생이라면 누구나 가입할 수 있습니다.</p>
                 <p>OBT 등록 중지로 회원가입을 지금 할 수 없습니다. 정식 출시 때 만나요!</p>
                 <NavLink to="/">
-                    <button disabled className={"button float-right"}>회원가입 하기</button>
+                    <button disabled className="button float-right">회원가입 하기</button>
                 </NavLink>
             </article>
             <article className={"card-box shadow-3"}>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
 import {getEvents} from '../common/api'
 import LoadingCard from '../components/LoadingCard'
 
@@ -38,7 +38,7 @@ const Events = () => {
                             <tbody>
                             {
                                 events.keys.map((k, index) => (
-                                    <>
+                                    <Fragment key={k + "-" + index}>
                                         {
                                             events[k].map((e, j) => (
                                                 <tr key={index + "-" + j}>
@@ -50,7 +50,7 @@ const Events = () => {
                                                 </tr>
                                             ))
                                         }
-                                    </>
+                                    </Fragment>
                                 ))
                             }
                             </tbody>

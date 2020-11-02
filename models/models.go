@@ -38,8 +38,7 @@ type User struct {
 	BirthMonth int
 	BirthDay   int
 
-	Roles      string
-	RolesSlice []string `pg:"-" json:"-"`
+	Roles string
 
 	Residence int // 1: 기숙 2: 광양
 
@@ -94,6 +93,17 @@ type DDayEvent struct {
 	Target int // -1: all, 1: grade1, 2: grade2, 3: grade3
 
 	CreatedAt time.Time `sql:"default:now()" json:"-"`
+}
+
+type Feedback struct {
+	ID     string
+	UserID string
+	User   *User
+
+	Content string
+	Answer  string
+
+	CreatedAt time.Time
 }
 
 type Session struct {

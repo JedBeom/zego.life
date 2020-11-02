@@ -18,6 +18,7 @@ import NotFound from './pages/NotFound'
 
 import AddToHome from './pages/help/AddToHome'
 import TokenExpired from './pages/help/TokenExpired'
+import SlotFilling from './pages/help/SlotFilling'
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
 
                     <Route path="/help/add-to-home" component={AddToHome}/>
                     <Route path="/help/token-expired" component={TokenExpired}/>
+                    <Route path="/help/slot-filling" component={SlotFilling}/>
 
                     <Route component={NotFound}/>
                 </Switch>

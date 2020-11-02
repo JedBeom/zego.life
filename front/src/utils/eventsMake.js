@@ -8,13 +8,13 @@ const eventMake = event => {
 
     let badges = []
     if (event.Grade1) {
-        badges.push(<div className={className + "bg-yellow yellow-darkest"}>1학년</div>)
+        badges.push(<div key="grade1" className={className + "bg-yellow yellow-darkest"}>1학년</div>)
     }
     if (event.Grade2) {
-        badges.push(<div className={className + "bg-blue blue-lightest"}>2학년</div>)
+        badges.push(<div key="grade2" className={className + "bg-blue blue-lightest"}>2학년</div>)
     }
     if (event.Grade3) {
-        badges.push(<div className={className + "bg-pink pink-darkest"}>3학년</div>)
+        badges.push(<div key="grade3" className={className + "bg-pink pink-darkest"}>3학년</div>)
     }
 
     event.badges = <>

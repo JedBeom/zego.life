@@ -98,7 +98,7 @@ func (u *User) Create(db *pg.DB) error {
 
 func (u *User) UpdateV1(db *pg.DB) error {
 	_, err := db.Model(u).
-		Column("sex", "residence", "birth_year", "birth_month", "birth_day").
+		Column("sex", "residence", "birth_year", "birth_month", "birth_day", "updated_at").
 		WherePK().
 		Update()
 	return err

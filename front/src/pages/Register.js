@@ -14,9 +14,9 @@ const Register = () => {
     const [videoActive, setVideoActive] = useState(false)
     const [barcode, setBarcode] = useState("")
     const [memCode, setMemCode] = useState("")
-    const [step0Ok, setStep0Ok] = useState(true)
+    const [step0Ok, setStep0Ok] = useState(false)
     const [isAuthBarcode, setIsAuthBarcode] = useState(false)
-    const [step1Ok, setStep1Ok] = useState(true)
+    const [step1Ok, setStep1Ok] = useState(false)
     const [step2Ok, setStep2Ok] = useState(false)
     const [errMsg, setErrMsg] = useState("")
 
@@ -129,9 +129,9 @@ const Register = () => {
             return
         }
 
-        let y = date.getUTCFullYear()
-        let m = date.getUTCMonth() + 1
-        let d = date.getUTCDate()
+        let y = date.getFullYear()
+        let m = date.getMonth() + 1
+        let d = date.getDate()
 
         let req = {
             Email: email,
@@ -241,6 +241,7 @@ const Register = () => {
                 )
             }
         }
+        // eslint-disable-next-line
     }, [step0Ok, step1Ok, videoActive, barcode, hakbun, kitchenPass, kitchenLoading])
 
     const [step2, setStep2] = useState(null)
@@ -334,6 +335,7 @@ const Register = () => {
                 </article>
             )
         }
+        // eslint-disable-next-line
     }, [step1Ok, step2Ok, name, hakbun, email, password, tosRead, isLoading, date, residenceDorm, isMale])
 
     const [step3, setStep3] = useState(null)
