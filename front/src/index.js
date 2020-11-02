@@ -7,7 +7,8 @@ import axios from 'axios'
 let server = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
 
 if (process.env.NODE_ENV === 'development') {
-    server = "https://zego.life"
+    //server = "https://zego.life"
+    server = "http://localhost:8080"
 }
 
 axios.defaults.baseURL = server + "/api/v1/"
@@ -56,4 +57,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+serviceWorker.unregister();

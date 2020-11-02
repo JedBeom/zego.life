@@ -22,6 +22,9 @@ const Login = () => {
     const onSubmit = async event => {
         setErrMsg("")
         event.preventDefault()
+
+        localStorage.clear()
+
         setLoading("loading button float-right")
         let req = {"Email": email, "Password": password}
         try {
@@ -35,8 +38,8 @@ const Login = () => {
             localStorage.setItem("me.id", respMe.data.ID)
             localStorage.setItem("me.barcode", respMe.data.Barcode)
             localStorage.setItem("me.grade", respMe.data.Grade)
-            localStorage.setItem("me.residence", respMe.data.Residence)
             localStorage.setItem("me.roles", respMe.data.Roles)
+            localStorage.setItem("me.residence", respMe.data.Residence)
 
             if (respMe.data.Residence === undefined || respMe.data.Residence === 0) {
                 window.location = "/help/slot-filling"

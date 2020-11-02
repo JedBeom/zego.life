@@ -9,7 +9,7 @@ import {timestampDot} from '../utils/timestamp'
 import whatMeal from '../utils/whatMeal'
 
 const AddToHome = React.lazy(() => import("../components/AddToHome"))
-const DormInspector = React.lazy(() => import("../components/DormInspector"))
+// const DormInspector = React.lazy(() => import("../components/DormInspector"))
 
 const Main = () => {
     const [diet, setDiet] = useState({when: "", dietList: [], isLoading: true})
@@ -70,9 +70,11 @@ const Main = () => {
             {diet.isLoading
                 ? <LoadingCard/>
                 : <DietCard diet={diet} applied={applied}/>}
+            {/*}
             <Suspense fallback={null}>
                 <DormInspector/>
             </Suspense>
+            */}
         </>
     )
 }
