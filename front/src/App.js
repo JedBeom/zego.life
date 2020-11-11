@@ -16,9 +16,7 @@ import Register from './pages/Register'
 import About from './pages/About'
 import NotFound from './pages/NotFound'
 
-import AddToHome from './pages/help/AddToHome'
-import TokenExpired from './pages/help/TokenExpired'
-import SlotFilling from './pages/help/SlotFilling'
+import HelpRoute from './pages/help/Route'
 
 function App() {
     return (
@@ -34,9 +32,7 @@ function App() {
                     <Route path="/register" component={Register}/>
                     <Route path="/about" component={About}/>
 
-                    <Route path="/help/add-to-home" component={AddToHome}/>
-                    <Route path="/help/token-expired" component={TokenExpired}/>
-                    <Route path="/help/slot-filling" component={SlotFilling}/>
+                    <Route path="/help" component={HelpRoute}/>
 
                     <Route component={NotFound}/>
                 </Switch>

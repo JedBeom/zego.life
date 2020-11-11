@@ -1,8 +1,9 @@
 import React from 'react'
 
-const CheckGreen = () => {
+const CheckGreen = ({style}) => {
     return (
-        <svg className={"icon check-green-circle"} version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+        <svg style={style} className={"icon check-green-circle"} version="1.1" xmlns="http://www.w3.org/2000/svg"
+             x="0px" y="0px"
              viewBox="0 0 367.805 367.805">
             <g>
                 <path style={{fill: "#3BB54A"}}

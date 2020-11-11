@@ -1,16 +1,10 @@
 import React, {useState} from "react";
-import axios from 'axios'
 
 const TokenExpired = () => {
     const [loading, setLoading] = useState(false)
 
     const logout = async () => {
         setLoading(true)
-        try {
-            await axios.get("logout")
-        } catch (e) {
-            alert("로그아웃 실패! 그러나 로그인 전 상태로 돌아갑니다.")
-        }
         localStorage.clear()
         window.location = "/login"
     }

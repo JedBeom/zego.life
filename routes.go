@@ -30,8 +30,14 @@ func routes(e *echo.Echo) {
 		{
 			u.GET("/me", getMe)
 			u.GET("/logout", getLogout)
-			u.GET("/users/:user_id/diet2user/:diet_id", getDiet2UserByDietAndUser)
 			u.PATCH("/users/:user_id", patchUser)
+
+			u.GET("/users/:user_id/diet2user/:diet_id", getDiet2UserByDietAndUser)
+			u.GET("/diet-reviews/:diet_id", getDietReviewPossible)
+			u.POST("/diet-reviews/:diet_id", postDietReview)
+
+			u.GET("/feedbacks/:user_id", getFeedbacksByUser)
+			u.POST("/feedbacks", postFeedback)
 		}
 
 		api.POST("/register", postRegister)
@@ -39,13 +45,12 @@ func routes(e *echo.Echo) {
 		api.GET("/first-parse/:email", getFirstParse)
 		api.POST("/login", postLogin)
 
-		// api.GET("/diets/by-month/:month", getDietsByMonth)
 		api.GET("/diets/:date", getDietsByDate)
 
 		api.GET("/events", getEventsLegacy) // TODO: REMOVE eventsLegacy
 		api.GET("/events/:year/:month", getEvents)
-		api.GET("/dday-events/:grade", getDDayEvent)
-		api.POST("/dday-events", postDDayEvent)
+		// api.GET("/dday-events/:grade", getDDayEvent)
+		// api.POST("/dday-events", postDDayEvent)
 
 	}
 }

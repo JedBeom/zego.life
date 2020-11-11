@@ -24,6 +24,7 @@ const Me = () => {
             alert("로그아웃 실패! 그러나 로그인 전 상태로 돌아갑니다.")
         }
         localStorage.clear()
+        sessionStorage.clear()
         window.location = "/login"
     }
 
@@ -56,6 +57,13 @@ const Me = () => {
                     </select>
                     <p>테마는 곧 더 추가됩니다.</p>
                 </div>
+            </article>
+            <article className="card-box shadow-3">
+                <h2>피드백 보내기</h2>
+                <p>추가되었으면 하는 기능이나 불편한 점이 있나요? 피드백을 보내주세요!</p>
+                <NavLink to="/help/feedback/">
+                    <button className="button float-right">피드백</button>
+                </NavLink>
             </article>
             <footer className="copyright">
                 Made with

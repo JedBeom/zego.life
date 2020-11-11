@@ -1,0 +1,107 @@
+import React, {useEffect, useState} from 'react'
+import {timestampDot} from '../utils/timestamp'
+import axios from 'axios'
+import CheckGreen from '../components/CheckGreen'
+import {getDietReviewPossible} from '../common/api'
+
+const DietReview = () => {
+    const [id, setID] = useState("")
+    const [rate, setRate] = useState(0)
+    const [bestIndex, setBestIndex] = useState(0)
+    const [menu, setMenu] = useState(["로딩 중"])
+    const msg = [
+        "별을 눌러보세요", "별로였어요", "좀 아쉬웠어요", "그럭저럭", "괜찮았어요", "최고였어요"
+    ]
+    const [loading, setLoading] = useState(false)
+    const [submitted, setSubmitted] = useState(false)
+
+    const fetchPossible = async () => {
+        let d = new Date();
+        let h = d.getHours();
+        let m = d.getMinutes();
+        h += m / 60;
+
+        let when = 0
+        if (h >= 7.33 && h <= 8.33) { // 약 7시 20분 ~ 약 8시 20분
+            when = 1
+        } else if (h >= 11.33 && h <= 12.33) { // 약 11시 20분 ~ 약 12시 20분
+            when = 2
+        } else if (h >= 17.5 && h <= 18.5) { // 17시 30분 ~ 18시 30분
+            when = 3
+        } else {
+            return
+        }
+
+        let idd = timestampDot(d) + "-" + when
+        setID(idd)
+
+        try {
+            let m = await getDietReviewPossible(idd)
+            console.log(m)
+            setMenu(m)
+        } catch (e) {
+        }
+    }
+
+    const submit = async e => {
+        setLoading(true)
+        let d = {
+            Rate: rate,
+            BestIndex: bestIndex,
+            BestMenu: menu[bestIndex]
+        }
+        console.log(d)
+
+        try {
+            await axios.post(`diet-reviews/${id}`, d)
+            sessionStorage.setItem(`diet-reviews/${localStorage.getItem("me.id")}/${id}`, JSON.stringify([]))
+            setSubmitted(true)
+        } catch (e) {
+            alert(e)
+        }
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        fetchPossible()
+    }, [])
+
+    if (menu.length <= 1) {
+        return null
+    }
+
+    return (
+        <article className="card-box card-box-review shadow-3">
+            <h2>급식 평가</h2>
+            {!submitted ?
+                <>
+                    <p>오늘 <span className="diet-when">점심</span> 어땠나요?</p>
+                    <p className="rate">
+                        {
+                            [1, 2, 3, 4, 5].map((v) => (
+                                <span key={v} onClick={() => setRate(v)}>{rate > v - 1 ? "★" : "☆"}</span>
+                            ))
+                        }
+                    </p>
+                    <p>{msg[rate]}</p>
+                    <h2>최고의 메뉴는?</h2>
+                    <select className="select br-round full mt-2" value={bestIndex}
+                            onChange={e => setBestIndex(Number(e.target.value))}>
+                        {menu.map((v, i) => (
+                            <option key={i} value={i}>{v}</option>
+                        ))}
+                    </select>
+                    <button onClick={submit}
+                            className={loading ? "button float-right mt-3 loading" : "button float-right mt-3"}>제출
+                    </button>
+                </>
+                : <>
+                    <CheckGreen/>
+                    <p style={{display: "inline"}}>평가 완료!</p>
+                </>
+            }
+        </article>
+    )
+}
+
+export default DietReview

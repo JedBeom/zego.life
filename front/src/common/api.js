@@ -1,6 +1,7 @@
 import axios from "axios"
 import dietMake from "../utils/dietMake"
 import eventsMake from "../utils/eventsMake"
+import htmlDecode from '../utils/htmlDecode'
 
 async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
@@ -52,4 +53,20 @@ const getEvents = async () => {
     return await eventsMake(data)
 }
 
-export {getDietByDate, getD2UByDiet, getEvents}
+const getDietReviewPossible = async id => {
+    let userID = localStorage.getItem("me.id")
+    let key = `diet-reviews/${userID}/${id}`
+
+    let item = sessionStorage.getItem(key)
+    if (item != null) {
+        return JSON.parse(item)
+    }
+
+    let {data} = await axios.get(`diet-reviews/${id}`)
+    let dietList = htmlDecode(data.Content).replace(/(\d?\d\.){1,}/g, "").split("\n")
+
+    sessionStorage.setItem(key, JSON.stringify(dietList))
+    return dietList
+}
+
+export {getDietByDate, getD2UByDiet, getEvents, getDietReviewPossible}

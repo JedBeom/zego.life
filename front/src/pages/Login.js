@@ -57,14 +57,6 @@ const Login = () => {
     return (
         <>
             <h1 className="page-title">로그인</h1>
-            {okMsg !== "" ?
-                <div className={"mb-5 bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green"}>
-                    {okMsg}
-                </div> : null}
-            {errMsg !== "" ?
-                <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
-                    {errMsg}
-                </div> : null}
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg className={"icon mr-3"} viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
@@ -83,6 +75,14 @@ const Login = () => {
                     <button disabled className="button float-right">회원가입 하기</button>
                 </NavLink>
             </article>
+            {okMsg !== "" ?
+                <div className={"mb-5 bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green"}>
+                    {okMsg}
+                </div> : null}
+            {errMsg !== "" ?
+                <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
+                    {errMsg}
+                </div> : null}
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg className={"icon mr-3"} height="512pt" viewBox="0 -32 512 512" width="512pt"

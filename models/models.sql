@@ -66,6 +66,18 @@ CREATE TABLE IF NOT EXISTS diet_reviews
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS feedbacks
+(
+    id         TEXT PRIMARY KEY,
+    user_id    TEXT,
+
+    content    TEXT,
+    answer     TEXT,
+    created_at TIMESTAMPTZ DEFAULT current_timestamp,
+
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS events
 (
     id          TEXT PRIMARY KEY,

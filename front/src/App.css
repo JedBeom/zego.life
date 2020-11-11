@@ -183,6 +183,11 @@ nav ul a:hover:after {
     -webkit-text-stroke-color: var(--page-title-bg-color);
 }
 
+.page-title-sub {
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
 .card-box {
     padding: 1em;
     margin-bottom: 1em;
@@ -214,6 +219,20 @@ nav ul a:hover:after {
     content: "";
     clear: both;
     display: table;
+}
+
+.card-box-review p {
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.card-box-review .rate {
+    font-size: 2em;
+}
+
+.card-box-review select {
+    font-size: 1em;
+    color: var(--card-box-text-color);
 }
 
 .login-box input {
@@ -283,6 +302,7 @@ input.register-birthday {
 .diet-when {
     color: var(--diet-when-color);
     margin-right: .25rem;
+    font-weight: 500;
 }
 
 .diet-list {
@@ -367,6 +387,11 @@ input.register-birthday {
 
 .loading-text {
     font-size: 1.2em;
+}
+
+.textarea {
+    font-size: 1em;
+    color: var(--card-box-text-color);
 }
 
 /* 뭐야 이거 누가 쓴거야? */

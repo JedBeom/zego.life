@@ -8,6 +8,8 @@ import {getD2UByDiet, getDietByDate} from '../common/api'
 import {timestampDot} from '../utils/timestamp'
 import whatMeal from '../utils/whatMeal'
 
+import DietReview from '../components/DietReview'
+
 const AddToHome = React.lazy(() => import("../components/AddToHome"))
 // const DormInspector = React.lazy(() => import("../components/DormInspector"))
 
@@ -36,7 +38,9 @@ const Main = () => {
                 let ds = await getDietByDate(timestampDot(day))
                 setDiet(ds[whatMeal()])
             } catch (e) {
-                if (e.response.status === 401) {
+                if (!e.response) {
+                    alert("서버에 접속할 수 없습니다. 인터넷 상황을 확인해주세요.")
+                } else if (e.response.status === 401) {
                     setExpired(true)
                 }
             }
@@ -70,6 +74,7 @@ const Main = () => {
             {diet.isLoading
                 ? <LoadingCard/>
                 : <DietCard diet={diet} applied={applied}/>}
+            <DietReview/>
             {/*}
             <Suspense fallback={null}>
                 <DormInspector/>
