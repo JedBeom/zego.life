@@ -98,7 +98,7 @@ type DDayEvent struct {
 type Feedback struct {
 	ID     string
 	UserID string
-	User   *User
+	User   *User `json:"-"`
 
 	Content string
 	Answer  string

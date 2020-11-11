@@ -15,7 +15,9 @@ const Feedback = () => {
         setErrMsg("")
         try {
             const {data} = await axios.get(`feedbacks/${localStorage.getItem("me.id")}`)
-            setFeedbacks(data)
+            if (data != null) {
+                setFeedbacks(data)
+            }
         } catch (e) {
             setErrMsg(`내 피드백을 불러오지 못했어요. ${e}`)
         }
@@ -26,8 +28,16 @@ const Feedback = () => {
         setOkMsg("")
         setErrMsg("")
 
-        if (content === "") {
+        if (content.replace(/\s/g, '') === "") {
             setErrMsg("빈 종이는 받지 않아요!")
+            setLoading(false)
+            return
+        } else if (content.length < 2) {
+            setErrMsg("너무 짧아요...")
+            setLoading(false)
+            return
+        } else if (content.length > 150) {
+            setErrMsg("제고라이프를 향한 큰 관심은 감사하지만, 내용이 너무 깁니다. 150자 미만으로 작성해 주십시오.")
             setLoading(false)
             return
         }
@@ -66,6 +76,7 @@ const Feedback = () => {
             <p>제고라이프는 여러분의 피드백으로 발전합니다. 사용하면서 필요한 기능이나 불편한 점이 있다면
                 서슴 없이 알려주세요.
             </p>
+            <p>뻘소리는 지양... 부탁드려요... (;_;)</p>
             <textarea className="mt-4 textarea" rows="5" placeholder="당신의 의견을 알려주세요!" value={content}
                       onChange={e => setContent(e.target.value)}/>
             <button className={loading ? "button float-right mt-2 loading" : "button float-right mt-2"}
@@ -74,7 +85,7 @@ const Feedback = () => {
             <h2 className="page-title-sub">내 피드백</h2>
             {
                 feedbacks.map((f) => (
-                    <article className="card-box shadow-3">
+                    <article key={f.ID} className="card-box shadow-3">
                         {f.Content}
                     </article>
                 ))
