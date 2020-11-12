@@ -8,6 +8,7 @@ const DietReview = () => {
     const [id, setID] = useState("")
     const [rate, setRate] = useState(0)
     const [bestIndex, setBestIndex] = useState(0)
+    const [dietWhen, setDietWhen] = useState("")
     const [menu, setMenu] = useState(["로딩 중"])
     const msg = [
         "별을 눌러보세요", "별로였어요", "좀 아쉬웠어요", "그럭저럭", "괜찮았어요", "최고였어요"
@@ -24,10 +25,13 @@ const DietReview = () => {
         let when = 0
         if (h >= 7.33 && h <= 8.33) { // 약 7시 20분 ~ 약 8시 20분
             when = 1
+            setDietWhen("아침")
         } else if (h >= 11.33 && h <= 12.33) { // 약 11시 20분 ~ 약 12시 20분
             when = 2
+            setDietWhen("점심")
         } else if (h >= 17.5 && h <= 18.5) { // 17시 30분 ~ 18시 30분
             when = 3
+            setDietWhen("저녁")
         } else {
             return
         }
@@ -75,7 +79,7 @@ const DietReview = () => {
             <h2>급식 평가</h2>
             {!submitted ?
                 <>
-                    <p>오늘 <span className="diet-when">점심</span> 어땠나요?</p>
+                    <p>오늘 <span className="diet-when">{dietWhen}</span> 어땠나요?</p>
                     <p className="rate">
                         {
                             [1, 2, 3, 4, 5].map((v) => (
@@ -84,7 +88,7 @@ const DietReview = () => {
                         }
                     </p>
                     <p>{msg[rate]}</p>
-                    <h2>최고의 메뉴는?</h2>
+                    <h2>최고의 메뉴를 골라주세요</h2>
                     <select className="select br-round full mt-2" value={bestIndex}
                             onChange={e => setBestIndex(Number(e.target.value))}>
                         {menu.map((v, i) => (

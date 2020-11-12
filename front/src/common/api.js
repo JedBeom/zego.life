@@ -10,29 +10,33 @@ async function asyncForEach(array, callback) {
 }
 
 const getDietByDate = async (date) => {
+    /*
     let key = "diet/" + date
     let item = sessionStorage.getItem(key)
     if (item != null) {
         return JSON.parse(item)
     }
+    */
 
     const resp = await axios.get("diets/" + date)
     let diets = []
     await asyncForEach(resp.data, d => {
         diets.push(dietMake(d))
     })
-    sessionStorage.setItem(key, JSON.stringify(diets))
+    //sessionStorage.setItem(key, JSON.stringify(diets))
     return diets
 }
 
 const getD2UByDiet = async (id) => {
     let userID = localStorage.getItem("me.id")
+    /*
     let key = `d2u/${userID}/${id}`
 
     let item = sessionStorage.getItem(key)
     if (item != null) {
         return item
     }
+    */
 
     let applied = "0"
     try {
@@ -43,8 +47,10 @@ const getD2UByDiet = async (id) => {
     } catch (e) {
         applied = "2"
     }
+    if (applied !== "2") {
+        // sessionStorage.setItem(key, applied)
+    }
 
-    sessionStorage.setItem(key, applied)
     return applied
 }
 

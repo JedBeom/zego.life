@@ -82,7 +82,7 @@ const Feedback = () => {
             <button className={loading ? "button float-right mt-2 loading" : "button float-right mt-2"}
                     onClick={submit}>보내기!
             </button>
-            <h2 className="page-title-sub">내 피드백</h2>
+            <h2 className="page-title-sub">전에 보낸 피드백</h2>
             {
                 feedbacks.map((f) => (
                     <article key={f.ID} className="card-box shadow-3">

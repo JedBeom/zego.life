@@ -25,7 +25,7 @@ const DietPage = () => {
     const [isLoading, setLoading] = useState(false)
     const [date, setDate] = useState(now)
     const getDietOnClick = async (d) => {
-        if (d === undefined || d === null) {
+        if (d === undefined || d === null || d === date) {
             return
         }
 
@@ -52,6 +52,7 @@ const DietPage = () => {
     useEffect(() => {
         document.title = "급식 | 제고라이프"
         document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+        getDietOnClick(new Date())
     }, [])
 
     return (

@@ -31,7 +31,7 @@ const Me = () => {
     const onChange = e => {
         setTheme(e.target.value)
         localStorage.setItem("theme", e.target.value)
-        window.location = "/me"
+        window.location.reload()
     }
 
     return (
@@ -53,9 +53,9 @@ const Me = () => {
                     <select className="select br-round full" value={theme} onChange={onChange}>
                         <option value="light">라이트</option>
                         <option value="dark">다크</option>
-                        {/*<option value="persona5">페르소나 5</option>*/}
+                        {isAdmin() ? <option value="persona5">페르소나 5</option> : null}
                     </select>
-                    <p>테마는 곧 더 추가됩니다.</p>
+                    <p>테마 변경으로 앱 새로고침을 할 수 있습니다.</p>
                 </div>
             </article>
             <article className="card-box shadow-3">

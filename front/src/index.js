@@ -7,9 +7,9 @@ import axios from 'axios'
 let server = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
 
 if (process.env.NODE_ENV === 'development') {
-    // server = "https://zego.life"
+    server = "https://zego.life"
     // server = "http://localhost:8080"
-    server = window.location.protocol + "//" + window.location.hostname + ":8080";
+    // server = window.location.protocol + "//" + window.location.hostname + ":8080";
 }
 
 axios.defaults.baseURL = server + "/api/v1/"

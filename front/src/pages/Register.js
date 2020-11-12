@@ -371,11 +371,10 @@ const Register = () => {
                 </h2>
                 <p>제고라이프는 광양제철고등학교 학생 누구나 이용할 수 있습니다.</p>
                 <p>iOS의 경우에는 Safari를, 안드로이드의 경우에는 Chrome을 사용해주세요. </p>
-                <p>OBT 등록 중지로 회원가입을 지금 할 수 없어요. 정식 출시 때 만나요!</p>
             </article>
-            {/*step1}
+            {step1}
             {step2}
-    {step3*/}
+            {step3}
             {errMsg !== "" ?
                 <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
                     {errMsg}

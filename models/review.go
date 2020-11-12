@@ -15,6 +15,15 @@ func DietReviewPossible(db *pg.DB, dietID string, userID string) (d Diet, err er
 		return d, err
 	}
 
+	d2u, err := Diet2UserByDietAndUser(db, dietID, userID)
+	if err != nil {
+		return d, err
+	}
+
+	if !d2u.Applied {
+		return
+	}
+
 	// 존재하지 않으면
 	d, err = DietByID(db, dietID)
 	return
