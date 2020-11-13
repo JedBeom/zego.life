@@ -100,7 +100,7 @@ const Login = () => {
                 <div className={"login-box"}>
                     <form className={"p-2"} onSubmit={onSubmit}>
                         <div className={"flex flex-column"}>
-                            <label className={"my-2"} htmlFor={"email-input"}>이메일 주소</label>
+                            <label className={"my-2"} htmlFor={"email-input"}>클래스룸 이메일 주소</label>
                             <input type="email" value={email} onChange={event => setEmail(event.target.value)}
                                    className={"input"} id="email-input" placeholder="이메일 입력" required/>
                         </div>

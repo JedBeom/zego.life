@@ -1,7 +1,8 @@
 package main
 
 import (
-	"fmt"
+	"log"
+	"strings"
 
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
@@ -123,10 +124,13 @@ func getFirstParse(c echo.Context) error {
 		return apierror.ErrFirstParse.Send(c)
 	}
 
-	if err := parse.GetApplyListOfUser(db, u, models.SettingByKey(db, "d2u_calendar")); err != nil {
-		fmt.Println(err)
-		models.LogError(db, u.ID, c.Request().Header.Get(echo.HeaderXRequestID), "getFirstParse():parse.GetApplyListOfUser()", err)
-		return apierror.ErrFirstParse.Send(c)
+	calendars := strings.Split(models.SettingByKey(db, "d2u_calendar"), ",")
+	for _, cal := range calendars {
+		if err := parse.GetApplyListOfUser(db, u, cal); err != nil {
+			log.Println(err)
+			models.LogError(db, u.ID, c.Request().Header.Get(echo.HeaderXRequestID), "getFirstParse():parse.GetApplyListOfUser()", err)
+			return apierror.ErrFirstParse.Send(c)
+		}
 	}
 
 	return c.JSONPretty(200, Map{

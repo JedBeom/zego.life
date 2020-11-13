@@ -56,7 +56,7 @@ func getAndCreateApplyList(db *pg.DB, u models.User, calendarType string, mealTy
 		return err
 	}
 
-	dus := make([]models.Diet2User, 0, 31)
+	dus := make([]models.Diet2User, 0, 70)
 	c.OnHTML("td.t_cell[bgcolor]", func(e *colly.HTMLElement) {
 		label := e.ChildText("label")
 		if label == "" || label == "1970-01-01" {
@@ -94,7 +94,15 @@ func getAndCreateApplyList(db *pg.DB, u models.User, calendarType string, mealTy
 		if err := du.Create(db); err != nil {
 			pgErr, ok := err.(pg.Error)
 			if ok && pgErr.Field(models.ErrPgErrCodeField) == models.ErrPgUniqueViolation { // if unique violation
+				// update if unique violation
+				if err := models.Diet2UserUpdate(db, du.DietID, du.UserID, du.Applied); err != nil {
+					return err
+				}
 				continue
+			} else if ok && pgErr.Field(models.ErrPgErrCodeField) == models.ErrPgForeignKeyViolation {
+				// it seems no diet...
+				models.LogError(db, u.ID, "", "getAndCreateApplyList()", err)
+				return err
 			}
 			return err
 		}
@@ -148,6 +156,7 @@ func GetApplyListOfUser(db *pg.DB, u models.User, calendarType string) error {
 	for mealType := 1; mealType <= 3; mealType++ {
 		for try := 0; try < 2; try++ {
 			if err := getAndCreateApplyList(db, u, calendarType, mealType); err != nil {
+				fmt.Println(err)
 				time.Sleep(time.Second / 2)
 				continue
 			}

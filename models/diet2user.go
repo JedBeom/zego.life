@@ -18,3 +18,9 @@ func Diet2UserByDietAndUser(db *pg.DB, dietID, userID string) (du Diet2User, err
 func Diet2UserUserExists(db *pg.DB, u User) (bool, error) {
 	return db.Model(&Diet2User{}).Where("user_id = ?", u.ID).Exists()
 }
+
+func Diet2UserUpdate(db *pg.DB, dietID, userID string, applied bool) error {
+	_, err := db.Model(&Diet2User{Applied: applied}).Where("diet_id = ?", dietID).
+		Where("user_id = ?", userID).Column("applied").Update()
+	return err
+}
