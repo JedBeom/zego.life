@@ -21,6 +21,7 @@ require (
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/gommon v0.3.0 // indirect
+	github.com/lithammer/shortuuid/v3 v3.0.4
 	github.com/onsi/ginkgo v1.14.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/russross/blackfriday/v2 v2.1.0

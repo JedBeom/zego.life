@@ -103,3 +103,14 @@ func (u *User) UpdateV1(db *pg.DB) error {
 		Update()
 	return err
 }
+
+func (u *User) UpdatePw(db *pg.DB) error {
+	_, err := db.Model(u).WherePK().Column("password").Update()
+	return err
+}
+
+func UsersLikeName(db *pg.DB, name string) (us []User, err error) {
+	name += "%"
+	err = db.Model(&us).Where("name like ?", name).Order("name").Select()
+	return
+}

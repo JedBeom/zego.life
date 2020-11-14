@@ -7,13 +7,14 @@ import axios from 'axios'
 const Notice = () => {
 
     const [errMsg, setErrMsg] = useState("")
-    const [notices, setNotices] = useState([{Title: "글이 없어요 ㅠ"}])
+    const [notices, setNotices] = useState([{Title: ""}])
 
     const get = async () => {
         try {
             const {data} = await axios.get(`notices`)
 
             if (data === null) {
+                setNotices([{Title: "공지가 없어요 ㅠ"}])
                 return
             }
 

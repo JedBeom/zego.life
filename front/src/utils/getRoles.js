@@ -5,12 +5,18 @@ if (roles === null || roles === undefined) {
     roles = roles.split(",")
 }
 
+const admin = roles.includes("admin")
 const isAdmin = () => {
-    return roles.includes("admin")
+    return admin
 }
 
+const obt = roles.includes("obt")
 const isOBT = () => {
-    return roles.includes("obt")
+    return obt
 }
 
-export {isAdmin, isOBT}
+const isThat = role => {
+    return roles.includes(role)
+}
+
+export {isAdmin, isOBT, isThat}

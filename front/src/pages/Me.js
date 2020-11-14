@@ -74,6 +74,13 @@ const Me = () => {
                     <button className="button float-right">피드백</button>
                 </NavLink>
             </article>
+            <article className="card-box shadow-3">
+                <h2>어드민 페이지</h2>
+                <p>It's time to work...</p>
+                <NavLink to="/admin">
+                    <button className="button float-right">일하러 가기</button>
+                </NavLink>
+            </article>
             <footer className="copyright">
                 Made with
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="icon footer-icon">

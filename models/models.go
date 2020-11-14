@@ -144,6 +144,15 @@ type ErrorLog struct {
 	CreatedAt   time.Time `sql:"default:now()"`
 }
 
+type Token struct {
+	ID        string
+	Type      int // 1: pw_change
+	UserID    string
+	User      *User
+	CreatedAt time.Time `sql:"default:now()"`
+	UsedAt    time.Time
+}
+
 type Setting struct {
 	Key   string `pk:",pk"`
 	Value string

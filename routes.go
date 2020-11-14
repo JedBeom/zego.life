@@ -32,6 +32,10 @@ func routes(e *echo.Echo) {
 			u.GET("/logout", getLogout)
 			u.PATCH("/users/:user_id", patchUser)
 
+			// admin-only
+			u.GET("/users/search/by-name/:name", getUsersByName) // admin-only
+			u.GET("/users/:user_id/pw-change", getPwChangeToken)
+
 			u.GET("/users/:user_id/diet2user/:diet_id", getDiet2UserByDietAndUser)
 			u.GET("/diet-reviews/:diet_id", getDietReviewPossible)
 			u.POST("/diet-reviews/:diet_id", postDietReview)
@@ -39,9 +43,8 @@ func routes(e *echo.Echo) {
 			u.GET("/feedbacks/:user_id", getFeedbacksByUser)
 			u.POST("/feedbacks", postFeedback)
 
-			u.GET("/notices", getNoticesAll)
 			u.POST("/notices", postNotice)
-			u.GET("/notices/last", getLastNoticeTitle)
+
 		}
 
 		api.POST("/register", postRegister)
@@ -56,5 +59,9 @@ func routes(e *echo.Echo) {
 		// api.GET("/dday-events/:grade", getDDayEvent)
 		// api.POST("/dday-events", postDDayEvent)
 
+		api.POST("/tokens/pw-change", postPwChange)
+
+		api.GET("/notices/last", getLastNoticeTitle)
+		api.GET("/notices", getNoticesAll)
 	}
 }

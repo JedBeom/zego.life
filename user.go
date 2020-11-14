@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"strings"
 	"time"
 
@@ -66,4 +67,19 @@ func patchUser(c echo.Context) error {
 	return c.JSON(200, Map{
 		"message": "success",
 	})
+}
+
+func getUsersByName(c echo.Context) error {
+	name := c.Param("name")
+	if name == "" {
+		return echo.ErrBadRequest
+	}
+
+	us, err := models.UsersLikeName(db, name)
+	if err != nil {
+		log.Println(err)
+		return echo.ErrInternalServerError
+	}
+
+	return c.JSON(200, us)
 }

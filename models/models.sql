@@ -150,6 +150,17 @@ CREATE TABLE IF NOT EXISTS error_logs
 
 CREATE TABLE IF NOT EXISTS settings
 (
-    key TEXT PRIMARY KEY,
+    key   TEXT PRIMARY KEY,
     value TEXT
+);
+
+CREATE TABLE IF NOT EXISTS tokens
+(
+    id         TEXT PRIMARY KEY,
+    user_id    TEXT,
+    type       INTEGER NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT current_timestamp,
+    used_at    TIMESTAMPTZ,
+
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE -- 같이 삭제
 );
