@@ -230,6 +230,10 @@ nav ul a:hover:after {
     color: var(--card-box-text-color);
 }
 
+.card-box optgroup {
+    color: black;
+}
+
 .card-button-more {
     font-size: 1.0em;
 }
