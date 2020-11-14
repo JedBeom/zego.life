@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
-import {isAdmin} from '../utils/getRoles'
+import {isAdmin, isOBT} from '../utils/getRoles'
 
 const Me = () => {
     useEffect(() => {
@@ -39,7 +39,8 @@ const Me = () => {
             <h1 className="page-title">내 페이지</h1>
             <article className="card-box shadow-3 card-box-me">
                 <h2 className="card-box-title font-s-core">안녕하세요, {localStorage.getItem("me.name")} 님!</h2>
-                <p>{isAdmin() ? "일해라 노예야" : "반가워요!"}</p>
+                <p>{isAdmin() ? "정식 출시를 향하여" :
+                    isOBT() ? "오픈 베타 테스터" : "반가워요!"}</p>
                 <button className={isLoading ? "loading button float-right" : "button float-right"}
                         onClick={logout}>로그아웃
                 </button>

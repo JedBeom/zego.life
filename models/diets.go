@@ -8,6 +8,11 @@ func (d *Diet) Create(db *pg.DB) error {
 	return db.Insert(d)
 }
 
+func (d *Diet) Update(db *pg.DB) error {
+	_, err := db.Model(d).WherePK().Column("content").Update()
+	return err
+}
+
 func DietByID(db *pg.DB, id string) (d Diet, err error) {
 	err = db.Model(&d).Where("id = ?", id).Select()
 	return
