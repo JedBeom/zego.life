@@ -7,9 +7,9 @@ import axios from 'axios'
 let server = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
 
 if (process.env.NODE_ENV === 'development') {
-    server = "https://zego.life"
+    // server = "https://zego.life"
     // server = "http://localhost:8080"
-    // server = window.location.protocol + "//" + window.location.hostname + ":8080";
+    server = window.location.protocol + "//" + window.location.hostname + ":8080";
 }
 
 axios.defaults.baseURL = server + "/api/v1/"
@@ -44,6 +44,14 @@ switch (theme) {
         document.body.style.backgroundImage = "url(\"/img/persona5.jpg\")"
         document.body.style.backgroundPosition = "86%"
         break
+    case "tropical":
+        document.body.style.backgroundColor = "#E7393F"
+        document.body.style.backgroundImage = "linear-gradient(to right, #FF8710 0%, #E7393F 100%)"
+        break
+    case "indigo":
+        document.body.style.backgroundColor = "#3F33BD"
+        document.body.style.backgroundImage = "linear-gradient(to right, #837AE6 0%, #3F33BD 100%)"
+        break;
     default:
         break
 }

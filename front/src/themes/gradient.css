@@ -1,0 +1,38 @@
+.theme-tropical {
+    --site-logo-color: #E4E8EB;
+    --site-logo-bg-color: rgba(0, 0, 0, 0.8);
+    --site-text-color: #ffffffd3;
+    --site-bg-color: #121212;
+
+    --card-box-text-color: white;
+    --card-box-bg-color: #272727;
+    --card-box-opacity: 0.8;
+
+    --diet-when-color: #fd99e1;
+
+    --nav-bar-default-color: #ffffff8e;
+    --nav-bar-active-color: white;
+    --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
+
+    --button-primary-color: #837ae6;
+}
+
+.theme-indigo {
+    --site-logo-color: #E4E8EB;
+    --site-logo-bg-color: rgba(0, 0, 0, 0.8);
+    --site-logo-bg-image: linear-gradient(to right, #837AE6 0%, #3F33BD 100%);
+    --site-text-color: #ffffffd3;
+    --site-bg-color: #121212;
+
+    --card-box-text-color: black;
+    --card-box-bg-color: white;
+    --card-box-opacity: 0.8;
+
+    --diet-when-color: #3F33BD;
+
+    --nav-bar-default-color: #ffffff8e;
+    --nav-bar-active-color: white;
+    --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
+    --nav-bar-bg-image: linear-gradient(to right, #837AE6 0%, #3F33BD 100%);
+    --button-primary-color: #CC88F7;
+}

@@ -1,10 +1,12 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
+const shouldShow = (!window.navigator.standalone && !window.matchMedia('(display-mode: standalone)').matches && /Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent))
+
 const AddToHome = () => {
     return (
         <>
-            {!window.navigator.standalone && !window.matchMedia('(display-mode: standalone)').matches ?
+            {shouldShow ?
                 <article className="card-box shadow-3">
                     <h2 className="card-title">
                         <svg className="icon" xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px"

@@ -44,7 +44,6 @@ body {
     -ms-overflow-style: none;
     height: 100%;
     margin-bottom: env(safe-area-inset-bottom);
-    background-color: #EEF1F5;
 }
 
 body::-webkit-scrollbar {
@@ -55,6 +54,10 @@ body::-webkit-scrollbar {
     .logo-img {
         filter: invert(100%)
     }
+}
+
+a, .input, .select {
+    color: var(--site-text-color);
 }
 
 .button {
@@ -117,6 +120,7 @@ header {
     color: var(--site-logo-color);
     backdrop-filter: blur(5px);
     background-color: var(--site-logo-bg-color);
+    background-image: var(--site-logo-bg-image);
 }
 
 header a {
@@ -140,6 +144,7 @@ nav {
     padding-bottom: env(safe-area-inset-bottom, .75em);
 
     background-color: var(--nav-bar-bg-color);
+    background-image: var(--nav-bar-bg-image);
     backdrop-filter: blur(5px);
 
 }
@@ -188,11 +193,21 @@ nav ul a:hover:after {
     margin-bottom: 1em;
 }
 
+.notice {
+    font-weight: 700;
+}
+
+.notice-badge {
+    margin: 0 0.75rem 0.75rem 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
 .card-box {
     padding: 1em;
     margin-bottom: 1em;
     border-radius: 8px;
     background-color: var(--card-box-bg-color);
+    background-image: var(--card-box-bg-image);
     color: var(--card-box-text-color);
 
     word-break: keep-all;
@@ -201,7 +216,7 @@ nav ul a:hover:after {
 }
 
 .card-box h2 {
-    font-weight: 300;
+    font-weight: 500;
     padding-left: .5rem !important;
     padding-right: .5rem !important;
 }
@@ -209,6 +224,10 @@ nav ul a:hover:after {
 .card-box p {
     font-size: 1rem;
     margin-left: 0.5rem;
+}
+
+.card-box a, .card-box select, .card-box input {
+    color: var(--card-box-text-color);
 }
 
 .card-button-more {
@@ -339,7 +358,6 @@ input.register-birthday {
     text-align: center;
     font-size: 3em !important;
     font-weight: 900;
-    margin-bottom: .25em;
 }
 
 .inline-calendar .react-datepicker, .inline-calendar .react-datepicker__header {
@@ -391,7 +409,7 @@ input.register-birthday {
 
 .textarea {
     font-size: 1em;
-    color: var(--card-box-text-color);
+    color: var(--site-text-color);
 }
 
 /* 뭐야 이거 누가 쓴거야? */
@@ -423,6 +441,27 @@ input.register-birthday {
 .barcode-wrap {
     width: 100%;
     padding-top: 1.3em;
+}
+
+/* notice */
+
+.notice-meta {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+.notice-meta p {
+    display: inline;
+}
+
+.notice-box h2 {
+    font-weight: 700;
+}
+
+.notice-box ul {
+    list-style-type: square;
+    margin-left: 1.5rem;
 }
 
 @media (min-width: 300px) {
@@ -507,6 +546,10 @@ ol {
     margin-right: .25rem;
 
     color: var(--card-box-text-color);
+}
+
+.diet-apply .icon {
+    color: white;
 }
 
 .check-icon {

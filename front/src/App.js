@@ -1,41 +1,34 @@
-import React from 'react'
+import React, {lazy, Suspense} from 'react'
 import {Route, Switch} from 'react-router-dom'
 import "shorthandcss/scss/shorthand.scss"
 import './App.css';
 import './themes/default.css'
+import './themes/gradient.css'
 import './themes/persona5.css'
 import Logo from './components/Logo'
 import NotSupported from './components/NotSupported'
 import Nav from './components/Nav'
-import Main from './pages/Main'
-import DietPage from './pages/DietPage'
-import Events from './pages/Events'
-import Login from './pages/Login'
-import Me from './pages/Me'
-import Register from './pages/Register'
-import About from './pages/About'
-import NotFound from './pages/NotFound'
 
-import HelpRoute from './pages/help/Route'
+import {isAdmin} from "./utils/getRoles"
+
+const MainRoute = lazy(() => import("./Route"))
+const HelpRoute = lazy(() => import('./pages/help/Route'))
+const AdminRoute = isAdmin() ? lazy(() => import('./pages/admin/Route')) : null
 
 function App() {
     return (
         <>
             <Logo/>
             <div className="site">
-                <Switch>
-                    <Route exact path="/" component={Main}/>
-                    <Route path="/diets" component={DietPage}/>
-                    <Route path="/events" component={Events}/>
-                    <Route path="/login" component={Login}/>
-                    <Route path="/me" component={Me}/>
-                    <Route path="/register" component={Register}/>
-                    <Route path="/about" component={About}/>
-
-                    <Route path="/help" component={HelpRoute}/>
-
-                    <Route component={NotFound}/>
-                </Switch>
+                <Suspense fallback={<h1 className="page-title">로딩 중...</h1>}>
+                    <Switch>
+                        {
+                            isAdmin() ? <Route path="/admin" component={AdminRoute}/> : null
+                        }
+                        <Route path="/help" component={HelpRoute}/>
+                        <Route path="/" component={MainRoute}/>
+                    </Switch>
+                </Suspense>
                 <NotSupported/>
             </div>
             <Nav/>

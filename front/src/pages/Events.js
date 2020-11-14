@@ -10,9 +10,11 @@ const Events = () => {
     useEffect(() => {
         document.title = "일정 | 제고라이프"
         document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+
+        let d = new Date()
         const fetchData = async () => {
             try {
-                const data = await getEvents()
+                const data = await getEvents(d.getFullYear(), d.getMonth() + 1)
                 setEvents(data)
             } catch (e) {
                 setErrMsg("일정 불러오기를 실패했습니다. 새로고침 해보시겠어요?")

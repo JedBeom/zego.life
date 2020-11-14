@@ -54,8 +54,8 @@ const getD2UByDiet = async (id) => {
     return applied
 }
 
-const getEvents = async () => {
-    const {data} = await axios.get(`events`)
+const getEvents = async (year, month) => {
+    const {data} = await axios.get(`events/${year}/${month}`)
     return await eventsMake(data)
 }
 

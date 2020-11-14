@@ -10,28 +10,30 @@ const DdayCounter = () => {
     return (
         <article className="card-box shadow-3">
             <h2 className="card-title">📅 <span className="diet-when">얼마나</span>남았나?</h2>
-            {day - 1 <= 0 ?
-                <>
-                    <p className="dday-name mt-3">1학년 학력평가</p>
-                    {day - 1 === 0 ?
-                        <p className="dday-dday">D-DAY</p>
-                        :
-                        <p className="dday-dday">D{day - 1}</p>
-                    }
-                </>
-                : null
-            }
-            {day <= 0 ?
-                <>
-                    <p className="dday-name mt-3">2학년 학력평가</p>
-                    {day === 0 ?
-                        <p className="dday-dday">D-DAY</p>
-                        :
-                        <p className="dday-dday">D{day}</p>
-                    }
-                </>
-                : null
-            }
+            <div className="flex justify-around dday-item">
+                {day - 1 <= 0 ?
+                    <div>
+                        <p className="dday-name mt-3">1학년 학력평가</p>
+                        {day - 1 === 0 ?
+                            <p className="dday-dday">D-DAY</p>
+                            :
+                            <p className="dday-dday">D{day - 1}</p>
+                        }
+                    </div>
+                    : null
+                }
+                {day <= 0 ?
+                    <div className="dday-item">
+                        <p className="dday-name mt-3">2학년 학력평가</p>
+                        {day === 0 ?
+                            <p className="dday-dday">D-DAY</p>
+                            :
+                            <p className="dday-dday">D{day}</p>
+                        }
+                    </div>
+                    : null
+                }
+            </div>
         </article>
     )
 }

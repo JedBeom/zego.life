@@ -30,16 +30,16 @@ const eventsMake = async data => {
     let events = {}
     let lastKey = ""
 
-    await Promise.all(
-        data.map(async (e) => {
-            if (lastKey === e.DateString) {
-                events[lastKey].push(eventMake(e))
-            } else {
-                events[e.DateString] = [eventMake(e)]
-            }
-            lastKey = e.DateString
-        })
-    )
+    // await Promise.all(
+    data.map((e) => {
+        if (lastKey === e.DateString) {
+            events[lastKey].push(eventMake(e))
+        } else {
+            events[e.DateString] = [eventMake(e)]
+        }
+        lastKey = e.DateString
+    })
+    // )
     events.keys = Object.keys(events)
 
     return events

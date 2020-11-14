@@ -38,6 +38,10 @@ func routes(e *echo.Echo) {
 
 			u.GET("/feedbacks/:user_id", getFeedbacksByUser)
 			u.POST("/feedbacks", postFeedback)
+
+			u.GET("/notices", getNoticesAll)
+			u.POST("/notices", postNotice)
+			u.GET("/notices/last", getLastNoticeTitle)
 		}
 
 		api.POST("/register", postRegister)

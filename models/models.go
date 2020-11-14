@@ -64,7 +64,7 @@ type DietReview struct {
 	UserID string `pg:",pk"`
 	User   *User  `json:"-"`
 
-	Rate      int `sql:",notnull"`
+	Rate      int `sql:",notnull" pg:",use_zero"`
 	BestIndex int
 	BestMenu  string
 
@@ -93,6 +93,17 @@ type DDayEvent struct {
 	Target int // -1: all, 1: grade1, 2: grade2, 3: grade3
 
 	CreatedAt time.Time `sql:"default:now()" json:"-"`
+}
+
+type Notice struct {
+	ID          string
+	Title       string
+	Content     string
+	ContentHTML string
+	Author      string
+	CreatedAt   time.Time `sql:"default:now()"`
+	UpdatedAt   time.Time
+	DeletedAt   time.Time `pg:",soft_delete"`
 }
 
 type Feedback struct {

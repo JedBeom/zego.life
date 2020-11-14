@@ -1,5 +1,6 @@
-import React, {Suspense, useEffect, useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import React, {useEffect, useState} from 'react'
+import {NavLink, useHistory} from 'react-router-dom'
+import axios from 'axios'
 import LoadingCard from '../components/LoadingCard'
 import DietCard from "../components/DietCard"
 import DdayCounter from "../components/DdayCounter"
@@ -10,12 +11,12 @@ import whatMeal from '../utils/whatMeal'
 
 import DietReview from '../components/DietReview'
 
-const AddToHome = React.lazy(() => import("../components/AddToHome"))
-// const DormInspector = React.lazy(() => import("../components/DormInspector"))
+import AddToHome from "../components/AddToHome"
 
 const Main = () => {
     const [diet, setDiet] = useState({when: "", dietList: [], isLoading: true})
     const [applied, setApplied] = useState(-1)
+    const [noticeTitle, setNoticeTitle] = useState("로딩 중...")
     const [expired, setExpired] = useState(false)
     const history = useHistory()
     useEffect(() => {
@@ -50,7 +51,7 @@ const Main = () => {
         const fetchD2U = async () => {
 			if (localStorage.getItem("token") === null) {
 				return
-			}
+            }
             try {
                 let dietID = timestampDot(day) + "-" + (whatMeal() + 1)
                 let ap = await getD2UByDiet(dietID)
@@ -60,26 +61,35 @@ const Main = () => {
             }
         }
 
+        const fetchNoticeLastTitle = async () => {
+            try {
+                const {data} = await axios.get(`notices/last`)
+                setNoticeTitle(data.Title)
+            } catch (e) {
+                setNoticeTitle(`로딩 실패 ${e}`)
+            }
+        }
+
         fetchDiet()
-		fetchD2U()
+        fetchD2U()
+        fetchNoticeLastTitle()
     }, [])
 
     return (
         <>
             <h1 className="page-title">시작</h1>
-            <Suspense fallback={null}>
-                <AddToHome/>
-            </Suspense>
+            <NavLink to="/notice">
+                <div className="notice">
+                    <div className="notice-badge inline-block bg-pink-dark green-lightest fs-s2 br-round">공지</div>
+                    {noticeTitle}
+                </div>
+            </NavLink>
+            <AddToHome/>
             <DdayCounter/>
             {diet.isLoading
                 ? <LoadingCard/>
                 : <DietCard diet={diet} applied={applied}/>}
             <DietReview/>
-            {/*}
-            <Suspense fallback={null}>
-                <DormInspector/>
-            </Suspense>
-            */}
         </>
     )
 }

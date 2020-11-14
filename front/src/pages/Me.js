@@ -51,9 +51,17 @@ const Me = () => {
                 <div className="flex flex-column">
                     <label className="my-2">테마</label>
                     <select className="select br-round full" value={theme} onChange={onChange}>
-                        <option value="light">라이트</option>
-                        <option value="dark">다크</option>
-                        {isAdmin() ? <option value="persona5">페르소나 5</option> : null}
+                        <optgroup label="기본">
+                            <option value="light">라이트</option>
+                            <option value="dark">다크</option>
+                        </optgroup>
+                        <optgroup label="그라디언트">
+                            <option value="tropical">트로피칼 다크</option>
+                            <option value="indigo">인디고</option>
+                        </optgroup>
+                        <optgroup label="스페셜">
+                            {isAdmin() ? <option value="persona5">페르소나 5</option> : null}
+                        </optgroup>
                     </select>
                     <p>테마 변경으로 앱 새로고침을 할 수 있습니다.</p>
                 </div>

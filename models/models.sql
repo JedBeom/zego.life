@@ -102,6 +102,18 @@ CREATE TABLE IF NOT EXISTS dday_events
     created_at TIMESTAMPTZ DEFAULT current_timestamp
 );
 
+CREATE TABLE IF NOT EXISTS notices
+(
+    id           TEXT PRIMARY KEY,
+    title        TEXT NOT NULL,
+    content      TEXT NOT NULL,
+    content_html TEXT,
+    author       TEXT,
+    created_at   TIMESTAMPTZ DEFAULT current_timestamp,
+    updated_at   TIMESTAMPTZ,
+    deleted_at   TIMESTAMPTZ
+);
+
 CREATE TABLE IF NOT EXISTS sessions
 (
     id         TEXT PRIMARY KEY NOT NULL,

@@ -23,6 +23,7 @@ require (
 	github.com/labstack/gommon v0.3.0 // indirect
 	github.com/onsi/ginkgo v1.14.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1
+	github.com/russross/blackfriday/v2 v2.1.0
 	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca // indirect
 	github.com/temoto/robotstxt v1.1.1 // indirect
 	golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
