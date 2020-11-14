@@ -4,6 +4,8 @@ import (
 	"log"
 	"strings"
 
+	"github.com/go-pg/pg"
+
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
@@ -23,6 +25,9 @@ func getNoticesAll(c echo.Context) error {
 func getLastNoticeTitle(c echo.Context) error {
 	last, err := models.NoticeLast(db)
 	if err != nil {
+		if err == pg.ErrNoRows {
+			return c.JSON(200, Map{"Title": "공지 없음"})
+		}
 		return echo.ErrInternalServerError
 	}
 
