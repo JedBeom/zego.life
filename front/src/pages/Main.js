@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {NavLink, useHistory} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 import LoadingCard from '../components/LoadingCard'
 import DietCard from "../components/DietCard"
@@ -17,14 +17,6 @@ const Main = () => {
     const [diet, setDiet] = useState({when: "", dietList: [], isLoading: true})
     const [applied, setApplied] = useState(-1)
     const [noticeTitle, setNoticeTitle] = useState("로딩 중...")
-    const [expired, setExpired] = useState(false)
-    const history = useHistory()
-    useEffect(() => {
-        if (expired) {
-            history.push("/help/token-expired")
-        }
-        // eslint-disable-next-line
-    }, [expired])
     useEffect(() => {
         document.title = "제고라이프"
         document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
@@ -39,11 +31,6 @@ const Main = () => {
                 let ds = await getDietByDate(timestampDot(day))
                 setDiet(ds[whatMeal()])
             } catch (e) {
-                if (!e.response) {
-                    alert("서버에 접속할 수 없습니다. 인터넷 상황을 확인해주세요.")
-                } else if (e.response.status === 401) {
-                    setExpired(true)
-                }
             }
         };
 

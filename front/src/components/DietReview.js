@@ -17,6 +17,10 @@ const DietReview = () => {
     const [submitted, setSubmitted] = useState(false)
 
     const fetchPossible = async () => {
+        if (localStorage.getItem("token") === null) {
+            return
+        }
+
         let d = new Date();
         let h = d.getHours();
         let m = d.getMinutes();
@@ -54,7 +58,6 @@ const DietReview = () => {
             BestIndex: bestIndex,
             BestMenu: menu[bestIndex]
         }
-        console.log(d)
 
         try {
             await axios.post(`diet-reviews/${id}`, d)

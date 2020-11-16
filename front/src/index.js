@@ -7,9 +7,9 @@ import axios from 'axios'
 let server = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
 
 if (process.env.NODE_ENV === 'development') {
-    // server = "https://zego.life"
+    server = "https://zego.life"
     // server = "http://localhost:8080"
-    server = window.location.protocol + "//" + window.location.hostname + ":8080";
+    // server = window.location.protocol + "//" + window.location.hostname + ":8080";
 }
 
 axios.defaults.baseURL = server + "/api/v1/"
@@ -19,6 +19,14 @@ axios.interceptors.request.use(config => {
         config.headers.common["Heartbeat-Overheat"] = token
     }
     return config
+})
+axios.interceptors.response.use(res => res, err => {
+    if (!err.response && window.location.pathname !== "/help/no-connection") {
+        window.location = "/help/no-connection"
+    } else if (err.response && err.response.status === 401) {
+        window.location = "/help/token-expired"
+    }
+    return Promise.reject(err)
 })
 axios.defaults.headers.common["Content-Type"] = "application/json;charset=utf8"
 
@@ -53,6 +61,7 @@ switch (theme) {
         document.body.style.backgroundImage = "linear-gradient(to right, #837AE6 0%, #3F33BD 100%)"
         break;
     default:
+        localStorage.setItem("theme", "white")
         break
 }
 

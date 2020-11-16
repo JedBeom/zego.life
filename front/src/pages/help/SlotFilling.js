@@ -34,6 +34,10 @@ const SlotFilling = () => {
 
             const respMe = await axios.get("me")
 
+            localStorage.setItem("me.year", respMe.data.BirthYear)
+            localStorage.setItem("me.month", respMe.data.BirthMonth)
+            localStorage.setItem("me.day", respMe.data.BirthDay)
+            localStorage.setItem("me.sex", respMe.data.Sex)
             localStorage.setItem("me.residence", respMe.data.Residence)
             localStorage.setItem("me.roles", respMe.data.Roles)
 
@@ -48,8 +52,8 @@ const SlotFilling = () => {
     return (
         <>
             <h1 className="page-title">정보 추가</h1>
-            <p>OBT 여러분! 정식 출시 이후 회원 가입 때 받을 정보에요. 맞춤형 서비스를 제공하기 위해
-                이하의 정보를 제공받으니 입력해주시면 감사하겠습니다!
+            <p>제고라이프를 사용해주셔서 감사합니다. 맞춤형 서비스 제공을 위해 이하의 정보를 추가로 입력받으니
+                입력해주시면 감사하겠습니다! 새로 가입하는 회원들도 이 정보를 입력하게 됩니다.
             </p>
             <form className={"p-2"} onSubmit={patchUser}>
                 <div className="flex flex-column">
@@ -66,10 +70,7 @@ const SlotFilling = () => {
                 <div className="flex flex-column">
                     <label className="my-2" htmlFor="birthday-input">생년월일</label>
                     <DatePicker className="input register-birthday" disabledKeyboardNavigation
-                                dateFormat="yyyy년 MM월 dd일" onChange={(d) => {
-                        console.log(d);
-                        setDate(d)
-                    }}
+                                dateFormat="yyyy년 MM월 dd일" onChange={d => setDate(d)}
                                 selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
                 </div>
                 <div className="flex flex-column">

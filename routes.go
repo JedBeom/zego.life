@@ -63,5 +63,9 @@ func routes(e *echo.Echo) {
 
 		api.GET("/notices/last", getLastNoticeTitle)
 		api.GET("/notices", getNoticesAll)
+
+		api.GET("/health/connection", func(c echo.Context) error {
+			return c.JSON(200, Map{"message": "success"})
+		})
 	}
 }

@@ -20,4 +20,6 @@
 
     --background-image: url("/img/persona5.jpg");
     --background-position: 86%;
+
+    --loader-color: 255, 255, 255;
 }

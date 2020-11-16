@@ -12,7 +12,7 @@ function Router() {
             <Route path="/admin/pw-change" component={PwChange}/>
             <Route path="/admin" exact component={Main}/>
 
-            <Route component={<h1 className="page-title">없는 페이지</h1>}/>
+            <Route component={() => <h1 className="page-title">없는 페이지</h1>}/>
         </Switch>
     )
 }

@@ -10,6 +10,7 @@ import NotSupported from './components/NotSupported'
 import Nav from './components/Nav'
 
 import {isAdmin} from "./utils/getRoles"
+import NoConnection from "./pages/help/NoConnection"
 
 const MainRoute = lazy(() => import("./Route"))
 const HelpRoute = lazy(() => import('./pages/help/Route'))
@@ -20,11 +21,12 @@ function App() {
         <>
             <Logo/>
             <div className="site">
-                <Suspense fallback={<h1 className="page-title">로딩 중...</h1>}>
+                <Suspense fallback={<div className="loader"></div>}>
                     <Switch>
                         {
                             isAdmin() ? <Route path="/admin" component={AdminRoute}/> : null
                         }
+                        <Route path="/help/no-connection" component={NoConnection}/>
                         <Route path="/help" component={HelpRoute}/>
                         <Route path="/" component={MainRoute}/>
                     </Switch>

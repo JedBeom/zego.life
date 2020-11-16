@@ -38,6 +38,11 @@ const Login = () => {
             localStorage.setItem("me.id", respMe.data.ID)
             localStorage.setItem("me.barcode", respMe.data.Barcode)
             localStorage.setItem("me.grade", respMe.data.Grade)
+            localStorage.setItem("me.class", respMe.data.Class)
+            localStorage.setItem("me.year", respMe.data.BirthYear)
+            localStorage.setItem("me.month", respMe.data.BirthMonth)
+            localStorage.setItem("me.day", respMe.data.BirthDay)
+            localStorage.setItem("me.sex", respMe.data.Sex)
             localStorage.setItem("me.roles", respMe.data.Roles)
             localStorage.setItem("me.residence", respMe.data.Residence)
 
@@ -49,7 +54,7 @@ const Login = () => {
 
         } catch (e) {
             setOkMsg("")
-            setErrMsg("이메일 또는 암호가 올바르지 않습니다.")
+            setErrMsg("이메일 또는 암호가 올바르지 않습니다. 혹시 대문자를 빠트렸나요?")
         }
         setLoading("button float-right")
     }
@@ -70,9 +75,8 @@ const Login = () => {
                     계정이 없으신가요?
                 </h2>
                 <p>광양제철고등학교 학생이라면 누구나 가입할 수 있습니다.</p>
-                <p>OBT 등록 중지로 회원가입을 지금 할 수 없습니다. 정식 출시 때 만나요!</p>
-                <NavLink to="/">
-                    <button disabled className="button float-right">회원가입 하기</button>
+                <NavLink to="/register">
+                    <button className="button float-right">회원가입 하기</button>
                 </NavLink>
             </article>
             {okMsg !== "" ?

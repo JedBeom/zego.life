@@ -50,7 +50,7 @@ const Notice = () => {
                 </div> : null}
             {
                 notices.map(e => {
-                    return <NoticeCard notice={e}/>
+                    return <NoticeCard key={e.Title} notice={e}/>
                 })
             }
         </>

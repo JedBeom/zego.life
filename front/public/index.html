@@ -34,11 +34,30 @@
 
   <!-- Verification -->
   <meta name="naver-site-verification" content="993674c04984a6aa78d342af9564818c117a7718"/>
+
+  <style>.loader:empty {
+      position: absolute;
+      top: calc(50% - 4em);
+      left: calc(50% - 3.4em);
+      width: 6em;
+      height: 6em;
+      border: .5em solid rgba(0, 0, 0, .2);
+      border-left: .5em solid #000;
+      border-radius: 50%;
+      animation: load8 .75s infinite linear
+    }
+
+    @keyframes load8 {
+      0% {
+        transform: rotate(0deg)
+      }
+      100% {
+        transform: rotate(360deg)
+      }
+    }</style>
 </head>
 <body>
 <noscript>제고라이프를 즐기시려면 JavaScript가 필요합니다.</noscript>
-<div id="root">
-  <div id="loader"></div>
-</div>
+<div id="root" class="loader"></div>
 </body>
 </html>
