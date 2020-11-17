@@ -94,7 +94,7 @@ func getAndCreateApplyList(db *pg.DB, u models.User, calendarType string, mealTy
 		if err := du.Create(db); err != nil {
 			pgErr, ok := err.(pg.Error)
 			if ok && pgErr.Field(models.ErrPgErrCodeField) == models.ErrPgUniqueViolation { // if unique violation
-				if du.DietID == "2020.11.25-1" { // HOT FIX
+				if du.DietID == "2020.11.25-1" || du.DietID == "2020.11.25-3" { // HOT FIX
 					continue
 				}
 				// update if unique violation
