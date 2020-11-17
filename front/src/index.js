@@ -21,8 +21,8 @@ axios.interceptors.request.use(config => {
     return config
 })
 axios.interceptors.response.use(res => res, err => {
-    if (!err.response && window.location.pathname !== "/help/no-connection") {
-        window.location = "/help/no-connection"
+    if (!err.response) {
+        alert("서버와 연결할 수 없습니다. 데이터나 와이파이를 켜주세요. 학교 와이파이를 사용 중이라면 새로고침을 해주세요.")
     } else if (err.response && err.response.status === 401) {
         window.location = "/help/token-expired"
     }
