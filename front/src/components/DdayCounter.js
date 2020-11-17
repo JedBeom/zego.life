@@ -5,7 +5,7 @@ let targetDay = new Date(2020, 10, 18)
 const DdayCounter = () => {
     let today = new Date()
     today.setHours(0, 0, 0, 0)
-    let diff = Math.abs(targetDay - today)
+    let diff = targetDay - today
     let day = -(diff / 1000 / 60 / 60 / 24)
     return (
         <article className="card-box shadow-3">
@@ -20,7 +20,9 @@ const DdayCounter = () => {
                             <p className="dday-dday">D{day - 1}</p>
                         }
                     </div>
-                    : null
+                    : <div>
+                        <p className="dday-name mt-3">일정이 곧 추가됩니다</p>
+                    </div>
                 }
                 {day <= 0 ?
                     <div className="dday-item">

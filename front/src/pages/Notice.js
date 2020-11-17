@@ -25,6 +25,7 @@ const Notice = () => {
                 e.month = e.date.getMonth() + 1
                 e.day = e.date.getDate()
                 ns.push(e)
+                return null
             })
             setNotices(ns)
         } catch (e) {

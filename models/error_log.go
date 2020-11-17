@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/google/uuid"
+
 	"github.com/go-pg/pg"
 )
 
@@ -11,7 +13,7 @@ func LogError(db *pg.DB, userID, accessLogID, loc string, contents ...interface{
 	content := fmt.Sprintln(contents...)
 	content = content[:len(content)-len("\n")]
 	errLog := ErrorLog{
-		ID:          "",
+		ID:          uuid.New().String(),
 		UserID:      userID,
 		AccessLogID: accessLogID,
 		Location:    loc,

@@ -38,6 +38,7 @@ const eventsMake = async data => {
             events[e.DateString] = [eventMake(e)]
         }
         lastKey = e.DateString
+        return null
     })
     // )
     events.keys = Object.keys(events)
