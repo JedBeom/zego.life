@@ -1,6 +1,8 @@
 package models
 
 import (
+	"time"
+
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/go-pg/pg"
 	"github.com/google/uuid"
@@ -105,6 +107,7 @@ func (u *User) UpdateV1(db *pg.DB) error {
 }
 
 func (u *User) UpdatePw(db *pg.DB) error {
+	u.UpdatedAt = time.Now()
 	_, err := db.Model(u).WherePK().Column("password").Update()
 	return err
 }

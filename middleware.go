@@ -45,7 +45,8 @@ func middlewareLogger(next echo.HandlerFunc) echo.HandlerFunc {
 			ID:     c.Response().Header().Get(echo.HeaderXRequestID),
 			IP:     c.RealIP(),
 			Method: c.Request().Method,
-			Path:   c.Path(),
+			Path:   c.Request().URL.Path,
+			Status: c.Response().Status,
 		}
 
 		err := next(c)

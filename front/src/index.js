@@ -7,9 +7,9 @@ import axios from 'axios'
 let server = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
 
 if (process.env.NODE_ENV === 'development') {
-    server = "https://zego.life"
+    // server = "https://zego.life"
     // server = "http://localhost:8080"
-    // server = window.location.protocol + "//" + window.location.hostname + ":8080";
+    server = window.location.protocol + "//" + window.location.hostname + ":8080";
 }
 
 axios.defaults.baseURL = server + "/api/v1/"
@@ -23,7 +23,7 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(res => res, err => {
     if (!err.response) {
         alert("서버와 연결할 수 없습니다. 데이터나 와이파이를 켜주세요. 학교 와이파이를 사용 중이라면 새로고침을 해주세요.")
-    } else if (err.response && err.response.status === 401) {
+    } else if (err.response && err.response.status === 401 && window.location.pathname !== "/login" && window.location.pathname !== "/register") {
         window.location = "/help/token-expired"
     }
     return Promise.reject(err)

@@ -131,6 +131,7 @@ type AccessLog struct {
 	IP        string
 	Method    string
 	Path      string
+	Status    int
 	Error     string
 	CreatedAt time.Time `sql:"default:now()"`
 }
