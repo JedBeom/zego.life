@@ -109,12 +109,31 @@ type Notice struct {
 type Feedback struct {
 	ID     string
 	UserID string
-	User   *User `json:"-"`
+	User   *User
 
 	Content string
 	Answer  string
 
 	CreatedAt time.Time
+}
+
+type TimetableTemplate struct {
+	Grade, Class int
+	Lessons      [][]Lesson
+}
+
+type Timetable struct {
+	UserID    string `pg:",pk"`
+	Lessons   [][]Lesson
+	CreatedAt time.Time `sql:"default:now()"`
+	UpdatedAt time.Time
+}
+
+type Lesson struct {
+	Weekday int
+	Order   int
+	Subject string
+	Teacher string
 }
 
 type Session struct {

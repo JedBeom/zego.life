@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Back from "../../components/Back"
 import axios from 'axios'
 
 const PwChange = () => {
@@ -35,7 +36,7 @@ const PwChange = () => {
 
     return (
         <>
-            <h1 className="page-title">암호 변경 토큰 생성</h1>
+            <h1 className="page-title"><Back content="암호 변경 토큰 생성"/></h1>
             <div className="flex flex-column">
                 <label className="my-2">검색: 이름</label>
                 <form className="mb-3" onSubmit={search}>

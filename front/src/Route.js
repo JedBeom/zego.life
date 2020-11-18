@@ -8,6 +8,7 @@ import Me from './pages/Me'
 import Register from './pages/Register'
 import About from './pages/About'
 import Notice from './pages/Notice'
+import Timetable from './pages/Timetable'
 import NotFound from './pages/NotFound'
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
             <Route path="/me" component={Me}/>
             <Route path="/register" component={Register}/>
             <Route path="/notice" component={Notice}/>
+            <Route path="/timetable" component={Timetable}/>
             <Route path="/about" component={About}/>
 
             <Route component={NotFound}/>

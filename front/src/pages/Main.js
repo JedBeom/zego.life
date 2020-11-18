@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
-import LoadingCard from '../components/LoadingCard'
 import DietCard from "../components/DietCard"
 import DdayCounter from "../components/DdayCounter"
 
@@ -62,6 +61,13 @@ const Main = () => {
         fetchNoticeLastTitle()
     }, [])
 
+    if (diet.isLoading) {
+        return <>
+            <h1 className="page-title">시작</h1>
+            <div className="loader"/>
+        </>
+    }
+
     return (
         <>
             <h1 className="page-title">시작</h1>
@@ -73,9 +79,7 @@ const Main = () => {
             </NavLink>
             <AddToHome/>
             <DdayCounter/>
-            {diet.isLoading
-                ? <LoadingCard/>
-                : <DietCard diet={diet} applied={applied}/>}
+            <DietCard diet={diet} applied={applied}/>
             <DietReview/>
         </>
     )

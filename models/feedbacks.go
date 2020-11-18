@@ -20,3 +20,8 @@ func FeedBacksByUser(db *pg.DB, userID string) (fs []Feedback, err error) {
 	err = db.Model(&fs).Where("user_id = ?", userID).Order("created_at DESC").Select()
 	return
 }
+
+func FeedbacksAll(db *pg.DB) (fs []Feedback, err error) {
+	err = db.Model(&fs).Order("created_at DESC").Relation("User").Select()
+	return
+}

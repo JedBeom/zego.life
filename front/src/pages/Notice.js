@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import {isAdmin} from "../utils/getRoles";
+import Back from "../components/Back"
 import NoticeCard from '../components/NoticeCard'
 import axios from 'axios'
 
@@ -39,7 +40,7 @@ const Notice = () => {
 
     return (
         <>
-            <h1 className="page-title">공지사항</h1>
+            <h1 className="page-title"><Back content="공지사항"/></h1>
             {isAdmin() ?
                 <NavLink to="/admin/notice-new">
                     <button className="button mb-6">글쓰기</button>

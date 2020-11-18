@@ -35,6 +35,7 @@ func routes(e *echo.Echo) {
 			// admin-only
 			u.GET("/users/search/by-name/:name", getUsersByName) // admin-only
 			u.GET("/users/:user_id/pw-change", getPwChangeToken)
+			u.GET("/feedbacks", getFeedbacksAll)
 
 			u.GET("/users/:user_id/diet2user/:diet_id", getDiet2UserByDietAndUser)
 			u.GET("/diet-reviews/:diet_id", getDietReviewPossible)
@@ -46,6 +47,8 @@ func routes(e *echo.Echo) {
 			u.POST("/notices", postNotice)
 
 		}
+
+		api.GET("/timetables/:grade/:class", getTimetableByGradeClass)
 
 		api.POST("/register", postRegister)
 		api.POST("/register/kitchen", postKitchenLogin)

@@ -1,4 +1,5 @@
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 
 let targetDay = new Date(2020, 10, 18)
 
@@ -36,6 +37,7 @@ const DdayCounter = () => {
                     : null
                 }
             </div>
+            <NavLink to="/events"><p className="text-center">다른 일정 확인하기</p></NavLink>
         </article>
     )
 }

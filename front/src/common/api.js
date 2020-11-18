@@ -75,4 +75,16 @@ const getDietReviewPossible = async id => {
     return dietList
 }
 
-export {getDietByDate, getD2UByDiet, getEvents, getDietReviewPossible}
+const getTimetable = async (meGrade, meClass) => {
+    let key = `timetables/${meGrade}-${meClass}`
+    let item = localStorage.getItem(key)
+    if (item != null) {
+        return JSON.parse(item)
+    }
+
+    const {data} = await axios.get(`timetables/${meGrade}/${meClass}`)
+    localStorage.setItem(key, JSON.stringify(data.Lessons))
+    return data.Lessons
+}
+
+export {getDietByDate, getD2UByDiet, getEvents, getDietReviewPossible, getTimetable}

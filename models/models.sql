@@ -114,6 +114,24 @@ CREATE TABLE IF NOT EXISTS notices
     deleted_at   TIMESTAMPTZ
 );
 
+CREATE TABLE IF NOT EXISTS timetables
+(
+    user_id    TEXT PRIMARY KEY,
+    lessons    JSONB,
+    created_at TIMESTAMPTZ DEFAULT current_timestamp,
+    updated_at TIMESTAMPTZ
+);
+
+CREATE TABLE IF NOT EXISTS timetable_templates
+(
+    grade      INTEGER,
+    class      INTEGER,
+    PRIMARY KEY (grade, class),
+    lessons    JSONB,
+    created_at TIMESTAMPTZ DEFAULT current_timestamp,
+    updated_at TIMESTAMPTZ
+);
+
 CREATE TABLE IF NOT EXISTS sessions
 (
     id         TEXT PRIMARY KEY NOT NULL,

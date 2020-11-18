@@ -14,7 +14,7 @@ const Nav = () => {
                 </li>
                 <li>/</li>
                 <li>
-                    <NavLink to="/events" activeClassName={"nav-active"}>일정</NavLink>
+                    <NavLink to="/timetable" activeClassName={"nav-active"}>시간표</NavLink>
                 </li>
                 <li>/</li>
                 {localStorage.getItem("token") != null ?

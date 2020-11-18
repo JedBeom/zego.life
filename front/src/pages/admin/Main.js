@@ -8,6 +8,7 @@ const Main = () => {
             <ul>
                 <li><NavLink to="/admin/pw-change">암호 변경 토큰 생성</NavLink></li>
                 <li><NavLink to="/admin/notice-new">새 공지사항</NavLink></li>
+                <li><NavLink to="/admin/feedbacks">피드백 열람</NavLink></li>
             </ul>
         </>
     )

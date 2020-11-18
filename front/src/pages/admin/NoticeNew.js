@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Back from "../../components/Back"
 import axios from 'axios'
 
 const NoticeNew = () => {
@@ -30,7 +31,7 @@ const NoticeNew = () => {
 
     return (
         <>
-            <h1 className="page-title">새 공지사항</h1>
+            <h1 className="page-title"><Back content="새 공지사항"/></h1>
             {okMsg !== "" ?
                 <div className="mb-5 bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green">
                     {okMsg}

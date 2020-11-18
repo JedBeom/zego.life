@@ -476,6 +476,21 @@ input.register-birthday {
     margin-bottom: .75em;
 }
 
+/* feedbacks */
+.feedback-by {
+    opacity: 0.8;
+}
+
+/* timetable */
+.timetable {
+    border: none !important;
+    font-size: 1rem;
+}
+
+.timetable td {
+    padding: .5em !important;
+}
+
 @media (min-width: 300px) {
     .card-title {
         font-size: 1.5em;
