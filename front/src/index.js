@@ -40,30 +40,7 @@ if (theme === null) {
     localStorage.setItem("theme", theme)
 }
 
-switch (theme) {
-    case "light":
-        document.body.style.backgroundColor = "#eef1f5"
-        break
-    case "dark":
-        document.body.style.backgroundColor = "#121212"
-        break
-    case "persona5":
-        document.body.style.backgroundColor = "#f90100"
-        document.body.style.backgroundImage = "url(\"/img/persona5.jpg\")"
-        document.body.style.backgroundPosition = "86%"
-        break
-    case "tropical":
-        document.body.style.backgroundColor = "#E7393F"
-        document.body.style.backgroundImage = "linear-gradient(to right, #FF8710 0%, #E7393F 100%)"
-        break
-    case "indigo":
-        document.body.style.backgroundColor = "#3F33BD"
-        document.body.style.backgroundImage = "linear-gradient(to right, #837AE6 0%, #3F33BD 100%)"
-        break;
-    default:
-        localStorage.setItem("theme", "white")
-        break
-}
+document.querySelector("body").classList.add(`theme-${theme}`)
 
 ReactDOM.render(
     <React.StrictMode>

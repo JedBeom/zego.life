@@ -30,6 +30,10 @@ const eventsMake = async data => {
     let events = {}
     let lastKey = ""
 
+    if (data === null) {
+        return null
+    }
+
     // await Promise.all(
     data.map((e) => {
         if (lastKey === e.DateString) {

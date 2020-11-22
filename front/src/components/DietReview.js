@@ -27,17 +27,32 @@ const DietReview = () => {
         h += m / 60;
 
         let when = 0
-        if (h >= 7.33 && h <= 8.33) { // 약 7시 20분 ~ 약 8시 20분
-            when = 1
-            setDietWhen("아침")
-        } else if (h >= 11.33 && h <= 12.33) { // 약 11시 20분 ~ 약 12시 20분
-            when = 2
-            setDietWhen("점심")
-        } else if (h >= 17.5 && h <= 18.5) { // 17시 30분 ~ 18시 30분
-            when = 3
-            setDietWhen("저녁")
+        if (d.getDay() === 6 || d.getDay() === 0) {
+            if (h >= 8 && h <= 10) { // 8시 ~ 10시 
+                when = 1
+                setDietWhen("아침")
+            } else if (h >= 12.83 && h <= 14) { // 약 12시 50분 ~ 14시
+                when = 2
+                setDietWhen("점심")
+            } else if (h >= 17.83 && h <= 19) { // 약 17시 50분 ~ 19시
+                when = 3
+                setDietWhen("저녁")
+            } else {
+                return
+            }
         } else {
-            return
+            if (h >= 7.33 && h <= 8.33) { // 약 7시 20분 ~ 약 8시 20분
+                when = 1
+                setDietWhen("아침")
+            } else if (h >= 11.33 && h <= 12.33) { // 약 11시 20분 ~ 약 12시 20분
+                when = 2
+                setDietWhen("점심")
+            } else if (h >= 17.5 && h <= 18.5) { // 17시 30분 ~ 18시 30분
+                when = 3
+                setDietWhen("저녁")
+            } else {
+                return
+            }
         }
 
         let idd = timestampDot(d) + "-" + when
@@ -51,7 +66,7 @@ const DietReview = () => {
         }
     }
 
-    const submit = async e => {
+    const submit = async () => {
         setLoading(true)
         let d = {
             Rate: rate,

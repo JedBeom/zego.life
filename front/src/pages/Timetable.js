@@ -6,12 +6,15 @@ let meClass = localStorage.getItem("me.class")
 
 const Timetable = () => {
     const [lessons, setLessons] = useState([[]])
+    const [twd, setTwd] = useState(0)
 
     useEffect(() => {
         get()
     }, [])
 
     const get = async () => {
+        setTwd(new Date().getDay())
+
         if (meClass === null) {
             return
         }
@@ -38,34 +41,52 @@ const Timetable = () => {
     return (
         <>
             <h1 className="page-title">{meGrade}-{meClass} 시간표
-                <div class="inline-block bg-green green-lightest px-2 fs-s2 br-round m-3">BETA</div>
+                <div className="inline-block bg-green green-lightest px-2 fs-s2 br-round m-3">BETA</div>
             </h1>
             <div className="table-container">
                 {lessons.length !== 1 ?
                     <table className="timetable">
                         <thead>
                         <tr>
-                            <td></td>
-                            <td>월</td>
-                            <td>화</td>
-                            <td>수</td>
-                            <td>목</td>
-                            <td>금</td>
+                            {["", "월", "화", "수", "목", "금"].map((v, i) => {
+                                if (i === twd) {
+                                    return <td className="today">{v}</td>
+                                }
+                                return <td>{v}</td>
+                            })}
                         </tr>
                         </thead>
                         <tbody>
                         {
-                            [0, 1, 2, 3, 4, 5, 6].map(li => { // weekday
+                            [0, 1, 2, 3, 4, 5, 6].map(li => { // lessons index 
                                 return <tr key={li}>
                                     <td>{li + 1}교시</td>
-                                    {[0, 1, 2, 3, 4].map(wd => { // lessons index
+                                    {[0, 1, 2, 3, 4].map(wd => { // week day
+                                        if (wd + 1 === twd) { // if today
+                                            if (lessons[wd][li] === undefined) {
+                                                return <td className="today" key={`${li}${wd}`}/>
+                                            } else if (lessons[wd][li].Teacher === "") {
+                                                return <td className="today" key={`${li}${wd}`}><span
+                                                    className="subject">{lessons[wd][li].Subject}</span><br/><span
+                                                    className="teacher">담당</span></td>
+                                            }
+                                            return <td className="today"
+                                                       key={`${li}${wd}`}><span
+                                                className="subject">{lessons[wd][li].Subject}</span><br/><span
+                                                className="teacher">{lessons[wd][li].Teacher}T</span>
+                                            </td>
+                                        }
                                         if (lessons[wd][li] === undefined) {
                                             return <td key={`${li}${wd}`}/>
                                         } else if (lessons[wd][li].Teacher === "") {
-                                            return <td key={`${li}${wd}`}>{lessons[wd][li].Subject}</td>
+                                            return <td key={`${li}${wd}`}><span
+                                                className="subject">{lessons[wd][li].Subject}</span><br/><span
+                                                className="teacher">담당</span></td>
                                         }
                                         return <td
-                                            key={`${li}${wd}`}>{lessons[wd][li].Subject}<br/>{lessons[wd][li].Teacher}T
+                                            key={`${li}${wd}`}><span
+                                            className="subject">{lessons[wd][li].Subject}</span><br/><span
+                                            className="teacher">{lessons[wd][li].Teacher}T</span>
                                         </td>
                                     })}
                                 </tr>

@@ -23,14 +23,13 @@
     }
 }
 
-.root-div {
-    height: 100vh;
-}
-
 body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    background-color: var(--background-color);
+    background-image: var(--background-image);
+    background-position-x: var(--background-position);
 }
 
 html {
@@ -44,6 +43,10 @@ body {
     -ms-overflow-style: none;
     height: 100%;
     margin-bottom: env(safe-area-inset-bottom);
+}
+
+.root-div {
+    height: 100vh;
 }
 
 body::-webkit-scrollbar {
@@ -411,6 +414,7 @@ input.register-birthday {
 .event-date {
     border-right: var(--card-box-text-color) dashed 2px;
     vertical-align: top;
+    width: 5em;
 }
 
 .loading-text {
@@ -485,10 +489,48 @@ input.register-birthday {
 .timetable {
     border: none !important;
     font-size: 1rem;
+    border-spacing: 0.5rem;
+    border-collapse: separate !important;
+    border-radius: .4em;
 }
 
 .timetable td {
+    color: var(--card-box-text-color);
     padding: .5em !important;
+    background: var(--card-box-bg-color);
+    opacity: .5;
+    border-radius: .5em;
+    text-align: center;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transition: .3s;
+}
+
+
+.timetable td:nth-child(1) { /* n교시 */
+    font-size: .75em;
+    font-weight: 900;
+    opacity: 1;
+}
+
+.timetable td:hover, .today {
+    opacity: 1 !important;
+}
+
+.timetable thead td {
+    text-align: center;
+}
+
+.timetable thead td:nth-child(1) { /* 교시와 요일 가운데의 빈공간 */
+    box-shadow: none;
+    background: none;
+}
+
+.subject {
+    font-weight: 700;
+}
+
+.teacher {
+    font-size: .75em;
 }
 
 @media (min-width: 300px) {

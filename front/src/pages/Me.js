@@ -57,8 +57,9 @@ const Me = () => {
                             <option value="dark">다크</option>
                         </optgroup>
                         <optgroup label="그라디언트">
-                            <option value="tropical">트로피칼 다크</option>
+                            <option value="tropical-dark">트로피칼 다크</option>
                             <option value="indigo">인디고</option>
+                            <option value="pupple-mint-dark">퍼플 민트 다크</option>
                         </optgroup>
                         <optgroup label="스페셜">
                             {isAdmin() ? <option value="persona5">페르소나 5</option> : null}

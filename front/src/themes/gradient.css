@@ -1,4 +1,7 @@
-.theme-tropical {
+.theme-tropical, .theme-tropical-dark {
+    --background-color: #E739EF;
+    --background-image: linear-gradient(to right, #FF8710 0%, #E7393F 100%);
+
     --site-logo-color: #E4E8EB;
     --site-logo-bg-color: rgba(0, 0, 0, 0.8);
     --site-text-color: #ffffffd3;
@@ -20,6 +23,9 @@
 }
 
 .theme-indigo {
+    --background-color: #3F33BD;
+    --background-image: linear-gradient(to right, #837AE6 0%, #3F33BD 100%);
+
     --site-logo-color: #E4E8EB;
     --site-logo-bg-color: rgba(0, 0, 0, 0.8);
     --site-logo-bg-image: linear-gradient(to right, #837AE6 0%, #3F33BD 100%);
@@ -37,6 +43,30 @@
     --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
     --nav-bar-bg-image: linear-gradient(to right, #837AE6 0%, #3F33BD 100%);
     --button-primary-color: #CC88F7;
+
+    --loader-color: 255, 255, 255;
+}
+
+.theme-pupple-mint-dark {
+    --background-color: rgb(53, 219, 146);
+    --background-image: linear-gradient(to right, rgb(170, 56, 242) 0%, rgb(53, 219, 146) 100%);
+
+    --site-logo-color: #E4E8EB;
+    --site-logo-bg-color: rgba(0, 0, 0, 0.8);
+    --site-text-color: #ffffffd3;
+    --site-bg-color: #121212;
+
+    --card-box-text-color: white;
+    --card-box-bg-color: #272727;
+    --card-box-opacity: 1;
+
+    --diet-when-color: #fd99e1;
+
+    --nav-bar-default-color: #ffffff8e;
+    --nav-bar-active-color: white;
+    --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
+
+    --button-primary-color: #837ae6;
 
     --loader-color: 255, 255, 255;
 }

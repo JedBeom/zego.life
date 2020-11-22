@@ -1,4 +1,7 @@
 .theme-null, .theme-light {
+
+    --background-color: #eef1f5;
+
     --site-logo-color: black;
     --site-logo-bg-color: rgba(255, 255, 255, 0.8);
     --site-text-color: black;
@@ -21,6 +24,8 @@
 
 @media (prefers-color-scheme: dark) {
     .theme-null {
+        --background-color: #121212;
+
         --site-logo-color: #E4E8EB;
         --site-logo-bg-color: rgba(0, 0, 0, 0.8);
         --site-text-color: #ffffffd3;
@@ -43,6 +48,8 @@
 }
 
 .theme-dark {
+    --background-color: #121212;
+
     --site-logo-color: #E4E8EB;
     --site-logo-bg-color: #000000cc;
     --site-text-color: #ffffffd3;
