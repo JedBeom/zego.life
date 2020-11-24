@@ -206,6 +206,31 @@ nav ul a:hover:after {
     padding: 0.25rem 0.5rem;
 }
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: var(--card-box-opacity);
+    }
+}
+
+.w3-animate-right {
+    position: relative;
+    animation: animateright 0.4s
+}
+
+@keyframes animateright {
+    from {
+        right: -300px;
+        opacity: 0
+    }
+    to {
+        right: 0;
+        opacity: 1
+    }
+}
+
 .card-box {
     padding: 1em;
     margin-bottom: 1em;
@@ -216,8 +241,31 @@ nav ul a:hover:after {
 
     word-break: keep-all;
 
-    opacity: var(--card-box-opacity);
 }
+
+.card-box, .in-progress {
+    animation-name: fadeIn;
+    animation-duration: .15s;
+    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+/*
+.site .card-box:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.site .card-box:nth-child(2) {
+    animation-delay: .2s;
+}
+
+.site .card-box:nth-child(3) {
+    animation-delay: .4s;
+}
+
+.site .card-box:nth-child(4) {
+    animation-delay: .8s;
+}
+*/
 
 .card-box h2 {
     font-weight: 500;
@@ -248,9 +296,25 @@ nav ul a:hover:after {
     display: table;
 }
 
+@keyframes boing-boing {
+    50% {
+        transform: scale(.75);
+    }
+    85% {
+        transform: scale(.8);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .card-box:empty {
     width: 100%;
     height: 15em;
+    animation-name: boing-boing;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    animation-iteration-count: infinite;
 }
 
 .card-box-review p {
@@ -494,17 +558,50 @@ input.register-birthday {
     border-radius: .4em;
 }
 
+@keyframes fadeInTTdisable {
+    0% {
+        opacity: 0;
+    }
+    75% {
+        opacity: .7;
+        transform: scale(.85);
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+
 .timetable td {
     color: var(--card-box-text-color);
     padding: .5em !important;
     background: var(--card-box-bg-color);
-    opacity: .5;
+    opacity: .7;
     border-radius: .5em;
     text-align: center;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     transition: .3s;
+
+    word-break: keep-all;
+    animation-name: fadeInTTdisable;
+    animation-duration: .25s;
+    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 }
 
+.timetable tbody tr:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.timetable tbody tr:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.timetable tbody tr:nth-child(3) {
+    animation-delay: 3s;
+}
+
+.timetable tbody tr:nth-child(4) {
+    animation-delay: 7s;
+}
 
 .timetable td:nth-child(1) { /* n교시 */
     font-size: .75em;
@@ -531,6 +628,7 @@ input.register-birthday {
 
 .teacher {
     font-size: .75em;
+    display: block;
 }
 
 @media (min-width: 300px) {

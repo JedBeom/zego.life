@@ -124,7 +124,11 @@ const Login = () => {
                     암호를 잊으셨나요?
                 </h2>
                 <p>가입할 때 사용한 구글 클래스룸 이메일로 <a href="mailto:jh@beom.dev?subject=제고라이프 암호를 잊었습니다">jh@beom.dev</a>에 문의
-                    부탁드립니다.</p>
+                    하거나 Instagram <a rel="noopener noreferrer" target="_blank"
+                                     href="https://instagram.com/jedbeom">@jedbeom</a> 또는 <a rel="noopener noreferrer"
+                                                                                             target="_blank"
+                                                                                             href="https://instagram.com/zchien._.b">@zchien._.b</a>에
+                    DM을 보내주세요!</p>
             </article>
         </>
     )

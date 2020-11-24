@@ -6,7 +6,6 @@ const whatMeal = () => {
 
     let what = 0 // breakfast
     if (d.getDay() === 6 || d.getDay() === 0) {
-        console.log("weekend!")
         if (h >= 9 && h <= 13.5) {
             what = 1
         } else if (h > 13.5 && h <= 18.5) {

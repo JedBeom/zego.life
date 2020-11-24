@@ -4,23 +4,24 @@ import {NavLink} from 'react-router-dom'
 const Nav = () => {
     return (
         <nav>
-            <ul className={"flex justify-between gray"}>
+            <ul className={"flex justify-around gray"}>
                 <li>
                     <NavLink to="/" activeClassName={"nav-active"} exact>시작</NavLink>
                 </li>
                 <li>/</li>
-                <li>
-                    <NavLink to="/diets" activeClassName={"nav-active"}>급식</NavLink>
-                </li>
-                <li>/</li>
-                <li>
-                    <NavLink to="/timetable" activeClassName={"nav-active"}>시간표</NavLink>
-                </li>
-                <li>/</li>
-                {localStorage.getItem("token") != null ?
-                    <li>
-                        <NavLink to="/me" activeClassName={"nav-active"}>{localStorage.getItem("me.name")} 님</NavLink>
-                    </li>
+                {localStorage.getItem("token") != null ? <>
+                        <li>
+                            <NavLink to="/diets" activeClassName={"nav-active"}>급식</NavLink>
+                        </li>
+                        <li>/</li>
+                        <li>
+                            <NavLink to="/timetable" activeClassName={"nav-active"}>시간표</NavLink>
+                        </li>
+                        <li>/</li>
+                        <li>
+                            <NavLink to="/me" activeClassName={"nav-active"}>{localStorage.getItem("me.name")} 님</NavLink>
+                        </li>
+                    </>
                     : <li>
                         <NavLink to="/login" activeClassName={"nav-active"}>로그인</NavLink>
                     </li>

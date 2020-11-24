@@ -178,7 +178,7 @@ const Register = () => {
             setStep1(
                 <article className="card-box shadow-3">
                     <h2 className="card-title font-s-core px-2">STEP 0: 인증 방법 선택</h2>
-                    <p>본인 인증 및 급식 정보를 가져오기 위한 인증이에요. 학생증 인증이 빠르고 쉬워요. 하지만 3학년의 경우는 학생증 인증을 사용할 수 없어요.</p>
+                    <p>본인 인증 및 급식 정보를 가져오기 위한 인증이에요. 학생증 인증이 빠르고 쉬워요.</p>
                     <div className="flex flex-column">
                         <button className="button button-auth-choose" onClick={authScan}>학생증 스캔</button>
                         <button className="button button-auth-choose" onClick={authLogin}>급식신청사이트 로그인</button>
@@ -369,7 +369,7 @@ const Register = () => {
                     </svg>
                     회원가입
                 </h2>
-                <p>제고라이프는 광양제철고등학교 학생 누구나 이용할 수 있습니다.</p>
+                <p>제고라이프는 광양제철고등학교 1학년 2학년 학생 누구나 이용할 수 있습니다.</p>
                 <p>iOS의 경우에는 Safari를, 안드로이드의 경우에는 Chrome을 사용해주세요. </p>
             </article>
             {step1}

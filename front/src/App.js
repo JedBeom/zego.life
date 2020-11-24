@@ -12,6 +12,7 @@ import Nav from './components/Nav'
 import {isAdmin} from "./utils/getRoles"
 
 const MainRoute = lazy(() => import("./Route"))
+const Register = lazy(() => import("./pages/Register"))
 const HelpRoute = lazy(() => import('./pages/help/Route'))
 const AdminRoute = isAdmin() ? lazy(() => import('./pages/admin/Route')) : null
 
@@ -26,6 +27,7 @@ function App() {
                             isAdmin() ? <Route path="/admin" component={AdminRoute}/> : null
                         }
                         <Route path="/help" component={HelpRoute}/>
+                        <Route path="/register" component={Register}/>
                         <Route path="/" component={MainRoute}/>
                     </Switch>
                 </Suspense>
