@@ -38,7 +38,6 @@ const Timetable = () => {
     return (
         <>
             <h1 className="page-title">{meGrade}-{meClass} 시간표
-                <div className="inline-block bg-green green-lightest px-2 fs-s2 br-round m-3">BETA</div>
             </h1>
             <div className="table-container">
                 {lessons.length !== 1 ?

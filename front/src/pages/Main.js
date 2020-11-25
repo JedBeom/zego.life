@@ -109,7 +109,7 @@ const Main = () => {
             <AddToHome/>
             <DdayCounter/>
             <DietCard diet={diet} applied={applied}/>
-            <DietReview/>
+            <DietReview a={isFocused}/>
         </>
     )
 }

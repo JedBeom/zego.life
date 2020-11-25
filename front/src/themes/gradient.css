@@ -44,7 +44,7 @@
     --nav-bar-bg-image: linear-gradient(to right, #837AE6 0%, #3F33BD 100%);
     --button-primary-color: #CC88F7;
 
-    --loader-color: 255, 255, 255;
+    --loader-color: 0, 0, 0;
 }
 
 .theme-pupple-mint-dark {
@@ -69,4 +69,115 @@
     --button-primary-color: #837ae6;
 
     --loader-color: 255, 255, 255;
+}
+
+.theme-linear-pink {
+
+    --background-color: #F06597;
+    --background-image: linear-gradient(to right, #F58EB4 0%, #C9366C 100%);
+
+    --site-logo-color: white;
+    --site-logo-bg-image: linear-gradient(to right, #F58EB4 0%, #C9366C 100%);
+    --site-text-color: white;
+    --site-bg-color: #EEF1F5;
+
+    --card-box-text-color: black;
+    --card-box-bg-color: white;
+    --card-box-opacity: .8;
+
+    --diet-when-color: red;
+
+    --nav-bar-default-color: #FFFFFF34;
+    --nav-bar-active-color: white;
+    --nav-bar-bg-color: rgba(255, 255, 255, 0);
+    --nav-bar-bg-image: linear-gradient(to right, #F58EB4 0%, #C9366C 100%);
+
+    --button-primary-color: #837ae6;
+
+    --loader-color: 0, 0, 0;
+}
+
+.theme-pink-55 {
+
+    --background-color: #FD99E1;
+    --background-image: linear-gradient(90deg, rgba(253, 153, 225, 1) 0%, rgba(255, 206, 241, 1) 100%);
+
+    --site-logo-color: black;
+    --site-logo-bg-image: linear-gradient(90deg, rgba(253, 153, 225, 1) 0%, rgba(255, 206, 241, 1) 100%);
+    --site-text-color: black;
+    --site-bg-color: #EEF1F5;
+
+    --card-box-text-color: black;
+    --card-box-bg-color: white;
+    --card-box-opacity: .8;
+
+    --diet-when-color: #fd99e1;
+
+    --nav-bar-default-color: #00000034;
+    --nav-bar-active-color: black;
+    --nav-bar-bg-color: rgba(255, 255, 255, 0);
+    --nav-bar-bg-image: linear-gradient(90deg, rgba(253, 153, 225, 1) 0%, rgba(255, 206, 241, 1) 100%);
+
+    --button-primary-color: #fd99e1;
+
+    --loader-color: 0, 0, 0;
+}
+
+.theme-lonely-sky {
+
+    --background-color: #fbc2eb;
+    --background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+
+    --site-logo-color: black;
+    --site-logo-bg-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+    --site-text-color: white;
+    --site-bg-color: #EEF1F5;
+
+    --card-box-text-color: black;
+    --card-box-bg-color: white;
+    --card-box-opacity: .9;
+
+    --diet-when-color: #fbc2eb;
+
+    --nav-bar-default-color: #00000034;
+    --nav-bar-active-color: black;
+    --nav-bar-bg-color: rgba(255, 255, 255, 0);
+    --nav-bar-bg-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+
+    --button-primary-color: #837ae6;
+
+    --loader-color: 0, 0, 0;
+}
+
+.theme-clear-water {
+
+    --background-color: #fbc2eb;
+    --background-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
+
+    --site-logo-color: black;
+    --site-logo-bg-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
+    --site-text-color: black;
+    --site-bg-color: #EEF1F5;
+
+    --card-box-text-color: black;
+    --card-box-bg-color: rgba(255, 255, 255, 0.5);
+    --card-box-opacity: 1;
+
+    --diet-when-color: blue;
+
+    --nav-bar-default-color: #00000034;
+    --nav-bar-active-color: black;
+    --nav-bar-bg-color: rgba(255, 255, 255, 0);
+    --nav-bar-bg-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
+
+    --button-primary-color: #F06597;
+
+    --loader-color: 0, 0, 0;
+}
+
+.theme-clear-water .page-title, .theme-clear-water .page-title span, .theme-clear-water h2 {
+    background-image: linear-gradient(to right, #409EFF 0%, #F06597 25%, #409EFF 50%, #F06567 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

@@ -1,4 +1,4 @@
-.theme-null, .theme-light {
+.theme-null, .theme-light, :root {
 
     --background-color: #eef1f5;
 
@@ -23,7 +23,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .theme-null {
+    .theme-null, :root {
         --background-color: #121212;
 
         --site-logo-color: #E4E8EB;

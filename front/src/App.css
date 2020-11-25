@@ -240,10 +240,10 @@ nav ul a:hover:after {
     color: var(--card-box-text-color);
 
     word-break: keep-all;
-
 }
 
 .card-box, .in-progress {
+    opacity: var(--card-box-opacity);
     animation-name: fadeIn;
     animation-duration: .15s;
     animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
@@ -561,6 +561,7 @@ input.register-birthday {
 @keyframes fadeInTTdisable {
     0% {
         opacity: 0;
+        transform: scale(0);
     }
     75% {
         opacity: .7;
