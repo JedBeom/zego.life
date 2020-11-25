@@ -6,7 +6,7 @@ let meClass = localStorage.getItem("me.class")
 
 const Timetable = () => {
     const [lessons, setLessons] = useState([[]])
-    const [twd, setTwd] = useState(new Date().getDay())
+    const twd = new Date().getDay()
 
     useEffect(() => {
         get()
@@ -19,7 +19,6 @@ const Timetable = () => {
         try {
             const ls = await getTimetable(meGrade, meClass)
             if (ls) {
-                console.log(ls)
                 setLessons(ls)
             }
         } catch (e) {
@@ -46,12 +45,9 @@ const Timetable = () => {
                     <table className="timetable">
                         <thead>
                         <tr>
-                            {["", "월", "화", "수", "목", "금"].map((v, i) => {
-                                if (i === twd) {
-                                    return <td className="today">{v}</td>
-                                }
-                                return <td key={i}>{v}</td>
-                            })}
+                            {["", "월", "화", "수", "목", "금"].map((v, i) =>
+                                <td className={i === twd ? "today" : ""} key={i}>{v}</td>
+                            )}
                         </tr>
                         </thead>
                         <tbody>
@@ -59,15 +55,15 @@ const Timetable = () => {
                             [0, 1, 2, 3, 4, 5, 6].map(li => { // lessons index 
                                 return <tr key={li}>
                                     <td>{li + 1}교시</td>
-                                    {[0, 1, 2, 3, 4].map(wd =>  // week day
-                                        <td className={wd + 1 === twd ? "today" : ""} key={`${li}${wd}`}>
-                                            {lessons[wd][li] !== undefined ?
-                                                <span className="subject">{lessons[wd][li].Subject}</span>
-                                                : null}
+                                    {[0, 1, 2, 3, 4].map(wd => { // week day
+                                        return <td className={wd + 1 === twd ? "today" : ""}
+                                                   key={`${li}${wd}`}> {lessons[wd][li] !== undefined ? <>
+                                            <span className="subject">{lessons[wd][li].Subject}</span>
                                             <span
-                                                className="teacher">{lessons[wd][li].Teacher !== "" ? lessons[wd][li].Teacher + "T" : "담당"}</span>
+                                                className="teacher">{lessons[wd][li].Teacher !== "" && lessons[wd][li].Teacher !== undefined ? lessons[wd][li].Teacher + "T" : "담당"}</span>
+                                        </> : null}
                                         </td>
-                                    )}
+                                    })}
                                 </tr>
                             })
                         }
