@@ -31,7 +31,7 @@ func NoticeByID(db *pg.DB, id string) (n Notice, err error) {
 	return
 }
 
-func NoticesAll(db *pg.DB) (ns []Notice, err error) {
-	err = db.Model(&ns).Order("created_at DESC").Select()
+func NoticesAll(db *pg.DB, limit int) (ns []Notice, err error) {
+	err = db.Model(&ns).Order("created_at DESC").Limit(limit).Select()
 	return
 }

@@ -13,7 +13,7 @@ import (
 )
 
 func getNoticesAll(c echo.Context) error {
-	ns, err := models.NoticesAll(db)
+	ns, err := models.NoticesAll(db, 5)
 	if err != nil {
 		log.Println(err)
 		return echo.ErrInternalServerError

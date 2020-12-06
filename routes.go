@@ -37,6 +37,9 @@ func routes(e *echo.Echo) {
 			u.GET("/users/:user_id/pw-change", getPwChangeToken)
 			u.GET("/feedbacks", getFeedbacksAll)
 
+			u.GET("/radio-stories", getRadioStoriesAll)
+			u.POST("/radio-stories", postRadioStory)
+
 			u.GET("/users/:user_id/diet2user/:diet_id", getDiet2UserByDietAndUser)
 			u.GET("/diet-reviews/:diet_id", getDietReviewPossible)
 			u.POST("/diet-reviews/:diet_id", postDietReview)

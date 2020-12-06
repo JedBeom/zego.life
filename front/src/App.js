@@ -14,6 +14,7 @@ import {isAdmin} from "./utils/getRoles"
 const MainRoute = lazy(() => import("./Route"))
 const Register = lazy(() => import("./pages/Register"))
 const HelpRoute = lazy(() => import('./pages/help/Route'))
+const RadioRoute = lazy(() => import('./pages/radio/Route'))
 const AdminRoute = isAdmin() ? lazy(() => import('./pages/admin/Route')) : null
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
                             isAdmin() ? <Route path="/admin" component={AdminRoute}/> : null
                         }
                         <Route path="/help" component={HelpRoute}/>
+                        <Route path="/radio" component={RadioRoute}/>
                         <Route path="/register" component={Register}/>
                         <Route path="/" component={MainRoute}/>
                     </Switch>

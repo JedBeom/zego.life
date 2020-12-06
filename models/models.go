@@ -136,6 +136,20 @@ type Lesson struct {
 	Teacher string
 }
 
+type RadioStory struct {
+	ID     string
+	UserID string
+	User   *User
+
+	Content     string
+	SongRequest string
+
+	Guest     bool
+	Anonymous bool
+
+	CreatedAt time.Time
+}
+
 type Session struct {
 	ID        string
 	UserID    string

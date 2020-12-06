@@ -37,8 +37,11 @@ html {
     scroll-behavior: smooth;
 }
 
+*, body, textarea {
+    font-family: "Spoqa Han Sans Neo", sans-serif;
+}
+
 body {
-    font-family: "Spoqa Han Sans", sans-serif;
     scrollbar-width: none;
     -ms-overflow-style: none;
     height: 100%;
@@ -443,7 +446,7 @@ input.register-birthday {
 }
 
 .inline-calendar .react-datepicker__today-button {
-    background-color: #4c80f1 !important;
+    background-color: var(--button-primary-color) !important;
     border-top: none !important;
     width: 50% !important;
     border-radius: 1rem;
@@ -630,6 +633,14 @@ input.register-birthday {
 .teacher {
     font-size: .75em;
     display: block;
+}
+
+/* radio */
+.radio-description {
+    background-color: var(--card-box-bg-color);
+    padding: 1em;
+    border-radius: 6px;
+    margin-bottom: .75em;
 }
 
 @media (min-width: 300px) {

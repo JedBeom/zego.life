@@ -132,6 +132,19 @@ CREATE TABLE IF NOT EXISTS timetable_templates
     updated_at TIMESTAMPTZ
 );
 
+CREATE TABLE IF NOT EXISTS radio_stories
+(
+    id           TEXT PRIMARY KEY NOT NULL,
+    user_id      TEXT             NOT NULL,
+    content      TEXT,
+    song_request TEXT,
+    guest        BOOL,
+    anonymous    BOOL,
+    created_at   TIMESTAMPTZ DEFAULT current_timestamp,
+
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS sessions
 (
     id         TEXT PRIMARY KEY NOT NULL,

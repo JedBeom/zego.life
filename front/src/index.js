@@ -4,7 +4,8 @@ import Root from './Root';
 import * as serviceWorker from './serviceWorker';
 import axios from 'axios'
 
-let server = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
+// let server = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
+let server = "https://zego.life"
 
 if (process.env.NODE_ENV === 'development') {
     // server = "https://zego.life"
