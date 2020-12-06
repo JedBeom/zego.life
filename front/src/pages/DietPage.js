@@ -1,7 +1,6 @@
-import React, {Fragment, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import DatePicker from 'react-datepicker'
 import DietCard from '../components/DietCard'
-import LoadingCard from '../components/LoadingCard'
 import {getD2UByDiet, getDietByDate} from '../common/api'
 import {timestampDot} from '../utils/timestamp'
 import "react-datepicker/dist/react-datepicker.css";
@@ -25,7 +24,7 @@ const DietPage = () => {
     const [isLoading, setLoading] = useState(false)
     const [date, setDate] = useState(now)
     const getDietOnClick = async (d) => {
-        if (d === undefined || d === null || d === date) {
+        if (d === undefined || d === null || d.getTime() === date.getTime()) {
             return
         }
 
@@ -56,7 +55,7 @@ const DietPage = () => {
     }, [])
 
     return (
-        <Fragment>
+        <>
             <h1 className="page-title">급식</h1>
             <article className={`card-box shadow-3 diet-page`}>
                 <h2 className={"card-title font-s-core px-2"}>
@@ -85,10 +84,10 @@ const DietPage = () => {
                                 selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
                 </div>
             </article>
-            {isLoading ? <LoadingCard/> : diets.map((value, index) => {
+            {isLoading ? <div className="loader"/> : diets.map((value, index) => {
                 return <DietCard key={index} diet={value} applied={applieds[index]}/>
             })}
-        </Fragment>
+        </>
     )
 }
 

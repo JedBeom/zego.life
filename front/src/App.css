@@ -90,21 +90,6 @@ a, .input, .select {
     height: 100%;
 }
 
-.logo-img {
-    position: absolute;
-    display: block;
-    width: auto;
-    height: 4.5em;
-    right: 0;
-
-    user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-}
-
 header {
     font-family: "Roboto", sans-serif;
 
@@ -112,21 +97,9 @@ header {
     position: fixed;
     width: 100%;
     padding: .25rem;
-
-    z-index: 1;
     padding-top: env(safe-area-inset-top);
 
-    user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-
     color: var(--site-logo-color);
-    backdrop-filter: blur(5px);
-    background-color: var(--site-logo-bg-color);
-    background-image: var(--site-logo-bg-image);
 }
 
 header a {
@@ -149,11 +122,22 @@ nav {
     padding-right: 1.5em;
     padding-bottom: env(safe-area-inset-bottom, .75em);
 
+
+    box-shadow: 3px -20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+nav, header {
+    z-index: 1;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+
     background-color: var(--nav-bar-bg-color);
     background-image: var(--nav-bar-bg-image);
     backdrop-filter: blur(5px);
-
-    box-shadow: 3px -20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 nav ul {
@@ -169,18 +153,6 @@ nav ul a {
     display: inline-block;
     position: relative;
     transition: color 0.2s ease 0s, left 0.2s ease 0s;
-
-    user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-}
-
-nav ul a:hover:after {
-  width: 100%;
-  left: 0;
 }
 
 .nav-active {
@@ -577,10 +549,13 @@ input.register-birthday {
 
 .timetable td {
     color: var(--card-box-text-color);
-    padding: .5em !important;
+    padding: .1em !important;
     background: var(--card-box-bg-color);
     opacity: .7;
     border-radius: .5em;
+    border-style: solid;
+    border-color: transparent;
+    border-width: .5em;
     text-align: center;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     transition: .3s;
@@ -589,22 +564,6 @@ input.register-birthday {
     animation-name: fadeInTTdisable;
     animation-duration: .25s;
     animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-}
-
-.timetable tbody tr:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.timetable tbody tr:nth-child(2) {
-    animation-delay: 1s;
-}
-
-.timetable tbody tr:nth-child(3) {
-    animation-delay: 3s;
-}
-
-.timetable tbody tr:nth-child(4) {
-    animation-delay: 7s;
 }
 
 .timetable td:nth-child(1) { /* n교시 */
@@ -632,6 +591,7 @@ input.register-birthday {
 
 .teacher {
     font-size: .75em;
+    font-weight: 500;
     display: block;
 }
 
