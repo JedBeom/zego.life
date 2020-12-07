@@ -76,7 +76,7 @@ const getDietReviewPossible = async id => {
 }
 
 const getTimetable = async (meGrade, meClass) => {
-    let key = `timetables/${meGrade}-${meClass}`
+    let key = `timetables/${meGrade}-${meClass}/20201207`
     let item = localStorage.getItem(key)
     if (item != null) {
         return JSON.parse(item)

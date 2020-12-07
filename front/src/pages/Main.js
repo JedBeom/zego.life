@@ -108,10 +108,20 @@ const Main = () => {
             </NavLink>
             <AddToHome/>
             <DdayCounter/>
+            {/*
             <div className="br-round bg-indigo-30 indigo-lightest p-2 fs-s2 mb-5">
                 <div className="inline-block bg-indigo indigo-lightest br-round px-3 py-1 mr-3 fs-s3">민시부 공지</div>
                 슬리퍼 신고 오지 마세요
             </div>
+            */}
+            <article className="campaign-box shadow-3">
+                <NavLink to="/radio/stories/post">
+                    <span className="campaign-icon">AD</span>
+                    <h2>하지 못했던 이야기가 있다면</h2>
+                    <p>청춘라디오로 사연을 보내주세요!</p>
+                    <img alt="청춘라디오" src="/img/chungchun-radio.png"/>
+                </NavLink>
+            </article>
             <DietCard diet={diet} applied={applied}/>
             <DietReview a={isFocused}/>
         </>

@@ -91,7 +91,6 @@ a, .input, .select {
 }
 
 header {
-    font-family: "Roboto", sans-serif;
 
     text-align: center;
     position: fixed;
@@ -100,6 +99,10 @@ header {
     padding-top: env(safe-area-inset-top);
 
     color: var(--site-logo-color);
+}
+
+header h1 {
+    font-family: Roboto, sans-serif;
 }
 
 header a {
@@ -127,17 +130,19 @@ nav {
 }
 
 nav, header {
-    z-index: 1;
+    z-index: 99;
 
+    background-color: var(--nav-bar-bg-color);
+    background-image: var(--nav-bar-bg-image);
+    backdrop-filter: blur(5px);
+}
+
+nav, header, .campaign-box img {
     user-select: none;
     -moz-user-select: none;
     -webkit-user-drag: none;
     -webkit-user-select: none;
     -ms-user-select: none;
-
-    background-color: var(--nav-bar-bg-color);
-    background-image: var(--nav-bar-bg-image);
-    backdrop-filter: blur(5px);
 }
 
 nav ul {
@@ -603,33 +608,73 @@ input.register-birthday {
     margin-bottom: .75em;
 }
 
+.textarea, .input {
+    border: 2px solid var(--site-text-color);
+}
+
+.radio-story label {
+    font-size: .75rem;
+    border-radius: 6px;
+    background-color: #3F33BD;
+    color: white;
+    padding: .25em;
+}
+
+/* advertisement */
+.campaign-box {
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 8px;
+    background-color: var(--card-box-bg-color);
+    background-image: var(--card-box-bg-image);
+    color: var(--card-box-text-color);
+    opacity: var(--card-box-opacity);
+    position: relative;
+    word-break: keep-all;
+
+}
+
+.campaign-box a {
+    text-decoration: none !important;
+}
+
+.campaign-box h2 {
+    z-index: 1;
+    font-size: 1rem;
+}
+
+.campaign-box p {
+    z-index: 1;
+    font-size: .75rem;
+}
+
+.campaign-box .campaign-icon {
+    background-color: var(--background-color);
+    padding: .25rem;
+    border-radius: 6px;
+    font-size: 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.campaign-box img {
+    opacity: .85;
+    position: absolute;
+    height: 2.5rem;
+    right: .25rem;
+    top: 1rem;
+}
+
+/* responsible */
+
 @media (min-width: 300px) {
-    .card-title {
-        font-size: 1.5em;
-    }
-
-    .diet-badge {
-        font-size: 1em;
-    }
-
     .page-title {
         margin-top: 1em;
     }
 }
 
 @media (min-width: 800px) {
-    .site-title {
-        font-size: 3em;
-    }
-
-    .diet-list {
-        font-size: 1.4em;
-    }
-
-    .card-title {
-        font-size: 1.7em;
-    }
-
     .page-title {
         margin-top: 1em;
     }

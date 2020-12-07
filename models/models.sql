@@ -136,10 +136,10 @@ CREATE TABLE IF NOT EXISTS radio_stories
 (
     id           TEXT PRIMARY KEY NOT NULL,
     user_id      TEXT             NOT NULL,
-    content      TEXT,
-    song_request TEXT,
-    guest        BOOL,
-    anonymous    BOOL,
+    content      TEXT             NOT NULL,
+    song_request TEXT             NOT NULL,
+    guest        BOOL             NOT NULL,
+    anonymous    BOOL             NOT NULL,
     created_at   TIMESTAMPTZ DEFAULT current_timestamp,
 
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE

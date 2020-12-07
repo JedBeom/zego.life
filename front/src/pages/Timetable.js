@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {getTimetable} from '../common/api'
-import useInterval from '../utils/useInterval'
 
 let meGrade = localStorage.getItem("me.grade")
 let meClass = localStorage.getItem("me.class")
 
 const Timetable = () => {
     const [lessons, setLessons] = useState([[]])
-    const [now, setNow] = useState(new Date())
     const twd = new Date().getDay()
 
     useEffect(() => {
@@ -28,8 +26,6 @@ const Timetable = () => {
         }
     }
 
-    useInterval(() => setNow(new Date()), 1000)
-
     if (meClass === null) {
         return (
             <>
@@ -43,7 +39,6 @@ const Timetable = () => {
         <>
             <h1 className="page-title">{meGrade}-{meClass} 시간표
             </h1>
-            {now.toTimeString()}
             <div className="table-container">
                 {lessons.length !== 1 ?
                     <table className="timetable">
@@ -58,14 +53,13 @@ const Timetable = () => {
                         {
                             [0, 1, 2, 3, 4, 5, 6].map(li => { // lessons index 
                                 return <tr key={li}>
-                                    <td>{li + 1}교시<span className="teacher">10:00</span><span
-                                        className="teacher">11:00</span></td>
+                                    <td>{li + 1}교시</td>
                                     {[0, 1, 2, 3, 4].map(wd => { // week day
                                         return <td className={wd + 1 === twd ? "today" : ""}
                                                    key={`${li}${wd}`}> {lessons[wd][li] !== undefined ? <>
                                             <span className="subject">{lessons[wd][li].Subject}</span>
                                             <span
-                                                className="teacher">{lessons[wd][li].Teacher !== "" && lessons[wd][li].Teacher !== undefined ? lessons[wd][li].Teacher + "T" : "담당"}</span>
+                                                className="teacher">{lessons[wd][li].Teacher !== "" && lessons[wd][li].Teacher !== undefined ? lessons[wd][li].Teacher : "담당"}</span>
                                         </> : null}
                                         </td>
                                     })}

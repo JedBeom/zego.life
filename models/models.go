@@ -141,11 +141,11 @@ type RadioStory struct {
 	UserID string
 	User   *User
 
-	Content     string
-	SongRequest string
+	Content     string `pg:",use_zero" sql:",notnull"`
+	SongRequest string `pg:",use_zero" sql:",notnull"`
 
-	Guest     bool
-	Anonymous bool
+	Guest     bool `pg:",use_zero" sql:",notnull"`
+	Anonymous bool `pg:",use_zero" sql:",notnull"`
 
 	CreatedAt time.Time
 }

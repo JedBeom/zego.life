@@ -1,5 +1,8 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import Back from '../../components/Back'
 import axios from 'axios';
+import {isAdmin, isThat} from '../../utils/getRoles'
+import {NavLink} from 'react-router-dom';
 
 const PostStory = () => {
     const [anonymous, setAnonymous] = useState(false)
@@ -44,9 +47,18 @@ const PostStory = () => {
         setLoading(false)
     }
 
+    useEffect(() => {
+        if (localStorage.getItem("token") == null) setErrMsg("로그인 해주세요.")
+    }, [])
+
     return (
         <>
-            <h1 className="page-title">라디오 사연 보내기</h1>
+            <h1 className="page-title"><Back content="라디오 사연 보내기"/></h1>
+            {isThat("radio") || isAdmin() ?
+                <NavLink to="/radio/stories">
+                    <button className="button mb-6">사연 보기</button>
+                </NavLink> : null
+            }
             <div className="radio-description">
                 <p>하고 싶었던 말, 여기에 전부 적어주세요.
                     연애고민, 성적고민, 온라인 기간의 이야기, 평소 학교생활, 말하지 못했던 이야기 등등
@@ -56,12 +68,12 @@ const PostStory = () => {
             <form onSubmit={submit}>
                 <input type="checkbox" checked={anonymous} className="checkbox" id="anonymous"
                        onChange={e => setAnonymous(e.target.checked)}/>
-                <label htmlFor="anonymous" className="blue">
+                <label htmlFor="anonymous">
                     <span>익명을 원해요!</span>
                 </label>
                 <input type="checkbox" checked={guest} className="checkbox" id="guest"
                        onChange={e => setGuest(e.target.checked)}/>
-                <label htmlFor="guest" className="blue block mt-3">
+                <label htmlFor="guest" className="block mt-3">
                     <span>게스트로 출연할 의향이 있어요!</span>
                 </label>
                 <div className="flex flex-column mt-3">
