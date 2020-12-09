@@ -1,29 +1,19 @@
-import React, {useEffect, useState} from 'react'
-import {getTimetable} from '../common/api'
+import React, {useState} from 'react'
+import TimetableClass from './TimetableClass'
+import TimetableExam from './TimetableExam'
 
-let meGrade = localStorage.getItem("me.grade")
-let meClass = localStorage.getItem("me.class")
+const meGrade = localStorage.getItem("me.grade")
+const meClass = localStorage.getItem("me.class")
+
+const types = [`${meGrade}-${meClass} 시간표`, `${meGrade}학년 시험 시간표`]
 
 const Timetable = () => {
-    const [lessons, setLessons] = useState([[]])
-    const twd = new Date().getDay()
+    const [type, setType] = useState(0) // 0: class 1: exam
 
-    useEffect(() => {
-        get()
-    }, [])
+    const getNext = (t) => types.length - 1 === t ? 0 : t + 1
 
-    const get = async () => {
-        if (meClass === null) {
-            return
-        }
-        try {
-            const ls = await getTimetable(meGrade, meClass)
-            if (ls) {
-                setLessons(ls)
-            }
-        } catch (e) {
-            alert(e)
-        }
+    const setNext = () => {
+        setType(getNext(type))
     }
 
     if (meClass === null) {
@@ -37,39 +27,9 @@ const Timetable = () => {
 
     return (
         <>
-            <h1 className="page-title">{meGrade}-{meClass} 시간표
-            </h1>
-            <div className="table-container">
-                {lessons.length !== 1 ?
-                    <table className="timetable">
-                        <thead>
-                        <tr>
-                            {["", "월", "화", "수", "목", "금"].map((v, i) =>
-                                <td className={i === twd ? "today" : ""} key={i}>{v}</td>
-                            )}
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            [0, 1, 2, 3, 4, 5, 6].map(li => { // lessons index 
-                                return <tr key={li}>
-                                    <td>{li + 1}교시</td>
-                                    {[0, 1, 2, 3, 4].map(wd => { // week day
-                                        return <td className={wd + 1 === twd ? "today" : ""}
-                                                   key={`${li}${wd}`}> {lessons[wd][li] !== undefined ? <>
-                                            <span className="subject">{lessons[wd][li].Subject}</span>
-                                            <span
-                                                className="teacher">{lessons[wd][li].Teacher !== "" && lessons[wd][li].Teacher !== undefined ? lessons[wd][li].Teacher : "담당"}</span>
-                                        </> : null}
-                                        </td>
-                                    })}
-                                </tr>
-                            })
-                        }
-                        </tbody>
-                    </table>
-                    : <div className="loader"/>}
-            </div>
+            <h1 className="page-title" onClick={setNext}>{types[type]} <span>{types[getNext(type)]}</span></h1>
+            {type === 0 ? <TimetableClass meGrade={meGrade} meClass={meClass}/> : null}
+            {type === 1 ? <TimetableExam meGrade={meGrade}/> : null}
         </>
     )
 }

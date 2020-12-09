@@ -172,6 +172,11 @@ nav ul a {
     -webkit-text-stroke-color: var(--page-title-bg-color);
 }
 
+.page-title span {
+    font-size: .75em;
+    opacity: .6;
+}
+
 .page-title-sub {
     margin-top: 2em;
     margin-bottom: 1em;
@@ -592,6 +597,7 @@ input.register-birthday {
 
 .subject {
     font-weight: 700;
+    display: block;
 }
 
 .teacher {
@@ -600,9 +606,18 @@ input.register-birthday {
     display: block;
 }
 
+.timetable-exam td {
+    opacity: 1;
+}
+
+.timetable-exam td:empty {
+    opacity: .5;
+}
+
 /* radio */
 .radio-description {
     background-color: var(--card-box-bg-color);
+    color: var(--card-box-text-color);
     padding: 1em;
     border-radius: 6px;
     margin-bottom: .75em;
@@ -636,6 +651,7 @@ input.register-birthday {
 
 .campaign-box a {
     text-decoration: none !important;
+    color: var(--card-box-text-color);
 }
 
 .campaign-box h2 {
@@ -653,6 +669,7 @@ input.register-birthday {
     padding: .25rem;
     border-radius: 6px;
     font-size: 10px;
+    font-weight: bold;
     position: absolute;
     right: 0;
     top: 0;
