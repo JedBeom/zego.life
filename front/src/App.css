@@ -62,8 +62,16 @@ body::-webkit-scrollbar {
     }
 }
 
+li {
+    margin-left: 1.5em;
+}
+
 a, .input, .select {
     color: var(--site-text-color);
+}
+
+a {
+    text-decoration: none;
 }
 
 .button {
@@ -146,10 +154,27 @@ nav, header, .campaign-box img {
 }
 
 nav ul {
-    padding: .5em;
+    padding-top: .4em;
+    padding-bottom: .2em;
     list-style: none;
     font-size: 1.3em;
     font-weight: 700;
+}
+
+nav ul li {
+    margin-left: 0;
+}
+
+nav ul svg {
+    height: 1.5em;
+    stroke: var(--nav-bar-default-color);
+    stroke-width: 2.5;
+    fill: transparent;
+}
+
+nav ul svg.icon-reverse {
+    fill: var(--nav-bar-default-color);
+    stroke: transparent;
 }
 
 nav ul a {
@@ -160,8 +185,12 @@ nav ul a {
     transition: color 0.2s ease 0s, left 0.2s ease 0s;
 }
 
-.nav-active {
-    color: var(--nav-bar-active-color);
+.nav-active svg {
+    stroke: var(--nav-bar-active-color);
+}
+
+.nav-active svg.icon-reverse {
+    fill: var(--nav-bar-active-color);
 }
 
 .page-title {
@@ -172,8 +201,8 @@ nav ul a {
     -webkit-text-stroke-color: var(--page-title-bg-color);
 }
 
-.page-title span {
-    font-size: .75em;
+.page-title .sub {
+    font-size: .65em;
     opacity: .6;
 }
 
@@ -389,7 +418,6 @@ input.register-birthday {
 .diet-list {
     list-style-type: square;
     line-height: 1.8em;
-    font-weight: 500;
     font-size: 1.1em;
 }
 
@@ -473,6 +501,16 @@ input.register-birthday {
 .textarea {
     font-size: 1em;
     color: var(--site-text-color);
+    transition: .3s;
+}
+
+.input, .button {
+    transition: .3s;
+}
+
+.textarea:hover, .input:hover, .button:hover {
+    transform: scale(1.025);
+    border-color: inherit;
 }
 
 /* 뭐야 이거 누가 쓴거야? */
@@ -524,7 +562,6 @@ input.register-birthday {
 
 .notice-box ul {
     list-style-type: square;
-    margin-left: 1.5rem;
     margin-top: .75em;
     margin-bottom: .75em;
 }
@@ -559,13 +596,10 @@ input.register-birthday {
 
 .timetable td {
     color: var(--card-box-text-color);
-    padding: .1em !important;
+    padding: .4em !important;
     background: var(--card-box-bg-color);
     opacity: .7;
     border-radius: .5em;
-    border-style: solid;
-    border-color: transparent;
-    border-width: .5em;
     text-align: center;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     transition: .3s;
@@ -702,8 +736,7 @@ input.register-birthday {
 
     /* Equal to height of footer */
     /* But also accounting for potential margin-bottom of last child */
-    margin-top: 7em;
-    margin-bottom: -100px;
+    margin-top: 3em;
     font-weight: 300;
     color: var(--site-text-color);
     padding-bottom: 1.2em;
@@ -727,10 +760,6 @@ a[href="/about"] {
     color: var(--site-text-color);
 }
 
-ol {
-    margin-left: 2em;
-}
-
 .footer-icon {
     animation: heartbeat 1.33s ease-in-out infinite;
     fill: #f06292 !important;
@@ -742,11 +771,16 @@ ol {
     width: 1em;
     height: 1em;
     fill: currentColor;
-    vertical-align: revert;
+    vertical-align: text-top;
     display: inline-block;
-    margin-right: .25rem;
 
     color: var(--card-box-text-color);
+}
+
+.icon-tabler {
+    stroke: currentColor;
+    fill: transparent;
+    stroke-width: 2;
 }
 
 .diet-apply .icon {

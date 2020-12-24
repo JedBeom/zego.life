@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-let targetDay = new Date(2020, 11, 21)
+let targetDay = new Date(2021, 0, 7)
 
 const DdayCounter = () => {
     let today = new Date()
@@ -14,7 +14,7 @@ const DdayCounter = () => {
             <div className="flex justify-around dday-item">
                 {day <= 0 ?
                     <div className="dday-item">
-                        <p className="dday-name mt-3">기말고사</p>
+                        <p className="dday-name mt-3">한빛제</p>
                         {day === 0 ?
                             <p className="dday-dday">D-DAY</p>
                             :
@@ -24,7 +24,21 @@ const DdayCounter = () => {
                     : null
                 }
             </div>
-            <NavLink to="/events"><p className="text-center">다른 일정 확인하기</p></NavLink>
+            <NavLink to="/events">
+                <p className="text-center">
+                    <svg className="icon icon-tabler" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <rect x="4" y="5" width="16" height="16" rx="2"/>
+                        <line x1="16" y1="3" x2="16" y2="7"/>
+                        <line x1="8" y1="3" x2="8" y2="7"/>
+                        <line x1="4" y1="11" x2="20" y2="11"/>
+                        <line x1="11" y1="15" x2="12" y2="15"/>
+                        <line x1="12" y1="15" x2="12" y2="18"/>
+                    </svg>
+                    다른 일정 확인하기
+                </p>
+            </NavLink>
         </article>
     )
 }

@@ -96,7 +96,7 @@ const DietCard = ({diet, applied}) => {
 					<time>{diet.year}년 {diet.month}월 {diet.day}일</time>
 				</div>
 			</div>
-			<ul className={"diet-list mt-2 ml-6 fw-6"}>
+			<ul className={"diet-list mt-2 fw-6"}>
 				{diet.dietList.length > 1 ? diet.dietList.map((value) => {
 					return (
 						<li key={value}>{value}</li>

@@ -9,6 +9,7 @@ import {timestampDot} from '../utils/timestamp'
 import whatMeal from '../utils/whatMeal'
 
 import DietReview from '../components/DietReview'
+import DormInspector from "../components/DormInspector"
 
 import AddToHome from "../components/AddToHome"
 
@@ -51,7 +52,6 @@ const Main = () => {
             setLoading(false)
             return
         }
-        console.log({dietID, dietIDnow})
 
         const fetchDiet = async () => {
             try {
@@ -92,17 +92,17 @@ const Main = () => {
 
     if (loading) {
         return <>
-            <h1 className="page-title">시작</h1>
+            <h1 className="page-title">홈</h1>
             <div className="loader"/>
         </>
     }
 
     return (
         <>
-            <h1 className="page-title">시작</h1>
+            <h1 className="page-title">홈</h1>
             <NavLink to="/notice">
-                <div className="notice">
-                    <div className="notice-badge inline-block bg-pink-dark green-lightest fs-s2 br-round">공지</div>
+                <div className="br-round bg-indigo-30 indigo-lightest p-2 fs-s2 mb-5">
+                    <div className="inline-block bg-indigo indigo-lightest br-round px-3 py-1 mr-3 fs-s3">공지</div>
                     {noticeTitle}
                 </div>
             </NavLink>
@@ -117,13 +117,14 @@ const Main = () => {
             <article className="campaign-box shadow-3">
                 <NavLink to="/radio/stories/post">
                     <span className="campaign-icon">AD</span>
-                    <h2>하지 못했던 이야기가 있다면</h2>
+                    <h2>올해 마지막의 이야기</h2>
                     <p>청춘라디오로 사연을 보내주세요!</p>
                     <img alt="청춘라디오" src="/img/chungchun-radio.png"/>
                 </NavLink>
             </article>
             <DietCard diet={diet} applied={applied}/>
             <DietReview a={isFocused}/>
+            {localStorage.getItem("me.residence") === "1" ? <DormInspector/> : null}
         </>
     )
 }

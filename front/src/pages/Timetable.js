@@ -1,11 +1,10 @@
 import React, {useState} from 'react'
 import TimetableClass from './TimetableClass'
-import TimetableExam from './TimetableExam'
 
 const meGrade = localStorage.getItem("me.grade")
 const meClass = localStorage.getItem("me.class")
 
-const types = [`${meGrade}-${meClass} 시간표`, `${meGrade}학년 시험 시간표`]
+const types = [`${meGrade}-${meClass}`]
 
 const Timetable = () => {
     const [type, setType] = useState(0) // 0: class 1: exam
@@ -27,9 +26,9 @@ const Timetable = () => {
 
     return (
         <>
-            <h1 className="page-title" onClick={setNext}>{types[type]} <span>{types[getNext(type)]}</span></h1>
+            <h1 className="page-title" onClick={setNext}>{types[type]} 시간표 <span
+                className="sub">{types[getNext(type)]}</span></h1>
             {type === 0 ? <TimetableClass meGrade={meGrade} meClass={meClass}/> : null}
-            {type === 1 ? <TimetableExam meGrade={meGrade}/> : null}
         </>
     )
 }

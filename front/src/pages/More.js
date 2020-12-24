@@ -5,7 +5,7 @@ import {isAdmin, isOBT} from '../utils/getRoles'
 
 const Me = () => {
     useEffect(() => {
-        document.title = "내 페이지 | 제고라이프"
+        document.title = "더보기 | 제고라이프"
         document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [])
     const [isLoading, setLoading] = useState(false)
@@ -36,10 +36,10 @@ const Me = () => {
 
     return (
         <>
-            <h1 className="page-title">내 페이지</h1>
+            <h1 className="page-title">더보기</h1>
             <article className="card-box shadow-3 card-box-me">
                 <h2 className="card-box-title font-s-core">안녕하세요, {localStorage.getItem("me.name")} 님!</h2>
-                <p>{isAdmin() ? "정식 출시를 향하여" :
+                <p>{isAdmin() ? "어드민 계정" :
                     isOBT() ? "오픈 베타 테스터" : "반가워요!"}</p>
                 <button className={isLoading ? "loading button float-right" : "button float-right"}
                         onClick={logout}>로그아웃
@@ -48,7 +48,16 @@ const Me = () => {
 
             </article>
             <article className="card-box shadow-3">
-                <h2>사이트 설정</h2>
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler" viewBox="0 0 24 24"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path
+                            d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                    사이트 설정
+                </h2>
                 <div className="flex flex-column">
                     <label className="my-2">테마</label>
                     <select className="select br-round full" value={theme} onChange={onChange}>
@@ -57,7 +66,7 @@ const Me = () => {
                             <option value="dark">다크</option>
                         </optgroup>
                         <optgroup label="그라디언트">
-                            <option value="indigo">인디고</option>
+                            <option value="linear-indigo">리니어 인디고</option>
                             <option value="linear-pink">리니어 핑크</option>
                             <option value="pink-55">핑크 0505</option>
                             <option value="lonely-sky">론리 스카이</option>
@@ -69,13 +78,24 @@ const Me = () => {
                             {isAdmin() ? <>
                                 <option value="persona5">페르소나 5</option>
                             </> : null}
+                            {isOBT() ?
+                                <option value="pure-dark">[OBT 한정] 퓨어 다크</option>
+                                : null}
                         </optgroup>
                     </select>
                     <p>테마 변경으로 앱 새로고침을 할 수 있습니다.</p>
                 </div>
             </article>
             <article className="card-box shadow-3">
-                <h2>피드백 보내기</h2>
+                <h2>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler" viewBox="0 0 24 24"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <line x1="10" y1="14" x2="21" y2="3"/>
+                        <path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5"/>
+                    </svg>
+                    피드백 보내기
+                </h2>
                 <p>추가되었으면 하는 기능이나 불편한 점이 있나요? 피드백을 보내주세요!</p>
                 <NavLink to="/help/feedback/">
                     <button className="button float-right">피드백</button>

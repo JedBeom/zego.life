@@ -22,7 +22,7 @@
     --loader-color: 255, 255, 255;
 }
 
-.theme-indigo {
+.theme-linear-indigo {
     --background-color: #3F33BD;
     --background-image: linear-gradient(to right, #837AE6 0%, #3F33BD 100%);
 
