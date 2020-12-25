@@ -10,33 +10,29 @@ async function asyncForEach(array, callback) {
 }
 
 const getDietByDate = async (date) => {
-    /*
     let key = "diet/" + date
     let item = sessionStorage.getItem(key)
     if (item != null) {
         return JSON.parse(item)
     }
-    */
 
     const resp = await axios.get("diets/" + date)
     let diets = []
     await asyncForEach(resp.data, d => {
         diets.push(dietMake(d))
     })
-    //sessionStorage.setItem(key, JSON.stringify(diets))
+    sessionStorage.setItem(key, JSON.stringify(diets))
     return diets
 }
 
 const getD2UByDiet = async (id) => {
     let userID = localStorage.getItem("me.id")
-    /*
     let key = `d2u/${userID}/${id}`
 
     let item = sessionStorage.getItem(key)
     if (item != null) {
         return item
     }
-    */
 
     let applied = "0"
     try {
@@ -48,14 +44,26 @@ const getD2UByDiet = async (id) => {
         applied = "2"
     }
     if (applied !== "2") {
-        // sessionStorage.setItem(key, applied)
+        sessionStorage.setItem(key, applied)
     }
 
     return applied
 }
 
 const getEvents = async (year, month) => {
-    const {data} = await axios.get(`events/${year}/${month}`)
+    let key = `events/${year}/${month}`
+    let item = sessionStorage.getItem(key)
+    let data = {}
+    if (item != null) {
+        data = JSON.parse(item)
+        console.log(data)
+    } else {
+        const resp = await axios.get(`events/${year}/${month}`)
+        data = resp.data
+        console.log(data)
+        sessionStorage.setItem(key, JSON.stringify(data))
+    }
+
     return await eventsMake(data)
 }
 

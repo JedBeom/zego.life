@@ -129,8 +129,6 @@ nav {
     left: 0;
     right: 0;
 
-    padding-left: 1.5em;
-    padding-right: 1.5em;
     padding-bottom: env(safe-area-inset-bottom, .75em);
 
 
@@ -154,6 +152,9 @@ nav, header, .campaign-box img {
 }
 
 nav ul {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
     padding-top: .4em;
     padding-bottom: .2em;
     list-style: none;
@@ -359,9 +360,12 @@ p a {
     font-size: 1.2rem;
 }
 
+.checkbox:checked + label::before {
+    background: currentColor !important;
+}
+
 .checkbox + label::after, .checkbox-round + label::after {
-    color: white !important;
-    fill: white !important;
+    color: var(--card-box-bg-color);
 }
 
 .register-step2-box .spinner {
@@ -508,7 +512,7 @@ input.register-birthday {
     transition: .3s;
 }
 
-.textarea:hover, .input:hover, .button:hover {
+.textarea:hover, .input:hover, .button:hover, .textarea:focus, .input:focus, .button:focus {
     transform: scale(1.025);
     border-color: inherit;
 }
@@ -774,7 +778,7 @@ a[href="/about"] {
     vertical-align: text-top;
     display: inline-block;
 
-    color: var(--card-box-text-color);
+    color: currentColor;
 }
 
 .icon-tabler {

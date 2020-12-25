@@ -34,6 +34,11 @@ const Me = () => {
         window.location.reload()
     }
 
+    const refresh = () => {
+        sessionStorage.clear()
+        window.location.reload()
+    }
+
     return (
         <>
             <h1 className="page-title">더보기</h1>
@@ -83,7 +88,8 @@ const Me = () => {
                                 : null}
                         </optgroup>
                     </select>
-                    <p>테마 변경으로 앱 새로고침을 할 수 있습니다.</p>
+                    <label className="my-2">앱 새로고침</label>
+                    <button onClick={refresh} className="button float-right">새로고침</button>
                 </div>
             </article>
             <article className="card-box shadow-3">

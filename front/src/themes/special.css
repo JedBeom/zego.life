@@ -1,47 +1,22 @@
-.theme-special-christmas {
-    --background-color: #FF8710;
-    --background-image: linear-gradient(to right, #C8B7B2 0%, #6B534C 100%);
-
-    --site-logo-color: #E4E8EB;
-    --site-logo-bg-color: rgba(0, 0, 0, 0.8);
-    --site-text-color: black;
-    --site-bg-color: #121212;
-
-    --card-box-text-color: white;
-    --card-box-bg-color: #272727;
-    --card-box-opacity: 0.8;
-
-    --diet-when-color: #fd99e1;
-
-    --nav-bar-default-color: #ffffff8e;
-    --nav-bar-active-color: white;
-    --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
-    --nav-bar-bg-image: linear-gradient(to right, #D2939A 0%, #8E3A44 100%);
-
-    --button-primary-color: #837ae6;
-
-    --loader-color: 255, 255, 255;
-}
-
 .theme-pure-dark {
     --background-color: black;
 
-    --site-logo-color: #E4E8EB;
+    --site-logo-color: #d6d600;
     --site-logo-bg-color: #000000cc;
-    --site-text-color: #ffffffd3;
+    --site-text-color: rgb(255, 0, 255);
     --site-bg-color: black;
 
-    --card-box-text-color: white;
+    --card-box-text-color: yellow;
     --card-box-bg-color: #121212;
     --card-box-opacity: 1;
 
     --diet-when-color: #fd99e1;
 
-    --nav-bar-default-color: #ffffff8e;
-    --nav-bar-active-color: white;
+    --nav-bar-default-color: #696900;
+    --nav-bar-active-color: #d6d600;
     --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
 
     --button-primary-color: #272727;
 
-    --loader-color: 255, 255, 255;
+    --loader-color: yellow;
 }
