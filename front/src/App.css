@@ -70,10 +70,6 @@ a, .input, .select {
     color: var(--site-text-color);
 }
 
-a {
-    text-decoration: none;
-}
-
 .button {
     margin-top: .25rem;
     font-size: 1rem;
@@ -401,6 +397,7 @@ p a {
 
 input.register-birthday {
     color: var(--card-box-text-color) !important;
+    width: 100%;
 }
 
 ::placeholder {
@@ -774,6 +771,7 @@ a[href="/about"] {
 .icon {
     width: 1em;
     height: 1em;
+    margin-right: .25em;
     fill: currentColor;
     vertical-align: text-top;
     display: inline-block;
@@ -785,6 +783,8 @@ a[href="/about"] {
     stroke: currentColor;
     fill: transparent;
     stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .diet-apply .icon {

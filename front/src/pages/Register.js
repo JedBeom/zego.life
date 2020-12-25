@@ -4,6 +4,7 @@ import CheckGreen from '../components/CheckGreen'
 import hakbunToGCN from '../utils/hakbunToGCN'
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 const Register = () => {
     useEffect(() => {
@@ -177,7 +178,16 @@ const Register = () => {
         if (!step0Ok) {
             setStep1(
                 <article className="card-box shadow-3">
-                    <h2 className="card-title font-s-core px-2">STEP 0: 인증 방법 선택</h2>
+                    <h2 className="card-title font-s-core px-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-id" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <rect x="3" y="4" width="18" height="16" rx="3" />
+                        <circle cx="9" cy="10" r="2" />
+                        <line x1="15" y1="8" x2="17" y2="8" />
+                        <line x1="15" y1="12" x2="17" y2="12" />
+                        <line x1="7" y1="16" x2="17" y2="16" />
+                    </svg>
+                    STEP 0: 인증 방법 선택</h2>
                     <p>본인 인증 및 급식 정보를 가져오기 위한 인증이에요. 학생증 인증이 빠르고 쉬워요.</p>
                     <div className="flex flex-column">
                         <button className="button button-auth-choose" onClick={authScan}>학생증 스캔</button>
@@ -249,7 +259,14 @@ const Register = () => {
         if (step1Ok) {
             setStep2(
                 <article className={`card-box shadow-3 register-step2-box`}>
-                    <h2 className={"card-title font-s-core px-2"}>STEP 2: 개인정보 입력</h2>
+                    <h2 className={"card-title font-s-core px-2"}>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler" viewBox="0 0 24 24">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="12" cy="12" r="9" />
+                        <line x1="12" y1="8" x2="12.01" y2="8" />
+                        <polyline points="11 12 12 12 12 16 13 16" />
+                    </svg>
+                    STEP 2: 개인정보 입력</h2>
                     {!step2Ok ?
                         <form className={"p-2"} onSubmit={postRegister}>
                             <div className={"flex flex-column"}>
@@ -279,7 +296,6 @@ const Register = () => {
                                 <label className="my-2" htmlFor="birthday-input">생년월일</label>
                                 <DatePicker className="input register-birthday" disabledKeyboardNavigation
                                             dateFormat="yyyy년 MM월 dd일" onChange={(d) => {
-                                    console.log(d);
                                     setDate(d)
                                 }}
                                             selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
@@ -359,17 +375,17 @@ const Register = () => {
             <h1 className="page-title">회원가입</h1>
             <article className={`card-box shadow-3`}>
                 <h2 className={"card-title font-s-core px-2"}>
-                    <svg className={"icon mr-3"} viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="m12.25 2h-1.1c-.33-1.15-1.39-2-2.65-2s-2.32.85-2.65 2h-1.1c-.41 0-.75.34-.75.75v1.5c0 .96.79 1.75 1.75 1.75h5.5c.96 0 1.75-.79 1.75-1.75v-1.5c0-.41-.34-.75-.75-.75z"/>
-                        <path
-                            d="m14.25 3h-.25v1.25c0 1.52-1.23 2.75-2.75 2.75h-5.5c-1.52 0-2.75-1.23-2.75-2.75v-1.25h-.25c-1.52 0-2.75 1.23-2.75 2.75v12.5c0 1.52 1.23 2.75 2.75 2.75h7.38l.22-1.23c.1-.56.36-1.06.76-1.47l.8-.8h-8.16c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h9.5c.05 0 .09 0 .14.02h.01l3.6-3.6v-6.67c0-1.52-1.23-2.75-2.75-2.75zm-1 11.25h-9.5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h9.5c.41 0 .75.34.75.75s-.34.75-.75.75zm0-3.25h-9.5c-.41 0-.75-.34-.75-.75s.34-.75.75-.75h9.5c.41 0 .75.34.75.75s-.34.75-.75.75z"/>
-                        <path
-                            d="m12.527 24c-.197 0-.389-.078-.53-.22-.173-.173-.251-.419-.208-.661l.53-3.005c.026-.151.1-.291.208-.4l7.425-7.424c.912-.914 1.808-.667 2.298-.177l1.237 1.237c.683.682.683 1.792 0 2.475l-7.425 7.425c-.108.109-.248.182-.4.208l-3.005.53c-.043.008-.087.012-.13.012zm3.005-1.28h.01z"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="44"
+                         height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#a905b6" fill="none"
+                         stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
+                        <path d="M16 11h6m-3 -3v6"/>
                     </svg>
                     회원가입
                 </h2>
-                <p>제고라이프는 광양제철고등학교 1학년 2학년 학생 누구나 이용할 수 있습니다.</p>
+                <p>제고라이프는 광양제철고등학교 학생 누구나 이용할 수 있습니다.</p>
                 <p>iOS의 경우에는 Safari를, 안드로이드의 경우에는 Chrome을 사용해주세요. </p>
             </article>
             {step1}
