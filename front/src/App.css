@@ -37,7 +37,7 @@ html {
     scroll-behavior: smooth;
 }
 
-*, body, textarea {
+body, textarea {
     font-family: "Spoqa Han Sans Neo", sans-serif;
 }
 
@@ -88,6 +88,10 @@ a, .input, .select {
     padding-bottom: 10em;
     padding-top: calc(env(safe-area-inset-top) + 2em);
     min-height: 100%;
+}
+
+.site, .button, .input, .select, .textarea, .react-datepicker {
+    font-family: var(--font-family) !important;
 }
 
 #root {
@@ -208,8 +212,21 @@ nav ul a {
     margin-bottom: 1em;
 }
 
+a:has("div") {
+    text-decoration: none;
+}
+
 .notice {
     font-weight: 700;
+    margin-bottom: .75em;
+    padding: .5rem;
+    background-color: var(--card-box-bg-color);
+    border-radius: 5em;
+    text-decoration-style: unset;
+    text-decoration: none !important;
+    font-size: 0.8rem;
+    align-items: center;
+    display: flex;
 }
 
 .notice-badge {
@@ -505,11 +522,11 @@ input.register-birthday {
     transition: .3s;
 }
 
-.input, .button {
+.input, .button, .react-datepicker__today-button {
     transition: .3s;
 }
 
-.textarea:hover, .input:hover, .button:hover, .textarea:focus, .input:focus, .button:focus {
+.textarea:hover, .input:hover, .button:hover, .textarea:focus, .input:focus, .button:focus, .react-datepicker__today-button:hover, .react-datepicker__today-button:focus {
     transform: scale(1.025);
     border-color: inherit;
 }

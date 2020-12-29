@@ -56,11 +56,9 @@ const getEvents = async (year, month) => {
     let data = {}
     if (item != null) {
         data = JSON.parse(item)
-        console.log(data)
     } else {
         const resp = await axios.get(`events/${year}/${month}`)
         data = resp.data
-        console.log(data)
         sessionStorage.setItem(key, JSON.stringify(data))
     }
 

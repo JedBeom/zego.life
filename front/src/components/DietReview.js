@@ -60,7 +60,6 @@ const DietReview = () => {
 
         try {
             let m = await getDietReviewPossible(idd)
-            console.log(m)
             setMenu(m)
         } catch (e) {
         }

@@ -3,7 +3,7 @@
 
     --site-logo-color: #d6d600;
     --site-logo-bg-color: #000000cc;
-    --site-text-color: rgb(255, 0, 255);
+    --site-text-color: yellow;
     --site-bg-color: black;
 
     --card-box-text-color: yellow;
@@ -18,5 +18,9 @@
 
     --button-primary-color: #272727;
 
-    --loader-color: yellow;
+    --loader-color: 255, 255, 0;
+
+    /*--font-family: "NeoDunggeunmo", "SpoqaHanSans";*/
+    font-family: "SpoqaHanSans";
+
 }

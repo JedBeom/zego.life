@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
-import DietCard from "../components/DietCard"
-import DdayCounter from "../components/DdayCounter"
+import DietCard from "../../components/DietCard"
+import DdayCounter from "../../components/DdayCounter"
 
-import {getD2UByDiet, getDietByDate} from '../common/api'
-import {timestampDot} from '../utils/timestamp'
-import whatMeal from '../utils/whatMeal'
+import {getD2UByDiet, getDietByDate} from '../../common/api'
+import {timestampDot} from '../../utils/timestamp'
+import whatMeal from '../../utils/whatMeal'
 
-import DietReview from '../components/DietReview'
-import DormInspector from "../components/DormInspector"
+import DietReview from '../../components/DietReview'
+import DormInspector from "../../components/DormInspector"
 
-import AddToHome from "../components/AddToHome"
+import AddToHome from "../../components/AddToHome"
 
 const Main = () => {
     const [loading, setLoading] = useState(true)
@@ -100,8 +100,8 @@ const Main = () => {
     return (
         <>
             <h1 className="page-title">홈</h1>
-            <NavLink to="/notice">
-                <div className="br-round bg-indigo-30 indigo-lightest p-2 fs-s2 mb-5">
+            <NavLink to="/notice" className="no-underline">
+                <div className="notice">
                     <div className="inline-block bg-indigo indigo-lightest br-round px-3 py-1 mr-3 fs-s3">공지</div>
                     {noticeTitle}
                 </div>

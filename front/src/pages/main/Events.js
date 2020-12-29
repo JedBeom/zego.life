@@ -1,5 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react'
-import {getEvents} from '../common/api'
+import {getEvents} from '../../common/api'
 
 const weekdays = ['일', '월', '화', '수', '목', '금', '토']
 
@@ -41,7 +41,6 @@ const Events = () => {
                 setEvents(data)
             } catch (e) {
                 setEvents(null)
-                console.log(e)
                 if (!e.response) {
                     setErrMsg("일정 불러오기를 실패했습니다. 새로고침 해보시겠어요?")
                 } else {
@@ -56,16 +55,15 @@ const Events = () => {
     return (
         <>
             <h1 className="page-title flex justify-between"><span>
-            <svg className="icon icon-tabler" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                 stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <rect x="4" y="5" width="16" height="16" rx="2"/>
-  <line x1="16" y1="3" x2="16" y2="7"/>
-  <line x1="8" y1="3" x2="8" y2="7"/>
-  <line x1="4" y1="11" x2="20" y2="11"/>
-  <line x1="11" y1="15" x2="12" y2="15"/>
-  <line x1="12" y1="15" x2="12" y2="18"/>
-</svg>
+            <svg className="icon icon-tabler" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <rect x="4" y="5" width="16" height="16" rx="2"/>
+                <line x1="16" y1="3" x2="16" y2="7"/>
+                <line x1="8" y1="3" x2="8" y2="7"/>
+                <line x1="4" y1="11" x2="20" y2="11"/>
+                <line x1="11" y1="15" x2="12" y2="15"/>
+                <line x1="12" y1="15" x2="12" y2="18"/>
+            </svg>
                 {year}년 {month}월</span>
                 <span><span className="mr-2" onClick={previous}> </span> <span onClick={next}></span></span>
             </h1>

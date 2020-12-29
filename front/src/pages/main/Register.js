@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {BrowserBarcodeReader} from '@zxing/library'
-import CheckGreen from '../components/CheckGreen'
-import hakbunToGCN from '../utils/hakbunToGCN'
+import CheckGreen from '../../components/CheckGreen'
+import hakbunToGCN from '../../utils/hakbunToGCN'
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
@@ -63,7 +63,6 @@ const Register = () => {
             setVideoActive(true)
             setStep1Ok(true)
         } catch (e) {
-            console.log(e)
             setVideoActive(true)
             setErrMsg("카메라를 실행할 수 없어요. 설정에서 카메라 엑세스를 허용해주세요.")
         }
@@ -86,7 +85,6 @@ const Register = () => {
             (g < 1 || g > 3)
             || (c < 1 || (g === 1 && c > 8) || (g >= 2 && c > 10))
             || (n < 1 || n > 31)) {
-            console.log(g, c, n)
             setErrMsg("학번이 유효하지 않습니다.")
             setKitchenLoading(false)
             return
@@ -179,15 +177,17 @@ const Register = () => {
             setStep1(
                 <article className="card-box shadow-3">
                     <h2 className="card-title font-s-core px-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-id" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <rect x="3" y="4" width="18" height="16" rx="3" />
-                        <circle cx="9" cy="10" r="2" />
-                        <line x1="15" y1="8" x2="17" y2="8" />
-                        <line x1="15" y1="12" x2="17" y2="12" />
-                        <line x1="7" y1="16" x2="17" y2="16" />
-                    </svg>
-                    STEP 0: 인증 방법 선택</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-id" width="44"
+                             height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <rect x="3" y="4" width="18" height="16" rx="3"/>
+                            <circle cx="9" cy="10" r="2"/>
+                            <line x1="15" y1="8" x2="17" y2="8"/>
+                            <line x1="15" y1="12" x2="17" y2="12"/>
+                            <line x1="7" y1="16" x2="17" y2="16"/>
+                        </svg>
+                        STEP 0: 인증 방법 선택
+                    </h2>
                     <p>본인 인증 및 급식 정보를 가져오기 위한 인증이에요. 학생증 인증이 빠르고 쉬워요.</p>
                     <div className="flex flex-column">
                         <button className="button button-auth-choose" onClick={authScan}>학생증 스캔</button>
@@ -234,7 +234,7 @@ const Register = () => {
                                            onChange={event => setKitchenPass(event.target.value)}
                                            className={"input"} id="password-input"
                                            minLength={1} placeholder={"플라이키친 비밀번호"} required autoComplete="off"
-                                           />
+                                    />
                                 </div>
                                 <div className={"mt-4"}>
                                     <button type="submit"
@@ -260,13 +260,14 @@ const Register = () => {
             setStep2(
                 <article className={`card-box shadow-3 register-step2-box`}>
                     <h2 className={"card-title font-s-core px-2"}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler" viewBox="0 0 24 24">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <circle cx="12" cy="12" r="9" />
-                        <line x1="12" y1="8" x2="12.01" y2="8" />
-                        <polyline points="11 12 12 12 12 16 13 16" />
-                    </svg>
-                    STEP 2: 개인정보 입력</h2>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <circle cx="12" cy="12" r="9"/>
+                            <line x1="12" y1="8" x2="12.01" y2="8"/>
+                            <polyline points="11 12 12 12 12 16 13 16"/>
+                        </svg>
+                        STEP 2: 개인정보 입력
+                    </h2>
                     {!step2Ok ?
                         <form className={"p-2"} onSubmit={postRegister}>
                             <div className={"flex flex-column"}>
@@ -375,9 +376,8 @@ const Register = () => {
             <h1 className="page-title">회원가입</h1>
             <article className={`card-box shadow-3`}>
                 <h2 className={"card-title font-s-core px-2"}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="44"
-                         height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#a905b6" fill="none"
-                         stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler"
+                         viewBox="0 0 24 24">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <circle cx="9" cy="7" r="4"/>
                         <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>

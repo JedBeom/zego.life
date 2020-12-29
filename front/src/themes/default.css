@@ -20,6 +20,8 @@
     --button-primary-color: #837ae6;
 
     --loader-color: 0, 0, 0;
+
+    --font-family: "Spoqa Han Sans Neo";
 }
 
 @media (prefers-color-scheme: dark) {

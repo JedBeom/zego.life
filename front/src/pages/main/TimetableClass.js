@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {getTimetable} from '../common/api'
+import {getTimetable} from '../../common/api'
 
 const Timetable = ({meGrade, meClass}) => {
     const [lessons, setLessons] = useState([[]])

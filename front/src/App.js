@@ -13,8 +13,8 @@ import Nav from './components/Nav'
 
 import {isAdmin} from "./utils/getRoles"
 
-const MainRoute = lazy(() => import("./Route"))
-const Register = lazy(() => import("./pages/Register"))
+const MainRoute = lazy(() => import("./pages/main/Route"))
+const Register = lazy(() => import("./pages/main/Register"))
 const HelpRoute = lazy(() => import('./pages/help/Route'))
 const RadioRoute = lazy(() => import('./pages/radio/Route'))
 const AdminRoute = isAdmin() ? lazy(() => import('./pages/admin/Route')) : null

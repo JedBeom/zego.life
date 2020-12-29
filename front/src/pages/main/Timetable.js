@@ -26,8 +26,8 @@ const Timetable = () => {
 
     return (
         <>
-            <h1 className="page-title" onClick={setNext}>{types[type]} 시간표 <span
-                className="sub">{types[getNext(type)]}</span></h1>
+            <h1 className="page-title" onClick={setNext}>{types[type]} 시간표 {getNext(type) !== type ?
+                <span className="sub">{types[getNext(type)]}</span> : null}</h1>
             {type === 0 ? <TimetableClass meGrade={meGrade} meClass={meClass}/> : null}
         </>
     )

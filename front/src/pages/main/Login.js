@@ -64,9 +64,8 @@ const Login = () => {
             <h1 className="page-title">로그인</h1>
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="44"
-                         height="44" viewBox="0 0 24 24" stroke-width="2" stroke="#a905b6" fill="none"
-                         stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-user-plus"
+                         viewBox="0 0 24 24">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <circle cx="9" cy="7" r="4"/>
                         <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
@@ -89,8 +88,7 @@ const Login = () => {
                 </div> : null}
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler" viewBox="0 0 24 24"
-                         stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <circle cx="12" cy="7" r="4"/>
                         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"/>
@@ -118,8 +116,7 @@ const Login = () => {
             </article>
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler" viewBox="0 0 24 24"
-                         stroke-linecap="round" stroke-linejoin="round">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                         <circle cx="10" cy="10" r="7"/>
                         <path d="M21 21l-6 -6"/>

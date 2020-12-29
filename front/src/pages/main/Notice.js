@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
-import {isAdmin} from "../utils/getRoles";
-import Back from "../components/Back"
-import NoticeCard from '../components/NoticeCard'
+import {isAdmin} from "../../utils/getRoles";
+import Back from "../../components/Back"
+import NoticeCard from '../../components/NoticeCard'
 import axios from 'axios'
 
 const Notice = () => {

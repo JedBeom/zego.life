@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import DatePicker from 'react-datepicker'
-import DietCard from '../components/DietCard'
-import {getD2UByDiet, getDietByDate} from '../common/api'
-import {timestampDot} from '../utils/timestamp'
+import DietCard from '../../components/DietCard'
+import {getD2UByDiet, getDietByDate} from '../../common/api'
+import {timestampDot} from '../../utils/timestamp'
 import "react-datepicker/dist/react-datepicker.css";
 
 const DietPage = () => {
@@ -10,7 +10,11 @@ const DietPage = () => {
     let maxDate = new Date()
     maxDate.setMonth(now.getMonth() + 1)
     if (now.getDate() >= 28) {
-        maxDate.setMonth(now.getMonth() + 1)
+        if (now.getMonth() === 11) {
+            maxDate.setMonth(0)
+        } else {
+            maxDate.setMonth(now.getMonth() + 1)
+        }
         maxDate.setDate(7)
     } else {
         maxDate.setDate(0) // last day of this month

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import Back from '../components/Back'
+import Back from '../../components/Back'
 
 const About = () => {
     useEffect(() => {
@@ -14,10 +14,13 @@ const About = () => {
                 <h2>
                     06+17+19
                 </h2>
+                <p>
+                    제고라이프를 만들어요.
+                </p>
             </article>
             <article className="card-box shadow-3">
                 <h2>개발: 06</h2>
-                <p>학교에서 일하는 걸 좋아합니다.</p>
+                <p>네? 최적화? 그게 뭐죠?</p>
             </article>
             <article className="card-box shadow-3">
                 <h2>디자인 조언: 17</h2>
@@ -25,7 +28,7 @@ const About = () => {
             </article>
             <article className="card-box shadow-3">
                 <h2>올라운더: 19</h2>
-                <p>언제나 집을 찾습니다.</p>
+                <p>집 가고 싶다</p>
             </article>
         </>
     )
