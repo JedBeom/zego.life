@@ -220,6 +220,7 @@ a:has("div") {
     font-weight: 700;
     margin-bottom: .75em;
     padding: .5rem;
+    color: var(--card-box-text-color);
     background-color: var(--card-box-bg-color);
     border-radius: 5em;
     text-decoration-style: unset;

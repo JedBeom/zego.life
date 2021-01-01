@@ -40,12 +40,31 @@ func getFeedbacksByUser(c echo.Context) error {
 		return echo.ErrUnauthorized
 	}
 
-	fs, err := models.FeedBacksByUser(db, id)
+	fs, err := models.FeedbacksByUser(db, id)
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
 
 	return c.JSON(200, fs)
+}
+
+func getFeedbackByID(c echo.Context) error {
+	id := c.Param("id")
+	u, ok := c.Get("user").(models.User)
+	if !ok {
+		return apierror.ErrInterface.Send(c)
+	}
+
+	if !strings.Contains(u.Roles, "admin,") {
+		return echo.ErrUnauthorized
+	}
+
+	f, err := models.FeedbackByID(db, id)
+	if err != nil {
+		return echo.ErrNotFound
+	}
+
+	return c.JSON(200, f)
 }
 
 func postFeedback(c echo.Context) error {
@@ -77,4 +96,31 @@ func postFeedback(c echo.Context) error {
 	return c.JSON(200, Map{
 		"message": "success",
 	})
+}
+
+func patchFeedbackByID(c echo.Context) error {
+	id := c.Param("id")
+	u, ok := c.Get("user").(models.User)
+	if !ok {
+		return apierror.ErrInterface.Send(c)
+	}
+
+	if !strings.Contains(u.Roles, "admin,") {
+		return echo.ErrUnauthorized
+	}
+
+	p := models.Feedback{}
+	if err := c.Bind(&p); err != nil {
+		return echo.ErrBadRequest
+	}
+
+	if p.ID != id {
+		return echo.ErrBadRequest
+	}
+
+	if err := p.Update(db); err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	return c.JSON(200, Map{"message": "success"})
 }

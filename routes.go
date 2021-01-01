@@ -36,6 +36,8 @@ func routes(e *echo.Echo) {
 			u.GET("/users/search/by-name/:name", getUsersByName) // admin-only
 			u.GET("/users/:user_id/pw-change", getPwChangeToken)
 			u.GET("/feedbacks", getFeedbacksAll)
+			u.GET("/feedbacks/:id", getFeedbackByID)
+			u.PATCH("/feedbacks/:id", patchFeedbackByID)
 
 			u.GET("/radio-stories", getRadioStoriesAll)
 			u.POST("/radio-stories", postRadioStory)
@@ -49,9 +51,8 @@ func routes(e *echo.Echo) {
 
 			u.POST("/notices", postNotice)
 
+			u.GET("/timetables/:grade/:class", getTimetableByGradeClass)
 		}
-
-		api.GET("/timetables/:grade/:class", getTimetableByGradeClass)
 
 		api.POST("/register", postRegister)
 		api.POST("/register/kitchen", postKitchenLogin)
@@ -60,7 +61,6 @@ func routes(e *echo.Echo) {
 
 		api.GET("/diets/:date", getDietsByDate)
 
-		api.GET("/events", getEventsLegacy) // TODO: REMOVE eventsLegacy
 		api.GET("/events/:year/:month", getEvents)
 		// api.GET("/dday-events/:grade", getDDayEvent)
 		// api.POST("/dday-events", postDDayEvent)
