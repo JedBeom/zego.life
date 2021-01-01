@@ -115,11 +115,11 @@ const Main = () => {
             </div>
             */}
             <article className="campaign-box shadow-3">
-                <NavLink to="/radio/stories/post">
+                <NavLink to="/">
                     <span className="campaign-icon">AD</span>
-                    <h2>올해 마지막의 이야기</h2>
-                    <p>청춘라디오로 사연을 보내주세요!</p>
-                    <img alt="청춘라디오" src="/img/chungchun-radio.png"/>
+                    <h2>제고생활은 제고라이프로</h2>
+                    <p>라디오 사연은 '더보기'에서 보낼 수 있어요.</p>
+                    {/*<img alt="청춘라디오" src="/img/chungchun-radio.png"/>*/}
                 </NavLink>
             </article>
             <DietCard diet={diet} applied={applied}/>

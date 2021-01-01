@@ -119,6 +119,7 @@ func patchFeedbackByID(c echo.Context) error {
 	}
 
 	if err := p.Update(db); err != nil {
+		log.Println(err)
 		return echo.ErrInternalServerError
 	}
 

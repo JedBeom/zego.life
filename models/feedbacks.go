@@ -12,7 +12,7 @@ func (f *Feedback) Create(db *pg.DB) error {
 }
 
 func (f *Feedback) Update(db *pg.DB) error {
-	_, err := db.Model(f).Column("answer", "status").Update()
+	_, err := db.Model(f).Column("answer").WherePK().Update()
 	return err
 }
 

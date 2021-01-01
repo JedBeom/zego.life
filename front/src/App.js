@@ -25,7 +25,7 @@ function App({history}) {
         axios.interceptors.response.use(res => res, err => {
             if (!err.response) {
                 history.push("/no-connection")
-            } else if (err.response && err.response.status === 401 && window.location.pathname !== "/login" && window.location.pathname !== "/register") {
+            } else if (err.response && err.response.status === 401 && err.response.data.ErrorCode === -101) {
                 history.push("/help/token-expired")
             }
             return Promise.reject(err)

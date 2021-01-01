@@ -15,11 +15,11 @@ const About = () => {
                     06+17+19
                 </h2>
                 <p>
-                    제고라이프를 만들어요.
+                    귀찮음이 새로움을 만듭니다.
                 </p>
             </article>
             <article className="card-box shadow-3">
-                <h2>개발: 06</h2>
+                <h2>개발 &#38; 운영: 06</h2>
                 <p>네? 최적화? 그게 뭐죠?</p>
             </article>
             <article className="card-box shadow-3">
@@ -27,7 +27,7 @@ const About = () => {
                 <p>디자인 조언을 합니다.</p>
             </article>
             <article className="card-box shadow-3">
-                <h2>올라운더: 19</h2>
+                <h2>운영: 19</h2>
                 <p>집 가고 싶다</p>
             </article>
         </>

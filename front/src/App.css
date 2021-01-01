@@ -230,11 +230,6 @@ a:has("div") {
     display: flex;
 }
 
-.notice-badge {
-    margin: 0 0.75rem 0.75rem 0.75rem;
-    padding: 0.25rem 0.5rem;
-}
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -247,17 +242,6 @@ a:has("div") {
 .w3-animate-right {
     position: relative;
     animation: animateright 0.4s
-}
-
-@keyframes animateright {
-    from {
-        right: -300px;
-        opacity: 0
-    }
-    to {
-        right: 0;
-        opacity: 1
-    }
 }
 
 .card-box {
@@ -575,8 +559,19 @@ input.register-birthday {
     display: inline;
 }
 
+.notice-box h1 {
+    margin-left: 0;
+}
+
 .notice-box h2 {
     font-weight: 700;
+    margin-left: .1rem;
+    padding-left: 0 !important;
+}
+
+.notice-box h3 {
+    font-weight: 700;
+    margin-left: .25rem;
 }
 
 .notice-box ul {
@@ -586,11 +581,24 @@ input.register-birthday {
 }
 
 /* feedbacks */
-.feedback-by {
+.feedback-box .answer {
+    margin-top: .25rem;
+    padding: .25rem;
+    font-style: italic;
+    border-top-color: var(--card-box-text-color);
+    border-top-width: .1em;
+    border-top-style: dotted;
+}
+
+.feedback-box .by {
     opacity: 0.8;
 }
 
 /* timetable */
+.timetable-container {
+    overflow-x: scroll;
+}
+
 .timetable {
     border: none !important;
     font-size: 1rem;
@@ -623,6 +631,8 @@ input.register-birthday {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     transition: .3s;
 
+    min-width: 3rem;
+
     word-break: keep-all;
     animation-name: fadeInTTdisable;
     animation-duration: .25s;
@@ -654,6 +664,7 @@ input.register-birthday {
 }
 
 .teacher {
+    word-break: keep-all;
     font-size: .75em;
     font-weight: 500;
     display: block;
@@ -718,6 +729,7 @@ input.register-birthday {
 }
 
 .campaign-box .campaign-icon {
+    color: var(--site-text-color);
     background-color: var(--background-color);
     padding: .25rem;
     border-radius: 6px;

@@ -3,6 +3,8 @@ import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 import {isAdmin, isOBT} from '../../utils/getRoles'
 
+import TvIcon from '../../icons/Tv'
+
 const Me = () => {
     useEffect(() => {
         document.title = "더보기 | 제고라이프"
@@ -105,6 +107,13 @@ const Me = () => {
                     <button className="button float-right">피드백</button>
                 </NavLink>
             </article>
+            <article className="card-box shadow-3">
+                <h2><TvIcon/>청춘라디오 사연 보내기</h2>
+                <p>2월 라디오 방송 시 사용됩니다.</p>
+                <NavLink to="/radio/stories/post">
+                    <button className="button float-right">사연 보내기</button>
+                </NavLink>
+            </article>
             {isAdmin() ?
                 <article className="card-box shadow-3">
                     <h2>어드민 페이지</h2>
@@ -122,7 +131,6 @@ const Me = () => {
                 </svg>
                 by
                 <NavLink to="/about">06+17+19</NavLink>
-                <p className="gray-light dark-mode-explain"></p>
             </footer>
         </>
     )

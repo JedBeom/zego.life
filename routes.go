@@ -35,22 +35,27 @@ func routes(e *echo.Echo) {
 			// admin-only
 			u.GET("/users/search/by-name/:name", getUsersByName) // admin-only
 			u.GET("/users/:user_id/pw-change", getPwChangeToken)
-			u.GET("/feedbacks", getFeedbacksAll)
-			u.GET("/feedbacks/:id", getFeedbackByID)
-			u.PATCH("/feedbacks/:id", patchFeedbackByID)
 
+			// radio-stories
 			u.GET("/radio-stories", getRadioStoriesAll)
 			u.POST("/radio-stories", postRadioStory)
 
+			// diets
 			u.GET("/users/:user_id/diet2user/:diet_id", getDiet2UserByDietAndUser)
 			u.GET("/diet-reviews/:diet_id", getDietReviewPossible)
 			u.POST("/diet-reviews/:diet_id", postDietReview)
 
-			u.GET("/feedbacks/:user_id", getFeedbacksByUser)
+			// feedbacks
+			u.GET("/feedbacks", getFeedbacksAll)         // admin
+			u.GET("/feedbacks/:id", getFeedbackByID)     // admin
+			u.PATCH("/feedbacks/:id", patchFeedbackByID) // admin
+			u.GET("/users/:user_id/feedbacks", getFeedbacksByUser)
 			u.POST("/feedbacks", postFeedback)
 
-			u.POST("/notices", postNotice)
+			// notices
+			u.POST("/notices", postNotice) // admin
 
+			// timetables
 			u.GET("/timetables/:grade/:class", getTimetableByGradeClass)
 		}
 
