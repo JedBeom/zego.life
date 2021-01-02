@@ -2,13 +2,12 @@ import React from 'react'
 
 let start = new Date(2020, 9, 30) // 새사, 진기쌤
 
-const DormInspector = () => {
-    let today = new Date()
-    let correction = false
-    if (today.getHours() < 12) correction = true
-    today.setHours(0, 0, 0, 0)
-    let diff = ((start - today) / 1000 / 60 / 60 / 24) % 2
-    if (correction) diff = !diff
+const DormInspector = ({date, correction}) => {
+    let correctionValue = false
+    if (date.getHours() < 12) correction = true
+    date.setHours(0, 0, 0, 0)
+    let diff = ((start - date) / 1000 / 60 / 60 / 24) % 2
+    if (correctionValue && correction) diff = !diff
     return (
         <article className="card-box shadow-3">
             <h2 className="card-title">
@@ -23,7 +22,7 @@ const DormInspector = () => {
                 {localStorage.getItem("me.sex") === "1" ?
                     <p>{!diff ? "정진기" : "이만수"} 사감</p>
                     :
-                    <p>{!diff ? "이순덕" : "장정숙"} 사감</p>
+                    <p>{!diff ? "이순덕(새사)" : "장정숙(장사)"} 사감</p>
                 }
             </div>
         </article>

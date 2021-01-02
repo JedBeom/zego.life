@@ -66,7 +66,9 @@ func routes(e *echo.Echo) {
 
 		api.GET("/diets/:date", getDietsByDate)
 
-		api.GET("/events/:year/:month", getEvents)
+		api.GET("/events/date-only", getEventsDateOnly)
+		api.GET("/events/:year/:month", getEventsByYearMonth)
+		api.GET("/events/:date", getEventsByDate)
 		// api.GET("/dday-events/:grade", getDDayEvent)
 		// api.POST("/dday-events", postDDayEvent)
 

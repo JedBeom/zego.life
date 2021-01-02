@@ -4,12 +4,12 @@
 
 .loader:empty {
     position: absolute;
-    top: calc(50% - 4em);
-    left: calc(50% - 3.4em);
-    width: 6em;
-    height: 6em !important;
-    border: .5em solid rgba(var(--loader-color), 0.2);
-    border-left: .5em solid rgb(var(--loader-color));
+    top: calc(50% - 4rem);
+    left: calc(50% - 3.4rem);
+    width: 6rem;
+    height: 6rem !important;
+    border: .5rem solid rgba(var(--loader-color), 0.2);
+    border-left: .5rem solid rgb(var(--loader-color));
     border-radius: 50%;
     animation: load8 1.1s infinite linear;
 }
@@ -99,12 +99,14 @@ a, .input, .select {
 }
 
 header {
-
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     width: 100%;
-    padding: .25rem;
-    padding-top: env(safe-area-inset-top);
+    padding: .75rem;
+    padding-top: calc(env(safe-area-inset-top) + .75rem);
 
     color: var(--site-logo-color);
 }
@@ -121,6 +123,11 @@ header h2 {
     color: var(--site-text-color);
     font-size: 1em;
     text-align: center;
+}
+
+header svg {
+    fill: var(--site-logo-color);
+    height: 1.7rem;
 }
 
 nav {
@@ -465,6 +472,18 @@ input.register-birthday {
     border-radius: 1rem;
     margin-left: auto;
     margin-right: auto;
+}
+
+.react-datepicker__day, .react-datepicker__month-text, .react-datepicker__quarter-text, .react-datepicker__year-text {
+    box-sizing: border-box;
+    border-width: .2em;
+    border-style: solid;
+    border-color: transparent;
+}
+
+.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover {
+    background-color: unset !important;
+    border-color: var(--card-box-text-color);
 }
 
 .inline-calendar .react-datepicker__day--disabled {

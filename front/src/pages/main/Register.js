@@ -26,7 +26,7 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [hakbun, setHakbun] = useState("")
-    const [date, setDate] = useState(new Date(2004, 8, 8))
+    const [date, setDate] = useState(null)
     const [residenceDorm, setResidenceDorm] = useState(true)
     const [tosRead, setTosRead] = useState("")
     const [isLoading, setLoading] = useState("button float-right")
@@ -124,6 +124,12 @@ const Register = () => {
 
         if (g === 3) {
             setErrMsg("현재 3학년은 지원하지 않고 있어요.\n이는 스쿨키친 회원코드와 학생증 정보가 일치하지 않기 때문이에요.\n다른 방법을 모색할게요. 죄송합니다 선배님들!!")
+            setLoading("button float-right")
+            return
+        }
+
+        if (date === null) {
+            setErrMsg("생년월일을 입력해주세요.")
             setLoading("button float-right")
             return
         }
@@ -296,9 +302,9 @@ const Register = () => {
                             <div className="flex flex-column">
                                 <label className="my-2" htmlFor="birthday-input">생년월일</label>
                                 <DatePicker className="input register-birthday" disabledKeyboardNavigation
-                                            dateFormat="yyyy년 MM월 dd일" onChange={(d) => {
-                                    setDate(d)
-                                }}
+                                            placeholderText="생일 입력"
+                                            dateFormat="yyyy년 MM월 dd일" openToDate={new Date(2004, 8, 8)}
+                                            onChange={(d) => setDate(d)}
                                             selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
                             </div>
                             <div className="flex flex-column">

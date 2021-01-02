@@ -1,15 +1,17 @@
 import React, {lazy, Suspense, useEffect} from 'react'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import axios from 'axios'
+import {registerLocale, setDefaultLocale} from "react-datepicker";
+import ko from 'date-fns/locale/ko';
 import "shorthandcss/scss/shorthand.scss"
 import './App.css';
 import './themes/default.css'
 import './themes/gradient.css'
-import './themes/persona5.css'
 import './themes/special.css'
 import Logo from './components/Logo'
 import NotSupported from './components/NotSupported'
 import Nav from './components/Nav'
+
 
 import {isAdmin} from "./utils/getRoles"
 
@@ -22,6 +24,8 @@ const AdminRoute = isAdmin() ? lazy(() => import('./pages/admin/Route')) : null
 function App({history}) {
 
     useEffect(() => {
+        registerLocale('ko', ko)
+        setDefaultLocale("ko")
         axios.interceptors.response.use(res => res, err => {
             if (!err.response) {
                 history.push("/no-connection")

@@ -8,7 +8,7 @@ import (
 	"github.com/labstack/echo"
 )
 
-func getEvents(c echo.Context) error {
+func getEventsByYearMonth(c echo.Context) error {
 	year, err := strconv.Atoi(c.Param("year"))
 	if err != nil || year < 2020 {
 		return echo.ErrBadRequest
@@ -27,13 +27,21 @@ func getEvents(c echo.Context) error {
 	return c.JSONPretty(200, events, JSONIndent)
 }
 
-func getEventsLegacy(c echo.Context) error {
-	t := time.Now()
-
-	events, err := models.EventsByMonth(db, t.Year(), int(t.Month()))
+func getEventsByDate(c echo.Context) error {
+	date := c.Param("date")
+	events, err := models.EventsByDate(db, date)
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
 
-	return c.JSONPretty(200, events, JSONIndent)
+	return c.JSON(200, events)
+}
+
+func getEventsDateOnly(c echo.Context) error {
+	dates, err := models.EventsDateOnly(db, time.Now())
+	if err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	return c.JSON(200, dates)
 }

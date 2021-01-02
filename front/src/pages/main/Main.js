@@ -124,7 +124,8 @@ const Main = () => {
             </article>
             <DietCard diet={diet} applied={applied}/>
             <DietReview a={isFocused}/>
-            {localStorage.getItem("me.residence") === "1" ? <DormInspector/> : null}
+            {localStorage.getItem("me.residence") === "1" ?
+                <DormInspector date={new Date()} correction={false}/> : null}
         </>
     )
 }

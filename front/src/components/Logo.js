@@ -1,9 +1,10 @@
 import React from 'react'
+import LogoIcon from '../icons/Logo'
 
 const Logo = () => {
     return (
         <header className="shadow-1">
-            <h1>ZEGO.LIFE</h1>
+            <LogoIcon/>
         </header>
     )
 }

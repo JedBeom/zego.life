@@ -1,6 +1,6 @@
 import axios from "axios"
 import dietMake from "../utils/dietMake"
-import eventsMake from "../utils/eventsMake"
+import {eventsMake} from "../utils/eventsMake"
 import htmlDecode from '../utils/htmlDecode'
 
 async function asyncForEach(array, callback) {
@@ -51,7 +51,7 @@ const getD2UByDiet = async (id) => {
 }
 
 const getEvents = async (year, month) => {
-    let key = `events/${year}/${month}`
+    let key = `events-month/${year}/${month}`
     let item = sessionStorage.getItem(key)
     let data = {}
     if (item != null) {
@@ -63,6 +63,34 @@ const getEvents = async (year, month) => {
     }
 
     return await eventsMake(data)
+}
+
+const getEventsByDate = async date => {
+    let key = `events-date/${date}`
+    let item = sessionStorage.getItem(key)
+    if (item != null) {
+        return JSON.parse(item)
+    }
+
+    const {data} = await axios.get(`events/${date}`)
+    if (data === null) {
+        return []
+    }
+    sessionStorage.setItem(key, JSON.stringify(data))
+    return data
+}
+
+const getEventsDateOnly = async () => {
+    let now = new Date().setHours(0, 0, 0, 0)
+    let key = `events-date-only/${now.toLocaleString()}`
+    let item = sessionStorage.getItem(key)
+    if (item != null) {
+        return JSON.parse(item)
+    }
+
+    const {data} = await axios.get(`events/date-only`)
+    sessionStorage.setItem(key, JSON.stringify(data))
+    return data
 }
 
 const getDietReviewPossible = async id => {
@@ -82,7 +110,7 @@ const getDietReviewPossible = async id => {
 }
 
 const getTimetable = async (meGrade, meClass) => {
-    let key = `timetables/${meGrade}-${meClass}/20201207`
+    let key = `timetables/${meGrade}-${meClass}/20210101`
     let item = localStorage.getItem(key)
     if (item != null) {
         return JSON.parse(item)
@@ -93,4 +121,4 @@ const getTimetable = async (meGrade, meClass) => {
     return data.Lessons
 }
 
-export {getDietByDate, getD2UByDiet, getEvents, getDietReviewPossible, getTimetable}
+export {getDietByDate, getD2UByDiet, getEvents, getEventsByDate, getEventsDateOnly, getDietReviewPossible, getTimetable}

@@ -50,4 +50,4 @@ const eventsMake = async data => {
     return events
 }
 
-export default eventsMake
+export {eventMake, eventsMake}

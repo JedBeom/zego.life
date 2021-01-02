@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 import Main from './Main'
-import DietPage from './DietPage'
+import CalendarPage from './CalendarPage'
 import Events from './Events'
 import Login from './Login'
 import More from './More'
@@ -15,7 +15,7 @@ function Router() {
     return (
         <Switch>
             <Route exact path="/" component={Main}/>
-            <Route path="/diets" component={DietPage}/>
+            <Route path="/calendar" component={CalendarPage}/>
             <Route path="/events" component={Events}/>
             <Route path="/login" component={Login}/>
             <Route path="/more" component={More}/>

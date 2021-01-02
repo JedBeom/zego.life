@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-import DietIcon from '../icons/Diet'
+import CalendarIcon from '../icons/Calendar'
 
 const Nav = () => {
     return (
@@ -19,8 +19,8 @@ const Nav = () => {
                 </li>
                 {localStorage.getItem("token") != null ? <>
                         <li>
-                            <NavLink to="/diets" activeClassName={"nav-active"}>
-                                <DietIcon className="icon-reverse"/>
+                            <NavLink to="/calendar" activeClassName={"nav-active"}>
+                                <CalendarIcon/>
                             </NavLink>
                         </li>
                         <li>

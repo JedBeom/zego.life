@@ -39,7 +39,7 @@ const DdayCounter = () => {
                         <line x1="11" y1="15" x2="12" y2="15"/>
                         <line x1="12" y1="15" x2="12" y2="18"/>
                     </svg>
-                    다른 일정 확인하기
+                    월간 일정 확인하기
                 </p>
             </NavLink>
         </article>

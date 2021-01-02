@@ -81,12 +81,7 @@ const Me = () => {
                             <option value="pupple-mint-dark">퍼플 민트 다크</option>
                         </optgroup>
                         <optgroup label="스페셜">
-                            {isAdmin() ? <>
-                                <option value="persona5">페르소나 5</option>
-                            </> : null}
-                            {isOBT() ?
-                                <option value="pure-dark">[OBT 한정] 퓨어 다크</option>
-                                : null}
+                            <option value="pure-dark">퓨어 다크</option>
                         </optgroup>
                     </select>
                     <label className="my-2">앱 새로고침</label>
