@@ -10,7 +10,8 @@ const Me = () => {
         document.title = "더보기 | 제고라이프"
         document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [])
-    const [isLoading, setLoading] = useState(false)
+    const [logoutLoading, setLogoutLoading] = useState(false)
+    const [refreshLoading, setRefreshLoading] = useState(false)
     const [theme, setTheme] = useState(localStorage.getItem("theme"))
 
     if (localStorage.getItem("token") === null) {
@@ -19,7 +20,7 @@ const Me = () => {
     }
 
     const logout = async () => {
-        setLoading(true)
+        setLogoutLoading(true)
         try {
             await axios.get("logout")
         } catch (e) {
@@ -30,13 +31,14 @@ const Me = () => {
         window.location = "/login"
     }
 
-    const onChange = e => {
+    const changeTheme = e => {
         setTheme(e.target.value)
         localStorage.setItem("theme", e.target.value)
-        window.location.reload()
+        refresh()
     }
 
     const refresh = () => {
+        setRefreshLoading(true)
         sessionStorage.clear()
         window.location.reload()
     }
@@ -48,7 +50,7 @@ const Me = () => {
                 <h2 className="card-box-title font-s-core">안녕하세요, {localStorage.getItem("me.name")} 님!</h2>
                 <p>{isAdmin() ? "어드민 계정" :
                     isOBT() ? "오픈 베타 테스터" : "반가워요!"}</p>
-                <button className={isLoading ? "loading button float-right" : "button float-right"}
+                <button className={logoutLoading ? "loading button float-right" : "button float-right"}
                         onClick={logout}>로그아웃
                 </button>
 
@@ -66,7 +68,7 @@ const Me = () => {
                 </h2>
                 <div className="flex flex-column">
                     <label className="my-2">테마</label>
-                    <select className="select br-round full" value={theme} onChange={onChange}>
+                    <select className="select br-round full" value={theme} onChange={changeTheme}>
                         <optgroup label="기본">
                             <option value="light">라이트</option>
                             <option value="dark">다크</option>
@@ -82,10 +84,11 @@ const Me = () => {
                         </optgroup>
                         <optgroup label="스페셜">
                             <option value="pure-dark">퓨어 다크</option>
+                            <option value="logo-blue">로고블루</option>
                         </optgroup>
                     </select>
                     <label className="my-2">앱 새로고침</label>
-                    <button onClick={refresh} className="button float-right">새로고침</button>
+                    <button onClick={refresh} className={refreshLoading ? "button loading" : "button"}>새로고침</button>
                 </div>
             </article>
             <article className="card-box shadow-3">

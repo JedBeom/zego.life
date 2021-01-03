@@ -4,6 +4,7 @@ import axios from 'axios'
 import {registerLocale, setDefaultLocale} from "react-datepicker";
 import ko from 'date-fns/locale/ko';
 import "shorthandcss/scss/shorthand.scss"
+import "react-datepicker/dist/react-datepicker.css";
 import './App.css';
 import './themes/default.css'
 import './themes/gradient.css'

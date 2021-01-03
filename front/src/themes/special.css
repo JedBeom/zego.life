@@ -17,10 +17,38 @@
     --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
 
     --button-primary-color: #272727;
+    --button-primary-text-color: #d6d600;
 
     --loader-color: 255, 255, 0;
 
     /*--font-family: "NeoDunggeunmo", "SpoqaHanSans";*/
     font-family: "SpoqaHanSans";
 
+}
+
+.theme-logo-blue {
+    --background-color: #6153cc;
+
+    --site-logo-color: white;
+    --site-logo-bg-color: #6153cccc;
+    --site-text-color: white;
+    --site-bg-color: black;
+
+    --card-box-text-color: white;
+    --card-box-bg-color: #121212cc;
+    --card-box-opacity: 1;
+
+    --diet-when-color: #d6d600;
+
+    --nav-bar-default-color: #a5a5a5;
+    --nav-bar-active-color: white;
+    --nav-bar-bg-color: #6153cccc;
+
+    --button-primary-color: #d6d600;
+    --button-primary-text-color: #272727;
+
+    --loader-color: 255, 255, 0;
+
+    /*--font-family: "NeoDunggeunmo", "SpoqaHanSans";*/
+    font-family: "SpoqaHanSans";
 }

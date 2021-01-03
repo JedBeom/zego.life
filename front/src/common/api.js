@@ -1,6 +1,7 @@
 import axios from "axios"
 import dietMake from "../utils/dietMake"
 import {eventsMake} from "../utils/eventsMake"
+import {timestampHyphen} from '../utils/timestamp'
 import htmlDecode from '../utils/htmlDecode'
 
 async function asyncForEach(array, callback) {
@@ -74,6 +75,7 @@ const getEventsByDate = async date => {
 
     const {data} = await axios.get(`events/${date}`)
     if (data === null) {
+        sessionStorage.setItem(key, JSON.stringify([]))
         return []
     }
     sessionStorage.setItem(key, JSON.stringify(data))
@@ -81,8 +83,7 @@ const getEventsByDate = async date => {
 }
 
 const getEventsDateOnly = async () => {
-    let now = new Date().setHours(0, 0, 0, 0)
-    let key = `events-date-only/${now.toLocaleString()}`
+    let key = `events-date-only/${timestampHyphen(new Date())}`
     let item = sessionStorage.getItem(key)
     if (item != null) {
         return JSON.parse(item)

@@ -1,4 +1,6 @@
 import React from 'react'
+import CalendarIcon from '../icons/Calendar'
+import PencilIcon from '../icons/Pencil'
 
 const NoticeCard = ({notice}) => {
     return (
@@ -8,8 +10,8 @@ const NoticeCard = ({notice}) => {
                 <>
                     <h2>{notice.Title}</h2>
                     <div className="notice-meta">
-                        <p>📅 {notice.year}년 {notice.month}월 {notice.day}일</p>
-                        <p>✏️ {notice.Author}</p>
+                        <p><CalendarIcon className="icon"/>{notice.year}년 {notice.month}월 {notice.day}일</p>
+                        <p><PencilIcon className="icon"/>{notice.Author}</p>
                     </div>
                     <div dangerouslySetInnerHTML={{__html: notice.ContentHTML}}/>
                 </>

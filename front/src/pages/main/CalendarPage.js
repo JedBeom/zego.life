@@ -5,7 +5,6 @@ import DormInspector from '../../components/DormInspector'
 import {getD2UByDiet, getDietByDate, getEventsByDate, getEventsDateOnly} from '../../common/api'
 import {eventMake} from '../../utils/eventsMake'
 import {timestampDot, timestampHyphen} from '../../utils/timestamp'
-import "react-datepicker/dist/react-datepicker.css";
 import CalendarIcon from '../../icons/Calendar'
 
 const DietPage = () => {
@@ -30,7 +29,7 @@ const DietPage = () => {
     const [applieds, setApplieds] = useState([undefined, undefined, undefined])
     const [isLoading, setLoading] = useState(false)
     const [date, setDate] = useState(now)
-    const [dates, setDates] = useState([])
+    const [dates, setDates] = useState(null)
     const [events, setEvents] = useState([])
     const onClick = async (d) => {
         if (d === undefined || d === null || d === date) {
@@ -83,7 +82,7 @@ const DietPage = () => {
         getDates()
     }, [])
 
-    if (dates === null || dates.length === 0) {
+    if (dates === null) {
         return (<>
             <h1 className="page-title">캘린더</h1>
             <div className="loader"/>
@@ -93,10 +92,10 @@ const DietPage = () => {
     return (
         <>
             <h1 className="page-title">캘린더</h1>
-            <article className={`card-box shadow-3 diet-page`}>
+            <article className={`card-box shadow-3`}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <CalendarIcon className="icon icon-tabler"/>
-                    날짜를 선택하세요
+                    날짜 선택
                 </h2>
                 <div className="inline-calendar">
                     <DatePicker inline disabledKeyboardNavigation dateFormat="yyyy-MM-dd"
@@ -106,14 +105,16 @@ const DietPage = () => {
                 </div>
             </article>
             {isLoading ? <div className="loader"/> : <>
-                <article className="card-box shadow-3">
-                    <h2>일정</h2>
-                    <ul>
-                        {events.length > 0 ? events.map((e, j) => (
-                            <li key={j}>{e.Name}{e.badges}</li>
-                        )) : <li>없음</li>}
-                    </ul>
-                </article>
+                {events.length > 0 ?
+                    <article className="card-box shadow-3">
+                        <h2><CalendarIcon className="icon"/>일정</h2>
+                        <ul>
+                            {events.map((e, j) => (
+                                <li key={j}>{e.Name}{e.badges}</li>
+                            ))}
+                        </ul>
+                    </article>
+                    : null}
                 {diets.map((value, index) => {
                     return <DietCard key={index} diet={value} applied={applieds[index]}/>
                 })}

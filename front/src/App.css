@@ -75,7 +75,7 @@ a, .input, .select {
     font-size: 1rem;
     border-radius: 6px;
 
-    color: var(--card-box-text-color);
+    color: var(--button-primary-text-color);
     background-color: var(--button-primary-color);
 }
 
@@ -225,7 +225,7 @@ a:has("div") {
 
 .notice {
     font-weight: 700;
-    margin-bottom: .75em;
+    margin-bottom: 1em;
     padding: .5rem;
     color: var(--card-box-text-color);
     background-color: var(--card-box-bg-color);
@@ -466,7 +466,9 @@ input.register-birthday {
 }
 
 .inline-calendar .react-datepicker__today-button {
+    color: var(--button-primary-text-color) !important;
     background-color: var(--button-primary-color) !important;
+    font-weight: normal !important;
     border-top: none !important;
     width: 50% !important;
     border-radius: 1rem;
@@ -475,26 +477,42 @@ input.register-birthday {
 }
 
 .react-datepicker__day, .react-datepicker__month-text, .react-datepicker__quarter-text, .react-datepicker__year-text {
-    box-sizing: border-box;
-    border-width: .2em;
-    border-style: solid;
     border-color: transparent;
-}
-
-.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover {
-    background-color: unset !important;
-    border-color: var(--card-box-text-color);
+    transition: .5s;
+    border-radius: 999rem;
 }
 
 .inline-calendar .react-datepicker__day--disabled {
     visibility: hidden;
 }
 
+/* 각각 하나씩 */
 .inline-calendar [class^="react-datepicker"] {
     width: 100%;
-    color: var(--card-box-text-color) !important;
+    color: var(--card-box-text-color);
 }
 
+/* 하이라이트된 것들 */
+.inline-calendar .react-datepicker__day--highlighted {
+    background-color: unset;
+    color: var(--diet-when-color);
+    font-weight: bold;
+}
+
+/* 선택됨 */
+.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--selected, .react-datepicker__year-text--in-selecting-range, .react-datepicker__year-text--in-range {
+    border-radius: 999rem !important;
+    color: var(--button-primary-text-color) !important;
+    background-color: var(--button-primary-color) !important;
+}
+
+/* hover */
+.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover {
+    background-color: unset;
+    transform: scale(1.2);
+}
+
+/* 각각의 날들 */
 .inline-calendar .react-datepicker__day, .inline-calendar .react-datepicker__day-name {
     width: 1.7rem !important;
 }
@@ -533,25 +551,6 @@ input.register-birthday {
 .textarea:hover, .input:hover, .button:hover, .textarea:focus, .input:focus, .button:focus, .react-datepicker__today-button:hover, .react-datepicker__today-button:focus {
     transform: scale(1.025);
     border-color: inherit;
-}
-
-/* 뭐야 이거 누가 쓴거야? */
-.diet-page input {
-    color: var(--card-box-text-color);
-    height: calc(1.5rem + 1rem + 2px);
-    padding: 0.5rem calc(1rem + .5rem);
-    font-size: 1rem;
-
-    display: inline-block;
-    font-weight: 400;
-    line-height: 1.5;
-    background-color: transparent;
-    background-clip: padding-box;
-    border: 1px solid #B7C4CD;
-    border-radius: 4px;
-    vertical-align: middle;
-
-    text-align: center;
 }
 
 /* /me barcode */
@@ -650,7 +649,7 @@ input.register-birthday {
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     transition: .3s;
 
-    min-width: 3rem;
+    min-width: 3.5rem;
 
     word-break: keep-all;
     animation-name: fadeInTTdisable;
@@ -687,6 +686,13 @@ input.register-birthday {
     font-size: .75em;
     font-weight: 500;
     display: block;
+}
+
+.timetable .start-end {
+    font-size: 1em;
+    display: block;
+    font-weight: 300;
+    word-break: keep-all;
 }
 
 .timetable-exam td {
@@ -822,7 +828,7 @@ a[href="/about"] {
     height: 1em;
     margin-right: .25em;
     fill: currentColor;
-    vertical-align: text-top;
+    vertical-align: unset;
     display: inline-block;
 
     color: currentColor;

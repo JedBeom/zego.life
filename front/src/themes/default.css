@@ -18,6 +18,7 @@
     --nav-bar-bg-color: rgba(255, 255, 255, 0.8);
 
     --button-primary-color: #837ae6;
+    --button-primary-text-color: #EEF1F5;
 
     --loader-color: 0, 0, 0;
 
@@ -44,6 +45,7 @@
         --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
 
         --button-primary-color: #837ae6;
+        --button-primary-text-color: #EEF1F5;
 
         --loader-color: 0, 0, 0;
     }
