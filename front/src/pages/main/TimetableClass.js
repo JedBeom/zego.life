@@ -30,7 +30,7 @@ const Timetable = ({meGrade, meClass}) => {
                 setLessons(ls)
             }
         } catch (e) {
-            alert(e)
+            alert(`시간표 가져오기를 실패했습니다. ${e}`)
         }
     }
 
@@ -51,15 +51,15 @@ const Timetable = ({meGrade, meClass}) => {
                             return <tr key={li}>
                                 <td>
                                     <span className="subject">{li + 1}교시</span>
-                                    <span className="teacher">始 {times[li].s}</span>
-                                    <span className="teacher">終 {times[li].e}</span>
+                                    <span className="start-end">始{times[li].s}</span>
+                                    <span className="start-end">終{times[li].e}</span>
                                 </td>
                                 {[0, 1, 2, 3, 4].map(wd => { // week day
                                     return <td className={wd + 1 === twd ? "today" : ""}
                                                key={`${li}${wd}`}> {lessons[wd][li] !== undefined ? <>
                                         <span className="subject">{lessons[wd][li].Subject}</span>
                                         <span
-                                            className="teacher">{lessons[wd][li].Teacher !== "" && lessons[wd][li].Teacher !== undefined ? lessons[wd][li].Teacher : "담당"}</span>
+                                            className="teacher">{lessons[wd][li].Teacher !== "" && lessons[wd][li].Teacher !== undefined && lessons[wd][li].Subject[0] !== "선" ? lessons[wd][li].Teacher : "담당"}</span>
                                     </> : null}
                                     </td>
                                 })}
