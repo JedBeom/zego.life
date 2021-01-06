@@ -162,7 +162,8 @@ CREATE TABLE IF NOT EXISTS access_logs
     ip         INET,
     method     TEXT,
     path       TEXT,
-    error TEXT,
+    status     INTEGER,
+    error      TEXT,
     created_at TIMESTAMPTZ DEFAULT current_timestamp
 );
 
