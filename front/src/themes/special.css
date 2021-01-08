@@ -10,7 +10,7 @@
     --card-box-bg-color: #121212;
     --card-box-opacity: 1;
 
-    --diet-when-color: #fd99e1;
+    --highlight-color: #fd99e1;
 
     --nav-bar-default-color: #696900;
     --nav-bar-active-color: #d6d600;
@@ -38,7 +38,7 @@
     --card-box-bg-color: #121212cc;
     --card-box-opacity: 1;
 
-    --diet-when-color: #d6d600;
+    --highlight-color: #d6d600;
 
     --nav-bar-default-color: #a5a5a5;
     --nav-bar-active-color: white;

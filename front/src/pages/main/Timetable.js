@@ -1,12 +1,19 @@
-import React, {useState} from 'react'
-import TimetableClass from './TimetableClass'
+import React, {useEffect, useState} from 'react'
+import TimetableExtra from './TimetableExtra'
 
+/*
 const meGrade = localStorage.getItem("me.grade")
 const meClass = localStorage.getItem("me.class")
+*/
 
-const types = [`${meGrade}-${meClass}`]
+const types = [`방과후`]
 
 const Timetable = () => {
+    useEffect(() => {
+        document.title = "시간표 | 제고라이프"
+        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }, [])
+
     const [type, setType] = useState(0) // 0: class 1: exam
 
     const getNext = (t) => types.length - 1 === t ? 0 : t + 1
@@ -15,6 +22,7 @@ const Timetable = () => {
         setType(getNext(type))
     }
 
+    /*
     if (meClass === null) {
         return (
             <>
@@ -23,12 +31,13 @@ const Timetable = () => {
             </>
         )
     }
+    */
 
     return (
         <>
             <h1 className="page-title" onClick={setNext}>{types[type]} 시간표 {getNext(type) !== type ?
                 <span className="sub">{types[getNext(type)]}</span> : null}</h1>
-            {type === 0 ? <TimetableClass meGrade={meGrade} meClass={meClass}/> : null}
+            {type === 0 ? <TimetableExtra/> : null}
         </>
     )
 }

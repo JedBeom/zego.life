@@ -11,9 +11,9 @@
     --card-box-bg-color: #272727;
     --card-box-opacity: 0.8;
 
-    --diet-when-color: #fd99e1;
+    --highlight-color: #fd99e1;
 
-    --nav-bar-default-color: #ffffff8e;
+    --nav-bar-default-color: #838383;
     --nav-bar-active-color: white;
     --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
 
@@ -36,9 +36,9 @@
     --card-box-bg-color: white;
     --card-box-opacity: 0.8;
 
-    --diet-when-color: #3F33BD;
+    --highlight-color: #3F33BD;
 
-    --nav-bar-default-color: #ffffff8e;
+    --nav-bar-default-color: #afafaf;
     --nav-bar-active-color: white;
     --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
     --nav-bar-bg-image: linear-gradient(to right, #837AE6 0%, #3F33BD 100%);
@@ -60,9 +60,9 @@
     --card-box-bg-color: #272727;
     --card-box-opacity: 1;
 
-    --diet-when-color: #fd99e1;
+    --highlight-color: #fd99e1;
 
-    --nav-bar-default-color: #ffffff8e;
+    --nav-bar-default-color: #838383;
     --nav-bar-active-color: white;
     --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
 
@@ -85,9 +85,9 @@
     --card-box-bg-color: white;
     --card-box-opacity: .8;
 
-    --diet-when-color: red;
+    --highlight-color: red;
 
-    --nav-bar-default-color: #FFFFFF34;
+    --nav-bar-default-color: #ffbcbc;
     --nav-bar-active-color: white;
     --nav-bar-bg-color: rgba(255, 255, 255, 0);
     --nav-bar-bg-image: linear-gradient(to right, #F58EB4 0%, #C9366C 100%);
@@ -111,9 +111,9 @@
     --card-box-bg-color: white;
     --card-box-opacity: .8;
 
-    --diet-when-color: #fd99e1;
+    --highlight-color: #fd99e1;
 
-    --nav-bar-default-color: #00000034;
+    --nav-bar-default-color: #a07272;
     --nav-bar-active-color: black;
     --nav-bar-bg-color: rgba(255, 255, 255, 0);
     --nav-bar-bg-image: linear-gradient(90deg, rgba(253, 153, 225, 1) 0%, rgba(255, 206, 241, 1) 100%);
@@ -137,9 +137,9 @@
     --card-box-bg-color: white;
     --card-box-opacity: .9;
 
-    --diet-when-color: #fbc2eb;
+    --highlight-color: #fbc2eb;
 
-    --nav-bar-default-color: #00000034;
+    --nav-bar-default-color: #a07272;
     --nav-bar-active-color: black;
     --nav-bar-bg-color: rgba(255, 255, 255, 0);
     --nav-bar-bg-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
@@ -163,9 +163,9 @@
     --card-box-bg-color: rgba(255, 255, 255, 0.5);
     --card-box-opacity: 1;
 
-    --diet-when-color: blue;
+    --highlight-color: blue;
 
-    --nav-bar-default-color: #00000034;
+    --nav-bar-default-color: #a07272;
     --nav-bar-active-color: black;
     --nav-bar-bg-color: rgba(255, 255, 255, 0);
     --nav-bar-bg-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);

@@ -11,9 +11,9 @@
     --card-box-bg-color: white;
     --card-box-opacity: 1;
 
-    --diet-when-color: red;
+    --highlight-color: red;
 
-    --nav-bar-default-color: #00000034;
+    --nav-bar-default-color: #afafaf;
     --nav-bar-active-color: black;
     --nav-bar-bg-color: rgba(255, 255, 255, 0.8);
 
@@ -38,9 +38,9 @@
         --card-box-bg-color: #272727;
         --card-box-opacity: 1;
 
-        --diet-when-color: #fd99e1;
+        --highlight-color: #fd99e1;
 
-        --nav-bar-default-color: #ffffff8e;
+        --nav-bar-default-color: #838383;
         --nav-bar-active-color: white;
         --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
 
@@ -63,9 +63,9 @@
     --card-box-bg-color: #272727;
     --card-box-opacity: 1;
 
-    --diet-when-color: #fd99e1;
+    --highlight-color: #fd99e1;
 
-    --nav-bar-default-color: #ffffff8e;
+    --nav-bar-default-color: #838383;
     --nav-bar-active-color: white;
     --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
 

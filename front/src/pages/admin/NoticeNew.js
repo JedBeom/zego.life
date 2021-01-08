@@ -44,15 +44,18 @@ const NoticeNew = () => {
             <div className="flex flex-column">
                 <label className="my-2">제목</label>
                 <input type="text" value={title} onChange={e => setTitle(e.target.value)}
-                       className="input"/>
+                       className="input" placeholder="제목"/>
             </div>
             <div className="flex flex-column">
                 <label className="my-2">작성자</label>
                 <input type="text" value={author} onChange={e => setAuthor(e.target.value)}
-                       className="input"/>
+                       className="input" placeholder="멋진 이름"/>
             </div>
-            <textarea className="mt-4 textarea" rows="5" placeholder="내용" value={content}
+            <div className="flex flex-column">
+                <label className="my-2">본문</label>
+            <textarea className="textarea" rows="5" placeholder="내용" value={content}
                       onChange={e => setContent(e.target.value)}/>
+            </div>
             <button className={loading ? "button float-right mt-2 loading" : "button float-right mt-2"}
                     onClick={submit}>보내기!
             </button>

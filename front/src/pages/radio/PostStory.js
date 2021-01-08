@@ -5,6 +5,10 @@ import {isAdmin, isThat} from '../../utils/getRoles'
 import {NavLink} from 'react-router-dom';
 
 const PostStory = () => {
+    useEffect(() => {
+        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }, [])
+
     const [anonymous, setAnonymous] = useState(false)
     const [guest, setGuest] = useState(false)
     const [content, setContent] = useState("")

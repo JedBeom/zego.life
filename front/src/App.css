@@ -74,6 +74,7 @@ a, .input, .select {
     margin-top: .25rem;
     font-size: 1rem;
     border-radius: 6px;
+    font-weight: bold;
 
     color: var(--button-primary-text-color);
     background-color: var(--button-primary-color);
@@ -410,7 +411,7 @@ input.register-birthday {
 }
 
 ::placeholder {
-    opacity: 50%;
+    opacity: 0.8;
 }
 
 .light-blue-horizion {
@@ -420,7 +421,7 @@ input.register-birthday {
 /* diet-card */
 
 .diet-when {
-    color: var(--diet-when-color);
+    color: var(--highlight-color);
     margin-right: .25rem;
     font-weight: 500;
 }
@@ -468,7 +469,7 @@ input.register-birthday {
 .inline-calendar .react-datepicker__today-button {
     color: var(--button-primary-text-color) !important;
     background-color: var(--button-primary-color) !important;
-    font-weight: normal !important;
+    font-weight: bold !important;
     border-top: none !important;
     width: 50% !important;
     border-radius: 1rem;
@@ -495,7 +496,7 @@ input.register-birthday {
 /* 하이라이트된 것들 */
 .inline-calendar .react-datepicker__day--highlighted {
     background-color: unset;
-    color: var(--diet-when-color);
+    color: var(--highlight-color);
     font-weight: bold;
 }
 
@@ -824,11 +825,12 @@ a[href="/about"] {
 }
 
 .icon {
+    position: relative;
+    top: 2.5px;
     width: 1em;
     height: 1em;
     margin-right: .25em;
     fill: currentColor;
-    vertical-align: unset;
     display: inline-block;
 
     color: currentColor;
