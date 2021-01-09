@@ -41,8 +41,8 @@ const TimetableExtra = () => {
 
     const saveLessons = () => {
         localStorage.setItem(key+"A", lessonA)
-        localStorage.setItem(key+"B", lessonB)
-        alert("저장 했어요!")
+        localStorage.setItem(key + "B", lessonB)
+        alert("저장했어요!")
     }
 
     return (

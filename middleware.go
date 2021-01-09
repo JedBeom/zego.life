@@ -59,7 +59,8 @@ func middlewareLogger(next echo.HandlerFunc) echo.HandlerFunc {
 		}
 
 		if err := access.Create(db); err != nil {
-			models.LogError(db, "", access.ID, "middlewareLogger():access.Create()", err)
+			// 엑세스 로그 생성에 오류 -> 엑세스 로그 없음 -> ErrorLog에 AccessLogID 못 들어감.
+			models.LogError(db, "", "", "middlewareLogger():access.Create()", err)
 		}
 
 		return err

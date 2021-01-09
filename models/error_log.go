@@ -22,6 +22,8 @@ func LogError(db *pg.DB, userID, accessLogID, loc string, contents ...interface{
 	if db != nil {
 		if err := db.Insert(&errLog); err == nil {
 			return
+		} else {
+			log.Println(err)
 		}
 	}
 
