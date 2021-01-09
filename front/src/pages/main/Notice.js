@@ -4,6 +4,7 @@ import {isAdmin} from "../../utils/getRoles";
 import Back from "../../components/Back"
 import NoticeCard from '../../components/NoticeCard'
 import axios from 'axios'
+import {ErrorBox} from '../../components/AlertBox';
 
 const Notice = () => {
 
@@ -46,10 +47,7 @@ const Notice = () => {
                     <button className="button mb-6">글쓰기</button>
                 </NavLink> : null
             }
-            {errMsg !== "" ?
-                <div className="mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red">
-                    {errMsg}
-                </div> : null}
+            <ErrorBox content={errMsg}/>
             {
                 notices.map(e => {
                     return <NoticeCard key={e.Title} notice={e}/>

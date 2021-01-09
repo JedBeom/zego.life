@@ -3,16 +3,21 @@ import {Route, Switch, withRouter} from 'react-router-dom'
 import axios from 'axios'
 import {registerLocale, setDefaultLocale} from "react-datepicker";
 import ko from 'date-fns/locale/ko';
-import "shorthandcss/scss/shorthand.scss"
-import "react-datepicker/dist/react-datepicker.css";
-import './App.css';
+
+// styles
+import "./styles/shorthand.scss"
+import './styles/App.css';
+import './styles/elements.css';
+
+// themes
 import './themes/default.css'
 import './themes/gradient.css'
 import './themes/special.css'
+
+// components
 import Logo from './components/Logo'
 import NotSupported from './components/NotSupported'
 import Nav from './components/Nav'
-
 
 import {isAdmin} from "./utils/getRoles"
 
@@ -41,7 +46,7 @@ function App({history}) {
         <>
             <Logo/>
             <div className="site">
-                <Suspense fallback={<div className="loader"></div>}>
+                <Suspense fallback={<div className="loader"/>}>
                     <Switch>
                         {
                             isAdmin() ? <Route path="/admin" component={AdminRoute}/> : null

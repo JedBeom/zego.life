@@ -3,6 +3,7 @@ import Back from '../../components/Back'
 import axios from 'axios';
 import {isAdmin, isThat} from '../../utils/getRoles'
 import {NavLink} from 'react-router-dom';
+import {ErrorBox, SuccessBox} from "../../components/AlertBox"
 
 const PostStory = () => {
     useEffect(() => {
@@ -91,14 +92,8 @@ const PostStory = () => {
                     <input type="text" value={songRequest} onChange={e => setSongRequest(e.target.value)}
                            className="input" placeholder="치즈 - 퇴근시간"/>
                 </div>
-                {okMsg !== "" ?
-                    <div className="my-5 bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green">
-                        {okMsg}
-                    </div> : null}
-                {errMsg !== "" ?
-                    <div className="my-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red">
-                        {errMsg}
-                    </div> : null}
+                <SuccessBox content={okMsg}/>
+                <ErrorBox content={errMsg}/>
                 <button className={loading ? "button float-right mt-2 loading" : "button float-right mt-2"}
                         type="submit">보내기!
                 </button>

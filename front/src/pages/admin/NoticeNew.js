@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import Back from "../../components/Back"
+import {SuccessBox, WarningBox} from "../../components/AlertBox"
 import axios from 'axios'
 
 const NoticeNew = () => {
@@ -32,14 +33,8 @@ const NoticeNew = () => {
     return (
         <>
             <h1 className="page-title"><Back content="새 공지사항"/></h1>
-            {okMsg !== "" ?
-                <div className="mb-5 bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green">
-                    {okMsg}
-                </div> : null}
-            {errMsg !== "" ?
-                <div className="mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red">
-                    {errMsg}
-                </div> : null}
+            <SuccessBox content={okMsg}/>
+            <WarningBox content={errMsg}/>
             <p>마크다운 형식으로 작성합니다.</p>
             <div className="flex flex-column">
                 <label className="my-2">제목</label>

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/JedBeom/zego.life/models"
 	_ "github.com/joho/godotenv/autoload"
@@ -10,6 +9,10 @@ import (
 
 func main() {
 	db := models.Connect()
-	only, err := models.EventsDateOnly(db, time.Now())
-	fmt.Println(only, err)
+	us, err := models.UsersAllOptions(db, "created_at DESC", 50, 1)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(us)
 }

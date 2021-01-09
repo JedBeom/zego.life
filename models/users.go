@@ -10,8 +10,18 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+func UsersAllCount(db *pg.DB) (count int, err error) {
+	count, err = db.Model(&User{}).Count()
+	return
+}
+
 func UsersAll(db *pg.DB) (us []User, err error) {
 	err = db.Model(&us).Order("created_at").Select()
+	return
+}
+
+func UsersAllOptions(db *pg.DB, orderBy string, limit, page int) (us []User, err error) {
+	err = db.Model(&us).Order(orderBy).Limit(limit).Offset(limit * (page - 1)).Select()
 	return
 }
 
@@ -112,8 +122,8 @@ func (u *User) UpdatePw(db *pg.DB) error {
 	return err
 }
 
-func UsersLikeName(db *pg.DB, name string) (us []User, err error) {
-	name += "%"
-	err = db.Model(&us).Where("name like ?", name).Order("name").Select()
+func UsersLikeName(db *pg.DB, name string, orderBy string, limit, page int) (us []User, err error) {
+	name = "%" + name + "%"
+	err = db.Model(&us).Where("name like ?", name).Order(orderBy).Limit(limit).Offset(limit * (page - 1)).Select()
 	return
 }

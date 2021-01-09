@@ -1,6 +1,8 @@
 package main
 
 import (
+	"strings"
+
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
@@ -32,6 +34,22 @@ func middlewareUserOnly(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		sID, ok := c.Get("s_id").(string)
 		if !ok || sID == "" {
+			return echo.ErrUnauthorized
+		}
+
+		return next(c)
+	}
+}
+
+func middlewareAdminOnly(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		u, ok := c.Get("user").(models.User)
+		if !ok {
+			return apierror.ErrInterface.Send(c)
+		}
+
+		// admin-only
+		if !strings.Contains(u.Roles, "admin,") {
 			return echo.ErrUnauthorized
 		}
 

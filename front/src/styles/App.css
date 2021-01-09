@@ -70,6 +70,10 @@ a, .input, .select {
     color: var(--site-text-color);
 }
 
+option {
+    color: black;
+}
+
 .button {
     margin-top: .25rem;
     font-size: 1rem;
@@ -224,20 +228,6 @@ a:has("div") {
     text-decoration: none;
 }
 
-.notice {
-    font-weight: 700;
-    margin-bottom: 1em;
-    padding: .5rem;
-    color: var(--card-box-text-color);
-    background-color: var(--card-box-bg-color);
-    border-radius: 5em;
-    text-decoration-style: unset;
-    text-decoration: none !important;
-    font-size: 0.8rem;
-    align-items: center;
-    display: flex;
-}
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -269,24 +259,6 @@ a:has("div") {
     animation-duration: .15s;
     animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
-
-/*
-.site .card-box:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.site .card-box:nth-child(2) {
-    animation-delay: .2s;
-}
-
-.site .card-box:nth-child(3) {
-    animation-delay: .4s;
-}
-
-.site .card-box:nth-child(4) {
-    animation-delay: .8s;
-}
-*/
 
 .card-box h2 {
     font-weight: 500;
@@ -411,7 +383,15 @@ input.register-birthday {
 }
 
 ::placeholder {
-    opacity: 0.8;
+    opacity: 0.6;
+}
+
+.input::placeholder, .textarea::placeholder {
+    color: var(--site-text-color);
+}
+
+.card-box .input::placeholder, .card-box .textarea::placeholder {
+    color: var(--card-box-text-color);
 }
 
 .light-blue-horizion {
@@ -461,67 +441,6 @@ input.register-birthday {
     font-weight: 900;
 }
 
-.inline-calendar .react-datepicker, .inline-calendar .react-datepicker__header {
-    background-color: transparent !important;
-    border: none !important;
-}
-
-.inline-calendar .react-datepicker__today-button {
-    color: var(--button-primary-text-color) !important;
-    background-color: var(--button-primary-color) !important;
-    font-weight: bold !important;
-    border-top: none !important;
-    width: 50% !important;
-    border-radius: 1rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.react-datepicker__day, .react-datepicker__month-text, .react-datepicker__quarter-text, .react-datepicker__year-text {
-    border-color: transparent;
-    transition: .5s;
-    border-radius: 999rem;
-}
-
-.inline-calendar .react-datepicker__day--disabled {
-    visibility: hidden;
-}
-
-/* 각각 하나씩 */
-.inline-calendar [class^="react-datepicker"] {
-    width: 100%;
-    color: var(--card-box-text-color);
-}
-
-/* 하이라이트된 것들 */
-.inline-calendar .react-datepicker__day--highlighted {
-    background-color: unset;
-    color: var(--highlight-color);
-    font-weight: bold;
-}
-
-/* 선택됨 */
-.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--selected, .react-datepicker__year-text--in-selecting-range, .react-datepicker__year-text--in-range {
-    border-radius: 999rem !important;
-    color: var(--button-primary-text-color) !important;
-    background-color: var(--button-primary-color) !important;
-}
-
-/* hover */
-.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover {
-    background-color: unset;
-    transform: scale(1.2);
-}
-
-/* 각각의 날들 */
-.inline-calendar .react-datepicker__day, .inline-calendar .react-datepicker__day-name {
-    width: 1.7rem !important;
-}
-
-.inline-calendar .react-datepicker__navigation {
-    width: 10px !important;
-}
-
 /* /events/ */
 
 .events {
@@ -547,6 +466,10 @@ input.register-birthday {
 
 .input, .button, .react-datepicker__today-button {
     transition: .3s;
+}
+
+.react-datepicker__today-button:hover {
+    opacity: 0.6;
 }
 
 .textarea:hover, .input:hover, .button:hover, .textarea:focus, .input:focus, .button:focus, .react-datepicker__today-button:hover, .react-datepicker__today-button:focus {

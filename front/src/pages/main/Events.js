@@ -1,4 +1,5 @@
 import React, {Fragment, useEffect, useState} from 'react'
+import {ErrorBox} from '../../components/AlertBox'
 import {getEvents} from '../../common/api'
 
 const weekdays = ['일', '월', '화', '수', '목', '금', '토']
@@ -68,10 +69,7 @@ const Events = () => {
                 <span><span className="mr-2" onClick={previous}> </span> <span onClick={next}></span></span>
             </h1>
             {loading ? <div className="loader"/> : null}
-            {errMsg !== "" ?
-                <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
-                    {errMsg}
-                </div> : null}
+            <ErrorBox content={errMsg}/>
             {events === null ? <p>일정 없음</p> : null}
             {events !== undefined && events !== null ?
 

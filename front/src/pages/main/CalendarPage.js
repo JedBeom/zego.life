@@ -7,6 +7,9 @@ import {eventMake} from '../../utils/eventsMake'
 import {timestampDot, timestampHyphen} from '../../utils/timestamp'
 import CalendarIcon from '../../icons/Calendar'
 
+import "react-datepicker/dist/react-datepicker.css";
+import "../../styles/calendar.css"
+
 const DietPage = () => {
     let now = new Date()
     let maxDate = new Date()
@@ -97,12 +100,10 @@ const DietPage = () => {
                     <CalendarIcon className="icon icon-tabler"/>
                     날짜 선택
                 </h2>
-                <div className="inline-calendar">
-                    <DatePicker inline disabledKeyboardNavigation dateFormat="yyyy-MM-dd"
-                                onChange={onClick} name="날짜 선택" title="날짜 선택" allowSameDay={false}
-                                highlightDates={dates}
-                                selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
-                </div>
+                <DatePicker inline disabledKeyboardNavigation dateFormat="yyyy-MM-dd"
+                            onChange={onClick} name="날짜 선택" title="날짜 선택" allowSameDay={false}
+                            highlightDates={dates}
+                            selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
             </article>
             {isLoading ? <div className="loader"/> : <>
                 {events.length > 0 ?

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Back from '../../components/Back'
+import {SuccessBox, WarningBox} from "../../components/AlertBox";
 import axios from 'axios'
 
 const Feedback = () => {
@@ -65,14 +66,8 @@ const Feedback = () => {
     return (
         <>
             <h1 className="page-title"><Back content="피드백 보내기"/></h1>
-            {okMsg !== "" ?
-                <div className="mb-5 bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green">
-                    {okMsg}
-                </div> : null}
-            {errMsg !== "" ?
-                <div className="mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red">
-                    {errMsg}
-                </div> : null}
+            <SuccessBox content={okMsg}/>
+            <WarningBox content={errMsg}/>
             <p>제고라이프는 여러분의 피드백으로 발전합니다. 사용하면서 필요한 기능이나 불편한 점이 있다면
                 서슴 없이 알려주세요.
             </p>

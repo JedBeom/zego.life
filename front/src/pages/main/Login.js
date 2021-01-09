@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
+import {ErrorBox, SuccessBox} from "../../components/AlertBox"
 import axios from 'axios'
 
 const Login = () => {
@@ -78,14 +79,6 @@ const Login = () => {
                     <button className="button float-right">회원가입 하기</button>
                 </NavLink>
             </article>
-            {okMsg !== "" ?
-                <div className={"mb-5 bg-green-lightest green px-5 py-3 br-3 border-l bw-6 bc-green"}>
-                    {okMsg}
-                </div> : null}
-            {errMsg !== "" ?
-                <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
-                    {errMsg}
-                </div> : null}
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">
@@ -114,6 +107,8 @@ const Login = () => {
                     </form>
                 </div>
             </article>
+            <SuccessBox content={okMsg}/>
+            <ErrorBox content={errMsg}/>
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">

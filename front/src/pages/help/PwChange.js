@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
+import {ErrorBox} from '../../components/AlertBox'
 
 const PwChange = () => {
     const [password, setPassword] = useState("")
@@ -31,10 +32,7 @@ const PwChange = () => {
             {!ok ?
                 <>
                     <h1 className="page-title">암호 재설정</h1>
-                    {errMsg !== "" ?
-                        <div className="mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red">
-                            {errMsg}
-                        </div> : null}
+                    <ErrorBox content={errMsg}/>
                     <p>관리자에게 받은 링크로 암호를 재설정합니다.</p>
                     <form className="p-2" onSubmit={change}>
                         <div className={"flex flex-column"}>

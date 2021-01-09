@@ -5,6 +5,7 @@ import hakbunToGCN from '../../utils/hakbunToGCN'
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import {ErrorBox} from "../../components/AlertBox"
 
 const Register = () => {
     useEffect(() => {
@@ -183,8 +184,7 @@ const Register = () => {
             setStep1(
                 <article className="card-box shadow-3">
                     <h2 className="card-title font-s-core px-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-id" width="44"
-                             height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#a905b6" fill="none">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <rect x="3" y="4" width="18" height="16" rx="3"/>
                             <circle cx="9" cy="10" r="2"/>
@@ -302,7 +302,7 @@ const Register = () => {
                             <div className="flex flex-column">
                                 <label className="my-2" htmlFor="birthday-input">생년월일</label>
                                 <DatePicker className="input register-birthday" disabledKeyboardNavigation
-                                            placeholderText="생일 입력"
+                                            placeholderText="ex) 2004년 09월 08일"
                                             dateFormat="yyyy년 MM월 dd일" openToDate={new Date(2004, 8, 8)}
                                             onChange={(d) => setDate(d)}
                                             selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
@@ -397,10 +397,7 @@ const Register = () => {
             {step1}
             {step2}
             {step3}
-            {errMsg !== "" ?
-                <div className={"mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red"}>
-                    {errMsg}
-                </div> : null}
+            <ErrorBox content={errMsg}/>
         </>
     )
 }

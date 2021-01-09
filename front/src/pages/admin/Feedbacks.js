@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import Back from "../../components/Back"
+import {WarningBox} from "../../components/AlertBox";
 import axios from 'axios'
 
 const Feedbacks = () => {
@@ -38,10 +39,7 @@ const Feedbacks = () => {
     return (
         <>
             <h1 className="page-title"><Back content="피드백 열람"/></h1>
-            {errMsg !== "" ?
-                <div className="mb-5 bg-red-lightest red px-5 py-3 br-3 border-l bw-6 bc-red">
-                    {errMsg}
-                </div> : null}
+            <WarningBox content={errMsg}/>
             {
                 fs.map((f) =>
                     <article onClick={() => setAnswer(f)} key={f.ID} className="card-box shadow-3 feedback-box">

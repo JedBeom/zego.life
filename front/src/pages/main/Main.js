@@ -101,8 +101,8 @@ const Main = () => {
         <>
             <h1 className="page-title">홈</h1>
             <NavLink to="/notice" className="no-underline">
-                <div className="notice">
-                    <div className="inline-block bg-indigo indigo-lightest br-round px-3 py-1 mr-3 fs-s3">공지</div>
+                <div className="notice-line">
+                    <div className="notice-line-badge">공지</div>
                     {noticeTitle}
                 </div>
             </NavLink>

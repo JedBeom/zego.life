@@ -28,12 +28,16 @@ func routes(e *echo.Echo) {
 	{
 		u := api.Group("", middlewareUserOnly)
 		{
+			admin := u.Group("", middlewareAdminOnly)
+
 			u.GET("/me", getMe)
 			u.GET("/logout", getLogout)
 			u.PATCH("/users/:user_id", patchUser)
 
 			// admin-only
-			u.GET("/users/search/by-name/:name", getUsersByName) // admin-only
+			admin.GET("/users/count", getUsersAllCount)
+			admin.GET("/users/search/by-name/:name/order-by/:order-by", getUsersByName) // admin-only
+			admin.GET("/users/search/order-by/:order-by", getUsersAll)                  // admin-only
 			u.GET("/users/:user_id/pw-change", getPwChangeToken)
 
 			// radio-stories
@@ -46,14 +50,14 @@ func routes(e *echo.Echo) {
 			u.POST("/diet-reviews/:diet_id", postDietReview)
 
 			// feedbacks
-			u.GET("/feedbacks", getFeedbacksAll)         // admin
-			u.GET("/feedbacks/:id", getFeedbackByID)     // admin
-			u.PATCH("/feedbacks/:id", patchFeedbackByID) // admin
+			admin.GET("/feedbacks", getFeedbacksAll)         // admin
+			admin.GET("/feedbacks/:id", getFeedbackByID)     // admin
+			admin.PATCH("/feedbacks/:id", patchFeedbackByID) // admin
 			u.GET("/users/:user_id/feedbacks", getFeedbacksByUser)
 			u.POST("/feedbacks", postFeedback)
 
 			// notices
-			u.POST("/notices", postNotice) // admin
+			admin.POST("/notices", postNotice) // admin
 
 			// timetables
 			u.GET("/timetables/:grade/:class", getTimetableByGradeClass)

@@ -2,13 +2,18 @@ package main
 
 import (
 	"log"
+	"strconv"
 	"strings"
 	"time"
+
+	"github.com/go-pg/pg"
 
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
 )
+
+const LIMIT_DEFAULT = 10
 
 func getMe(c echo.Context) error {
 	u, ok := c.Get("user").(models.User)
@@ -70,14 +75,59 @@ func patchUser(c echo.Context) error {
 }
 
 func getUsersByName(c echo.Context) error {
+	limit, err := strconv.Atoi(c.QueryParam("limit"))
+	if err != nil || limit > 100 {
+		limit = LIMIT_DEFAULT // default
+	}
+	page, err := strconv.Atoi(c.QueryParam("page"))
+	if err != nil || page <= 0 {
+		page = 1 // default
+	}
+
 	name := c.Param("name")
 	if name == "" {
 		return echo.ErrBadRequest
 	}
 
-	us, err := models.UsersLikeName(db, name)
+	orderBy := c.Param("order-by")
+
+	us, err := models.UsersLikeName(db, name, orderBy, limit, page)
 	if err != nil {
 		log.Println(err)
+		return echo.ErrInternalServerError
+	}
+
+	return c.JSON(200, us)
+}
+
+func getUsersAllCount(c echo.Context) error {
+	count, err := models.UsersAllCount(db)
+	if err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	return c.JSON(200, Map{
+		"Count": strconv.Itoa(count),
+	})
+}
+
+func getUsersAll(c echo.Context) error {
+	limit, err := strconv.Atoi(c.QueryParam("limit"))
+	if err != nil || limit > 100 {
+		limit = LIMIT_DEFAULT // default
+	}
+	page, err := strconv.Atoi(c.QueryParam("page"))
+	if err != nil || page <= 0 {
+		page = 1 // default
+	}
+
+	orderBy := c.Param("order-by")
+
+	us, err := models.UsersAllOptions(db, orderBy, limit, page)
+	if err == pg.ErrNoRows || len(us) == 0 {
+		log.Println("norows")
+		return echo.ErrNotFound
+	} else if err != nil {
 		return echo.ErrInternalServerError
 	}
 

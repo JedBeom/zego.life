@@ -6,7 +6,7 @@ const Main = () => {
         <>
             <h1 className="page-title">어드민</h1>
             <ul>
-                <li><NavLink to="/admin/pw-change">암호 변경 토큰 생성</NavLink></li>
+                <li><NavLink to="/admin/users-all">사용자 열람</NavLink></li>
                 <li><NavLink to="/admin/notice-new">새 공지사항</NavLink></li>
                 <li><NavLink to="/admin/feedbacks">피드백 열람</NavLink></li>
             </ul>
