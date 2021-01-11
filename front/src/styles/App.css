@@ -273,6 +273,7 @@ a:has("div") {
 
 .card-box a, .card-box select, .card-box input {
     color: var(--card-box-text-color);
+    border-color: var(--card-box-text-color);
 }
 
 .card-box optgroup {
@@ -326,7 +327,7 @@ a:has("div") {
 
 .login-box input {
     color: var(--site-text-color);
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 p a {
@@ -335,7 +336,7 @@ p a {
 
 .register-step2-box input {
     color: var(--site-text-color);
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .checkbox:checked + label::before {
@@ -749,7 +750,7 @@ a[href="/about"] {
 
 .icon {
     position: relative;
-    top: 2.5px;
+    top: .1em;
     width: 1em;
     height: 1em;
     margin-right: .25em;

@@ -24,7 +24,7 @@ const copy = (content) => {
         textarea.setSelectionRange(0, textarea.value.length);
         result = document.execCommand('copy');
     } catch (err) {
-        console.error(err);
+        alert(`클립보드 복사 실패. ${err}`);
         result = null;
     } finally {
         document.body.removeChild(textarea);

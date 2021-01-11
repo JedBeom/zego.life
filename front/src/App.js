@@ -12,6 +12,7 @@ import './styles/elements.css';
 // themes
 import './themes/default.css'
 import './themes/gradient.css'
+import './themes/colors.css'
 import './themes/special.css'
 
 // components

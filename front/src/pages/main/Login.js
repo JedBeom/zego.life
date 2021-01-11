@@ -107,8 +107,8 @@ const Login = () => {
                     </form>
                 </div>
             </article>
-            <SuccessBox content={okMsg}/>
-            <ErrorBox content={errMsg}/>
+            <SuccessBox>{okMsg}</SuccessBox>
+            <ErrorBox>{errMsg}</ErrorBox>
             <article className={"card-box shadow-3"}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">

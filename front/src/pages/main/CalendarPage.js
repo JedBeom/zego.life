@@ -6,6 +6,7 @@ import {getD2UByDiet, getDietByDate, getEventsByDate, getEventsDateOnly} from '.
 import {eventMake} from '../../utils/eventsMake'
 import {timestampDot, timestampHyphen} from '../../utils/timestamp'
 import CalendarIcon from '../../icons/Calendar'
+import {ErrorBox, InfoBox} from "../../components/AlertBox"
 
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/calendar.css"
@@ -34,6 +35,8 @@ const DietPage = () => {
     const [date, setDate] = useState(now)
     const [dates, setDates] = useState(null)
     const [events, setEvents] = useState([])
+
+    const [errMsg, setErrMsg] = useState("")
     const onClick = async (d) => {
         if (d === undefined || d === null || d === date) {
             return
@@ -56,7 +59,7 @@ const DietPage = () => {
                 setApplieds(aps)
             }
         } catch (e) {
-            console.log(e)
+            setErrMsg("불러오는 중 문제가 발생했어요.")
         }
     }
 
@@ -95,6 +98,9 @@ const DietPage = () => {
     return (
         <>
             <h1 className="page-title">캘린더</h1>
+            <InfoBox>2월 급식 신청 기간입니다. <a href="http://gwang.i-zone.kr" rel="noopener noreferrer" target="_blank">플라이키친
+                가기</a></InfoBox>
+            <ErrorBox>{errMsg}</ErrorBox>
             <article className={`card-box shadow-3`}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <CalendarIcon className="icon icon-tabler"/>

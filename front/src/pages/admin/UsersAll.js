@@ -28,6 +28,8 @@ const UsersAll = () => {
     }
 
     const submit = e => {
+        setOkMsg("")
+        setErrMsg("")
         e.preventDefault()
 
         setUsers([])
@@ -95,7 +97,7 @@ const UsersAll = () => {
     if (count === "0") {
         return (
             <>
-                <h1 className="page-title">사용자 일람</h1>
+                <h1 className="page-title"><Back content="사용자 일람"/></h1>
             </>
         )
     }
@@ -104,7 +106,7 @@ const UsersAll = () => {
         <>
             {loading ? <div className="loader"/> : null}
             <h1 className="page-title"><Back content="사용자 일람"/></h1>
-            <ErrorBox content={errMsg}/>
+            <ErrorBox>{errMsg}</ErrorBox>
             <article className="card-box shadow-3">
                 <h2>총 {count}명</h2>
             </article>
@@ -133,11 +135,11 @@ const UsersAll = () => {
                         <option value="name DESC">이름 (역행)</option>
                     </select>
                 </div>
-                <InfoBox content="더 정밀한 조건 검색이 필요하면 개발자에게 문의하세요."/>
+                <InfoBox>더 정밀한 조건 검색이 필요하면 개발자에게 문의하세요.</InfoBox>
                 <button type="submit" className="button" onClick={getResults}>가져오자!</button>
             </form>
             <h2 className="my-5">결과</h2>
-            <SuccessBox content={okMsg}/>
+            <SuccessBox>{okMsg}</SuccessBox>
             {users.map(u => {
                 return (
                     <UserBox u={u} key={u.Email}>

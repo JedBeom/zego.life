@@ -33,8 +33,8 @@ const NoticeNew = () => {
     return (
         <>
             <h1 className="page-title"><Back content="새 공지사항"/></h1>
-            <SuccessBox content={okMsg}/>
-            <WarningBox content={errMsg}/>
+            <SuccessBox>{okMsg}</SuccessBox>
+            <WarningBox>{errMsg}</WarningBox>
             <p>마크다운 형식으로 작성합니다.</p>
             <div className="flex flex-column">
                 <label className="my-2">제목</label>

@@ -8,7 +8,7 @@ const NotSupported = () => {
     }
 
     return (
-        <WarningBox content="미지원 브라우저입니다. iOS는 Safari, 안드로이드는 Chrome에서 접속해주세요."/>
+        <WarningBox>미지원 브라우저입니다. iOS는 Safari, 안드로이드는 Chrome에서 접속해주세요.</WarningBox>
     )
 }
 

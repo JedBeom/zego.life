@@ -92,8 +92,8 @@ const PostStory = () => {
                     <input type="text" value={songRequest} onChange={e => setSongRequest(e.target.value)}
                            className="input" placeholder="치즈 - 퇴근시간"/>
                 </div>
-                <SuccessBox content={okMsg}/>
-                <ErrorBox content={errMsg}/>
+                <SuccessBox>{okMsg}</SuccessBox>
+                <ErrorBox>{errMsg}</ErrorBox>
                 <button className={loading ? "button float-right mt-2 loading" : "button float-right mt-2"}
                         type="submit">보내기!
                 </button>

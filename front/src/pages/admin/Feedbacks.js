@@ -39,7 +39,7 @@ const Feedbacks = () => {
     return (
         <>
             <h1 className="page-title"><Back content="피드백 열람"/></h1>
-            <WarningBox content={errMsg}/>
+            <WarningBox>{errMsg}</WarningBox>
             {
                 fs.map((f) =>
                     <article onClick={() => setAnswer(f)} key={f.ID} className="card-box shadow-3 feedback-box">

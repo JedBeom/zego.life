@@ -34,7 +34,7 @@
 
     --card-box-text-color: black;
     --card-box-bg-color: white;
-    --card-box-opacity: 0.8;
+    --card-box-opacity: 1;
 
     --highlight-color: #3F33BD;
 
@@ -83,7 +83,7 @@
 
     --card-box-text-color: black;
     --card-box-bg-color: white;
-    --card-box-opacity: .8;
+    --card-box-opacity: 1;
 
     --highlight-color: red;
 
@@ -93,32 +93,6 @@
     --nav-bar-bg-image: linear-gradient(to right, #F58EB4 0%, #C9366C 100%);
 
     --button-primary-color: #837ae6;
-
-    --loader-color: 0, 0, 0;
-}
-
-.theme-pink-55 {
-
-    --background-color: #FD99E1;
-    --background-image: linear-gradient(90deg, rgba(253, 153, 225, 1) 0%, rgba(255, 206, 241, 1) 100%);
-
-    --site-logo-color: black;
-    --site-logo-bg-image: linear-gradient(90deg, rgba(253, 153, 225, 1) 0%, rgba(255, 206, 241, 1) 100%);
-    --site-text-color: black;
-    --site-bg-color: #EEF1F5;
-
-    --card-box-text-color: black;
-    --card-box-bg-color: white;
-    --card-box-opacity: .8;
-
-    --highlight-color: #fd99e1;
-
-    --nav-bar-default-color: #a07272;
-    --nav-bar-active-color: black;
-    --nav-bar-bg-color: rgba(255, 255, 255, 0);
-    --nav-bar-bg-image: linear-gradient(90deg, rgba(253, 153, 225, 1) 0%, rgba(255, 206, 241, 1) 100%);
-
-    --button-primary-color: #fd99e1;
 
     --loader-color: 0, 0, 0;
 }

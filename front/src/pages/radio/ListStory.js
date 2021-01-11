@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import Back from '../../components/Back'
 
 const ListStory = () => {
     const [stories, setStories] = useState([{Content: "불러오는 중"}])
@@ -24,7 +25,7 @@ const ListStory = () => {
 
     return (
         <>
-            <h1 className="page-title">라디오 사연 보기</h1>
+            <h1 className="page-title"><Back content="라디오 사연 보기"/></h1>
             {stories.map((e, i) => {
                 return <article key={i} className="card-box radio-story shadow-3">
                     <label>사연</label>

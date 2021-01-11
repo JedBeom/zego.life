@@ -73,18 +73,20 @@ const Me = () => {
                             <option value="light">라이트</option>
                             <option value="dark">다크</option>
                         </optgroup>
+                        <optgroup label="색깔">
+                            <option value="pink-55">핑크 0505</option>
+                            <option value="pure-dark">퓨어 다크</option>
+                            <option value="logo-blue">로고블루</option>
+                        </optgroup>
                         <optgroup label="그라디언트">
                             <option value="linear-indigo">리니어 인디고</option>
                             <option value="linear-pink">리니어 핑크</option>
-                            <option value="pink-55">핑크 0505</option>
                             <option value="lonely-sky">론리 스카이</option>
                             <option value="clear-water">클리어 워터 BETA</option>
                             <option value="tropical-dark">트로피칼 다크</option>
                             <option value="pupple-mint-dark">퍼플 민트 다크</option>
                         </optgroup>
                         <optgroup label="스페셜">
-                            <option value="pure-dark">퓨어 다크</option>
-                            <option value="logo-blue">로고블루</option>
                         </optgroup>
                     </select>
                     <label className="my-2">앱 새로고침</label>

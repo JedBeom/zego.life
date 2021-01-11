@@ -397,7 +397,7 @@ const Register = () => {
             {step1}
             {step2}
             {step3}
-            <ErrorBox content={errMsg}/>
+            <ErrorBox>{errMsg}</ErrorBox>
         </>
     )
 }

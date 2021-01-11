@@ -47,7 +47,7 @@ const Notice = () => {
                     <button className="button mb-6">글쓰기</button>
                 </NavLink> : null
             }
-            <ErrorBox content={errMsg}/>
+            <ErrorBox>{errMsg}</ErrorBox>
             {
                 notices.map(e => {
                     return <NoticeCard key={e.Title} notice={e}/>

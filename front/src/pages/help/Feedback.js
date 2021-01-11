@@ -66,8 +66,8 @@ const Feedback = () => {
     return (
         <>
             <h1 className="page-title"><Back content="피드백 보내기"/></h1>
-            <SuccessBox content={okMsg}/>
-            <WarningBox content={errMsg}/>
+            <SuccessBox>{okMsg}</SuccessBox>
+            <WarningBox>{errMsg}</WarningBox>
             <p>제고라이프는 여러분의 피드백으로 발전합니다. 사용하면서 필요한 기능이나 불편한 점이 있다면
                 서슴 없이 알려주세요.
             </p>

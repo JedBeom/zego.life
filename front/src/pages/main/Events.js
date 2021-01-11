@@ -69,7 +69,7 @@ const Events = () => {
                 <span><span className="mr-2" onClick={previous}> </span> <span onClick={next}></span></span>
             </h1>
             {loading ? <div className="loader"/> : null}
-            <ErrorBox content={errMsg}/>
+            <ErrorBox>{errMsg}</ErrorBox>
             {events === null ? <p>일정 없음</p> : null}
             {events !== undefined && events !== null ?
 

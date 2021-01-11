@@ -32,7 +32,7 @@ const PwChange = () => {
             {!ok ?
                 <>
                     <h1 className="page-title">암호 재설정</h1>
-                    <ErrorBox content={errMsg}/>
+                    <ErrorBox>{errMsg}</ErrorBox>
                     <p>관리자에게 받은 링크로 암호를 재설정합니다.</p>
                     <form className="p-2" onSubmit={change}>
                         <div className={"flex flex-column"}>
