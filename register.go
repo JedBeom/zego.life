@@ -82,9 +82,7 @@ func postRegister(c echo.Context) error {
 		return apierror.ErrDBErr.Send(c)
 	}
 
-	return c.JSONPretty(200, Map{
-		"message": "register successful",
-	}, JSONIndent)
+	return c.NoContent(200)
 }
 
 func postKitchenLogin(c echo.Context) error {
@@ -133,7 +131,5 @@ func getFirstParse(c echo.Context) error {
 		}
 	}
 
-	return c.JSONPretty(200, Map{
-		"message": "first parse successful",
-	}, JSONIndent)
+	return c.NoContent(200)
 }

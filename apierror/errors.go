@@ -22,7 +22,7 @@ func NewApiError(status int, code int, message string) ApiError {
 }
 
 func (e ApiError) Send(c echo.Context) error {
-	return c.JSONPretty(e.StatusCode, e, "    ")
+	return c.JSON(e.StatusCode, e)
 }
 
 func (e ApiError) Error() string {
@@ -47,5 +47,5 @@ type UserRegisterError struct {
 }
 
 func (e *UserRegisterError) Send(c echo.Context) error {
-	return c.JSONPretty(http.StatusBadRequest, *e, "    ")
+	return c.JSON(http.StatusBadRequest, *e)
 }

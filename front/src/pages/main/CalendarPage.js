@@ -5,6 +5,7 @@ import DormInspector from '../../components/DormInspector'
 import {getD2UByDiet, getDietByDate, getEventsByDate, getEventsDateOnly} from '../../common/api'
 import {eventMake} from '../../utils/eventsMake'
 import {timestampDot, timestampHyphen} from '../../utils/timestamp'
+import {isUser} from "../../utils/getRoles"
 import CalendarIcon from '../../icons/Calendar'
 import {ErrorBox, InfoBox} from "../../components/AlertBox"
 
@@ -51,7 +52,7 @@ const DietPage = () => {
             let ds = await getDietByDate(timestampDot(d))
             setDiets(ds)
             setLoading(false)
-            if (localStorage.getItem("token") != null) {
+            if (isUser()) {
                 let aps = [...applieds]
                 for (let i = 0; i < 3; i++) {
                     aps[i] = await getD2UByDiet(ds[i].ID)

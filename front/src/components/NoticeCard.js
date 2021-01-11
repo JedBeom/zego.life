@@ -2,7 +2,7 @@ import React from 'react'
 import CalendarIcon from '../icons/Calendar'
 import PencilIcon from '../icons/Pencil'
 
-const NoticeCard = ({notice}) => {
+const NoticeCard = ({notice, children}) => {
     return (
         <article className="card-box shadow-3 notice-box">
             {notice.Title === "" ?
@@ -14,6 +14,7 @@ const NoticeCard = ({notice}) => {
                         <p><PencilIcon className="icon"/>{notice.Author}</p>
                     </div>
                     <div dangerouslySetInnerHTML={{__html: notice.ContentHTML}}/>
+                    {children}
                 </>
             }
         </article>

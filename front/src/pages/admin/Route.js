@@ -9,7 +9,7 @@ import Main from "./Main"
 function Router() {
     return (
         <Switch>
-            <Route path="/admin/notice-new" component={NoticeNew}/>
+            <Route path="/admin/notice-new/:id?" component={NoticeNew}/>
             <Route path="/admin/feedbacks" component={Feedbacks}/>
             <Route path="/admin/users-all" component={UsersAll}/>
             <Route path="/admin" exact component={Main}/>

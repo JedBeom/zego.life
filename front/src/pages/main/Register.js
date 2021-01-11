@@ -42,7 +42,7 @@ const Register = () => {
 
 
     let minDate = new Date(2002, 0, 1)
-    let maxDate = new Date(2005, 11, 31)
+    let maxDate = new Date(2006, 11, 31)
 
     const authScan = () => {
         setIsAuthBarcode(true)

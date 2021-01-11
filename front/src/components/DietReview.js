@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {timestampDot} from '../utils/timestamp'
 import axios from 'axios'
 import CheckGreen from '../components/CheckGreen'
+import {isUser} from "../utils/getRoles"
 import {getDietReviewPossible} from '../common/api'
 
 const DietReview = () => {
@@ -17,7 +18,7 @@ const DietReview = () => {
     const [submitted, setSubmitted] = useState(false)
 
     const fetchPossible = async () => {
-        if (localStorage.getItem("token") === null) {
+        if (!isUser()) {
             return
         }
 

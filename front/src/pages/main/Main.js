@@ -7,6 +7,7 @@ import DdayCounter from "../../components/DdayCounter"
 import {getD2UByDiet, getDietByDate} from '../../common/api'
 import {timestampDot} from '../../utils/timestamp'
 import whatMeal from '../../utils/whatMeal'
+import {isUser} from "../../utils/getRoles"
 
 import DietReview from '../../components/DietReview'
 import DormInspector from "../../components/DormInspector"
@@ -65,7 +66,7 @@ const Main = () => {
 
         const fetchD2U = async () => {
             setDietID(dietIDnow)
-            if (localStorage.getItem("token") === null) {
+            if (!isUser()) {
                 return
             }
             try {

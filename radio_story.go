@@ -36,9 +36,7 @@ func postRadioStory(c echo.Context) error {
 		return echo.ErrInternalServerError
 	}
 
-	return c.JSON(200, Map{
-		"message": "success",
-	})
+	return c.NoContent(200)
 }
 
 func getRadioStoriesAll(c echo.Context) error {

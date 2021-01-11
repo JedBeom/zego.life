@@ -21,7 +21,7 @@ func getMe(c echo.Context) error {
 		return apierror.ErrInterface.Send(c)
 	}
 
-	return c.JSONPretty(200, u, JSONIndent)
+	return c.JSON(200, u)
 }
 
 func patchUser(c echo.Context) error {
@@ -69,9 +69,7 @@ func patchUser(c echo.Context) error {
 		return echo.ErrInternalServerError
 	}
 
-	return c.JSON(200, Map{
-		"message": "success",
-	})
+	return c.NoContent(200)
 }
 
 func getUsersByName(c echo.Context) error {

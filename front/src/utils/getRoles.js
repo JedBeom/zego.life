@@ -5,6 +5,15 @@ if (roles === null || roles === undefined) {
     roles = roles.split(",")
 }
 
+let user = null
+if (localStorage.getItem("token") !== null) {
+    user = true
+}
+
+const isUser = () => {
+    return user
+}
+
 const admin = roles.includes("admin")
 const isAdmin = () => {
     return admin
@@ -19,4 +28,4 @@ const isThat = role => {
     return roles.includes(role)
 }
 
-export {isAdmin, isOBT, isThat}
+export {isUser, isAdmin, isOBT, isThat}

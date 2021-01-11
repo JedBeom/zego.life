@@ -12,10 +12,6 @@ import (
 	_ "github.com/joho/godotenv/autoload"
 )
 
-const (
-	JSONIndent = "    "
-)
-
 type Map map[string]string
 
 var banner = `  __________ ____  ___   _     ___ _____ _____

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
-import {isAdmin, isOBT} from '../../utils/getRoles'
+import {isAdmin, isOBT, isUser} from '../../utils/getRoles'
 
 import TvIcon from '../../icons/Tv'
 
@@ -14,7 +14,7 @@ const Me = () => {
     const [refreshLoading, setRefreshLoading] = useState(false)
     const [theme, setTheme] = useState(localStorage.getItem("theme"))
 
-    if (localStorage.getItem("token") === null) {
+    if (!isUser()) {
         window.location = "/login"
         return
     }

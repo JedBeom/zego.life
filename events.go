@@ -24,7 +24,7 @@ func getEventsByYearMonth(c echo.Context) error {
 		return echo.ErrInternalServerError
 	}
 
-	return c.JSONPretty(200, events, JSONIndent)
+	return c.JSON(200, events)
 }
 
 func getEventsByDate(c echo.Context) error {

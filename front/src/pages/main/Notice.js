@@ -5,6 +5,7 @@ import Back from "../../components/Back"
 import NoticeCard from '../../components/NoticeCard'
 import axios from 'axios'
 import {ErrorBox} from '../../components/AlertBox';
+import PencilIcon from "../../icons/Pencil"
 
 const Notice = () => {
 
@@ -50,7 +51,12 @@ const Notice = () => {
             <ErrorBox>{errMsg}</ErrorBox>
             {
                 notices.map(e => {
-                    return <NoticeCard key={e.Title} notice={e}/>
+                    return <NoticeCard key={e.Title} notice={e}>
+                        {isAdmin() ? <NavLink to={`/admin/notice-new/${e.ID}`}>
+                            <button className="button float-right"><PencilIcon className="icon icon-tabler"/>EDIT
+                            </button>
+                        </NavLink> : null}
+                    </NoticeCard>
                 })
             }
         </>

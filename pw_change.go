@@ -69,7 +69,5 @@ func postPwChange(c echo.Context) error {
 
 	_ = t.Use(db)
 
-	return c.JSON(200, Map{
-		"message": "success",
-	})
+	return c.NoContent(200)
 }

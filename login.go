@@ -34,9 +34,9 @@ func postLogin(c echo.Context) error {
 		return apierror.ErrLoginFailed.Send(c)
 	}
 
-	return c.JSONPretty(200, Map{
+	return c.JSON(200, Map{
 		"token": s.ID,
-	}, JSONIndent)
+	})
 }
 
 func getLogout(c echo.Context) error {
@@ -51,7 +51,5 @@ func getLogout(c echo.Context) error {
 		return apierror.ErrDBErr.Send(c)
 	}
 
-	return c.JSONPretty(200, Map{
-		"message": "success",
-	}, JSONIndent)
+	return c.NoContent(200)
 }

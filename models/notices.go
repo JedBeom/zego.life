@@ -15,9 +15,9 @@ func NoticeLast(db *pg.DB) (n Notice, err error) {
 	return
 }
 
-// Update 함수는 제목과 내용을 업뎃해요
+// Update 함수는 제목과 작성자와 내용을 업뎃해요
 func (n *Notice) Update(db *pg.DB) error {
-	_, err := db.Model(n).WherePK().Column("title", "content").Update()
+	_, err := db.Model(n).WherePK().Update()
 	return err
 }
 

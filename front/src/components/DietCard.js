@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DietIcon from '../icons/Diet'
+import {isUser} from '../utils/getRoles'
 
 // applied
 // -1, default: 로그인안됨
@@ -48,7 +49,7 @@ const DietCard = ({diet, applied}) => {
 			badgeColor = "blue"
 			break
 		default:
-			if (localStorage.getItem("token") != null) {
+			if (isUser()) {
 				badgeMsg = "로딩 중"
 				badgeIcon = <div className="spinner bw-3 icon"/>
 				badgeColor = "teal"

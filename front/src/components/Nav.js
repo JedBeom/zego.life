@@ -1,6 +1,6 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
-
+import {isUser} from "../utils/getRoles"
 import CalendarIcon from '../icons/Calendar'
 
 const Nav = () => {
@@ -17,7 +17,7 @@ const Nav = () => {
                         </svg>
                     </NavLink>
                 </li>
-                {localStorage.getItem("token") != null ? <>
+                {isUser() ? <>
                         <li>
                             <NavLink to="/calendar" activeClassName={"nav-active"}>
                                 <CalendarIcon/>

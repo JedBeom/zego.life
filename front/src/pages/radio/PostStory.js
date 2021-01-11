@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Back from '../../components/Back'
 import axios from 'axios';
-import {isAdmin, isThat} from '../../utils/getRoles'
+import {isAdmin, isThat, isUser} from '../../utils/getRoles'
 import {NavLink} from 'react-router-dom';
 import {ErrorBox, SuccessBox} from "../../components/AlertBox"
 
@@ -53,7 +53,7 @@ const PostStory = () => {
     }
 
     useEffect(() => {
-        if (localStorage.getItem("token") == null) setErrMsg("로그인 해주세요.")
+        if (!isUser()) setErrMsg("로그인 해주세요.")
     }, [])
 
     return (

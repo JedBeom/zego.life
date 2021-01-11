@@ -36,6 +36,20 @@ func getLastNoticeTitle(c echo.Context) error {
 	})
 }
 
+func getNoticeByID(c echo.Context) error {
+	id := c.Param("id")
+	if id == "" {
+		return echo.ErrBadRequest
+	}
+
+	n, err := models.NoticeByID(db, id)
+	if err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	return c.JSON(200, n)
+}
+
 func postNotice(c echo.Context) error {
 	// admin only
 	u, ok := c.Get("user").(models.User)
@@ -68,7 +82,37 @@ func postNotice(c echo.Context) error {
 		return echo.ErrInternalServerError
 	}
 
-	return c.JSON(200, Map{
-		"message": "success",
-	})
+	return c.NoContent(200)
+}
+
+func patchNoticeByID(c echo.Context) error {
+	id := c.Param("id")
+	if id == "" {
+		return echo.ErrBadRequest
+	}
+
+	p := struct {
+		Title   string
+		Author  string
+		Content string
+	}{}
+	if err := c.Bind(&p); err != nil {
+		return echo.ErrBadRequest
+	}
+
+	n, err := models.NoticeByID(db, id)
+	if err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	n.Title = p.Title
+	n.Author = p.Author
+	n.Content = p.Content
+	n.ContentHTML = string(blackfriday.Run([]byte(n.Content), blackfriday.WithNoExtensions()))
+
+	if err := n.Update(db); err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	return c.NoContent(200)
 }

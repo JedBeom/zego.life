@@ -58,6 +58,7 @@ func routes(e *echo.Echo) {
 
 			// notices
 			admin.POST("/notices", postNotice) // admin
+			admin.PATCH("/notices/:id", patchNoticeByID)
 
 			// timetables
 			u.GET("/timetables/:grade/:class", getTimetableByGradeClass)
@@ -80,6 +81,7 @@ func routes(e *echo.Echo) {
 
 		api.GET("/notices/last", getLastNoticeTitle)
 		api.GET("/notices", getNoticesAll)
+		api.GET("/notices/:id", getNoticeByID)
 
 		api.GET("/health/connection", func(c echo.Context) error {
 			return c.JSON(200, Map{"message": "success"})
