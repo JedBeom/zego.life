@@ -26,7 +26,7 @@ const isOBT = () => {
 
 const invited = roles.includes("invited")
 const isInvited = () => {
-    return obt
+    return invited
 }
 
 const isThat = role => {
