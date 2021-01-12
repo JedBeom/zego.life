@@ -24,8 +24,13 @@ const isOBT = () => {
     return obt
 }
 
+const invited = roles.includes("invited")
+const isInvited = () => {
+    return obt
+}
+
 const isThat = role => {
     return roles.includes(role)
 }
 
-export {isUser, isAdmin, isOBT, isThat}
+export {isUser, isAdmin, isOBT, isInvited, isThat}

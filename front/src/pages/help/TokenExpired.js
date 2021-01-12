@@ -5,6 +5,7 @@ const TokenExpired = () => {
 
     const logout = async () => {
         setLoading(true)
+        sessionStorage.clear()
         localStorage.clear()
         window.location = "/login"
     }

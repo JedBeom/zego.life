@@ -118,7 +118,13 @@ func (u *User) UpdateV1(db *pg.DB) error {
 
 func (u *User) UpdatePw(db *pg.DB) error {
 	u.UpdatedAt = time.Now()
-	_, err := db.Model(u).WherePK().Column("password").Update()
+	_, err := db.Model(u).WherePK().Column("password", "updated_at").Update()
+	return err
+}
+
+func (u *User) UpdateRoles(db *pg.DB) error {
+	u.UpdatedAt = time.Now()
+	_, err := db.Model(u).WherePK().Column("roles", "updated_at").Update()
 	return err
 }
 

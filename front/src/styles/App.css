@@ -87,12 +87,13 @@ option {
 .site {
     margin-left: auto;
     margin-right: auto;
-    max-width: 600px;
+    max-width: 900px;
     color: var(--site-text-color);
-    padding: 1em;
+    padding: .5em;
     padding-bottom: 10em;
-    padding-top: calc(env(safe-area-inset-top) + 2em);
-    min-height: 100%;
+    padding-top: calc(env(safe-area-inset-top) + 3em);
+    /* min-height: 100%; */
+
 }
 
 .site, .button, .input, .select, .textarea, .react-datepicker {
@@ -206,10 +207,37 @@ nav ul a {
     fill: var(--nav-bar-active-color);
 }
 
+/*
+.page {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 600px) {
+    .page {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .card-box, .campaign-box {
+        flex: 1 1 auto;
+        min-width: 20rem;
+    }
+
+    .campaign-box {
+        width: 100%;
+    }
+
+    .w-100 {
+        width: 100%;
+    }
+}
+*/
+
 .page-title {
     font-size: 2.3em;
     margin-bottom: .75rem;
-    margin-left: .25em;
+    margin-left: .5em;
 
     -webkit-text-stroke-color: var(--page-title-bg-color);
 }
@@ -242,9 +270,12 @@ a:has("div") {
     animation: animateright 0.4s
 }
 
+.card-box, .campaign-box, .radio-description, .notice-line {
+    margin: 0 .5rem 1rem .5rem;
+}
+
 .card-box {
     padding: 1em;
-    margin-bottom: 1em;
     border-radius: 8px;
     background-color: var(--card-box-bg-color);
     background-image: var(--card-box-bg-image);
@@ -652,7 +683,6 @@ input.register-birthday {
 /* advertisement */
 .campaign-box {
     padding: 1em;
-    margin-bottom: 1em;
     border-radius: 8px;
     background-color: var(--card-box-bg-color);
     background-image: var(--card-box-bg-image);

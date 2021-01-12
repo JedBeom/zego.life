@@ -32,12 +32,14 @@ func routes(e *echo.Echo) {
 
 			u.GET("/me", getMe)
 			u.GET("/logout", getLogout)
-			u.PATCH("/users/:user_id", patchUser)
+			u.PATCH("/users/:user_id/v1", patchUserV1)
 
 			// admin-only
 			admin.GET("/users/count", getUsersAllCount)
 			admin.GET("/users/search/by-name/:name/order-by/:order-by", getUsersByName) // admin-only
 			admin.GET("/users/search/order-by/:order-by", getUsersAll)                  // admin-only
+			admin.PATCH("/users/:user_id/roles", patchUserRoles)
+
 			u.GET("/users/:user_id/pw-change", getPwChangeToken)
 
 			// radio-stories

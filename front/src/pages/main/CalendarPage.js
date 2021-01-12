@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react'
 import DatePicker from 'react-datepicker'
+import {getD2UByDiet, getDietByDate, getEventsByDate, getEventsDateOnly} from '../../common/api'
+
+import Page from "../../components/Page"
+import {ErrorBox} from "../../components/AlertBox"
 import DietCard from '../../components/DietCard'
 import DormInspector from '../../components/DormInspector'
-import {getD2UByDiet, getDietByDate, getEventsByDate, getEventsDateOnly} from '../../common/api'
+
 import {eventMake} from '../../utils/eventsMake'
 import {timestampDot, timestampHyphen} from '../../utils/timestamp'
 import {isUser} from "../../utils/getRoles"
 import CalendarIcon from '../../icons/Calendar'
-import {ErrorBox, InfoBox} from "../../components/AlertBox"
 
 import "react-datepicker/dist/react-datepicker.css";
 import "../../styles/calendar.css"
@@ -97,12 +100,13 @@ const DietPage = () => {
     }
 
     return (
-        <>
-            <h1 className="page-title">캘린더</h1>
+        <Page head={<h1 className="page-title">캘린더</h1>}>
+            {/*}
             <InfoBox>2월 급식 신청 기간입니다. <a href="http://gwang.i-zone.kr" rel="noopener noreferrer" target="_blank">플라이키친
                 가기</a></InfoBox>
+            */}
             <ErrorBox>{errMsg}</ErrorBox>
-            <article className={`card-box shadow-3`}>
+            <article className="card-box shadow-3 w-100">
                 <h2 className={"card-title font-s-core px-2"}>
                     <CalendarIcon className="icon icon-tabler"/>
                     날짜 선택
@@ -129,7 +133,7 @@ const DietPage = () => {
                 {localStorage.getItem("me.residence") === "1" ? <DormInspector date={date} correction={false}/> : null}
             </>
             }
-        </>
+        </Page>
     )
 }
 

@@ -150,6 +150,17 @@ type RadioStory struct {
 	CreatedAt time.Time
 }
 
+type Thread struct {
+	ID         string
+	OpenUserID string
+	OpenUser   *User
+
+	Visible bool
+
+	CreatedAt time.Time
+	UpdatedAt time.Time
+}
+
 type Session struct {
 	ID        string
 	UserID    string

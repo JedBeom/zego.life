@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import Back from "../../components/Back"
-import {WarningBox} from "../../components/AlertBox";
+import {SuccessBox, WarningBox} from "../../components/AlertBox";
 import axios from 'axios'
 
 const Feedbacks = () => {
+    const [okMsg, setOkMsg] = useState("")
     const [errMsg, setErrMsg] = useState("")
     const [fs, setFs] = useState([])
 
@@ -20,15 +21,17 @@ const Feedbacks = () => {
     }
 
     const setAnswer = async (f) => {
+        setOkMsg("")
+        setErrMsg("")
         let answer = window.prompt(`내용: ${f.Content}...에 답변하기`, f.Answer)
         if (answer == null) return
         f.Answer = answer
         try {
             await axios.patch(`feedbacks/${f.ID}`, f)
-            alert("OK")
+            setOkMsg("답변을 보냈어요.")
             await get()
         } catch (e) {
-            alert(`답변 실패... ${e}`)
+            setErrMsg(`답변 실패... ${e}`)
         }
     }
 
@@ -40,6 +43,7 @@ const Feedbacks = () => {
         <>
             <h1 className="page-title"><Back content="피드백 열람"/></h1>
             <WarningBox>{errMsg}</WarningBox>
+            <SuccessBox>{okMsg}</SuccessBox>
             {
                 fs.map((f) =>
                     <article onClick={() => setAnswer(f)} key={f.ID} className="card-box shadow-3 feedback-box">

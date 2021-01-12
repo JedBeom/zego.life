@@ -6,9 +6,16 @@ error
 */
 
 .alert-box {
+    z-index: 98;
+
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
     padding: 0.75rem 1.25rem;
+
+    position: sticky;
+    top: calc(env(safe-area-inset-top) + 4rem);
+
+    width: 100%;
 
     border-radius: 3px;
     border-width: 6px;
@@ -117,4 +124,17 @@ modal-inner
     transform: translateY(-50%);
     margin: 0 auto;
     padding: 40px 20px;
+}
+
+/*
+beta-badge
+*/
+
+.beta-badge {
+    font-size: .75rem;
+    margin: .75rem;
+    display: inline-block;
+    vertical-align: middle;
+
+    line-height: 1em;
 }

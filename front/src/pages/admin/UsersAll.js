@@ -74,6 +74,7 @@ const UsersAll = () => {
 
     const getToken = async (id) => {
         setOkMsg("")
+        setErrMsg("")
 
         if (!window.confirm("암호 재설정 토큰을 생성해 클립보드에 복사합니다.")) {
             return
@@ -84,6 +85,36 @@ const UsersAll = () => {
             let link = `https://zego.life/help/pw-change/${data.ID}`
             copy(link)
             setOkMsg("복사되었습니다. " + link)
+        } catch (e) {
+            setErrMsg(`문제 발생 ${e}`)
+        }
+        setLoading(false)
+    }
+
+    const updateRoles = async (id, roles) => {
+        setOkMsg("")
+        setErrMsg("")
+
+        if (roles.includes("admin")) {
+            setErrMsg("어드민의 역할은 수정할 수 없습니다!")
+            return
+        }
+
+        roles = window.prompt("역할을 수정합니다. 쉼표로 구분합니다. 마지막에도 쉼표를 붙여주세요.", roles)
+        if (roles === null) {
+            return
+        }
+
+        if (roles.includes("admin")) {
+            setErrMsg("어드민은 추가할 수 없습니다!")
+            return
+        }
+
+        setLoading(true)
+        try {
+            await axios.patch(`users/${id}/roles`, {"Roles": roles})
+            setOkMsg("역할을 수정했습니다.")
+            getResults()
         } catch (e) {
             setErrMsg(`문제 발생 ${e}`)
         }
@@ -144,6 +175,7 @@ const UsersAll = () => {
                 return (
                     <UserBox u={u} key={u.Email}>
                         <button className="button float-right" onClick={() => getToken(u.ID)}>암호 재설정 링크</button>
+                        <button className="button float-right" onClick={() => updateRoles(u.ID, u.Roles)}>역할 수정</button>
                     </UserBox>
                 )
             })}

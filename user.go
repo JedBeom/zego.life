@@ -24,7 +24,7 @@ func getMe(c echo.Context) error {
 	return c.JSON(200, u)
 }
 
-func patchUser(c echo.Context) error {
+func patchUserV1(c echo.Context) error {
 	u, ok := c.Get("user").(models.User)
 	if !ok {
 		return apierror.ErrInterface.Send(c)
@@ -66,6 +66,37 @@ func patchUser(c echo.Context) error {
 
 	u.UpdatedAt = time.Now()
 	if err := u.UpdateV1(db); err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	return c.NoContent(200)
+}
+
+func patchUserRoles(c echo.Context) error {
+	id := c.Param("user_id")
+	if id == "" {
+		return echo.ErrBadRequest
+	}
+
+	p := struct {
+		Roles string
+	}{}
+	if err := c.Bind(&p); err != nil {
+		return echo.ErrBadRequest
+	}
+
+	u, err := models.UserByID(db, id)
+	if err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	// edit or add admin is banned
+	if strings.Contains(p.Roles+u.Roles, "admin,") {
+		return echo.ErrBadRequest
+	}
+
+	u.Roles = p.Roles
+	if err := u.UpdateRoles(db); err != nil {
 		return echo.ErrInternalServerError
 	}
 

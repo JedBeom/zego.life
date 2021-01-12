@@ -30,7 +30,7 @@ const SlotFilling = () => {
         }
 
         try {
-            await axios.patch(`users/${localStorage.getItem("me.id")}`, p)
+            await axios.patch(`users/${localStorage.getItem("me.id")}/v1`, p)
 
             const respMe = await axios.get("me")
 

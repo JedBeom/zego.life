@@ -1,14 +1,15 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
-import DietCard from "../../components/DietCard"
-import DdayCounter from "../../components/DdayCounter"
 
 import {getD2UByDiet, getDietByDate} from '../../common/api'
 import {timestampDot} from '../../utils/timestamp'
 import whatMeal from '../../utils/whatMeal'
 import {isUser} from "../../utils/getRoles"
 
+import Page from "../../components/Page"
+import DietCard from "../../components/DietCard"
+import DdayCounter from "../../components/DdayCounter"
 import DietReview from '../../components/DietReview'
 import DormInspector from "../../components/DormInspector"
 
@@ -99,7 +100,7 @@ const Main = () => {
     }
 
     return (
-        <>
+        <Page head={<>
             <h1 className="page-title">홈</h1>
             <NavLink to="/notice" className="no-underline">
                 <div className="notice-line">
@@ -107,6 +108,7 @@ const Main = () => {
                     {noticeTitle}
                 </div>
             </NavLink>
+        </>}>
             <AddToHome/>
             <DdayCounter/>
             {/*
@@ -127,7 +129,7 @@ const Main = () => {
             <DietReview a={isFocused}/>
             {localStorage.getItem("me.residence") === "1" ?
                 <DormInspector date={new Date()} correction={false}/> : null}
-        </>
+        </Page>
     )
 }
 

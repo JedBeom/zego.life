@@ -20,19 +20,21 @@ import Logo from './components/Logo'
 import NotSupported from './components/NotSupported'
 import Nav from './components/Nav'
 
-import {isAdmin} from "./utils/getRoles"
+import {isAdmin, isInvited} from "./utils/getRoles"
 
 const MainRoute = lazy(() => import("./pages/main/Route"))
 const Register = lazy(() => import("./pages/main/Register"))
 const HelpRoute = lazy(() => import('./pages/help/Route'))
 const RadioRoute = lazy(() => import('./pages/radio/Route'))
+const TalksRoute = lazy(() => import('./pages/talks/Route'))
 const AdminRoute = isAdmin() ? lazy(() => import('./pages/admin/Route')) : null
+
+registerLocale('ko', ko)
+setDefaultLocale("ko")
 
 function App({history}) {
 
     useEffect(() => {
-        registerLocale('ko', ko)
-        setDefaultLocale("ko")
         axios.interceptors.response.use(res => res, err => {
             if (!err.response) {
                 history.push("/no-connection")
@@ -54,6 +56,9 @@ function App({history}) {
                         }
                         <Route path="/help" component={HelpRoute}/>
                         <Route path="/radio" component={RadioRoute}/>
+                        {
+                            isInvited() ? <Route path="/talks" component={TalksRoute}/> : null
+                        }
                         <Route path="/register" component={Register}/>
                         <Route path="/" component={MainRoute}/>
                     </Switch>
