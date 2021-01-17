@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"strconv"
+	"time"
 
 	"github.com/lithammer/shortuuid/v3"
 
@@ -49,6 +50,7 @@ func postThread(c echo.Context) error {
 		OpenUserID: u.ID,
 		Title:      p.Title,
 		Visible:    true,
+		UpdatedAt:  time.Now(),
 	}
 
 	cm := models.Comment{
