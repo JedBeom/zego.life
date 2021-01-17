@@ -159,7 +159,7 @@ type Thread struct {
 
 	Visible bool
 
-	CommentsNum int        `pg:",use_zero"`
+	CommentsNum int        `pg:",use_zero" sql:",notnull"`
 	Comments    []*Comment `pg:"rel:has-many"`
 
 	CreatedAt time.Time
@@ -169,7 +169,7 @@ type Thread struct {
 
 type Comment struct {
 	ID  string
-	Num int `pg:",use_zero"`
+	Num int `pg:",use_zero" sql:",notnull"`
 
 	ThreadID string
 	Thread   *Thread
