@@ -65,6 +65,12 @@ func routes(e *echo.Echo) {
 
 			// timetables
 			u.GET("/timetables/:grade/:class", getTimetableByGradeClass)
+
+			// talks
+			u.GET("/threads", getThreads)
+			u.GET("/threads/:id", getThreadByID)
+			u.POST("/threads", postThread)
+			u.POST("/threads/:id/comments", postComment)
 		}
 
 		api.POST("/register", postRegister)

@@ -12,7 +12,7 @@ import (
 	_ "github.com/joho/godotenv/autoload"
 )
 
-type Map map[string]string
+type Map map[string]interface{}
 
 var banner = `  __________ ____  ___   _     ___ _____ _____
  |__  / ____/ ___|/ _ \ | |   |_ _|  ___| ____|

@@ -145,6 +145,41 @@ CREATE TABLE IF NOT EXISTS radio_stories
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS threads
+(
+    id           TEXT PRIMARY KEY NOT NULL,
+    open_user_id TEXT             NOT NULL,
+    title        TEXT             NOT NULL,
+    visible      BOOL,
+    comments_num INTEGER,
+
+    created_at   TIMESTAMPTZ DEFAULT current_timestamp,
+    updated_at   TIMESTAMPTZ,
+    deleted_at   TIMESTAMPTZ,
+
+    FOREIGN KEY (open_user_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS comments
+(
+    id         TEXT PRIMARY KEY NOT NULL,
+    num        INTEGER          NOT NULL,
+    thread_id  TEXT             NOT NULL,
+
+    UNIQUE (num, thread_id),
+
+    user_id    TEXT             NOT NULL,
+    visible    BOOL,
+
+    content    TEXT             NOT NULL,
+
+    created_at TIMESTAMPTZ DEFAULT current_timestamp,
+    deleted_at TIMESTAMPTZ,
+
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (thread_id) REFERENCES threads (id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS sessions
 (
     id         TEXT PRIMARY KEY NOT NULL,

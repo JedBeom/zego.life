@@ -155,10 +155,32 @@ type Thread struct {
 	OpenUserID string
 	OpenUser   *User
 
+	Title string
+
 	Visible bool
+
+	CommentsNum int        `pg:",use_zero"`
+	Comments    []*Comment `pg:"rel:has-many"`
 
 	CreatedAt time.Time
 	UpdatedAt time.Time
+	DeletedAt time.Time `pg:",soft_delete"`
+}
+
+type Comment struct {
+	ID  string
+	Num int `pg:",use_zero"`
+
+	ThreadID string
+	Thread   *Thread
+
+	UserID  string
+	Visible bool
+
+	Content string
+
+	CreatedAt time.Time
+	DeletedAt time.Time `pg:",soft_delete"`
 }
 
 type Session struct {

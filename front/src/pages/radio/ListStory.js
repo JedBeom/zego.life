@@ -20,7 +20,12 @@ const ListStory = () => {
     }, [])
 
     if (stories[0].SongRequest === undefined) {
-        return <p>{stories[0].Content}</p>
+        return (
+            <>
+                <h1 className="page-title"><Back content="라디오 사연 보기"/></h1>
+                <div className="loader"/>
+            </>
+        )
     }
 
     return (

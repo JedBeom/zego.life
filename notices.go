@@ -32,8 +32,11 @@ func getLastNoticeTitle(c echo.Context) error {
 		return echo.ErrInternalServerError
 	}
 
+	u := c.Get("user").(models.User)
+
 	return c.JSON(200, Map{
 		"Title": last.Title,
+		"Roles": u.Roles,
 	})
 }
 

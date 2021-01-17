@@ -81,6 +81,7 @@ const Main = () => {
             try {
                 const {data} = await axios.get(`notices/last`)
                 setNoticeTitle(data.Title)
+                localStorage.setItem("me.roles", data.Roles)
             } catch (e) {
                 setNoticeTitle(`로딩 실패 ${e}`)
             }
