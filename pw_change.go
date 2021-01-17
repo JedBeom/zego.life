@@ -4,12 +4,15 @@ import (
 	"log"
 	"strings"
 
+	"github.com/go-pg/pg"
+
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
 )
 
 func getPwChangeToken(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	u, ok := c.Get("user").(models.User)
 	if !ok {
 		return apierror.ErrInterface.Send(c)
@@ -25,7 +28,7 @@ func getPwChangeToken(c echo.Context) error {
 		UserID: targetUserID,
 	}
 
-	if err := t.Create(db); err != nil {
+	if err := t.Create(conn); err != nil {
 		log.Println(err)
 		return echo.ErrInternalServerError
 	}
@@ -34,6 +37,7 @@ func getPwChangeToken(c echo.Context) error {
 }
 
 func postPwChange(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	p := struct {
 		Password string
 		Token    string
@@ -42,7 +46,7 @@ func postPwChange(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	t, err := models.TokenByID(db, p.Token)
+	t, err := models.TokenByID(conn, p.Token)
 	if err != nil {
 		return echo.ErrBadRequest
 	}
@@ -51,7 +55,7 @@ func postPwChange(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	u, err := models.UserByID(db, t.UserID)
+	u, err := models.UserByID(conn, t.UserID)
 	if err != nil {
 		log.Println(err)
 		return echo.ErrInternalServerError
@@ -62,12 +66,12 @@ func postPwChange(c echo.Context) error {
 		return echo.ErrInternalServerError
 	}
 
-	if err := u.UpdatePw(db); err != nil {
+	if err := u.UpdatePw(conn); err != nil {
 		log.Println(err)
 		return echo.ErrInternalServerError
 	}
 
-	_ = t.Use(db)
+	_ = t.Use(conn)
 
 	return c.NoContent(200)
 }

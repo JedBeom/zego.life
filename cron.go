@@ -7,6 +7,8 @@ import (
 
 func crontab() {
 	c := cron.New()
-	parse.Cron(c, db)
+	conn := db.Conn()
+	defer conn.Close()
+	parse.Cron(c, conn)
 	c.Start()
 }

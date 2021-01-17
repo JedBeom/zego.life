@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
+	"github.com/go-pg/pg"
 	"github.com/labstack/echo"
 )
 
@@ -17,7 +18,8 @@ func getDietReviewPossible(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	diet, err := models.DietReviewPossible(db, dietID, u.ID)
+	conn := c.Get("conn").(*pg.Conn)
+	diet, err := models.DietReviewPossible(conn, dietID, u.ID)
 	if err != nil {
 		return echo.ErrBadRequest
 	}
@@ -52,7 +54,8 @@ func postDietReview(c echo.Context) error {
 		BestMenu:  p.BestMenu,
 	}
 
-	if err := dr.Create(db); err != nil {
+	conn := c.Get("conn").(*pg.Conn)
+	if err := dr.Create(conn); err != nil {
 		return echo.ErrInternalServerError
 	}
 

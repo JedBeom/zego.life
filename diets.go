@@ -3,6 +3,8 @@ package main
 import (
 	"net/http"
 
+	"github.com/go-pg/pg"
+
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
 )
@@ -13,7 +15,8 @@ func getDietsByDate(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	ds, err := models.DietsByTimestamp(db, timestamp)
+	conn := c.Get("conn").(*pg.Conn)
+	ds, err := models.DietsByTimestamp(conn, timestamp)
 	if err != nil || len(ds) == 0 {
 		return echo.ErrNotFound
 	}

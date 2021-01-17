@@ -4,6 +4,8 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/go-pg/pg"
+
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
 )
@@ -19,7 +21,8 @@ func getEventsByYearMonth(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	events, err := models.EventsByMonth(db, year, month)
+	conn := c.Get("conn").(*pg.Conn)
+	events, err := models.EventsByMonth(conn, year, month)
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
@@ -28,8 +31,10 @@ func getEventsByYearMonth(c echo.Context) error {
 }
 
 func getEventsByDate(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
+
 	date := c.Param("date")
-	events, err := models.EventsByDate(db, date)
+	events, err := models.EventsByDate(conn, date)
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
@@ -38,7 +43,8 @@ func getEventsByDate(c echo.Context) error {
 }
 
 func getEventsDateOnly(c echo.Context) error {
-	dates, err := models.EventsDateOnly(db, time.Now())
+	conn := c.Get("conn").(*pg.Conn)
+	dates, err := models.EventsDateOnly(conn, time.Now())
 	if err != nil {
 		return echo.ErrInternalServerError
 	}

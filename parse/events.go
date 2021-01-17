@@ -9,7 +9,7 @@ import (
 	"github.com/go-pg/pg"
 )
 
-func GetEventsByYearMonth(db *pg.DB, year, month int) (err error) {
+func GetEventsByYearMonth(db *pg.Conn, year, month int) (err error) {
 	// 1월 2월은 전년도 취급한다는데, sm에서 고처야 할듯.
 	sches, err := s.GetMonthSchedule(year, month)
 	if err != nil {
@@ -41,7 +41,7 @@ func scheToEvent(sche sm.Schedule) models.Event {
 	return event
 }
 
-func GetEventsIfNotExists(db *pg.DB) {
+func GetEventsIfNotExists(db *pg.Conn) {
 	t := time.Now()
 	like := fmt.Sprintf("%d%02d", t.Year(), t.Month())
 	exists, err := models.EventIDLikeExists(db, like)

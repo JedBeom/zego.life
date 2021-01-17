@@ -2,18 +2,17 @@ package main
 
 import (
 	"log"
-	"strings"
 
 	"github.com/go-pg/pg"
 
-	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
 	"github.com/russross/blackfriday/v2"
 )
 
 func getNoticesAll(c echo.Context) error {
-	ns, err := models.NoticesAll(db, 5)
+	conn := c.Get("conn").(*pg.Conn)
+	ns, err := models.NoticesAll(conn, 5)
 	if err != nil {
 		log.Println(err)
 		return echo.ErrInternalServerError
@@ -23,7 +22,9 @@ func getNoticesAll(c echo.Context) error {
 }
 
 func getLastNoticeTitle(c echo.Context) error {
-	last, err := models.NoticeLast(db)
+	con := db.Conn()
+	defer con.Close()
+	last, err := models.NoticeLast(con)
 	if err != nil {
 		if err == pg.ErrNoRows {
 			return c.JSON(200, Map{"Title": "공지 없음"})
@@ -37,12 +38,13 @@ func getLastNoticeTitle(c echo.Context) error {
 }
 
 func getNoticeByID(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	id := c.Param("id")
 	if id == "" {
 		return echo.ErrBadRequest
 	}
 
-	n, err := models.NoticeByID(db, id)
+	n, err := models.NoticeByID(conn, id)
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
@@ -51,15 +53,7 @@ func getNoticeByID(c echo.Context) error {
 }
 
 func postNotice(c echo.Context) error {
-	// admin only
-	u, ok := c.Get("user").(models.User)
-	if !ok {
-		return apierror.ErrInterface.Send(c)
-	}
-
-	if !strings.Contains(u.Roles, "admin,") {
-		return echo.ErrUnauthorized
-	}
+	conn := c.Get("conn").(*pg.Conn)
 
 	p := struct {
 		Title   string
@@ -78,7 +72,7 @@ func postNotice(c echo.Context) error {
 
 	n.ContentHTML = string(blackfriday.Run([]byte(n.Content), blackfriday.WithNoExtensions()))
 
-	if err := n.Create(db); err != nil {
+	if err := n.Create(conn); err != nil {
 		return echo.ErrInternalServerError
 	}
 
@@ -86,6 +80,7 @@ func postNotice(c echo.Context) error {
 }
 
 func patchNoticeByID(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	id := c.Param("id")
 	if id == "" {
 		return echo.ErrBadRequest
@@ -100,7 +95,7 @@ func patchNoticeByID(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	n, err := models.NoticeByID(db, id)
+	n, err := models.NoticeByID(conn, id)
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
@@ -110,7 +105,7 @@ func patchNoticeByID(c echo.Context) error {
 	n.Content = p.Content
 	n.ContentHTML = string(blackfriday.Run([]byte(n.Content), blackfriday.WithNoExtensions()))
 
-	if err := n.Update(db); err != nil {
+	if err := n.Update(conn); err != nil {
 		return echo.ErrInternalServerError
 	}
 

@@ -62,14 +62,16 @@ func postRegister(c echo.Context) error {
 		u.Sex = 2 // 여자
 	}
 
+	conn := c.Get("conn").(*pg.Conn)
+
 	if ure := u.ValidateUserRegister(); ure != nil {
 		return ure.Send(c)
 	}
-	if ure := u.CanRegister(db); ure != nil {
+	if ure := u.CanRegister(conn); ure != nil {
 		return ure.Send(c)
 	}
 
-	if err := u.Create(db); err != nil {
+	if err := u.Create(conn); err != nil {
 		pgErr, ok := err.(pg.Error)
 		if ok && pgErr.Field(models.ErrPgErrCodeField) == models.ErrPgUniqueViolation {
 			ure := apierror.UserRegisterError{
@@ -103,17 +105,18 @@ func postKitchenLogin(c echo.Context) error {
 }
 
 func getFirstParse(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	email := c.Param("email")
 	if email == "" {
 		return echo.ErrBadRequest
 	}
 
-	u, err := models.UserByEmail(db, email)
+	u, err := models.UserByEmail(conn, email)
 	if err != nil {
 		return echo.ErrBadRequest
 	}
 
-	exists, err := models.Diet2UserUserExists(db, u)
+	exists, err := models.Diet2UserUserExists(conn, u)
 	if err != nil {
 		return apierror.ErrDBErr.Send(c)
 	}
@@ -122,11 +125,11 @@ func getFirstParse(c echo.Context) error {
 		return apierror.ErrFirstParse.Send(c)
 	}
 
-	calendars := strings.Split(models.SettingByKey(db, "d2u_calendar"), ",")
+	calendars := strings.Split(models.SettingByKey(conn, "d2u_calendar"), ",")
 	for _, cal := range calendars {
-		if err := parse.GetApplyListOfUser(db, u, cal); err != nil {
+		if err := parse.GetApplyListOfUser(conn, u, cal); err != nil {
 			log.Println(err)
-			models.LogError(db, u.ID, c.Request().Header.Get(echo.HeaderXRequestID), "getFirstParse():parse.GetApplyListOfUser()", err)
+			models.LogError(conn, u.ID, c.Request().Header.Get(echo.HeaderXRequestID), "getFirstParse():parse.GetApplyListOfUser()", err)
 			return apierror.ErrFirstParse.Send(c)
 		}
 	}

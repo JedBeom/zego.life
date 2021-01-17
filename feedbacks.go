@@ -4,13 +4,16 @@ import (
 	"log"
 	"strings"
 
+	"github.com/go-pg/pg"
+
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
 )
 
 func getFeedbacksAll(c echo.Context) error {
-	all, err := models.FeedbacksAll(db)
+	conn := c.Get("conn").(*pg.Conn)
+	all, err := models.FeedbacksAll(conn)
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
@@ -19,6 +22,7 @@ func getFeedbacksAll(c echo.Context) error {
 }
 
 func getFeedbacksByUser(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	id := c.Param("user_id")
 	u, ok := c.Get("user").(models.User)
 	if !ok {
@@ -29,7 +33,7 @@ func getFeedbacksByUser(c echo.Context) error {
 		return echo.ErrUnauthorized
 	}
 
-	fs, err := models.FeedbacksByUser(db, id)
+	fs, err := models.FeedbacksByUser(conn, id)
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
@@ -38,8 +42,9 @@ func getFeedbacksByUser(c echo.Context) error {
 }
 
 func getFeedbackByID(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	id := c.Param("id")
-	f, err := models.FeedbackByID(db, id)
+	f, err := models.FeedbackByID(conn, id)
 	if err != nil {
 		return echo.ErrNotFound
 	}
@@ -48,6 +53,7 @@ func getFeedbackByID(c echo.Context) error {
 }
 
 func postFeedback(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	u, ok := c.Get("user").(models.User)
 	if !ok {
 		return apierror.ErrInterface.Send(c)
@@ -69,7 +75,7 @@ func postFeedback(c echo.Context) error {
 		Content: p.Content,
 	}
 
-	if err := f.Create(db); err != nil {
+	if err := f.Create(conn); err != nil {
 		return echo.ErrInternalServerError
 	}
 
@@ -77,6 +83,7 @@ func postFeedback(c echo.Context) error {
 }
 
 func patchFeedbackByID(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	id := c.Param("id")
 	p := models.Feedback{}
 	if err := c.Bind(&p); err != nil {
@@ -87,7 +94,7 @@ func patchFeedbackByID(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	if err := p.Update(db); err != nil {
+	if err := p.Update(conn); err != nil {
 		log.Println(err)
 		return echo.ErrInternalServerError
 	}

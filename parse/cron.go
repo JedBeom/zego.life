@@ -9,7 +9,7 @@ import (
 	"github.com/robfig/cron/v3"
 )
 
-func Cron(c *cron.Cron, db *pg.DB) {
+func Cron(c *cron.Cron, db *pg.Conn) {
 	// every month 28th
 	if _, err := c.AddFunc("0 0 28 * *", func() {
 		t := time.Now().AddDate(0, 1, 0)

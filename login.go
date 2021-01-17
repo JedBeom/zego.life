@@ -3,6 +3,8 @@ package main
 import (
 	"time"
 
+	"github.com/go-pg/pg"
+
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
@@ -10,6 +12,7 @@ import (
 )
 
 func postLogin(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	p := struct {
 		Email    string
 		Password string
@@ -19,7 +22,7 @@ func postLogin(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	u, err := models.UserByEmail(db, p.Email)
+	u, err := models.UserByEmail(conn, p.Email)
 	if err != nil {
 		time.Sleep(time.Second * 3) // fake wait
 		return apierror.ErrLoginFailed.Send(c)
@@ -29,7 +32,7 @@ func postLogin(c echo.Context) error {
 		return apierror.ErrLoginFailed.Send(c)
 	}
 
-	s, err := u.NewSession(db)
+	s, err := u.NewSession(conn)
 	if err != nil {
 		return apierror.ErrLoginFailed.Send(c)
 	}
@@ -40,13 +43,14 @@ func postLogin(c echo.Context) error {
 }
 
 func getLogout(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	sID, ok := c.Get("s_id").(string)
 	if !ok {
 		return apierror.ErrInterface.Send(c)
 	}
 
 	s := models.Session{ID: sID}
-	err := s.Delete(db)
+	err := s.Delete(conn)
 	if err != nil {
 		return apierror.ErrDBErr.Send(c)
 	}

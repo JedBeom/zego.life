@@ -11,6 +11,7 @@ func routes(e *echo.Echo) {
 	e.Use(echoMw.CORS())
 	e.Use(echoMw.Recover())
 	e.Use(echoMw.RequestID())
+	e.Use(middlewareConn)
 	e.Use(middlewareLogger)
 
 	front := "front/build"

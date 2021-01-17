@@ -7,16 +7,16 @@ import (
 	"github.com/go-pg/pg"
 )
 
-func (s *Event) Create(db *pg.DB) (err error) {
+func (s *Event) Create(db *pg.Conn) (err error) {
 	return db.Insert(s)
 }
 
-func EventIDLikeExists(db *pg.DB, like string) (bool, error) {
+func EventIDLikeExists(db *pg.Conn, like string) (bool, error) {
 	like += "%"
 	return db.Model(&Event{}).Where("id like ?", like).Exists()
 }
 
-func EventsByMonth(db *pg.DB, year, month int) (events []Event, err error) {
+func EventsByMonth(db *pg.Conn, year, month int) (events []Event, err error) {
 	yyyymm := fmt.Sprintf("%d-%02d-", year, month)
 	start := yyyymm + "01"
 
@@ -38,12 +38,12 @@ func EventsByMonth(db *pg.DB, year, month int) (events []Event, err error) {
 	return
 }
 
-func EventsByDate(db *pg.DB, date string) (events []Event, err error) {
+func EventsByDate(db *pg.Conn, date string) (events []Event, err error) {
 	err = db.Model(&events).Where("date = ?", date).Select()
 	return
 }
 
-func EventsDateOnly(db *pg.DB, now time.Time) (dates []string, err error) {
+func EventsDateOnly(db *pg.Conn, now time.Time) (dates []string, err error) {
 	min := now.AddDate(0, -1, 0).Format("2006-01-02")
 	max := now.AddDate(0, +1, 0).Format("2006-01-02")
 	stmt, err := db.Prepare(fmt.Sprintf(`select date from events where date between '%s' and '%s'`, min, max))

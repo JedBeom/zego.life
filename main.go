@@ -24,8 +24,10 @@ var db *pg.DB
 
 func main() {
 	db = models.Connect()
-	parse.GetDietIfNotExist(db)
-	parse.GetEventsIfNotExists(db)
+	conn := db.Conn()
+	parse.GetDietIfNotExist(conn)
+	parse.GetEventsIfNotExists(conn)
+	conn.Close()
 
 	fmt.Println(banner)
 	log.Println("始めましょう!")

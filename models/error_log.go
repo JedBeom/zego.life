@@ -9,7 +9,7 @@ import (
 	"github.com/go-pg/pg"
 )
 
-func LogError(db *pg.DB, userID, accessLogID, loc string, contents ...interface{}) {
+func LogError(db *pg.Conn, userID, accessLogID, loc string, contents ...interface{}) {
 	content := fmt.Sprintln(contents...)
 	content = content[:len(content)-len("\n")]
 	errLog := ErrorLog{

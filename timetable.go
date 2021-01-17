@@ -20,7 +20,8 @@ func getTimetableByGradeClass(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	table, err := models.TimetableTemplateByGradeClass(db, grade, class)
+	conn := c.Get("conn").(*pg.Conn)
+	table, err := models.TimetableTemplateByGradeClass(conn, grade, class)
 	if err != nil {
 		if err == pg.ErrNoRows {
 			return echo.ErrNotFound

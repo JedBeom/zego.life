@@ -13,7 +13,7 @@ import (
 	"github.com/labstack/echo"
 )
 
-const LIMIT_DEFAULT = 10
+const LimitDefault = 10
 
 func getMe(c echo.Context) error {
 	u, ok := c.Get("user").(models.User)
@@ -65,7 +65,9 @@ func patchUserV1(c echo.Context) error {
 	u.BirthDay = p.BirthdayDay
 
 	u.UpdatedAt = time.Now()
-	if err := u.UpdateV1(db); err != nil {
+
+	conn := c.Get("conn").(*pg.Conn)
+	if err := u.UpdateV1(conn); err != nil {
 		return echo.ErrInternalServerError
 	}
 
@@ -85,7 +87,8 @@ func patchUserRoles(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	u, err := models.UserByID(db, id)
+	conn := c.Get("conn").(*pg.Conn)
+	u, err := models.UserByID(conn, id)
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
@@ -96,7 +99,8 @@ func patchUserRoles(c echo.Context) error {
 	}
 
 	u.Roles = p.Roles
-	if err := u.UpdateRoles(db); err != nil {
+
+	if err := u.UpdateRoles(conn); err != nil {
 		return echo.ErrInternalServerError
 	}
 
@@ -106,7 +110,7 @@ func patchUserRoles(c echo.Context) error {
 func getUsersByName(c echo.Context) error {
 	limit, err := strconv.Atoi(c.QueryParam("limit"))
 	if err != nil || limit > 100 {
-		limit = LIMIT_DEFAULT // default
+		limit = LimitDefault // default
 	}
 	page, err := strconv.Atoi(c.QueryParam("page"))
 	if err != nil || page <= 0 {
@@ -120,7 +124,8 @@ func getUsersByName(c echo.Context) error {
 
 	orderBy := c.Param("order-by")
 
-	us, err := models.UsersLikeName(db, name, orderBy, limit, page)
+	conn := c.Get("conn").(*pg.Conn)
+	us, err := models.UsersLikeName(conn, name, orderBy, limit, page)
 	if err != nil {
 		log.Println(err)
 		return echo.ErrInternalServerError
@@ -130,7 +135,8 @@ func getUsersByName(c echo.Context) error {
 }
 
 func getUsersAllCount(c echo.Context) error {
-	count, err := models.UsersAllCount(db)
+	conn := c.Get("conn").(*pg.Conn)
+	count, err := models.UsersAllCount(conn)
 	if err != nil {
 		return echo.ErrInternalServerError
 	}
@@ -143,7 +149,7 @@ func getUsersAllCount(c echo.Context) error {
 func getUsersAll(c echo.Context) error {
 	limit, err := strconv.Atoi(c.QueryParam("limit"))
 	if err != nil || limit > 100 {
-		limit = LIMIT_DEFAULT // default
+		limit = LimitDefault // default
 	}
 	page, err := strconv.Atoi(c.QueryParam("page"))
 	if err != nil || page <= 0 {
@@ -152,9 +158,10 @@ func getUsersAll(c echo.Context) error {
 
 	orderBy := c.Param("order-by")
 
-	us, err := models.UsersAllOptions(db, orderBy, limit, page)
+	conn := c.Get("conn").(*pg.Conn)
+	us, err := models.UsersAllOptions(conn, orderBy, limit, page)
 	if err == pg.ErrNoRows || len(us) == 0 {
-		log.Println("norows")
+		log.Println("no rows")
 		return echo.ErrNotFound
 	} else if err != nil {
 		return echo.ErrInternalServerError

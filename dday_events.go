@@ -5,17 +5,20 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/go-pg/pg"
+
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
 )
 
 func getDDayEvent(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	grade, err := strconv.Atoi(c.Param("grade"))
 	if err != nil {
 		return echo.ErrBadRequest
 	}
 
-	de, err := models.DDayEventByGrade(db, grade)
+	de, err := models.DDayEventByGrade(conn, grade)
 	if err != nil {
 		return echo.ErrNotFound
 	}
@@ -24,6 +27,7 @@ func getDDayEvent(c echo.Context) error {
 }
 
 func postDDayEvent(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	p := struct {
 		Name   string
 		Date   time.Time
@@ -40,7 +44,7 @@ func postDDayEvent(c echo.Context) error {
 		Target: p.Target,
 	}
 
-	if err := de.Create(db); err != nil {
+	if err := de.Create(conn); err != nil {
 		return echo.ErrInternalServerError
 	}
 

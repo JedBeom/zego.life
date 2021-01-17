@@ -37,14 +37,14 @@ func reloadFlyKitchenSess() error {
 	return err
 }
 
-func getAndCreateApplyListWg(db *pg.DB, u models.User, calendarType string, mealType int, wg *sync.WaitGroup) error {
+func getAndCreateApplyListWg(db *pg.Conn, u models.User, calendarType string, mealType int, wg *sync.WaitGroup) error {
 	err := getAndCreateApplyList(db, u, calendarType, mealType)
 	wg.Done()
 	return err
 }
 
 // TODO: QUEUE 같은거 꼭 사용하기. 이대로라면 메모리 낭비가 너무 심할듯.
-func getAndCreateApplyList(db *pg.DB, u models.User, calendarType string, mealType int) error {
+func getAndCreateApplyList(db *pg.Conn, u models.User, calendarType string, mealType int) error {
 	c := colly.NewCollector()
 	// if cookie expires, reload session
 	if flyKitchenSess == nil || flyKitchenSess.Expires.Sub(time.Now()) <= 0 {
@@ -115,7 +115,7 @@ func getAndCreateApplyList(db *pg.DB, u models.User, calendarType string, mealTy
 }
 
 // TODO: 사용자 지정으로 작업 시작하도록 해야함. 급식 신청 날짜는 맨날 바뀌니까........
-func GetApplyListOfAllUsers(db *pg.DB, calendarType string) {
+func GetApplyListOfAllUsers(db *pg.Conn, calendarType string) {
 	us, err := models.UsersAll(db)
 	if err != nil {
 		models.LogError(db, "", "", "GetApplyListOfAllUsers():models.UsersAll()", err)
@@ -149,7 +149,7 @@ func GetApplyListOfAllUsers(db *pg.DB, calendarType string) {
 
 }
 
-func GetApplyListOfUser(db *pg.DB, u models.User, calendarType string) error {
+func GetApplyListOfUser(db *pg.Conn, u models.User, calendarType string) error {
 	if calendarType == "" {
 		return errors.New("calendarType is empty")
 	}

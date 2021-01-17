@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
+	"github.com/go-pg/pg"
 	"github.com/labstack/echo"
 )
 
@@ -19,7 +20,8 @@ func getDiet2UserByDietAndUser(c echo.Context) error {
 		return echo.ErrForbidden
 	}
 
-	d2u, err := models.Diet2UserByDietAndUser(db, dietID, userID)
+	conn := c.Get("conn").(*pg.Conn)
+	d2u, err := models.Diet2UserByDietAndUser(conn, dietID, userID)
 	if err != nil {
 		// TODO: 세분화된 에러
 		return echo.ErrNotFound

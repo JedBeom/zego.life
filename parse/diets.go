@@ -12,7 +12,7 @@ import (
 	"github.com/JedBeom/zego.life/models"
 )
 
-func parseWeeklyDiets(db *pg.DB, ts string) {
+func parseWeeklyDiets(db *pg.Conn, ts string) {
 	for t := 1; t <= 3; t++ { // 1: Breakfast, 2: Lunch, 3: Dinner
 		var err error
 		for try := 0; try < 5; try++ { // try 5 times
@@ -28,7 +28,7 @@ func parseWeeklyDiets(db *pg.DB, ts string) {
 }
 
 // ts(timestamp), t(mealType)
-func parseAndCreateWeeklyTypeDiet(db *pg.DB, ts string, t int) (err error) {
+func parseAndCreateWeeklyTypeDiet(db *pg.Conn, ts string, t int) (err error) {
 	ms, err := s.GetWeekMeal(ts, t)
 	if err != nil {
 		return
@@ -51,7 +51,7 @@ func parseAndCreateWeeklyTypeDiet(db *pg.DB, ts string, t int) (err error) {
 	return nil
 }
 
-func GetMonthDiets(db *pg.DB, year, month int) {
+func GetMonthDiets(db *pg.Conn, year, month int) {
 	var err error
 	for try := 0; try < 5; try++ { // try 5 times
 		if err = parseAndCreateMonthDiet(db, year, month); err == nil {
@@ -62,7 +62,7 @@ func GetMonthDiets(db *pg.DB, year, month int) {
 	models.LogError(db, "", "", "parseMonthDiets()", err)
 }
 
-func parseAndCreateMonthDiet(db *pg.DB, year, month int) (err error) {
+func parseAndCreateMonthDiet(db *pg.Conn, year, month int) (err error) {
 	mthMeals, err := s.GetMonthMeal(year, month)
 	if err != nil {
 		return
@@ -103,7 +103,7 @@ func meal2Diet(m sm.Meal) models.Diet {
 	return d
 }
 
-func GetDietIfNotExist(db *pg.DB) {
+func GetDietIfNotExist(db *pg.Conn) {
 	t := time.Now()
 
 	// check today

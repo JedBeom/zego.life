@@ -3,12 +3,15 @@ package main
 import (
 	"strings"
 
+	"github.com/go-pg/pg"
+
 	"github.com/JedBeom/zego.life/apierror"
 	"github.com/JedBeom/zego.life/models"
 	"github.com/labstack/echo"
 )
 
 func postRadioStory(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	u, ok := c.Get("user").(models.User)
 	if !ok {
 		return apierror.ErrInterface.Send(c)
@@ -31,8 +34,8 @@ func postRadioStory(c echo.Context) error {
 		Anonymous:   p.Anonymous,
 	}
 
-	if err := rs.Create(db); err != nil {
-		models.LogError(db, u.ID, "", "postRadioStory", err)
+	if err := rs.Create(conn); err != nil {
+		models.LogError(conn, u.ID, "", "postRadioStory", err)
 		return echo.ErrInternalServerError
 	}
 
@@ -40,6 +43,7 @@ func postRadioStory(c echo.Context) error {
 }
 
 func getRadioStoriesAll(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
 	u, ok := c.Get("user").(models.User)
 	if !ok {
 		return apierror.ErrInterface.Send(c)
@@ -50,9 +54,9 @@ func getRadioStoriesAll(c echo.Context) error {
 		return echo.ErrUnauthorized
 	}
 
-	rss, err := models.RadioStoriesAll(db, 20)
+	rss, err := models.RadioStoriesAll(conn, 20)
 	if err != nil {
-		models.LogError(db, u.ID, "", "getRadioStoriesAll", err)
+		models.LogError(conn, u.ID, "", "getRadioStoriesAll", err)
 		return echo.ErrInternalServerError
 	}
 

@@ -6,7 +6,7 @@ import (
 	"github.com/go-pg/pg"
 )
 
-func DDayEventByGrade(db *pg.DB, grade int) (de DDayEvent, err error) {
+func DDayEventByGrade(db *pg.Conn, grade int) (de DDayEvent, err error) {
 	err = db.Model(&de).
 		Where("grade = -1").WhereOr("grade = ?", grade).
 		Order("date").
@@ -15,6 +15,6 @@ func DDayEventByGrade(db *pg.DB, grade int) (de DDayEvent, err error) {
 	return
 }
 
-func (de *DDayEvent) Create(db *pg.DB) error {
+func (de *DDayEvent) Create(db *pg.Conn) error {
 	return db.Insert(de)
 }
