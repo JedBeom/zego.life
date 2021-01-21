@@ -17,7 +17,8 @@ import "../../styles/calendar.css"
 
 const DietPage = () => {
     let now = new Date()
-    let maxDate = new Date()
+    let maxDate = new Date(2021, 1, 9)
+    /*
     maxDate.setMonth(now.getMonth() + 1)
     if (now.getDate() >= 28) {
         if (now.getMonth() === 11) { // if December
@@ -29,6 +30,7 @@ const DietPage = () => {
     } else {
         maxDate.setDate(0) // last day of this month
     }
+    */
 
     let minDate = new Date()
     minDate.setDate(now.getDate() - 7)
