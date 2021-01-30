@@ -138,3 +138,23 @@ beta-badge
 
     line-height: 1em;
 }
+
+/*
+for festival
+*/
+.goto {
+    width: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.goto a {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+iframe.fes-site {
+    width: 100%;
+    height: 80vh;
+}

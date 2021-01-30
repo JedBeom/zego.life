@@ -71,6 +71,9 @@ func routes(e *echo.Echo) {
 			u.GET("/threads/:id", getThreadByID)
 			u.POST("/threads", postThread)
 			u.POST("/threads/:id/comments", postComment)
+
+			// campaigns (cmp, cmps)
+			admin.POST("/campaigns", postCampaign)
 		}
 
 		api.POST("/register", postRegister)
@@ -88,9 +91,14 @@ func routes(e *echo.Echo) {
 
 		api.POST("/tokens/pw-change", postPwChange)
 
+		api.GET("/home", getHome)
+
 		api.GET("/notices/last", getLastNoticeTitle)
 		api.GET("/notices", getNoticesAll)
 		api.GET("/notices/:id", getNoticeByID)
+
+		// campaigns (cmp, cmps)
+		api.GET("/campaigns/one", getCampaign)
 
 		api.GET("/health/connection", func(c echo.Context) error {
 			return c.JSON(200, Map{"message": "success"})

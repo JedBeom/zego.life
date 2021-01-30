@@ -20,13 +20,13 @@ import Logo from './components/Logo'
 import NotSupported from './components/NotSupported'
 import Nav from './components/Nav'
 
-import {isAdmin, isInvited} from "./utils/getRoles"
+import {isAdmin} from "./utils/getRoles"
 
 const MainRoute = lazy(() => import("./pages/main/Route"))
 const Register = lazy(() => import("./pages/main/Register"))
 const HelpRoute = lazy(() => import('./pages/help/Route'))
 const RadioRoute = lazy(() => import('./pages/radio/Route'))
-const TalksRoute = lazy(() => import('./pages/talks/Route'))
+const FesRoute = lazy(() => import('./pages/fes/Route'))
 const AdminRoute = isAdmin() ? lazy(() => import('./pages/admin/Route')) : null
 
 registerLocale('ko', ko)
@@ -56,9 +56,7 @@ function App({history}) {
                         }
                         <Route path="/help" component={HelpRoute}/>
                         <Route path="/radio" component={RadioRoute}/>
-                        {
-                            isInvited() ? <Route path="/talks" component={TalksRoute}/> : null
-                        }
+                        <Route path="/fes" component={FesRoute}/>
                         <Route path="/register" component={Register}/>
                         <Route path="/" component={MainRoute}/>
                     </Switch>

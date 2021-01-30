@@ -183,6 +183,26 @@ type Comment struct {
 	DeletedAt time.Time `pg:",soft_delete"`
 }
 
+type Campaign struct {
+	ID      string
+	IsReady bool
+
+	Title    string
+	SubTitle string
+	ImageSrc string `pg:",use_zero" sql:",notnull"`
+	Link     string `pg:",use_zero" sql:",notnull"`
+
+	UserID string
+	User   *User
+
+	Price     int
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt time.Time
+	StartAt   time.Time
+	EndAt     time.Time
+}
+
 type Session struct {
 	ID        string
 	UserID    string

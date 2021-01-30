@@ -1,8 +1,8 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
-import {isInvited, isUser} from "../utils/getRoles"
+import {isUser} from "../utils/getRoles"
 import CalendarIcon from '../icons/Calendar'
-import MessageIcon from '../icons/Message'
+import StarIcon from '../icons/Star'
 
 const Nav = () => {
     return (
@@ -24,13 +24,11 @@ const Nav = () => {
                                 <CalendarIcon/>
                             </NavLink>
                         </li>
-                        {isInvited() ?
-                            <li>
-                                <NavLink to="/talks" activeClassName={"nav-active"}>
-                                    <MessageIcon/>
-                                </NavLink>
-                            </li>
-                            : null}
+                        <li>
+                            <NavLink to="/fes" activeClassName={"nav-active"}>
+                                <StarIcon/>
+                            </NavLink>
+                        </li>
                         <li>
                             <NavLink to="/timetable" activeClassName={"nav-active"}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

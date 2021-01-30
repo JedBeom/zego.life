@@ -71,6 +71,9 @@ const DietPage = () => {
 
     const getDates = async () => {
         let ds = await getEventsDateOnly()
+        if (ds == null) {
+            ds = []
+        }
         for (let i = 0; i < ds.length; i++) {
             ds[i] = new Date(ds[i])
         }

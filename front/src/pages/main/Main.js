@@ -14,10 +14,12 @@ import DietReview from '../../components/DietReview'
 import DormInspector from "../../components/DormInspector"
 
 import AddToHome from "../../components/AddToHome"
+import CampaignBox from "../../components/CampaignBox"
 
 const Main = () => {
     const [loading, setLoading] = useState(true)
     const [diet, setDiet] = useState({when: "", dietList: []})
+    const [campaign, setCampaign] = useState({Title: "로딩 중..."})
     const [applied, setApplied] = useState(-1)
     const [noticeTitle, setNoticeTitle] = useState("로딩 중...")
     const [isFocused, setFocused] = useState(true)
@@ -77,11 +79,12 @@ const Main = () => {
             }
         }
 
-        const fetchNoticeLastTitle = async () => {
+        const fetchHome = async () => {
             try {
-                const {data} = await axios.get(`notices/last`)
-                setNoticeTitle(data.Title)
+                const {data} = await axios.get(`home`)
+                setNoticeTitle(data.NoticeTitle)
                 localStorage.setItem("me.roles", data.Roles)
+                setCampaign(data.Campaign)
             } catch (e) {
                 setNoticeTitle(`로딩 실패 ${e}`)
             }
@@ -89,7 +92,7 @@ const Main = () => {
 
         fetchDiet()
         fetchD2U()
-        fetchNoticeLastTitle()
+        fetchHome()
 
     }, [isFocused])
 
@@ -118,14 +121,7 @@ const Main = () => {
                 슬리퍼 신고 오지 마세요
             </div>
             */}
-            <article className="campaign-box shadow-3">
-                <NavLink to="/">
-                    <span className="campaign-icon">AD</span>
-                    <h2>제고생활은 제고라이프로</h2>
-                    <p>라디오 사연은 '더보기'에서 보낼 수 있어요.</p>
-                    {/*<img alt="청춘라디오" src="/img/chungchun-radio.png"/>*/}
-                </NavLink>
-            </article>
+            <CampaignBox c={campaign}/>
             <DietCard diet={diet} applied={applied}/>
             <DietReview a={isFocused}/>
             {localStorage.getItem("me.residence") === "1" ?

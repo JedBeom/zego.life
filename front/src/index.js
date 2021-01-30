@@ -9,8 +9,8 @@ let server = "https://zego.life"
 
 if (process.env.NODE_ENV === 'development') {
     // server = "https://zego.life"
-    server = "http://localhost:8080"
-    // server = window.location.protocol + "//" + window.location.hostname + ":8080";
+    // server = "http://localhost:8080"
+    server = window.location.protocol + "//" + window.location.hostname + ":8080";
 }
 
 let app_version = "20210102:01"
@@ -37,9 +37,6 @@ if (theme === null) {
 }
 
 document.querySelector("body").classList.add(`theme-${theme}`)
-if (theme === "pure-dark") {
-    document.querySelector("head").appendChild(document.createTextNode(`<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/Dalgona/neodgm-webfont@1.510/neodgm/style.css">`))
-}
 
 ReactDOM.render(
     <React.StrictMode>

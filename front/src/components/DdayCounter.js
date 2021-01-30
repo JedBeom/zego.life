@@ -27,6 +27,17 @@ const DdayCounter = () => {
                     </div>
                     : null
                 }
+                {day - 1 <= 0 ?
+                    <div className="dday-item">
+                        <p className="dday-name mt-3">2월 3일 한빛제</p>
+                        {day - 1 === 0 ?
+                            <p className="dday-dday">D-DAY</p>
+                            :
+                            <p className="dday-dday">D{day - 1}</p>
+                        }
+                    </div>
+                    : null
+                }
             </div>
             <NavLink to="/events">
                 <p className="text-center">
