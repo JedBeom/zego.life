@@ -19,6 +19,9 @@ const Main = () => {
                     <NavLink to="/fes/site">온라인 한빛제 바로가기</NavLink>
                     : <p>2월 2일에 사이트가 공개됩니다</p>}
             </article>
+            <article className="card-box shadow-3 goto">
+                <NavLink to="/fes/site/onair">온에어의 웹드라마, U&amp;I</NavLink>
+            </article>
         </>
     )
 }

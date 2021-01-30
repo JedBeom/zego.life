@@ -7,7 +7,7 @@ function Router() {
     return (
         <Switch>
             <Route path="/fes" exact component={Main}/>
-            <Route path="/fes/site" component={Site}/>
+            <Route path="/fes/site/:name" component={Site}/>
         </Switch>
     )
 }
