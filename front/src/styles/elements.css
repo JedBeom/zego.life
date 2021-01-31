@@ -155,7 +155,12 @@ for festival
 }
 
 iframe.fes-site {
+    position: fixed;
+    z-index: 99;
     width: 100%;
-    height: 96vh;
-    background: url(https://cdn.dribbble.com/users/1053052/screenshots/3600670/_____.gif) center center no-repeat;
+    height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 3rem);
+    /*
+    padding-bottom: calc(4rem + env(safe-area-inset-bottom));
+    */
 }
+
