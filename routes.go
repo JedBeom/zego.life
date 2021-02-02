@@ -100,6 +100,8 @@ func routes(e *echo.Echo) {
 		// campaigns (cmp, cmps)
 		api.GET("/campaigns/one", getCampaign)
 
+		api.GET("/vote/available/set/:value", getVoteAvailableSet)
+		api.GET("/vote/available", getVoteAvailable)
 		api.POST("/vote", postVote)
 		api.GET("/vote/yayoiori", getVoteResult)
 

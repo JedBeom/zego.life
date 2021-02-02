@@ -10,6 +10,15 @@ import (
 
 func postVote(c echo.Context) error {
 	conn := c.Get("conn").(*pg.Conn)
+	set := models.Setting{}
+	if err := conn.Model(&set).Where("key = ?", "vote_available").Select(); err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	if set.Value != "10101" {
+		return echo.ErrBadRequest
+	}
+
 	p := struct {
 		S1, S2, S3, S4, S5 bool
 	}{}
@@ -40,4 +49,25 @@ func getVoteResult(c echo.Context) error {
 	}
 
 	return c.JSON(200, all)
+}
+
+func getVoteAvailable(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
+	set := models.Setting{}
+	if err := conn.Model(&set).Where("key = ?", "vote_available").Select(); err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	return c.String(200, set.Value)
+}
+
+func getVoteAvailableSet(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
+	value := c.Param("value")
+	if _, err := conn.Exec("update settings set value = ? where key = ?", value, "vote_available"); err != nil {
+		log.Println(err)
+		return echo.ErrInternalServerError
+	}
+
+	return c.NoContent(200)
 }
