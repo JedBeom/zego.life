@@ -202,6 +202,18 @@ CREATE TABLE IF NOT EXISTS campaigns
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS votes
+(
+    id         SERIAL PRIMARY KEY,
+    s1         BOOL,
+    s2         BOOL,
+    s3         BOOL,
+    s4         BOOL,
+    s5         BOOL,
+
+    created_at TIMESTAMPTZ default current_timestamp
+);
+
 CREATE TABLE IF NOT EXISTS sessions
 (
     id         TEXT PRIMARY KEY NOT NULL,

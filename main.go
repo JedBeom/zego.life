@@ -8,7 +8,6 @@ import (
 
 	"github.com/go-pg/pg"
 
-	"github.com/JedBeom/zego.life/parse"
 	_ "github.com/joho/godotenv/autoload"
 )
 
@@ -25,8 +24,8 @@ var db *pg.DB
 func main() {
 	db = models.Connect()
 	conn := db.Conn()
-	parse.GetDietIfNotExist(conn)
-	parse.GetEventsIfNotExists(conn)
+	// parse.GetDietIfNotExist(conn)
+	// parse.GetEventsIfNotExists(conn)
 	conn.Close()
 
 	fmt.Println(banner)

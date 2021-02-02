@@ -203,6 +203,12 @@ type Campaign struct {
 	EndAt     time.Time
 }
 
+type Vote struct {
+	ID                 int
+	S1, S2, S3, S4, S5 bool
+	CreatedAt          time.Time
+}
+
 type Session struct {
 	ID        string
 	UserID    string

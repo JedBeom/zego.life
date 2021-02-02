@@ -100,6 +100,9 @@ func routes(e *echo.Echo) {
 		// campaigns (cmp, cmps)
 		api.GET("/campaigns/one", getCampaign)
 
+		api.POST("/vote", postVote)
+		api.GET("/vote/yayoiori", getVoteResult)
+
 		api.GET("/health/connection", func(c echo.Context) error {
 			return c.JSON(200, Map{"message": "success"})
 		})
