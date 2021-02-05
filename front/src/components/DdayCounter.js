@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 
 import CalendarIcon from '../icons/Calendar'
 
-let targetDay = new Date(2021, 1, 2)
+let targetDay = new Date(2021, 1, 8)
 
 const DdayCounter = () => {
     let today = new Date()
@@ -18,7 +18,7 @@ const DdayCounter = () => {
             <div className="flex justify-around dday-item">
                 {day <= 0 ?
                     <div className="dday-item">
-                        <p className="dday-name mt-3">개학</p>
+                        <p className="dday-name mt-3">졸업식</p>
                         {day === 0 ?
                             <p className="dday-dday">D-DAY</p>
                             :
@@ -29,7 +29,7 @@ const DdayCounter = () => {
                 }
                 {day - 1 <= 0 ?
                     <div className="dday-item">
-                        <p className="dday-name mt-3">2월 3일 한빛제</p>
+                        <p className="dday-name mt-3">종업식</p>
                         {day - 1 === 0 ?
                             <p className="dday-dday">D-DAY</p>
                             :
