@@ -37,6 +37,19 @@ CREATE TABLE IF NOT EXISTS users
     updated_at       TIMESTAMPTZ
 );
 
+CREATE TABLE IF NOT EXISTS user_upgrades
+(
+    id         TEXT PRIMARY KEY,
+
+    grade      INTEGER NOT NULL,
+    class      INTEGER NOT NULL,
+    number     INTEGER NOT NULL,
+    UNIQUE (grade, class, number),
+    created_at TIMESTAMPTZ DEFAULT current_timestamp,
+
+    FOREIGN KEY (id) REFERENCES users (id) ON DELETE CASCADE
+);
+
 CREATE TABLE IF NOT EXISTS diet2users
 (
     diet_id    TEXT,
@@ -200,18 +213,6 @@ CREATE TABLE IF NOT EXISTS campaigns
     end_at     TIMESTAMPTZ,
 
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS votes
-(
-    id         SERIAL PRIMARY KEY,
-    s1         BOOL,
-    s2         BOOL,
-    s3         BOOL,
-    s4         BOOL,
-    s5         BOOL,
-
-    created_at TIMESTAMPTZ default current_timestamp
 );
 
 CREATE TABLE IF NOT EXISTS sessions

@@ -12,6 +12,7 @@ import DietCard from "../../components/DietCard"
 import DdayCounter from "../../components/DdayCounter"
 import DietReview from '../../components/DietReview'
 import DormInspector from "../../components/DormInspector"
+import {InfoBox} from '../../components/AlertBox'
 
 import AddToHome from "../../components/AddToHome"
 import CampaignBox from "../../components/CampaignBox"
@@ -20,6 +21,7 @@ const Main = () => {
     const [loading, setLoading] = useState(true)
     const [diet, setDiet] = useState({when: "", dietList: []})
     const [campaign, setCampaign] = useState({Title: "로딩 중..."})
+    const [userUpgradable, setUserUpgradable] = useState(false)
     const [applied, setApplied] = useState(-1)
     const [noticeTitle, setNoticeTitle] = useState("로딩 중...")
     const [isFocused, setFocused] = useState(true)
@@ -85,6 +87,7 @@ const Main = () => {
                 setNoticeTitle(data.NoticeTitle)
                 localStorage.setItem("me.roles", data.Roles)
                 setCampaign(data.Campaign)
+                setUserUpgradable(data.UserUpgradable)
             } catch (e) {
                 setNoticeTitle(`로딩 실패 ${e}`)
             }
@@ -113,14 +116,14 @@ const Main = () => {
                 </div>
             </NavLink>
         </>}>
+            {userUpgradable ?
+                <NavLink to="/help/user-upgrade">
+                    <InfoBox>
+                        신학년 학번을 입력하세요!
+                    </InfoBox></NavLink> : null
+            }
             <AddToHome/>
             <DdayCounter/>
-            {/*
-            <div className="br-round bg-indigo-30 indigo-lightest p-2 fs-s2 mb-5">
-                <div className="inline-block bg-indigo indigo-lightest br-round px-3 py-1 mr-3 fs-s3">민시부 공지</div>
-                슬리퍼 신고 오지 마세요
-            </div>
-            */}
             <CampaignBox c={campaign}/>
             <DietCard diet={diet} applied={applied}/>
             <DietReview a={isFocused}/>

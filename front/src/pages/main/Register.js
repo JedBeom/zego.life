@@ -6,6 +6,7 @@ import axios from 'axios'
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import {ErrorBox} from "../../components/AlertBox"
+import {validateGCN} from '../../utils/validate'
 
 const Register = () => {
     useEffect(() => {
@@ -82,10 +83,8 @@ const Register = () => {
         e.preventDefault()
 
         let {g, c, n} = hakbunToGCN(hakbun)
-        if (
-            (g < 1 || g > 3)
-            || (c < 1 || (g === 1 && c > 8) || (g >= 2 && c > 10))
-            || (n < 1 || n > 31)) {
+
+        if (!validateGCN(g, c, n)) {
             setErrMsg("학번이 유효하지 않습니다.")
             setKitchenLoading(false)
             return

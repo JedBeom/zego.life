@@ -169,3 +169,49 @@ func getUsersAll(c echo.Context) error {
 
 	return c.JSON(200, us)
 }
+
+func getUserUpgradable(c echo.Context) error {
+	u := c.Get("user").(models.User)
+	conn := c.Get("conn").(*pg.Conn)
+	exists, err := models.UserUpgradeExistsByID(conn, u.ID)
+	if err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	return c.JSON(200, Map{
+		"Exists": exists,
+	})
+}
+
+func postUserUpgrade(c echo.Context) error {
+	u := c.Get("user").(models.User)
+	p := struct {
+		Grade, Class, Number int
+	}{}
+	if err := c.Bind(&p); err != nil {
+		return echo.ErrBadRequest
+	}
+
+	// if grade was not increased
+	if u.Grade >= p.Grade {
+		return apierror.ApiError{
+			StatusCode: 400,
+			ErrorCode:  -500,
+			Message:    "잘못된 학번입니다.",
+		}.Send(c)
+	}
+
+	u.Grade = p.Grade
+	u.Class = p.Class
+	u.Number = p.Number
+	if err := u.ValidateUserRegister(); err != nil {
+		return err.Send(c)
+	}
+
+	conn := c.Get("conn").(*pg.Conn)
+	if err := u.SetUpgrade(conn); err != nil {
+		return echo.ErrInternalServerError
+	}
+
+	return c.NoContent(200)
+}

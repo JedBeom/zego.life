@@ -41,6 +41,9 @@ func routes(e *echo.Echo) {
 			admin.GET("/users/search/order-by/:order-by", getUsersAll)                  // admin-only
 			admin.PATCH("/users/:user_id/roles", patchUserRoles)
 
+			u.GET("/me/upgrade", getUserUpgradable)
+			u.POST("/me/upgrade", postUserUpgrade)
+
 			u.GET("/users/:user_id/pw-change", getPwChangeToken)
 
 			// radio-stories
@@ -86,6 +89,7 @@ func routes(e *echo.Echo) {
 		api.GET("/events/date-only", getEventsDateOnly)
 		api.GET("/events/:year/:month", getEventsByYearMonth)
 		api.GET("/events/:date", getEventsByDate)
+
 		// api.GET("/dday-events/:grade", getDDayEvent)
 		// api.POST("/dday-events", postDDayEvent)
 
@@ -99,11 +103,6 @@ func routes(e *echo.Echo) {
 
 		// campaigns (cmp, cmps)
 		api.GET("/campaigns/one", getCampaign)
-
-		api.GET("/vote/available/set/:value", getVoteAvailableSet)
-		api.GET("/vote/available", getVoteAvailable)
-		api.POST("/vote", postVote)
-		api.GET("/vote/yayoiori", getVoteResult)
 
 		api.GET("/health/connection", func(c echo.Context) error {
 			return c.JSON(200, Map{"message": "success"})

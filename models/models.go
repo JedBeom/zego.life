@@ -46,6 +46,16 @@ type User struct {
 	UpdatedAt time.Time `sql:"default:now()"`
 }
 
+type UserUpgrade struct {
+	ID string `pg:",pk"`
+
+	Grade  int `sql:",unique:gcn"`
+	Class  int `sql:",unique:gcn"`
+	Number int `sql:",unique:gcn"`
+
+	CreatedAt time.Time `sql:"default:now()"`
+}
+
 type Diet2User struct {
 	TableName struct{} `sql:"diet2users" json:"-"`
 

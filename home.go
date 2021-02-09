@@ -1,8 +1,6 @@
 package main
 
 import (
-	"log"
-
 	"github.com/JedBeom/zego.life/models"
 	"github.com/go-pg/pg"
 	"github.com/labstack/echo"
@@ -25,15 +23,17 @@ func getHome(c echo.Context) error {
 
 	cmp, err := models.CampaignRandomOne(conn)
 	if err != nil {
-		log.Println(err)
 		// default on error
 		cmp.Title = "제고생활은 제고라이프로"
 		cmp.SubTitle = "다음 업데이트를 기대하세요!"
 	}
 
+	exists, _ := models.UserUpgradeExistsByID(conn, u.ID)
+
 	return c.JSON(200, Map{
-		"NoticeTitle": last.Title,
-		"Roles":       u.Roles,
-		"Campaign":    cmp,
+		"NoticeTitle":    last.Title,
+		"Roles":          u.Roles,
+		"Campaign":       cmp,
+		"UserUpgradable": !exists,
 	})
 }

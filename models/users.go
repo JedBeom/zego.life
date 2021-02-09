@@ -132,6 +132,21 @@ func (u *User) UpdateRoles(db *pg.Conn) error {
 	return err
 }
 
+func (u *User) SetUpgrade(db *pg.Conn) error {
+	uu := UserUpgrade{
+		ID:     u.ID,
+		Grade:  u.Grade,
+		Class:  u.Class,
+		Number: u.Number,
+	}
+
+	return db.Insert(&uu)
+}
+
+func UserUpgradeExistsByID(db *pg.Conn, id string) (bool, error) {
+	return db.Model(&UserUpgrade{}).Where("id = ?", id).Exists()
+}
+
 func UsersLikeName(db *pg.Conn, name string, orderBy string, limit, page int) (us []User, err error) {
 	name = "%" + name + "%"
 	err = db.Model(&us).Where("name like ?", name).Order(orderBy).Limit(limit).Offset(limit * (page - 1)).Select()
