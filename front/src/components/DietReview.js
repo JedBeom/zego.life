@@ -67,6 +67,8 @@ const DietReview = () => {
     }
 
     const submit = async () => {
+        if (rate === 0) return
+
         setLoading(true)
         let d = {
             Rate: rate,

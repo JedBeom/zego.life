@@ -125,8 +125,8 @@ const Main = () => {
             <AddToHome/>
             <DdayCounter/>
             <CampaignBox c={campaign}/>
-            <DietCard diet={diet} applied={applied}/>
             <DietReview a={isFocused}/>
+            <DietCard diet={diet} applied={applied}/>
             {localStorage.getItem("me.residence") === "1" ?
                 <DormInspector date={new Date()} correction={false}/> : null}
         </Page>
