@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 
-import {getD2UByDiet, getDietByDate} from '../../common/api'
+import {getD2UByDiet, getDDay, getDietByDate} from '../../common/api'
 import {timestampDot} from '../../utils/timestamp'
 import whatMeal from '../../utils/whatMeal'
 import {isUser} from "../../utils/getRoles"
@@ -22,6 +22,7 @@ const Main = () => {
     const [diet, setDiet] = useState({when: "", dietList: []})
     const [campaign, setCampaign] = useState({Title: "로딩 중..."})
     const [userUpgradable, setUserUpgradable] = useState(false)
+    const [dday, setDDay] = useState([])
     const [applied, setApplied] = useState(-1)
     const [noticeTitle, setNoticeTitle] = useState("로딩 중...")
     const [isFocused, setFocused] = useState(true)
@@ -93,10 +94,15 @@ const Main = () => {
             }
         }
 
+        const fetchDDay = async () => {
+            setDDay(await getDDay())
+        }
+
+
         fetchDiet()
         fetchD2U()
         fetchHome()
-
+        fetchDDay()
     }, [isFocused])
 
     if (loading) {
@@ -123,7 +129,7 @@ const Main = () => {
                     </InfoBox></NavLink> : null
             }
             <AddToHome/>
-            <DdayCounter/>
+            <DdayCounter events={dday}/>
             <CampaignBox c={campaign}/>
             <DietReview a={isFocused}/>
             <DietCard diet={diet} applied={applied}/>

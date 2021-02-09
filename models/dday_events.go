@@ -6,12 +6,17 @@ import (
 	"github.com/go-pg/pg"
 )
 
-func DDayEventByGrade(db *pg.Conn, grade int) (de DDayEvent, err error) {
+func DDayEventAll(db *pg.Conn) (de []DDayEvent, err error) {
+	err = db.Model(&de).Order("date").Select()
+	return
+}
+
+func DDayEventByGrade(db *pg.Conn, grade int) (de []DDayEvent, err error) {
 	err = db.Model(&de).
-		Where("grade = -1").WhereOr("grade = ?", grade).
+		Where("target = -1").WhereOr("target = ?", grade).
 		Order("date").
 		Where("date >= ?", time.Now().Format("2006-01-02")).
-		First()
+		Select()
 	return
 }
 

@@ -1,43 +1,41 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 
 import CalendarIcon from '../icons/Calendar'
 
 let targetDay = new Date(2021, 1, 8)
 
-const DdayCounter = () => {
+const DdayCounter = ({events}) => {
     let today = new Date()
     today.setHours(0, 0, 0, 0)
-    let diff = targetDay - today
-    let day = -(diff / 1000 / 60 / 60 / 24)
+    const [count, setCount] = useState(0)
     return (
         <article className="card-box shadow-3">
             <h2 className="card-title">
                 <CalendarIcon className="icon"/>
                 <span className="diet-when">얼마나</span>남았나?</h2>
             <div className="flex justify-around dday-item">
-                {day <= 0 ?
-                    <div className="dday-item">
-                        <p className="dday-name mt-3">졸업식</p>
+                {events.map(e => {
+                    const diff = e.Date - today
+                    const day = -(diff / 1000 / 60 / 60 / 24)
+
+                    if (day > 0) {
+                        return null
+                    }
+
+                    setCount(count + 1)
+                    return <div className="dday-item">
+                        <p className="dday-name mt-3">{e.Name}</p>
                         {day === 0 ?
                             <p className="dday-dday">D-DAY</p>
                             :
                             <p className="dday-dday">D{day}</p>
                         }
                     </div>
-                    : null
-                }
-                {day - 1 <= 0 ?
-                    <div className="dday-item">
-                        <p className="dday-name mt-3">종업식</p>
-                        {day - 1 === 0 ?
-                            <p className="dday-dday">D-DAY</p>
-                            :
-                            <p className="dday-dday">D{day - 1}</p>
-                        }
-                    </div>
-                    : null
-                }
+                })}
+                {count === 0 ? <div className="dday-item">
+                    <p className="dday-name my-3">일정 없음</p>
+                </div> : null}
             </div>
             <NavLink to="/events">
                 <p className="text-center">

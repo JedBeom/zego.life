@@ -3,6 +3,7 @@ import dietMake from "../utils/dietMake"
 import {eventsMake} from "../utils/eventsMake"
 import {timestampHyphen} from '../utils/timestamp'
 import htmlDecode from '../utils/htmlDecode'
+import dateMake from "../utils/dateMake"
 
 async function asyncForEach(array, callback) {
     for (let index = 0; index < array.length; index++) {
@@ -122,4 +123,25 @@ const getTimetable = async (meGrade, meClass) => {
     return data.Lessons
 }
 
-export {getDietByDate, getD2UByDiet, getEvents, getEventsByDate, getEventsDateOnly, getDietReviewPossible, getTimetable}
+const getDDay = async () => {
+    let key = `dday-events/${timestampHyphen(new Date())}`
+    let item = sessionStorage.getItem(key)
+    if (item != null) {
+        return dateMake(JSON.parse(item))
+    }
+
+    const {data} = await axios.get(`dday-events/${localStorage.getItem("me.grade")}`)
+    sessionStorage.setItem(key, JSON.stringify(data))
+    return dateMake(data)
+}
+
+export {
+    getDietByDate,
+    getD2UByDiet,
+    getEvents,
+    getEventsByDate,
+    getEventsDateOnly,
+    getDietReviewPossible,
+    getTimetable,
+    getDDay
+}

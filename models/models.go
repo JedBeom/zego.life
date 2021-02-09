@@ -96,6 +96,8 @@ type Event struct {
 }
 
 type DDayEvent struct {
+	TableName struct{} `sql:"dday_events" json:"-"`
+
 	ID   string
 	Name string
 	Date time.Time

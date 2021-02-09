@@ -4,7 +4,7 @@ import Back from "../../components/Back"
 
 import axios from 'axios'
 
-const CampaignsList = () => {
+const CampaignNew = () => {
 
     const [title, setTitle] = useState("")
     const [subTitle, setSubTitle] = useState("")
@@ -72,4 +72,4 @@ const CampaignsList = () => {
     )
 }
 
-export default CampaignsList
+export default CampaignNew

@@ -77,6 +77,10 @@ func routes(e *echo.Echo) {
 
 			// campaigns (cmp, cmps)
 			admin.POST("/campaigns", postCampaign)
+
+			// dday
+			admin.GET("/dday-events", getDDayEventAll)
+			admin.POST("/dday-events", postDDayEvent)
 		}
 
 		api.POST("/register", postRegister)
@@ -90,8 +94,7 @@ func routes(e *echo.Echo) {
 		api.GET("/events/:year/:month", getEventsByYearMonth)
 		api.GET("/events/:date", getEventsByDate)
 
-		// api.GET("/dday-events/:grade", getDDayEvent)
-		// api.POST("/dday-events", postDDayEvent)
+		api.GET("/dday-events/:grade", getDDayEventByGrade)
 
 		api.POST("/tokens/pw-change", postPwChange)
 

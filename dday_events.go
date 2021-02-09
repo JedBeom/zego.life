@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"strconv"
 	"time"
 
@@ -11,7 +12,18 @@ import (
 	"github.com/labstack/echo"
 )
 
-func getDDayEvent(c echo.Context) error {
+func getDDayEventAll(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
+	de, err := models.DDayEventAll(conn)
+	if err != nil {
+		log.Println(err)
+		return echo.ErrInternalServerError
+	}
+
+	return c.JSON(200, de)
+}
+
+func getDDayEventByGrade(c echo.Context) error {
 	conn := c.Get("conn").(*pg.Conn)
 	grade, err := strconv.Atoi(c.Param("grade"))
 	if err != nil {
