@@ -95,7 +95,11 @@ const Main = () => {
         }
 
         const fetchDDay = async () => {
-            setDDay(await getDDay())
+            try {
+                setDDay(await getDDay())
+            } catch (e) {
+
+            }
         }
 
 
