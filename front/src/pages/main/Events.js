@@ -97,7 +97,7 @@ const Events = () => {
                             </tbody>
                         </table>
                     </div>
-                    <p>일정은 정확하지 않을 수도 있어요.</p>
+                    <p className="mt-4">일정은 정확하지 않을 수 있습니다.</p>
                 </article>
 
                 : null}
