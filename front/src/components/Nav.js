@@ -2,7 +2,6 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {isUser} from "../utils/getRoles"
 import CalendarIcon from '../icons/Calendar'
-import StarIcon from '../icons/Star'
 
 const Nav = () => {
     return (

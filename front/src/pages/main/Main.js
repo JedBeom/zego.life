@@ -23,6 +23,7 @@ const Main = () => {
     const [campaign, setCampaign] = useState({Title: "로딩 중..."})
     const [userUpgradable, setUserUpgradable] = useState(false)
     const [dday, setDDay] = useState([])
+    const [ddayCount, setDDayCount] = useState(0)
     const [applied, setApplied] = useState(-1)
     const [noticeTitle, setNoticeTitle] = useState("로딩 중...")
     const [isFocused, setFocused] = useState(true)
@@ -96,12 +97,13 @@ const Main = () => {
 
         const fetchDDay = async () => {
             try {
-                setDDay(await getDDay())
+                const {es: dday, count} = await getDDay()
+                setDDay(dday)
+                setDDayCount(count)
             } catch (e) {
 
             }
         }
-
 
         fetchDiet()
         fetchD2U()
@@ -133,7 +135,7 @@ const Main = () => {
                     </InfoBox></NavLink> : null
             }
             <AddToHome/>
-            <DdayCounter events={dday}/>
+            <DdayCounter events={dday} count={ddayCount}/>
             <CampaignBox c={campaign}/>
             <DietReview a={isFocused}/>
             <DietCard diet={diet} applied={applied}/>

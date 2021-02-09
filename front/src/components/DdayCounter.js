@@ -1,14 +1,13 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {NavLink} from 'react-router-dom'
 
 import CalendarIcon from '../icons/Calendar'
 
 let targetDay = new Date(2021, 1, 8)
 
-const DdayCounter = ({events}) => {
+const DdayCounter = ({events, count}) => {
     let today = new Date()
     today.setHours(0, 0, 0, 0)
-    const [count, setCount] = useState(0)
     return (
         <article className="card-box shadow-3">
             <h2 className="card-title">
@@ -16,20 +15,15 @@ const DdayCounter = ({events}) => {
                 <span className="diet-when">얼마나</span>남았나?</h2>
             <div className="flex justify-around dday-item">
                 {events.map(e => {
-                    const diff = e.Date - today
-                    const day = -(diff / 1000 / 60 / 60 / 24)
-
-                    if (day > 0) {
+                    if (e.Left > 0) {
                         return null
                     }
-
-                    setCount(count + 1)
                     return <div className="dday-item">
                         <p className="dday-name mt-3">{e.Name}</p>
-                        {day === 0 ?
+                        {e.Left === 0 ?
                             <p className="dday-dday">D-DAY</p>
                             :
-                            <p className="dday-dday">D{day}</p>
+                            <p className="dday-dday">D{e.Left}</p>
                         }
                     </div>
                 })}
