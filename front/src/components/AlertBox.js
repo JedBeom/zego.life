@@ -4,7 +4,7 @@ import AlertTriangleIcon from '../icons/AlertTriangle'
 import AlertOctagonIcon from '../icons/AlertOctagon'
 
 const AlertBox = ({level, icon, children}) => {
-    if (children === null || children === "") {
+    if (!children) {
         return null
     }
 

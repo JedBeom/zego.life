@@ -87,7 +87,7 @@ const DietPage = () => {
     }
 
     useEffect(() => {
-        document.title = "급식 | 제고라이프"
+        document.title = "캘린더 | 제고라이프"
         document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
         let now = new Date()
         now.setHours(0, 0, 0, 0)

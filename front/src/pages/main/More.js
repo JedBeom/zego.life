@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import Page from "../../components/Page"
 
-import {isAdmin, isOBT, isUser} from '../../utils/getRoles'
+import {isAdmin, isUser} from '../../utils/getRoles'
 
 import TvIcon from '../../icons/Tv'
 
@@ -61,8 +61,6 @@ const Me = () => {
         <Page head={<h1 className="page-title">더보기</h1>} foot={foot}>
             <article className="card-box shadow-3 card-box-me">
                 <h2 className="card-box-title font-s-core">안녕하세요, {localStorage.getItem("me.name")} 님!</h2>
-                <p>{isAdmin() ? "어드민 계정" :
-                    isOBT() ? "오픈 베타 테스터" : "반가워요!"}</p>
                 <button className={logoutLoading ? "loading button float-right" : "button float-right"}
                         onClick={logout}>로그아웃
                 </button>
@@ -86,7 +84,7 @@ const Me = () => {
                             <option value="light">라이트</option>
                             <option value="dark">다크</option>
                         </optgroup>
-                        <optgroup label="색깔">
+                        <optgroup label="단색">
                             <option value="pink-55">핑크 0505</option>
                             <option value="pure-dark">퓨어 다크</option>
                             <option value="logo-blue">로고블루</option>
@@ -95,7 +93,7 @@ const Me = () => {
                             <option value="linear-indigo">리니어 인디고</option>
                             <option value="linear-pink">리니어 핑크</option>
                             <option value="lonely-sky">론리 스카이</option>
-                            <option value="clear-water">클리어 워터 BETA</option>
+                            <option value="clear-water">클리어 워터</option>
                             <option value="tropical-dark">트로피칼 다크</option>
                             <option value="pupple-mint-dark">퍼플 민트 다크</option>
                         </optgroup>

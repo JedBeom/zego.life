@@ -31,6 +31,17 @@ const DDayList = () => {
 
     const submit = async e => {
         e.preventDefault()
+
+        if (!name) {
+            setErrMsg("이름 써라")
+            return
+        }
+
+        if (!date) {
+            setErrMsg("날짜 써라")
+            return
+        }
+
         let p = {
             Name: name,
             Date: date,
