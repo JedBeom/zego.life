@@ -3,8 +3,6 @@ import {NavLink} from 'react-router-dom'
 
 import CalendarIcon from '../icons/Calendar'
 
-let targetDay = new Date(2021, 1, 8)
-
 const DdayCounter = ({events, count}) => {
     let today = new Date()
     today.setHours(0, 0, 0, 0)

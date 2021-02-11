@@ -1,4 +1,3 @@
-import { placements } from '@popperjs/core'
 import React, {useEffect, useState} from 'react'
 import { InfoBox } from '../../components/AlertBox'
 
