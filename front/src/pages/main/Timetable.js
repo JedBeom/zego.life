@@ -1,11 +1,14 @@
+import { placements } from '@popperjs/core'
 import React, {useEffect, useState} from 'react'
-import TimetableClass from './TimetableClass'
+import { InfoBox } from '../../components/AlertBox'
 
+/*
 const meGrade = localStorage.getItem("me.grade")
 const meClass = localStorage.getItem("me.class")
+*/
 
 const types = [
-    `${meGrade}-${meClass}`,
+//    `${meGrade}-${meClass}`,
 ]
 
 const Timetable = () => {
@@ -22,20 +25,11 @@ const Timetable = () => {
         setType(getNext(type))
     }
 
-    if (meClass === null) {
-        return (
-            <>
-                <h1 className="page-title">시간표</h1>
-                <p>반 정보가 없습니다. 다시 로그인해주세요.</p>
-            </>
-        )
-    }
-
     return (
         <>
             <h1 className="page-title" onClick={setNext}>{types[type]} 시간표 {getNext(type) !== type ?
                 <span className="sub">{types[getNext(type)]}</span> : null}</h1>
-            {type === 0 ? <TimetableClass meGrade={meGrade} meClass={meClass}/> : null}
+            <InfoBox>새 시간표로 찾아뵙겠습니다.</InfoBox>
         </>
     )
 }
