@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom'
 
 const Back = ({history, content}) => {
     return (
-        <span onClick={() => history.goBack()}>
+        <span className="cursor-pointer" onClick={() => history.goBack()}>
              {content}
         </span>
     )
