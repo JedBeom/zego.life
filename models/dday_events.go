@@ -15,7 +15,7 @@ func DDayEventByGrade(db *pg.Conn, grade int) (de []DDayEvent, err error) {
 	err = db.Model(&de).
 		Where("target = -1").WhereOr("target = ?", grade).
 		Order("date").
-		Where("date >= ?", time.Now().Format("2006-01-02")).
+		Where("date >= ?", time.Now()).
 		Select()
 	return
 }

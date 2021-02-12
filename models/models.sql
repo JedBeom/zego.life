@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS dday_events
 (
     id         TEXT PRIMARY KEY,
     name       TEXT,
-    date       DATE,
+    date       TIMESTAMPTZ,
     target     INTEGER,
     created_at TIMESTAMPTZ DEFAULT current_timestamp
 );

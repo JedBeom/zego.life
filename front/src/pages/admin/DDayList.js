@@ -23,7 +23,7 @@ const DDayList = () => {
     const getDDays = async () => {
         try {
             const {data} = await axios.get(`dday-events`)
-            setEvents(data)
+            if (data) setEvents(data)
         } catch (e) {
             setErrMsg(`${e}`)
         }
@@ -41,6 +41,8 @@ const DDayList = () => {
             setErrMsg("날짜 써라")
             return
         }
+
+        date.setHours(0, 0, 0, 0)
 
         let p = {
             Name: name,

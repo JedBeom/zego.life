@@ -52,7 +52,7 @@ func postDDayEvent(c echo.Context) error {
 	de := models.DDayEvent{
 		ID:     fmt.Sprintf("%d-%02d-%02d-%s", p.Date.Year(), int(p.Date.Month()), p.Date.Day(), p.Name),
 		Name:   p.Name,
-		Date:   p.Date.Add(time.Hour * 24),
+		Date:   p.Date,
 		Target: p.Target,
 	}
 
