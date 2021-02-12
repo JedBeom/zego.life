@@ -1,0 +1,207 @@
+.campaigns-site {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.campaigns-site .page-title {
+    margin-left: 0;
+}
+
+.campaigns-site .page-sub {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+.campaigns {
+    padding-top: 1rem;
+    padding-bottom: .5rem;
+    border-top-color: var(--site-text-color);
+    border-top-width: .1rem;
+    border-top-style: solid;
+    -webkit-font-smoothing: antialiased;
+
+    color: white;
+}
+
+.campaigns-site .button {
+    background-color: #2c2c36;
+    color: #4384e8;
+    padding-left: .75rem;
+    padding-right: .75rem;
+}
+
+.campaigns-site .button.loading {
+    padding-right: 1.7rem;
+}
+
+.campaigns-site .button-edit {
+    color: #cecece;
+    font-size: .8rem;
+}
+
+h3 {
+    margin-bottom: 1.75rem;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.quick-look {
+    margin-bottom: 1rem;
+}
+
+.quick-look h4 {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: .25rem;
+}
+
+.quick-look p {
+    color: #cecece;
+    font-weight: 700;
+    font-size: .8rem;
+}
+
+/*
+forms
+*/
+
+label {
+    margin-top: 1.5rem;
+}
+
+.input-form, input[type="date"], .select-form {
+    font-family: "Spoqa Han Sans Neo";
+
+    background-color: transparent;
+    background-clip: padding-box;
+    display: inline-block;
+    padding: .5rem 0;
+    border: none;
+    border-bottom: 0.15rem grey solid;
+    color: inherit;
+
+    /* disable default style */
+    outline: none;
+    border-radius: 0;
+
+    font-size: 1.2rem;
+
+}
+
+.input-form[type="date"] {
+    width: 65%;
+    height: calc(1.4rem + 1rem);
+}
+
+.select-form {
+    text-align: center;
+    width: 5rem;
+    padding-right: 1rem;
+    padding-bottom: .2rem;
+}
+
+.select-form option {
+    padding-bottom: 1em;
+}
+
+.input-form:focus, .select-form:focus {
+    border-bottom: 0.15rem #4384e8 solid;
+}
+
+/*
+total
+*/
+
+.total {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.total span {
+    font-weight: 700;
+}
+
+.total.time {
+    margin-top: 2rem;
+}
+
+.total.price {
+    margin-top: 1rem;
+}
+
+/*
+preview
+*/
+
+.campaigns-site .campaign-box {
+    margin-top: .5rem;
+}
+
+/*
+pay
+*/
+.payment-box {
+    margin: 1rem .5rem 0 .5rem;
+    padding: 1em;
+    border-radius: 8px;
+    height: 4rem;
+    transition: .15s ease-in;
+}
+
+.payment-box:hover, .payment-box-select {
+    transform: scale(1.05);
+}
+
+.payment-box img {
+    filter: brightness(0) invert(1);
+}
+
+.payment-box img, .payment-box svg {
+    height: 1.75rem;
+}
+
+.toss {
+    background-color: #0050FF;
+}
+
+.kakaopay {
+    background-color: #ffee33
+}
+
+.bank {
+    font-size: 1.25rem;
+    font-weight: 900;
+    background-color: rgb(1, 173, 1);
+    color: white;
+}
+
+.chosen {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.kakaopay .chosen {
+    color: black;
+}
+
+.info {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+/*
+pay
+*/
+.bank-info {
+    margin: 1em;
+    padding: .5rem;
+    padding-left: 1rem;
+    background-color: rgb(32, 32, 40);
+    border-radius: 10px;
+}
+
+.bank-info span {
+    font-weight: 300;
+}

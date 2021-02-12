@@ -28,7 +28,10 @@ func getHome(c echo.Context) error {
 		cmp.SubTitle = "다음 업데이트를 기대하세요!"
 	}
 
-	exists, _ := models.UserUpgradeExistsByID(conn, u.ID)
+	exists := true
+	if ok {
+		exists, _ = models.UserUpgradeExistsByID(conn, u.ID)
+	}
 
 	return c.JSON(200, Map{
 		"NoticeTitle":    last.Title,

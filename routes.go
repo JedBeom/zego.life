@@ -76,7 +76,17 @@ func routes(e *echo.Echo) {
 			u.POST("/threads/:id/comments", postComment)
 
 			// campaigns (cmp, cmps)
-			admin.POST("/campaigns", postCampaign)
+			u.POST("/campaigns", postCampaignNotPayed)
+			u.GET("/campaigns/me", getCampaignsByUser)
+			u.GET("/campaigns-not-payed/me", getCampaignsNotPayedByUser)
+			admin.GET("/campaigns-not-payed/payed", getCampaignsNotPayedPayed)
+			admin.PATCH("/campaigns-not-payed/:id/move", patchCampaignMoveByID)
+			u.PATCH("/campaigns/:id/payment", patchCampaignPayment)
+			u.GET("/campaigns-not-payed/:id", getCampaignNotPayedByID)
+			u.PATCH("/campaigns-not-payed/:id", patchCampaignNotPayed)
+			u.PATCH("/campaigns-not-payed/:id/confirm-pay", patchCampaignNotPayedConfirmPay)
+			admin.POST("/campaigns/pass", postCampaign)
+			u.POST("/campaigns/image", postCampaignImage)
 
 			// dday
 			admin.GET("/dday-events", getDDayEventAll)

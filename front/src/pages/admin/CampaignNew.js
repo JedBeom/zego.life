@@ -8,8 +8,8 @@ const CampaignNew = () => {
 
     const [title, setTitle] = useState("")
     const [subTitle, setSubTitle] = useState("")
-    const [imageSrc, setImageSrc] = useState("")
     const [link, setLink] = useState("")
+    const [file, setFile] = useState(null)
     const [okMsg, setOkMsg] = useState("")
     const [errMsg, setErrMsg] = useState("")
 
@@ -19,6 +19,12 @@ const CampaignNew = () => {
         setLoading(true)
         setOkMsg("")
         setErrMsg("")
+
+        const imageSrc = await uploadImage()
+        if (!imageSrc) {
+            return
+        }
+
         const p = {
             Title: title,
             SubTitle: subTitle,
@@ -27,17 +33,35 @@ const CampaignNew = () => {
         }
 
         try {
-            await axios.post(`campaigns`, p)
+            await axios.post(`campaigns/pass`, p)
             setOkMsg("완료")
             setTitle("")
             setSubTitle("")
-            setImageSrc("")
+            setFile(null)
             setLink("")
         } catch (e) {
             setErrMsg(`${e}`)
         } finally {
             setLoading(false)
         }
+    }
+
+    const uploadImage = async () => {
+        const formData = new FormData()
+        formData.append("file", file)
+
+        try {
+            const {data} = await axios.post(`campaigns/image`, formData, {
+                params: {
+                    "type": file.type,
+                    "name": file.name
+                }
+            })
+            return data
+        } catch (e) {
+            setErrMsg(`${e}`)
+        }
+        return false
     }
 
     return (
@@ -56,8 +80,8 @@ const CampaignNew = () => {
                        className="input" placeholder="부제목"/>
             </div>
             <div className="flex flex-column">
-                <label className="my-2">이미지 경로</label>
-                <input type="text" value={imageSrc} onChange={e => setImageSrc(e.target.value)}
+                <label className="my-2">이미지</label>
+                <input type="file" name="file" onChange={e => setFile(e.target.files[0])}
                        className="input" placeholder="/img/src/asdf.png"/>
             </div>
             <div className="flex flex-column">

@@ -205,6 +205,9 @@ CREATE TABLE IF NOT EXISTS campaigns
 
     user_id    TEXT             NOT NULL,
     price      INTEGER     DEFAULT 0,
+    payment    TEXT,
+    pay_code   TEXT,
+    payed_at   TIMESTAMPTZ,
 
     created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
@@ -214,6 +217,34 @@ CREATE TABLE IF NOT EXISTS campaigns
 
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS campaigns_not_payed
+(
+    id         TEXT PRIMARY KEY NOT NULL,
+    is_ready   BOOL,
+
+    title      TEXT             NOT NULL,
+    sub_title  TEXT             NOT NULL,
+    image_src  TEXT             NOT NULL,
+    link       TEXT             NOT NULL,
+
+    user_id    TEXT             NOT NULL,
+    price      INTEGER     DEFAULT 0,
+    payment    TEXT,
+    pay_code   TEXT UNIQUE,
+    payed_at   TIMESTAMPTZ,
+
+    pay_link   TEXT,
+
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMPTZ,
+    start_at   TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    end_at     TIMESTAMPTZ,
+
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
 
 CREATE TABLE IF NOT EXISTS sessions
 (

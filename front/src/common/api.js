@@ -55,7 +55,7 @@ const getD2UByDiet = async (id) => {
 const getEvents = async (year, month) => {
     let key = `events-month/${year}/${month}`
     let item = sessionStorage.getItem(key)
-    let data = {}
+    let data
     if (item != null) {
         data = JSON.parse(item)
     } else {
@@ -131,7 +131,9 @@ const getDDay = async () => {
         return ddayMake(JSON.parse(item), today)
     }
 
-    const {data} = await axios.get(`dday-events/${localStorage.getItem("me.grade")}`)
+    let grade = localStorage.getItem("me.grade")
+    if (grade === null) grade = -1
+    const {data} = await axios.get(`dday-events/${grade}`)
     sessionStorage.setItem(key, JSON.stringify(data))
     return ddayMake(data, today)
 }

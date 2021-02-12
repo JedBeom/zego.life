@@ -1,9 +1,9 @@
-.react-datepicker, .react-datepicker__header {
+.inline-calendar .react-datepicker, .inline-calendar .react-datepicker__header {
     background-color: transparent;
     border: none;
 }
 
-.react-datepicker__today-button {
+.inline-calendar .react-datepicker__today-button {
     color: var(--button-primary-text-color) !important;
     background-color: var(--button-primary-color) !important;
     font-weight: bold !important;
@@ -14,47 +14,47 @@
     margin-right: auto;
 }
 
-.react-datepicker__day, .react-datepicker__month-text, .react-datepicker__quarter-text, .react-datepicker__year-text {
+.inline-calendar .react-datepicker__day, .inline-calendar .react-datepicker__month-text, .inline-calendar .react-datepicker__quarter-text, .inline-calendar .react-datepicker__year-text {
     border-color: transparent;
     transition: .5s;
     border-radius: 999rem;
 }
 
-.react-datepicker__day--disabled {
+.inline-calendar .react-datepicker__day--disabled {
     visibility: hidden;
 }
 
 /* 각각 하나씩 */
-[class^="react-datepicker"] {
+.inline-calendar [class^="react-datepicker"] {
     width: 100%;
     color: var(--card-box-text-color);
 }
 
 /* 하이라이트된 것들 */
-.react-datepicker__day--highlighted {
+.inline-calendar .react-datepicker__day--highlighted {
     background-color: unset;
     color: var(--highlight-color);
     font-weight: bold;
 }
 
 /* 선택됨 */
-.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range, .react-datepicker__month-text--selected, .react-datepicker__month-text--in-selecting-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--selected, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--selected, .react-datepicker__year-text--in-selecting-range, .react-datepicker__year-text--in-range {
+.inline-calendar .react-datepicker__day--selected, .inline-calendar .react-datepicker__day--in-selecting-range, .inline-calendar .react-datepicker__day--in-range, .inline-calendar .react-datepicker__month-text--selected, .inline-calendar .react-datepicker__month-text--in-selecting-range, .inline-calendar .react-datepicker__month-text--in-range, .inline-calendar .react-datepicker__quarter-text--selected, .inline-calendar .react-datepicker__quarter-text--in-selecting-range, .inline-calendar .react-datepicker__quarter-text--in-range, .inline-calendar .react-datepicker__year-text--selected, .inline-calendar .react-datepicker__year-text--in-selecting-range, .inline-calendar .react-datepicker__year-text--in-range {
     border-radius: 999rem !important;
     color: var(--button-primary-text-color) !important;
     background-color: var(--button-primary-color) !important;
 }
 
 /* hover */
-.react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover {
+.inline-calendar .react-datepicker__day:hover, .inline-calendar .react-datepicker__month-text:hover, .inline-calendar .react-datepicker__quarter-text:hover, .inline-calendar .react-datepicker__year-text:hover {
     background-color: unset;
     transform: scale(1.2);
 }
 
 /* 각각의 날들 */
-.react-datepicker__day, .react-datepicker__day-name {
+.inline-calendar .react-datepicker__day, .inline-calendar .react-datepicker__day-name {
     width: 1.7rem;
 }
 
-.react-datepicker__navigation {
+.inline-calendar .react-datepicker__navigation {
     width: 10px;
 }

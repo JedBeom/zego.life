@@ -26,6 +26,7 @@ const MainRoute = lazy(() => import("./pages/main/Route"))
 const Register = lazy(() => import("./pages/main/Register"))
 const HelpRoute = lazy(() => import('./pages/help/Route'))
 const RadioRoute = lazy(() => import('./pages/radio/Route'))
+const CampaignsRoute = lazy(() => import('./pages/campaigns/Route'))
 const AdminRoute = isAdmin() ? lazy(() => import('./pages/admin/Route')) : null
 
 registerLocale('ko', ko)
@@ -55,6 +56,7 @@ function App({history}) {
                         }
                         <Route path="/help" component={HelpRoute}/>
                         <Route path="/radio" component={RadioRoute}/>
+                        <Route path="/campaigns" component={CampaignsRoute}/>
                         <Route path="/register" component={Register}/>
                         <Route path="/" component={MainRoute}/>
                     </Switch>

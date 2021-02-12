@@ -195,7 +195,7 @@ type Comment struct {
 	DeletedAt time.Time `pg:",soft_delete"`
 }
 
-type Campaign struct {
+type CampaignBase struct {
 	ID      string
 	IsReady bool
 
@@ -207,12 +207,26 @@ type Campaign struct {
 	UserID string
 	User   *User
 
-	Price     int
+	Price   int
+	Payment string
+	PayedAt *time.Time
+	PayCode string
+
 	CreatedAt time.Time
 	UpdatedAt time.Time
-	DeletedAt time.Time
+	DeletedAt time.Time `pg:",soft_delete"`
 	StartAt   time.Time
 	EndAt     time.Time
+}
+
+type Campaign struct {
+	CampaignBase
+}
+
+type CampaignNotPayed struct {
+	TableName struct{} `sql:"campaigns_not_payed" json:"-"`
+	CampaignBase
+	PayLink string
 }
 
 type Vote struct {

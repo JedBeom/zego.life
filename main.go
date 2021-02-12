@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/JedBeom/zego.life/media"
+
 	"github.com/JedBeom/zego.life/models"
 
 	"github.com/go-pg/pg"
@@ -22,6 +24,7 @@ var banner = `  __________ ____  ___   _     ___ _____ _____
 var db *pg.DB
 
 func main() {
+	media.ConnectAWS()
 	db = models.Connect()
 	conn := db.Conn()
 	// parse.GetDietIfNotExist(conn)

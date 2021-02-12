@@ -125,6 +125,12 @@ const Me = () => {
                     <button className="button float-right">사연 보내기</button>
                 </NavLink>
             </article>
+            <article className="card-box shadow-3">
+                <h2>캠페인 신청하기</h2>
+                <NavLink to="/campaigns">
+                    <button className="button float-right">가기</button>
+                </NavLink>
+            </article>
             {isAdmin() ?
                 <article className="card-box shadow-3">
                     <h2>어드민 페이지</h2>

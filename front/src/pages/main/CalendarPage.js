@@ -96,10 +96,10 @@ const DietPage = () => {
     }, [])
 
     if (dates === null) {
-        return (<>
+        return <>
             <h1 className="page-title">캘린더</h1>
             <div className="loader"/>
-        </>)
+        </>
     }
 
     return (
@@ -114,10 +114,12 @@ const DietPage = () => {
                     <CalendarIcon className="icon icon-tabler"/>
                     날짜 선택
                 </h2>
-                <DatePicker inline disabledKeyboardNavigation dateFormat="yyyy-MM-dd"
-                            onChange={onClick} name="날짜 선택" title="날짜 선택" allowSameDay={false}
-                            highlightDates={dates}
-                            selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
+                <div className="inline-calendar">
+                    <DatePicker inline disabledKeyboardNavigation dateFormat="yyyy-MM-dd"
+                                onChange={onClick} name="날짜 선택" title="날짜 선택" allowSameDay={false}
+                                highlightDates={dates} className="inline-calendar"
+                                selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
+                </div>
             </article>
             {isLoading ? <div className="loader"/> : <>
                 {events.length > 0 ?

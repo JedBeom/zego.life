@@ -228,11 +228,12 @@ nav ul a {
         width: 100%;
     }
 
-    .w-100 {
-        width: 100%;
-    }
 }
 */
+
+.w-100 {
+    width: 100%;
+}
 
 .page-title {
     font-size: 2.3em;
@@ -723,8 +724,8 @@ input.register-birthday {
 .campaign-box img {
     opacity: .85;
     position: absolute;
-    height: 2.5rem;
-    right: .25rem;
+    height: 3rem;
+    right: 1rem;
     top: 1rem;
 }
 
@@ -786,8 +787,13 @@ a[href="/about"] {
     margin-right: .25em;
     fill: currentColor;
     display: inline-block;
+    vertical-align: auto;
 
     color: currentColor;
+}
+
+.button .icon {
+    top: -0.01em;
 }
 
 .icon-tabler {

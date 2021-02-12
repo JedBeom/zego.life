@@ -10,6 +10,7 @@ const Main = () => {
                 <li><NavLink to="/admin/notice-new">새 공지사항</NavLink></li>
                 <li><NavLink to="/admin/feedbacks">피드백 열람</NavLink></li>
                 <li><NavLink to="/admin/campaign-new">캠페인 생성</NavLink></li>
+                <li><NavLink to="/admin/campaign-move">캠페인 이동</NavLink></li>
                 <li><NavLink to="/admin/dday-list">디데이 목록</NavLink></li>
             </ul>
         </>

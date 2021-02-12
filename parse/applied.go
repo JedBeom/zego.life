@@ -3,6 +3,7 @@ package parse
 import (
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"sync"
 	"time"
@@ -94,9 +95,6 @@ func getAndCreateApplyList(db *pg.Conn, u models.User, calendarType string, meal
 		if err := du.Create(db); err != nil {
 			pgErr, ok := err.(pg.Error)
 			if ok && pgErr.Field(models.ErrPgErrCodeField) == models.ErrPgUniqueViolation { // if unique violation
-				if du.DietID == "2020.11.25-1" || du.DietID == "2020.11.25-3" { // HOT FIX
-					continue
-				}
 				// update if unique violation
 				if err := models.Diet2UserUpdate(db, du.DietID, du.UserID, du.Applied); err != nil {
 					return err
@@ -114,30 +112,59 @@ func getAndCreateApplyList(db *pg.Conn, u models.User, calendarType string, meal
 	return nil
 }
 
-// TODO: 사용자 지정으로 작업 시작하도록 해야함. 급식 신청 날짜는 맨날 바뀌니까........
-func GetApplyListOfAllUsers(db *pg.Conn, calendarType string) {
-	us, err := models.UsersAll(db)
-	if err != nil {
-		models.LogError(db, "", "", "GetApplyListOfAllUsers():models.UsersAll()", err)
-		return
-	}
+func GetApplyListOfAllUsersCMD(db *pg.Conn, calendarType string) {
+	log.Println("Ready to take off...")
 
-	if len(us) == 0 {
-		return
-	}
-
+	log.Println("Reloading Fly Kitchen Session")
 	if err := reloadFlyKitchenSess(); err != nil {
+		log.Fatalln("Failed to reload.", err)
+	}
+
+	count, err := models.UsersAllCount(db)
+	if err != nil {
+		log.Fatalln("Failed to count users.", err)
+	}
+
+	log.Printf("%d users is here.", count)
+
+	totalPages := count / 10
+	if count%10 != 0 {
+		totalPages++
+	}
+
+	log.Printf("total %d pages", totalPages)
+
+	for i := 1; i <= totalPages; i++ {
+		us, err := models.UsersAllOptions(db, "created_at", 10, i)
+		if err != nil {
+			log.Fatalf("Failed to get users. (page %d)", i)
+		}
+		log.Printf("Page %d(%d users)", i, len(us))
+
+		if err := GetApplyListOfUsers(db, calendarType, us); err != nil {
+			log.Fatalln("Failed to get apply list.", err)
+		}
+		log.Printf("Page %d OK", i)
+	}
+
+	log.Println("Success")
+}
+
+// TODO: 사용자 지정으로 작업 시작하도록 해야함. 급식 신청 날짜는 맨날 바뀌니까........
+func GetApplyListOfUsers(db *pg.Conn, calendarType string, us []models.User) (err error) {
+	if len(us) == 0 {
 		return
 	}
 
 	wg := sync.WaitGroup{}
 	for _, u := range us {
 		for mealType := 1; mealType <= 3; mealType++ {
-			wg.Add(1)
 			go func(u models.User, mealType int) {
 				for try := 0; try < 2; try++ {
+					wg.Add(1)
 					if err := getAndCreateApplyListWg(db, u, calendarType, mealType, &wg); err != nil {
-						time.Sleep(time.Second)
+						models.LogError(db, u.ID, "", "GetApplyListOfUsers", err)
+						time.Sleep(time.Second / 2)
 						continue
 					}
 					return
@@ -147,6 +174,7 @@ func GetApplyListOfAllUsers(db *pg.Conn, calendarType string) {
 	}
 	wg.Wait()
 
+	return
 }
 
 func GetApplyListOfUser(db *pg.Conn, u models.User, calendarType string) error {

@@ -27,7 +27,7 @@
 
 @media (prefers-color-scheme: dark) {
     .theme-null, :root {
-        --background-color: #121212;
+        --background-color: #16171c;
 
         --site-logo-color: #E4E8EB;
         --site-logo-bg-color: rgba(0, 0, 0, 0.8);
@@ -52,15 +52,15 @@
 }
 
 .theme-dark {
-    --background-color: #121212;
+    --background-color: #18171d;
 
     --site-logo-color: #E4E8EB;
     --site-logo-bg-color: #000000cc;
     --site-text-color: #ffffffd3;
     --site-bg-color: #121212;
 
-    --card-box-text-color: white;
-    --card-box-bg-color: #272727;
+    --card-box-text-color: #ffffff;
+    --card-box-bg-color: #202028;
     --card-box-opacity: 1;
 
     --highlight-color: #fd99e1;

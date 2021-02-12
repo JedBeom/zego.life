@@ -2,6 +2,8 @@ import React from 'react'
 import {NavLink} from "react-router-dom"
 
 const CampaignBox = ({c}) => {
+    if (!c) return null
+
     let ar = <article className="campaign-box shadow-3">
         <span className="campaign-icon">AD</span>
         <h2>{c.Title}</h2>

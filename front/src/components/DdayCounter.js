@@ -11,12 +11,12 @@ const DdayCounter = ({events, count}) => {
             <h2 className="card-title">
                 <CalendarIcon className="icon"/>
                 <span className="diet-when">얼마나</span>남았나?</h2>
-            <div className="flex justify-around dday-item">
+            <div className="flex justify-around dday-item flex-wrap">
                 {events.map(e => {
                     if (e.Left > 0) {
                         return null
                     }
-                    return <div className="dday-item">
+                    return <div className="dday-item" key={e.Name}>
                         <p className="dday-name mt-3">{e.Name}</p>
                         {e.Left === 0 ?
                             <p className="dday-dday">D-DAY</p>
