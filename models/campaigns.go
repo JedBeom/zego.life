@@ -108,7 +108,7 @@ func CampaignsAll(conn *pg.Conn) (cmps []Campaign, err error) {
 
 func CampaignRandomOne(conn *pg.Conn) (cmp Campaign, err error) {
 	rand.Seed(time.Now().UnixNano())
-	_, err = conn.QueryOne(&cmp, `select * from campaigns offset floor(random()*(select count(*) from campaigns)) LIMIT 1`)
+	_, err = conn.QueryOne(&cmp, `select * from campaigns where start_at <= current_timestamp and end_at >= current_timestamp offset floor(random()*(select count(*) from campaigns where start_at <= current_timestamp and end_at >= current_timestamp)) LIMIT 1`)
 	if err != nil {
 		return
 	}
