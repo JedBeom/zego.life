@@ -82,9 +82,11 @@ const Main = () => {
                     <h4>{e.Title}</h4>
                     {e.PayedAt ? <p className="blue">승인 대기 중</p> : <p className="red">결제 필요</p>}
                 </div>
-                <NavLink className="no-underline" to={`/campaigns/new/${e.ID}`}>
-                    <button className="button button-edit">수정 및 결제</button>
-                </NavLink>
+                {!e.PayedAt ?
+                    <NavLink className="no-underline" to={`/campaigns/new/${e.ID}`}>
+                        <button className="button button-edit">수정 및 결제</button>
+                    </NavLink>
+                    : null}
             </div>)}
         </article>
         <p className="info">도움이 필요하신가요? 피드백을 남겨주세요.</p>

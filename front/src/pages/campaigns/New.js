@@ -3,6 +3,7 @@ import {SuccessBox, WarningBox} from '../../components/AlertBox'
 import Back from "../../components/Back"
 import CampaignBox from '../../components/CampaignBox'
 import {validURL} from '../../utils/validate'
+import {timestampHyphen} from '../../utils/timestamp'
 
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
@@ -71,10 +72,10 @@ const CampaignNew = ({match, history}) => {
             setPrvImageSrc(data.ImageSrc)
             setImagePreview(data.ImageSrc)
             let start = new Date(data.StartAt)
-            setStartDate(start.toISOString().substr(0, 10))
+            setStartDate(timestampHyphen(start))
             setStartHour(start.getHours())
             let end = new Date(data.EndAt)
-            setEndDate(end.toISOString().substr(0, 10))
+            setEndDate(timestampHyphen(end))
             setEndHour(end.getHours())
         } catch (e) {
             setErrMsg("로딩에 실패했어요.")

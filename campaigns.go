@@ -100,8 +100,8 @@ func postCampaignNotPayed(c echo.Context) error {
 			ImageSrc: p.ImageSrc,
 			Link:     p.Link,
 			UserID:   u.ID,
-			StartAt:  p.StartAt.Local(),
-			EndAt:    p.EndAt.Local(),
+			StartAt:  p.StartAt,
+			EndAt:    p.EndAt,
 		},
 	}
 	cnp.Price = int(cnp.EndAt.Sub(cnp.StartAt).Hours()) * 20
@@ -126,6 +126,10 @@ func patchCampaignPayment(c echo.Context) error {
 	cnp, err := models.CampaignNotPayedByID(conn, id)
 	if err != nil {
 		return err
+	}
+
+	if cnp.PayedAt != nil {
+		return echo.ErrBadRequest
 	}
 
 	if cnp.UserID != u.ID {
@@ -181,12 +185,16 @@ func patchCampaignNotPayed(c echo.Context) error {
 		return err
 	}
 
+	if cnp.PayedAt != nil {
+		return echo.ErrBadRequest
+	}
+
 	cnp.Title = p.Title
 	cnp.SubTitle = p.SubTitle
 	cnp.Link = p.Link
 	cnp.ImageSrc = p.ImageSrc
-	cnp.StartAt = p.StartAt.Local()
-	cnp.EndAt = p.EndAt.Local()
+	cnp.StartAt = p.StartAt
+	cnp.EndAt = p.EndAt
 
 	if cnp.UserID != u.ID {
 		return echo.ErrUnauthorized
