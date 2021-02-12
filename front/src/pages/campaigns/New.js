@@ -122,6 +122,12 @@ const CampaignNew = ({match, history}) => {
 
         let today = new Date()
 
+        if (totalDate.totalHour === NaN) {
+            setErrMsg("날짜를 제대로 입력해주세요.")
+            setLoading(false)
+            return
+        }
+
         if (start >= end) {
             setErrMsg("시작 날짜는 종료 날짜보다 먼저여야 합니다.")
             setLoading(false)
