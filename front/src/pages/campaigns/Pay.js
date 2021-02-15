@@ -3,6 +3,7 @@ import {NavLink, withRouter} from 'react-router-dom'
 import axios from 'axios'
 
 import Page from '../../components/Page'
+import {InfoBox} from '../../components/AlertBox'
 
 const payments = {
     toss: {
@@ -90,19 +91,21 @@ const Pay = ({match, history}) => {
         {cmp.PayLink ? <>
                 {cmp.Payment === "toss" ? <p className="info">아래 링크를 웹브라우저에 붙여넣거나</p> : null}
                 {cmp.Payment === "kakaopay" ? <p className="info">아래 링크를 웹 브라우저에 붙여넣어</p> : null}
-                <input type="text" ref={e => setLinkarea(e)} value={cmp.PayLink} className="input-form my-4"
-                       style={{color: payments[cmp.Payment].color, backgroundColor: payments[cmp.Payment].bgColor}}/>
-                <button onClick={copy} className="button button-edit">복사하기</button>
-                <hr/>
+                <input type="text" ref={e => setLinkarea(e)} value={cmp.PayLink} className="input-form my-4"/>
             </>
-            : null}
+            : <input type="text" ref={e => setLinkarea(e)} value="광주 083121196659" className="input-form my-4"/>}
+        <button onClick={copy} className="button button-edit">복사하기</button>
         <p className="info">아래 정보로 입금하세요</p>
         <div className="bank-info">
-            <p><span>받는 분 통장 표시:</span> 제라{cmp.PayCode}</p>
+            <p><span>받는 분 통장 표시(입금자명):</span> 제라{cmp.PayCode}</p>
             <p><span>보낼 금액:</span> {cmp.Price}원</p>
-            <p><span>은행:</span> 광주</p>
-            <p><span>계좌번호:</span> 083121196659</p>
+            {cmp.Payment === "kakaopay" ? null : <>
+                <p><span>은행:</span> 광주</p>
+                <p><span>계좌번호:</span> 083121196659</p>
+                <p><span>계좌주:</span> 범준환</p>
+            </>}
         </div>
+        <InfoBox>받는 분 통장 표시 이름을 꼭 지켜주세요! 실명 또는 다른 이름으로 입금 시 승인이 지연될 수 있습니다!</InfoBox>
         <p className="info mt-6">결제를 완료했으면 결제 완료 버튼을 눌러주세요.</p>
         <button className="button w-100 mt-4" onClick={confirmPay}>결제 완료</button>
     </Page>

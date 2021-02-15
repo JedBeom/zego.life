@@ -185,7 +185,8 @@ pay
     margin: 1em;
     padding: .5rem;
     padding-left: 1rem;
-    background-color: rgb(32, 32, 40);
+    background-color: var(--card-box-bg-color);
+    color: var(--card-box-text-color);
     border-radius: 10px;
 }
 
