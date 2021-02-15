@@ -35,6 +35,7 @@
     background-color: unset;
     color: var(--highlight-color);
     font-weight: bold;
+    text-decoration: underline;
 }
 
 /* 선택됨 */

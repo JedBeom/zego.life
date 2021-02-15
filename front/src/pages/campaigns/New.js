@@ -269,6 +269,9 @@ const CampaignNew = ({match, history}) => {
             <button className={loading ? "button float-right mt-5 loading" : "button float-right mt-5"}
                     onClick={onClick}>다음
             </button>
+            <p className="info">'다음' 버튼을 누를 시 <a rel="noopener noreferer" target="_blank"
+                                                 href="http://simp.ly/p/YVJPWQ">제고라이프 캠페인 이용약관</a>에 동의하는 것으로 간주합니다.
+            </p>
         </Page>
     )
 }
