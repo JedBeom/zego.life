@@ -10,7 +10,8 @@ const DdayCounter = ({events, count}) => {
         <article className="card-box shadow-3">
             <h2 className="card-title">
                 <CalendarIcon className="icon"/>
-                <span className="diet-when">얼마나</span>남았나?</h2>
+                디데이
+            </h2>
             <div className="flex justify-around dday-item flex-wrap">
                 {events.map(e => {
                     if (e.Left > 0) {
@@ -40,7 +41,7 @@ const DdayCounter = ({events, count}) => {
                         <line x1="11" y1="15" x2="12" y2="15"/>
                         <line x1="12" y1="15" x2="12" y2="18"/>
                     </svg>
-                    월간 일정 확인하기
+                    월간 일정
                 </p>
             </NavLink>
         </article>

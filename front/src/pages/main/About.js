@@ -1,15 +1,13 @@
 import React, {useEffect} from 'react'
-import Back from '../../components/Back'
+import Page from '../../components/Page'
 
 const About = () => {
     useEffect(() => {
-        document.title = "About | 제고라이프"
         document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [])
 
     return (
-        <>
-            <h1 className="page-title"><Back content="제작자"/></h1>
+        <Page title="제작자" back>
             <article className="card-box shadow-3">
                 <h2>
                     06+17+19
@@ -34,7 +32,7 @@ const About = () => {
                 <h2>제고라이프에 기여하실래요?</h2>
                 <p>Github에서 제고라이프 레포를 찾아보세요.</p>
             </article>
-        </>
+        </Page>
     )
 }
 

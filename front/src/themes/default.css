@@ -1,6 +1,6 @@
 .theme-null, .theme-light, :root {
 
-    --background-color: #eef1f5;
+    --background-color: #ffffff;
 
     --site-logo-color: black;
     --site-logo-bg-color: rgba(255, 255, 255, 0.8);
@@ -8,7 +8,7 @@
     --site-bg-color: #EEF1F5;
 
     --card-box-text-color: black;
-    --card-box-bg-color: white;
+    --card-box-bg-color: #edf9f9;
     --card-box-opacity: 1;
 
     --highlight-color: red;
@@ -17,8 +17,8 @@
     --nav-bar-active-color: black;
     --nav-bar-bg-color: rgba(255, 255, 255, 0.8);
 
-    --button-primary-color: #837ae6;
-    --button-primary-text-color: #EEF1F5;
+    --button-primary-color: #f2f2f4;
+    --button-primary-text-color: #495667;
 
     --loader-color: 0, 0, 0;
 

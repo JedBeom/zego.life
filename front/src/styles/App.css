@@ -87,6 +87,11 @@ option {
     background-color: var(--button-primary-color);
 }
 
+.button.loading {
+    padding-right: 1.7rem;
+}
+
+
 .site {
     margin-left: auto;
     margin-right: auto;
@@ -241,7 +246,6 @@ nav ul a {
 .page-title {
     font-size: 2.3em;
     margin-bottom: .75rem;
-    margin-left: .5em;
 
     -webkit-text-stroke-color: var(--page-title-bg-color);
 }
@@ -275,7 +279,7 @@ a:has("div") {
 }
 
 .card-box, .campaign-box, .radio-description, .notice-line {
-    margin: 0 .5rem 1rem .5rem;
+    margin: 0 .25rem 1rem .25rem;
 }
 
 .card-box {
@@ -286,6 +290,10 @@ a:has("div") {
     color: var(--card-box-text-color);
 
     word-break: keep-all;
+}
+
+.shadow-3 {
+    box-shadow: none;
 }
 
 .card-box, .in-progress {
@@ -543,13 +551,13 @@ input.register-birthday {
 
 .notice-box h2 {
     font-weight: 700;
-    margin-left: .1rem;
     padding-left: 0 !important;
+    margin: 1rem .1rem .5rem 0;
 }
 
 .notice-box h3 {
     font-weight: 700;
-    margin-left: .25rem;
+    margin: 1rem .1rem .5rem 0;
 }
 
 .notice-box ul {
@@ -672,7 +680,7 @@ input.register-birthday {
     margin-bottom: .75em;
 }
 
-.textarea, .input {
+.textarea, .input, .select {
     border: 2px solid var(--site-text-color);
 }
 
@@ -802,6 +810,12 @@ a[href="/about"] {
 .icon-tabler {
     stroke: currentColor;
     fill: transparent;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.icon-not-tabler {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;

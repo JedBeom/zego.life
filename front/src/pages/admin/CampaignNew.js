@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import {SuccessBox, WarningBox} from '../../components/AlertBox'
-import Back from "../../components/Back"
-
 import axios from 'axios'
+
+import Page from "../../components/Page"
+import {SuccessBox, WarningBox} from '../../components/AlertBox'
 
 const CampaignNew = () => {
 
@@ -65,8 +65,7 @@ const CampaignNew = () => {
     }
 
     return (
-        <>
-            <h1 className="page-title"><Back content="캠페인 생성"/></h1>
+        <Page title="새 캠페인" back>
             <SuccessBox>{okMsg}</SuccessBox>
             <WarningBox>{errMsg}</WarningBox>
             <div className="flex flex-column">
@@ -92,7 +91,7 @@ const CampaignNew = () => {
             <button className={loading ? "button float-right mt-2 loading" : "button float-right mt-2"}
                     onClick={onClick}>제출
             </button>
-        </>
+        </Page>
     )
 }
 

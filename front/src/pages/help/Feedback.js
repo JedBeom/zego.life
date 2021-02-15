@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import Back from '../../components/Back'
-import {SuccessBox, WarningBox} from "../../components/AlertBox";
 import axios from 'axios'
+
+import Page from '../../components/Page'
+import {SuccessBox, WarningBox} from "../../components/AlertBox";
 
 const Feedback = () => {
     const [okMsg, setOkMsg] = useState("")
@@ -64,8 +65,7 @@ const Feedback = () => {
     }, [])
 
     return (
-        <>
-            <h1 className="page-title"><Back content="피드백 보내기"/></h1>
+        <Page title="피드백 보내기" back>
             <SuccessBox>{okMsg}</SuccessBox>
             <WarningBox>{errMsg}</WarningBox>
             <p>제고라이프는 여러분의 피드백으로 발전합니다. 사용하면서 필요한 기능이나 불편한 점이 있다면
@@ -85,7 +85,7 @@ const Feedback = () => {
                     </article>
                 ))
             }
-        </>
+        </Page>
     )
 }
 

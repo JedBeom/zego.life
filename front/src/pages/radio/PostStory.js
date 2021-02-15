@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import Back from '../../components/Back'
-import axios from 'axios';
-import {isAdmin, isThat, isUser} from '../../utils/getRoles'
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
+
+import Page from '../../components/Page'
 import {ErrorBox, SuccessBox} from "../../components/AlertBox"
+
+import {isAdmin, isThat, isUser} from '../../utils/getRoles'
 
 const PostStory = () => {
     useEffect(() => {
@@ -57,8 +59,7 @@ const PostStory = () => {
     }, [])
 
     return (
-        <>
-            <h1 className="page-title"><Back content="라디오 사연 보내기"/></h1>
+        <Page title="라디오 사연 보내기" back>
             {isThat("radio") || isAdmin() ?
                 <NavLink to="/radio/stories">
                     <button className="button mb-6">사연 보기</button>
@@ -98,7 +99,7 @@ const PostStory = () => {
                         type="submit">보내기!
                 </button>
             </form>
-        </>
+        </Page>
     )
 }
 

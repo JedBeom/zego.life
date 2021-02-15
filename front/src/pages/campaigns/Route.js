@@ -11,14 +11,12 @@ import Main from "./Main"
 function Router() {
     const [newCmp, setNewCmp] = useState({})
 
-    return <div className="campaigns-site">
-        <Switch>
-            <Route path="/campaigns/new/:id?" render={() => <New cmp={newCmp} setCmp={setNewCmp}/>}/>
-            <Route path="/campaigns/:id/payment" render={() => <Payment cmp={newCmp} setCmp={setNewCmp}/>}/>
-            <Route path="/campaigns/:id/pay" render={() => <Pay cmp={newCmp} setCmp={setNewCmp}/>}/>
-            <Route path="/campaigns" exact component={Main}/>
-        </Switch>
-    </div>
+    return <Switch>
+        <Route path="/campaigns/new/:id?" render={() => <New cmp={newCmp} setCmp={setNewCmp}/>}/>
+        <Route path="/campaigns/:id/payment" render={() => <Payment cmp={newCmp} setCmp={setNewCmp}/>}/>
+        <Route path="/campaigns/:id/pay" render={() => <Pay cmp={newCmp} setCmp={setNewCmp}/>}/>
+        <Route path="/campaigns" exact component={Main}/>
+    </Switch>
 }
 
 export default Router;

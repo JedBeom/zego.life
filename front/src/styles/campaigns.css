@@ -1,13 +1,4 @@
-.campaigns-site {
-    margin-left: 1rem;
-    margin-right: 1rem;
-}
-
-.campaigns-site .page-title {
-    margin-left: 0;
-}
-
-.campaigns-site .page-sub {
+.page-sub {
     margin-top: 1rem;
     font-size: 1.5rem;
     font-weight: 600;
@@ -32,11 +23,7 @@
     padding-right: .75rem;
 }
 
-.campaigns-site .button.loading {
-    padding-right: 1.7rem;
-}
-
-.campaigns-site .button-edit {
+.button-edit {
     color: #cecece;
     font-size: .8rem;
 }

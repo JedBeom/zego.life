@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import {SuccessBox, WarningBox} from '../../components/AlertBox'
-import Back from "../../components/Back"
+import {withRouter} from 'react-router-dom'
+import axios from 'axios'
+
+import Page from "../../components/Page"
 import CampaignBox from '../../components/CampaignBox'
+import {SuccessBox, WarningBox} from '../../components/AlertBox'
+
 import {validURL} from '../../utils/validate'
 import {timestampHyphen} from '../../utils/timestamp'
-
-import axios from 'axios'
-import {withRouter} from 'react-router-dom'
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -203,14 +204,11 @@ const CampaignNew = ({match, history}) => {
     }
 
     if (initialLoading) {
-        return <>
-            <div className="loader"/>
-        </>
+        return <div className="loader"/>
     }
 
     return (
-        <>
-            <h1 className="page-title"><Back content={isNew ? "새 캠페인" : "캠페인 수정"}/></h1>
+        <Page title={isNew ? "새 캠페인" : "캠페인 수정"} back>
             <SuccessBox>{okMsg}</SuccessBox>
             <WarningBox>{errMsg}</WarningBox>
             <div className="flex flex-column">
@@ -271,7 +269,7 @@ const CampaignNew = ({match, history}) => {
             <button className={loading ? "button float-right mt-5 loading" : "button float-right mt-5"}
                     onClick={onClick}>다음
             </button>
-        </>
+        </Page>
     )
 }
 

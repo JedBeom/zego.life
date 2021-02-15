@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import {withRouter} from 'react-router-dom'
+import {NavLink, withRouter} from 'react-router-dom'
 import axios from 'axios'
-import Back from '../../components/Back'
+
+import Page from '../../components/Page'
 import {ErrorBox} from '../../components/AlertBox'
 
 const payments = [
@@ -73,8 +74,7 @@ const Payment = ({match, history}) => {
         return <div className="loader"/>
     }
 
-    return <>
-        <h1 className="page-title"><Back content="결제하기"/></h1>
+    return <Page title={<NavLink className="no-underline" to={`/campaigns/new/${match.params.id}`}>결제 수단</NavLink>}>
         <ErrorBox>{errMsg}</ErrorBox>
         <p className="page-sub">'{title}'<br/>를 결제할 수단을 선택하세요</p>
 
@@ -90,7 +90,7 @@ const Payment = ({match, history}) => {
 
         <p className="info">{payments[selection].name} 결제합니다</p>
         <button onClick={setPayment} className={`button float-right ${loading ? "loading" : null}`}>다음</button>
-    </>
+    </Page>
 }
 
 export default withRouter(Payment)

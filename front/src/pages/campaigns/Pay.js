@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink, withRouter} from 'react-router-dom'
-
 import axios from 'axios'
+
+import Page from '../../components/Page'
 
 const payments = {
     toss: {
@@ -83,8 +84,7 @@ const Pay = ({match, history}) => {
         return <div className="loader"/>
     }
 
-    return <>
-        <h1 className="page-title"><NavLink className="no-underline" to="/campaigns"> 결제하기</NavLink></h1>
+    return <Page title={<NavLink className="no-underline" to="/campaigns"> 결제하기</NavLink>}>
         <p className="page-sub mb-4">'{cmp.Title}'<br/>를 결제합니다</p>
 
         {cmp.PayLink ? <>
@@ -105,7 +105,7 @@ const Pay = ({match, history}) => {
         </div>
         <p className="info mt-6">결제를 완료했으면 결제 완료 버튼을 눌러주세요.</p>
         <button className="button w-100 mt-4" onClick={confirmPay}>결제 완료</button>
-    </>
+    </Page>
 }
 
 export default withRouter(Pay)

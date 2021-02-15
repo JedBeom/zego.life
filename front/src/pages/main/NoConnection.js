@@ -1,4 +1,5 @@
 import React from 'react'
+import Page from '../../components/Page'
 
 const NoConnection = () => {
     const onClick = async () => {
@@ -6,8 +7,7 @@ const NoConnection = () => {
     }
 
     return (
-        <>
-            <h1 className="page-title">연결 없음</h1>
+        <Page title="연결 없음">
             <style>{"nav {opacity:0}"}</style>
             <p>다음 상황 중 하나입니다.</p>
             <ul>
@@ -17,7 +17,7 @@ const NoConnection = () => {
             </ul>
             <p>아래 새로고침 버튼을 눌러 재시도 해보세요.</p>
             <button onClick={onClick} className="button">새로고침</button>
-        </>
+        </Page>
     )
 }
 

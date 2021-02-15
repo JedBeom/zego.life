@@ -113,22 +113,18 @@ const Main = () => {
     }, [isFocused])
 
     if (loading) {
-        return <>
-            <h1 className="page-title">홈</h1>
-            <div className="loader"/>
-        </>
+        return <Page title="홈">
+        </Page>
     }
 
     return (
-        <Page head={<>
-            <h1 className="page-title">홈</h1>
+        <Page title="홈">
             <NavLink to="/notice" className="no-underline">
                 <div className="notice-line">
                     <div className="notice-line-badge">공지</div>
                     {noticeTitle}
                 </div>
             </NavLink>
-        </>}>
             {userUpgradable ?
                 <NavLink to="/help/user-upgrade">
                     <InfoBox>

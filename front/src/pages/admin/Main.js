@@ -1,10 +1,10 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
+import Page from '../../components/Page'
 
 const Main = () => {
     return (
-        <>
-            <h1 className="page-title">어드민</h1>
+        <Page title="어드민" back>
             <ul>
                 <li><NavLink to="/admin/users-all">사용자 열람</NavLink></li>
                 <li><NavLink to="/admin/notice-new">새 공지사항</NavLink></li>
@@ -13,7 +13,7 @@ const Main = () => {
                 <li><NavLink to="/admin/campaign-move">캠페인 이동</NavLink></li>
                 <li><NavLink to="/admin/dday-list">디데이 목록</NavLink></li>
             </ul>
-        </>
+        </Page>
     )
 }
 

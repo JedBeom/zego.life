@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import { InfoBox } from '../../components/AlertBox'
+
+import Page from '../../components/Page'
+import {InfoBox} from '../../components/AlertBox'
 
 /*
 const meGrade = localStorage.getItem("me.grade")
@@ -25,11 +27,11 @@ const Timetable = () => {
     }
 
     return (
-        <>
+        <Page>
             <h1 className="page-title" onClick={setNext}>{types[type]} 시간표 {getNext(type) !== type ?
                 <span className="sub">{types[getNext(type)]}</span> : null}</h1>
             <InfoBox>새 시간표로 찾아뵙겠습니다.</InfoBox>
-        </>
+        </Page>
     )
 }
 

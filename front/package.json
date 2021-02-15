@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@popperjs/core": "^2.5.4",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "@zxing/library": "^0.17.1",
+    "@zxing/library": "^0.18.3",
     "axios": "^0.21.1",
     "date-fns": "^2.16.1",
     "node-sass": "^4.14.1",
@@ -18,7 +17,8 @@
     "react-popper": "^2.2.4",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "shorthandcss": "^1.1.1"
+    "shorthandcss": "^1.1.1",
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -28,6 +28,11 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "babel": {
+    "plugins": [
+      "babel-plugin-styled-components"
+    ]
   },
   "browserslist": {
     "production": [
@@ -40,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.12.0"
   }
 }

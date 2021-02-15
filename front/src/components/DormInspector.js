@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 
 let start = new Date(2020, 9, 30) // 새사, 진기쌤
 
@@ -16,17 +17,22 @@ const DormInspector = ({date, correction}) => {
                     <path d="M7 12l5 5l10 -10"/>
                     <path d="M2 12l5 5m5 -5l5 -5"/>
                 </svg>
-                오늘의 사감
+                {!correction ? "지금" : "이날"}의 사감
             </h2>
             <div className="float-right">
-                {localStorage.getItem("me.sex") === "1" ?
-                    <p>{!diff ? "정진기" : "이만수"} 사감</p>
-                    :
-                    <p>{!diff ? "이순덕(새사)" : "장정숙(장사)"} 사감</p>
-                }
+                <Inspector>
+                    {localStorage.getItem("me.sex") === "1" ?
+                        (!diff ? "정진기" : "이만수")
+                        :
+                        (!diff ? "이순덕(새사)" : "장정숙(장사)")
+                    } 사감</Inspector>
             </div>
         </article>
     )
 }
+
+const Inspector = styled.p`
+font-weight: 700;
+`
 
 export default DormInspector

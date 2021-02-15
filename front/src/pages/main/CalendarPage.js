@@ -97,20 +97,19 @@ const DietPage = () => {
     }, [])
 
     if (dates === null) {
-        return <>
-            <h1 className="page-title">캘린더</h1>
+        return <Page title="캘린더">
             <div className="loader"/>
-        </>
+        </Page>
     }
 
     return (
-        <Page head={<h1 className="page-title">캘린더</h1>}>
+        <Page title="캘린더">
             {/*}
             <InfoBox>2월 급식 신청 기간입니다. <a href="http://gwang.i-zone.kr" rel="noopener noreferrer" target="_blank">플라이키친
                 가기</a></InfoBox>
             */}
             <ErrorBox>{errMsg}</ErrorBox>
-            <article className="card-box shadow-3 w-100">
+            <article className="card-box shadow-3">
                 <h2 className={"card-title font-s-core px-2"}>
                     <CalendarIcon className="icon icon-tabler"/>
                     날짜 선택

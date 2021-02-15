@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
+import axios from 'axios'
+
+import Page from '../../components/Page'
+import {ErrorBox, InfoBox} from '../../components/AlertBox'
 
 import PlusIcon from '../../icons/Plus'
 
-import axios from 'axios'
-import {ErrorBox, InfoBox} from '../../components/AlertBox'
 
 const Main = () => {
     const [cmps, setCmps] = useState([])
@@ -46,14 +48,12 @@ const Main = () => {
     }
 
     if (loading) {
-        return <>
-            <h1 className="page-title"><NavLink className="no-underline" to="/more"> 캠페인</NavLink></h1>
+        return <Page title="캠페인" back>
             <div className="loader"/>
-        </>
+        </Page>
     }
 
-    return <>
-        <h1 className="page-title"><NavLink className="no-underline" to="/more"> 캠페인</NavLink></h1>
+    return <Page title={<NavLink className="no-underline" to="/more"> 캠페인</NavLink>}>
         <InfoBox>현재 캠페인은 다크 테마에만 최적화 되어있습니다. 더 나은 경험을 위해서는 다크 테마를 이용해주세요.</InfoBox>
         <div className="flex justify-center w-100 mb-6">
             <NavLink className="no-underline" to="/campaigns/new">
@@ -90,7 +90,7 @@ const Main = () => {
             </div>)}
         </article>
         <p className="info">도움이 필요하신가요? 피드백을 남겨주세요.</p>
-    </>
+    </Page>
 }
 
 export default Main

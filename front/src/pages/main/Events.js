@@ -1,4 +1,6 @@
 import React, {Fragment, useEffect, useState} from 'react'
+
+import Page from '../../components/Page'
 import {ErrorBox} from '../../components/AlertBox'
 import {getEvents} from '../../common/api'
 
@@ -54,7 +56,7 @@ const Events = () => {
     }, [year, month])
 
     return (
-        <>
+        <Page>
             <h1 className="page-title flex justify-between"><span>
             <svg className="icon icon-tabler" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -101,7 +103,7 @@ const Events = () => {
                 </article>
 
                 : null}
-        </>
+        </Page>
     )
 }
 
