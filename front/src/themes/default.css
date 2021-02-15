@@ -5,6 +5,7 @@
     --site-logo-color: black;
     --site-logo-bg-color: rgba(255, 255, 255, 0.8);
     --site-text-color: black;
+    --site-sub-text-color: #2c2c2c;
     --site-bg-color: #EEF1F5;
 
     --card-box-text-color: black;
@@ -35,6 +36,7 @@
         --site-bg-color: #121212;
 
         --card-box-text-color: white;
+        --card-box-bg-color: #cecece;
         --card-box-bg-color: #272727;
         --card-box-opacity: 1;
 
@@ -57,6 +59,7 @@
     --site-logo-color: #E4E8EB;
     --site-logo-bg-color: #000000cc;
     --site-text-color: #ffffffd3;
+    --site-sub-text-color: #cecece;
     --site-bg-color: #121212;
 
     --card-box-text-color: #ffffff;

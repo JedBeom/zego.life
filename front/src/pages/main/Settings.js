@@ -67,7 +67,7 @@ margin-bottom: .25rem;
 `
 
 const ItemDescription = styled.p`
-color: #cecece;
+color: var(--site-sub-text-color);
 font-weight: 700;
 font-size: .8rem;
 margin-bottom: 1rem;

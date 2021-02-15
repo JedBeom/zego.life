@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 
 import Page from '../../components/Page'
-import {ErrorBox, InfoBox} from '../../components/AlertBox'
+import {ErrorBox} from '../../components/AlertBox'
 
 import PlusIcon from '../../icons/Plus'
 
@@ -54,7 +54,6 @@ const Main = () => {
     }
 
     return <Page title={<NavLink className="no-underline" to="/more"> 캠페인</NavLink>}>
-        <InfoBox>현재 캠페인은 다크 테마에만 최적화 되어있습니다. 더 나은 경험을 위해서는 다크 테마를 이용해주세요.</InfoBox>
         <div className="flex justify-center w-100 mb-6">
             <NavLink className="no-underline" to="/campaigns/new">
                 <button className="button"><PlusIcon/>새 캠페인 만들기</button>

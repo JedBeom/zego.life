@@ -5,6 +5,7 @@
     --site-logo-color: #E4E8EB;
     --site-logo-bg-color: rgba(0, 0, 0, 0.8);
     --site-text-color: #ffffffd3;
+    --site-sub-text-color: #cecece;
     --site-bg-color: #121212;
 
     --card-box-text-color: white;
@@ -30,6 +31,7 @@
     --site-logo-bg-color: rgba(0, 0, 0, 0.8);
     --site-logo-bg-image: linear-gradient(to right, #837AE6 0%, #3F33BD 100%);
     --site-text-color: #ffffffd3;
+    --site-sub-text-color: #cecece;
     --site-bg-color: #121212;
 
     --card-box-text-color: black;
@@ -54,6 +56,7 @@
     --site-logo-color: #E4E8EB;
     --site-logo-bg-color: rgba(0, 0, 0, 0.8);
     --site-text-color: #ffffffd3;
+    --site-sub-text-color: #cecece;
     --site-bg-color: #121212;
 
     --card-box-text-color: white;
@@ -79,6 +82,7 @@
     --site-logo-color: white;
     --site-logo-bg-image: linear-gradient(to right, #F58EB4 0%, #C9366C 100%);
     --site-text-color: white;
+    --site-sub-text-color: #cecece;
     --site-bg-color: #EEF1F5;
 
     --card-box-text-color: black;
@@ -105,6 +109,7 @@
     --site-logo-color: black;
     --site-logo-bg-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
     --site-text-color: black;
+    --site-sub-text-color: #2c2c2c;
     --site-bg-color: #EEF1F5;
 
     --card-box-text-color: black;
@@ -131,6 +136,7 @@
     --site-logo-color: black;
     --site-logo-bg-image: linear-gradient(-225deg, #2CD8D5 0%, #C5C1FF 56%, #FFBAC3 100%);
     --site-text-color: black;
+    --site-text-color: #2c2c2d;
     --site-bg-color: #EEF1F5;
 
     --card-box-text-color: black;

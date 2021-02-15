@@ -13,7 +13,7 @@
     border-top-style: solid;
     -webkit-font-smoothing: antialiased;
 
-    color: white;
+    color: var(--site-text-color);
 }
 
 .campaigns-site .button {
@@ -24,7 +24,7 @@
 }
 
 .button-edit {
-    color: #cecece;
+    color: var(--site-sub-text-color);
     font-size: .8rem;
 }
 
@@ -45,7 +45,7 @@ h3 {
 }
 
 .quick-look p {
-    color: #cecece;
+    color: var(--site-sub-text-color);
     font-weight: 700;
     font-size: .8rem;
 }
