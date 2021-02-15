@@ -32,7 +32,7 @@ const CampaignNew = ({match, history}) => {
     const [totalPrice, setPrice] = useState(0)
 
     const [imagePreview, setImagePreview] = useState("")
-    const [reader, setReader] = useState(new FileReader())
+    const [reader] = useState(new FileReader())
 
     const [initialLoading, setInitialLoading] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -46,6 +46,7 @@ const CampaignNew = ({match, history}) => {
             setNew(false)
             getCampaign()
         }
+        // eslint-disable-next-line
     }, [])
 
     useEffect(() => {
@@ -122,7 +123,7 @@ const CampaignNew = ({match, history}) => {
 
         let today = new Date()
 
-        if (totalDate.totalHour === NaN) {
+        if (isNaN(totalDate.totalHour)) {
             setErrMsg("날짜를 제대로 입력해주세요.")
             setLoading(false)
             return
@@ -225,7 +226,8 @@ const CampaignNew = ({match, history}) => {
             <div className="flex flex-column">
                 <label>이미지</label>
                 {prvImageSrc ? <p className="info">전에 업로드한 이미지가 있습니다.</p> : null}
-                <button className="button w-100" onClick={() => fileElement.click()}>파일 선택하기 {fileName()}</button>
+                <button className="button w-100"
+                        onClick={() => fileElement.click()}>{fileName() ? fileName() : "파일 선택하기"}</button>
                 <input id="file-input" ref={input => setFileElement(input)} style={{display: "none"}} type="file"
                        name="file" onChange={e => {
                     setFile(e.target.files[0]);

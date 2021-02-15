@@ -109,6 +109,7 @@ const Main = () => {
         fetchD2U()
         fetchHome()
         fetchDDay()
+        // eslint-disable-next-line
     }, [isFocused])
 
     if (loading) {

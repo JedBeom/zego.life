@@ -1,5 +1,6 @@
 import React from 'react'
 import Back from '../../components/Back'
+import ShareIcon from '../../icons/Share'
 
 const AddToHome = () => {
     return (
@@ -9,8 +10,7 @@ const AddToHome = () => {
                 <h2 className="card-title">iOS의 경우</h2>
                 <ol>
                     <li>Safari로 접속합니다.</li>
-                    <li>하단의 <img className="icon"
-                                 src="https://www.flaticon.com/svg/static/icons/svg/3580/3580382.svg"></img>공유 버튼을 누릅니다.
+                    <li>하단의 <ShareIcon/>공유 버튼을 누릅니다.
                     </li>
                     <li>'홈 화면에 추가'를 눌러 추가합니다.</li>
                 </ol>

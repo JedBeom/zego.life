@@ -43,6 +43,7 @@ const Payment = ({match, history}) => {
 
     useEffect(() => {
         getCampaign()
+        // eslint-disable-next-line
     }, [])
 
     const getCampaign = async () => {

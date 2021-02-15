@@ -80,6 +80,9 @@ option {
     border-radius: 6px;
     font-weight: bold;
 
+    padding-left: .75rem;
+    padding-right: .75rem;
+
     color: var(--button-primary-text-color);
     background-color: var(--button-primary-color);
 }

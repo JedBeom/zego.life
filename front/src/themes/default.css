@@ -44,8 +44,8 @@
         --nav-bar-active-color: white;
         --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
 
-        --button-primary-color: #837ae6;
-        --button-primary-text-color: #EEF1F5;
+        --button-primary-color: #2c2c36;
+        --button-primary-text-color: #cecece;
 
         --loader-color: 0, 0, 0;
     }
@@ -69,7 +69,8 @@
     --nav-bar-active-color: white;
     --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
 
-    --button-primary-color: purple;
+    --button-primary-color: #2c2c36;
+    --button-primary-text-color: #cecece;
 
     --loader-color: 255, 255, 255;
 }

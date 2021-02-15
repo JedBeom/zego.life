@@ -8,7 +8,6 @@ import More from './More'
 import About from './About'
 import Notice from './Notice'
 import Timetable from './Timetable'
-import NoConnection from './NoConnection'
 import NotFound from './NotFound'
 
 function Router() {
@@ -23,7 +22,6 @@ function Router() {
             <Route path="/timetable" component={Timetable}/>
             <Route path="/about" component={About}/>
 
-            <Route path="/no-connection" component={NoConnection}/>
             <Route component={NotFound}/>
         </Switch>
     )

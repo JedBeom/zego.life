@@ -17,15 +17,14 @@ const CampaignInfo = ({match}) => {
 
     useEffect(() => {
         getCampaign()
+        // eslint-disable-next-line
     }, [])
 
     const getCampaign = async () => {
         try {
-            {
-                const {data} = await axios.get(`campaigns-not-payed/${match.params.id}`, {params: {user_include: "true"}})
-                if (data) {
-                    setCnp(data)
-                }
+            const {data} = await axios.get(`campaigns-not-payed/${match.params.id}`, {params: {user_include: "true"}})
+            if (data) {
+                setCnp(data)
             }
         } catch {
             setErrMsg("로딩 중 문제가 발생했습니다.")

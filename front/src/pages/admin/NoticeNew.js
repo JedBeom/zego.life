@@ -68,7 +68,7 @@ const NoticeNew = ({match}) => {
         setIsNew(false)
         setTitle("로딩 중!!!!")
         get(id)
-    }, [])
+    }, [match.params])
 
     return (
         <>

@@ -93,6 +93,7 @@ const DietPage = () => {
         now.setHours(0, 0, 0, 0)
         onClick(now)
         getDates()
+        // eslint-disable-next-line
     }, [])
 
     if (dates === null) {

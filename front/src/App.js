@@ -22,6 +22,8 @@ import Nav from './components/Nav'
 
 import {isAdmin} from "./utils/getRoles"
 
+import NoConnection from './pages/main/NoConnection'
+
 const MainRoute = lazy(() => import("./pages/main/Route"))
 const Register = lazy(() => import("./pages/main/Register"))
 const HelpRoute = lazy(() => import('./pages/help/Route'))
@@ -58,6 +60,7 @@ function App({history}) {
                         <Route path="/radio" component={RadioRoute}/>
                         <Route path="/campaigns" component={CampaignsRoute}/>
                         <Route path="/register" component={Register}/>
+                        <Route path="/no-connection" component={NoConnection}/>
                         <Route path="/" component={MainRoute}/>
                     </Switch>
                 </Suspense>
