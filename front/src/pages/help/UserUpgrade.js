@@ -32,7 +32,11 @@ const UserUpgrade = () => {
             alert("정보 추가에 성공했어요!")
             window.location = "/"
         } catch (e) {
-            setErrMsg("정보 추가에 실패했어요... 다시 시도해보시겠어요?")
+            if (e.response.data.Content) {
+                setErrMsg(e.response.data.Content)
+            } else {
+                setErrMsg("정보 추가에 실패했어요... 다시 시도해보시겠어요?")
+            }
             setLoading(false)
         }
     }

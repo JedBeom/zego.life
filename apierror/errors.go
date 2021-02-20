@@ -22,11 +22,15 @@ func NewApiError(status int, code int, message string) ApiError {
 }
 
 func (e ApiError) Send(c echo.Context) error {
-	return c.JSON(e.StatusCode, e)
+	if err := c.JSON(e.StatusCode, e); err != nil {
+		return err
+	}
+
+	return e
 }
 
 func (e ApiError) Error() string {
-	return fmt.Sprintf("Status: %d, Error: %d: %s", e.StatusCode, e.ErrorCode, e.Message)
+	return fmt.Sprintf("Status=%d, Error=%d: %s", e.StatusCode, e.ErrorCode, e.Message)
 }
 
 var (
@@ -46,6 +50,14 @@ type UserRegisterError struct {
 	Content string
 }
 
-func (e *UserRegisterError) Send(c echo.Context) error {
-	return c.JSON(http.StatusBadRequest, *e)
+func (e UserRegisterError) Send(c echo.Context) error {
+	if err := c.JSON(http.StatusBadRequest, e); err != nil {
+		return err
+	}
+
+	return e
+}
+
+func (e UserRegisterError) Error() string {
+	return fmt.Sprintf("Field=%s, Content=%s", e.Field, e.Content)
 }

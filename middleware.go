@@ -77,7 +77,6 @@ func middlewareLogger(next echo.HandlerFunc) echo.HandlerFunc {
 			IP:     c.RealIP(),
 			Method: c.Request().Method,
 			Path:   c.Request().URL.Path,
-			Status: c.Response().Status,
 		}
 
 		err := next(c)
@@ -88,6 +87,8 @@ func middlewareLogger(next echo.HandlerFunc) echo.HandlerFunc {
 		if ok {
 			access.SessionID = sID
 		}
+
+		access.Status = c.Response().Status
 
 		if err := access.Create(conn); err != nil {
 			// 엑세스 로그 생성에 오류 -> 엑세스 로그 없음 -> ErrorLog에 AccessLogID 못 들어감.

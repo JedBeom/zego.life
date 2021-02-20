@@ -45,7 +45,7 @@ func (u *User) ValidateUserRegister() (ure *apierror.UserRegisterError) {
 		return
 	}
 
-	if u.Class < 1 || (u.Grade == 1 && u.Class > 8) || (u.Grade >= 2 && u.Class > 8) || (u.Grade == 3 && u.Class > 10) {
+	if u.Class < 1 || (u.Grade == 1 && u.Class > 8) || (u.Grade == 2 && u.Class > 8) || (u.Grade == 3 && u.Class > 10) {
 		ure = &apierror.UserRegisterError{
 			Field:   "class",
 			Content: "반이 올바르지 않습니다.",
