@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import {ErrorBox, SuccessBox} from '../../components/AlertBox'
-import '../../styles/campaigns.css'
 
-import UserBox from '../../components/UserBox'
 import Page from '../../components/Page'
-import Back from '../../components/Back'
+import {ErrorBox, SuccessBox} from '../../components/AlertBox'
+import UserBox from '../../components/UserBox'
+import CampaignBox from '../../components/CampaignBox'
+
+import '../../styles/campaigns.css'
 
 const CampaignInfo = ({match}) => {
     const [cnp, setCnp] = useState({})
 
-    const [initalLoading, setInitialLoading] = useState(true)
+    const [initialLoading, setInitialLoading] = useState(true)
     const [loading, setLoading] = useState(false)
     const [okMsg, setOkMsg] = useState()
     const [errMsg, setErrMsg] = useState()
@@ -28,9 +29,8 @@ const CampaignInfo = ({match}) => {
             }
         } catch {
             setErrMsg("로딩 중 문제가 발생했습니다.")
-        } finally {
-            setInitialLoading(false)
         }
+        setInitialLoading(false)
     }
 
     const moveCampaign = async () => {
@@ -45,22 +45,21 @@ const CampaignInfo = ({match}) => {
         }
     }
 
-    return <Page className="campaigns-site" loading={initalLoading}>
-        <h1 className="page-title"><Back content="캠페인 세부정보"/></h1>
+    return <Page className="campaigns-site" loading={initialLoading} title="캠페인 세부 정보" back>
         <ErrorBox>{errMsg}</ErrorBox>
         <SuccessBox>{okMsg}</SuccessBox>
-        <article className="campaign-info">
-            <h4>제목: {cnp.Title}</h4>
-            <p>부제목: {cnp.SubTitle}</p>
-            <p>가격: {cnp.Price}</p>
-            <p>시작: {new Date(cnp.StartAt).toISOString()}</p>
-            <p>끝: {new Date(cnp.EndAt).toISOString()}</p>
-            <p>입금수단: {cnp.Payment}</p>
-            <p>입금자명: 제라{cnp.PayCode}</p>
-            <p>입금일시: {new Date(cnp.PayedAt).toLocaleDateString()}</p>
-            <p className="mt-3 mb-6">사용자</p>
-            <UserBox u={cnp.User}/>
-        </article>
+        {cnp ?
+            <article className="campaign-info">
+                <CampaignBox c={cnp}/>
+                <p>가격: {cnp.Price}원</p>
+                <p>시작: {cnp.StartAt}</p>
+                <p>끝: {cnp.EndAt}</p>
+                <p>입금수단: {cnp.Payment}</p>
+                <p>입금자명: 제라{cnp.PayCode}</p>
+                <p>입금일시: {cnp.PayedAt}</p>
+                <p className="mt-3 mb-6">사용자</p>
+                <UserBox u={cnp.User}/>
+            </article> : null}
         <button onClick={moveCampaign} className={`button float-right ${loading ? "loading" : null}`}>승인하기</button>
     </Page>
 }
