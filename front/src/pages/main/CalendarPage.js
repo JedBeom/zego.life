@@ -87,8 +87,6 @@ const DietPage = () => {
     }
 
     useEffect(() => {
-        document.title = "캘린더 | 제고라이프"
-        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
         let now = new Date()
         now.setHours(0, 0, 0, 0)
         onClick(now)
@@ -96,14 +94,8 @@ const DietPage = () => {
         // eslint-disable-next-line
     }, [])
 
-    if (dates === null) {
-        return <Page title="캘린더">
-            <div className="loader"/>
-        </Page>
-    }
-
     return (
-        <Page title="캘린더">
+        <Page title="캘린더" loading={dates === null}>
             {/*}
             <InfoBox>2월 급식 신청 기간입니다. <a href="http://gwang.i-zone.kr" rel="noopener noreferrer" target="_blank">플라이키친
                 가기</a></InfoBox>

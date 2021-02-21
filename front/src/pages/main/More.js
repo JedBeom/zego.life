@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
-import styled from 'styled-components'
 
 import Page from "../../components/Page"
-import MoreBox from '../../components/MoreBox'
+import {MoreBox, MoreBoxContainer} from '../../components/MoreBox'
 
 import {isAdmin, isUser} from '../../utils/getRoles'
 
@@ -15,9 +14,6 @@ import LockAccessIcon from '../../icons/LockAccess'
 import SettingsIcon from '../../icons/Settings'
 
 const More = () => {
-    useEffect(() => {
-        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }, [])
     const [logoutLoading, setLogoutLoading] = useState(false)
 
     if (!isUser()) {
@@ -65,13 +61,5 @@ const More = () => {
         </Page>
     )
 }
-
-const MoreBoxContainer = styled.div`
-column-count: 4;
-display: flex;
-justify-content: center;
-flex-wrap: wrap;
-width: 100%;
-`
 
 export default More

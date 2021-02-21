@@ -45,14 +45,7 @@ const CampaignInfo = ({match}) => {
         }
     }
 
-    if (initalLoading) {
-        return <>
-            <h1 className="page-title"><Back content="캠페인 세부정보"/></h1>
-            <div className="loader"/>
-        </>
-    }
-
-    return <Page className="campaigns-site">
+    return <Page className="campaigns-site" loading={initalLoading}>
         <h1 className="page-title"><Back content="캠페인 세부정보"/></h1>
         <ErrorBox>{errMsg}</ErrorBox>
         <SuccessBox>{okMsg}</SuccessBox>

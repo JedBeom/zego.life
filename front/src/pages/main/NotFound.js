@@ -1,13 +1,9 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {NavLink} from 'react-router-dom'
 
 import Page from '../../components/Page'
 
 const NotFound = () => {
-    useEffect(() => {
-        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }, [])
-
     return (
         <Page title="없는 페이지" back>
             <p>링크가 만료되었거나 잘못된 거 같네요. 사용자 님의 실수는 아니니 걱정하실 필요 없어요. 문제가 지속된다면, 피드백 보내주세요.</p>

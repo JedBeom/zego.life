@@ -2,8 +2,10 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
 
+import Page from '../../components/Page'
+
 const SlotFilling = () => {
-    const [date, setDate] = useState(new Date(2004, 8, 8))
+    const [date, setDate] = useState(null)
     const [loading, setLoading] = useState(false)
 
     let r = Math.random()
@@ -50,8 +52,7 @@ const SlotFilling = () => {
     }
 
     return (
-        <>
-            <h1 className="page-title">정보 추가</h1>
+        <Page title="정보 추가">
             <p>제고라이프를 사용해주셔서 감사합니다. 맞춤형 서비스 제공을 위해 이하의 정보를 추가로 입력받으니
                 입력해주시면 감사하겠습니다! 새로 가입하는 회원들도 이 정보를 입력하게 됩니다.
             </p>
@@ -91,7 +92,7 @@ const SlotFilling = () => {
                 </div>
             </form>
             <style>nav {"{opacity: 0}"}</style>
-        </>
+        </Page>
     )
 }
 

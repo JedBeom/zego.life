@@ -545,6 +545,10 @@ input.register-birthday {
     display: inline;
 }
 
+.notice-box p {
+    margin-bottom: .25rem;
+}
+
 .notice-box h1 {
     margin-left: 0;
 }

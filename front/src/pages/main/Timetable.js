@@ -15,7 +15,6 @@ const types = [
 const Timetable = () => {
     useEffect(() => {
         document.title = "시간표 | 제고라이프"
-        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [])
 
     const [type, setType] = useState(0) // 0: class 1: exam

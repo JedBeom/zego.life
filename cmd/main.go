@@ -1,12 +1,13 @@
 package main
 
 import (
-	"fmt"
-
+	"github.com/JedBeom/zego.life/models"
 	"github.com/JedBeom/zego.life/parse"
 	_ "github.com/joho/godotenv/autoload"
 )
 
 func main() {
-	fmt.Println(parse.TossButton("개발개발", 15000))
+	db := models.Connect()
+	conn := db.Conn()
+	parse.GetEventsByYearMonth(conn, 2020, 2)
 }

@@ -33,11 +33,6 @@ const Main = () => {
     const onFocus = () => setFocused(true)
 
     useEffect(() => {
-        document.title = "제고라이프"
-        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }, [])
-
-    useEffect(() => {
         window.addEventListener("blur", onBlur)
         window.addEventListener("focus", onFocus)
         return () => {
@@ -112,13 +107,8 @@ const Main = () => {
         // eslint-disable-next-line
     }, [isFocused])
 
-    if (loading) {
-        return <Page title="홈">
-        </Page>
-    }
-
     return (
-        <Page title="홈">
+        <Page title="홈" loading={loading}>
             <NavLink to="/notice" className="no-underline">
                 <div className="notice-line">
                     <div className="notice-line-badge">공지</div>

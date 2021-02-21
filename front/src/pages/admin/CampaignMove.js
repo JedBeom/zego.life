@@ -32,14 +32,7 @@ const CampaignMove = () => {
         }
     }
 
-    if (loading) {
-        return <>
-            <h1 className="page-title"><NavLink className="no-underline" to="/more"> 캠페인</NavLink></h1>
-            <div className="loader"/>
-        </>
-    }
-
-    return <Page className="campaigns-site">
+    return <Page className="campaigns-site" loading={loading}>
         <h1 className="page-title"><NavLink className="no-underline" to="/more"> 캠페인</NavLink></h1>
         <ErrorBox>{errMsg}</ErrorBox>
         <article className="campaigns">

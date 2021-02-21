@@ -81,11 +81,7 @@ const Pay = ({match, history}) => {
         }
     }
 
-    if (loading) {
-        return <div className="loader"/>
-    }
-
-    return <Page title={<NavLink className="no-underline" to="/campaigns"> 결제하기</NavLink>}>
+    return <Page title={<NavLink className="no-underline" to="/campaigns"> 결제하기</NavLink>} loading={loading}>
         <p className="page-sub mb-4">'{cmp.Title}'<br/>를 결제합니다</p>
 
         {cmp.PayLink ? <>

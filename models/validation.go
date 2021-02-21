@@ -7,9 +7,9 @@ import (
 )
 
 var (
-	rEmail   = regexp.MustCompile("gch(18|19|20)-1[01]\\d[0-3]\\d@h.jne.go.kr")
-	rBarcode = regexp.MustCompile("100(18|19|20)00\\d\\d\\d")
-	rMemCode = regexp.MustCompile("ST20(18|19|20)0\\d\\d\\d") // ST20200001
+	rEmail   = regexp.MustCompile("gch(19|20|21)-1[01]\\d[0-3]\\d@h.jne.go.kr")
+	rBarcode = regexp.MustCompile("100(19|20|21)00\\d\\d\\d")
+	rMemCode = regexp.MustCompile("ST20(19|20|21)0\\d\\d\\d") // ST20200001
 )
 
 func (u *User) ValidateUserRegister() (ure *apierror.UserRegisterError) {

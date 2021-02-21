@@ -202,13 +202,8 @@ const CampaignNew = ({match, history}) => {
             return file.name
         }
     }
-
-    if (initialLoading) {
-        return <div className="loader"/>
-    }
-
     return (
-        <Page title={isNew ? "새 캠페인" : "캠페인 수정"} back>
+        <Page title={isNew ? "캠페인 제작" : "캠페인 수정"} back loading={initialLoading}>
             <SuccessBox>{okMsg}</SuccessBox>
             <WarningBox>{errMsg}</WarningBox>
             <div className="flex flex-column">

@@ -1,19 +1,18 @@
 import React, {useEffect, useState} from 'react'
 import {BrowserBarcodeReader} from '@zxing/library'
-import CheckGreen from '../../components/CheckGreen'
-import hakbunToGCN from '../../utils/hakbunToGCN'
 import axios from 'axios'
-import DatePicker from 'react-datepicker'
-import "react-datepicker/dist/react-datepicker.css";
+
+import Page from '../../components/Page'
+import CheckGreen from '../../components/CheckGreen'
 import {ErrorBox} from "../../components/AlertBox"
+
+import hakbunToGCN from '../../utils/hakbunToGCN'
 import {validateGCN} from '../../utils/validate'
 
-const Register = () => {
-    useEffect(() => {
-        document.title = "회원가입 | 제고라이프"
-        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }, [])
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
+const Register = () => {
     const [videoActive, setVideoActive] = useState(false)
     const [barcode, setBarcode] = useState("")
     const [memCode, setMemCode] = useState("")
@@ -30,7 +29,7 @@ const Register = () => {
     const [hakbun, setHakbun] = useState("")
     const [date, setDate] = useState(null)
     const [residenceDorm, setResidenceDorm] = useState(true)
-    const [tosRead, setTosRead] = useState("")
+    const [tosRead, setTosRead] = useState(false)
     const [isLoading, setLoading] = useState("button float-right")
     const [kitchenLoading, setKitchenLoading] = useState(false)
 
@@ -106,24 +105,23 @@ const Register = () => {
         setLoading("loading button float-right")
         e.preventDefault()
 
-        if (tosRead !== "on") {
+        if (!tosRead) {
             setErrMsg("이용약관과 개인정보 취급 동의서를 동의하지 않으면 진행할 수 없어요.")
             setLoading("button float-right")
             return
         }
 
         let {g, c, n} = hakbunToGCN(hakbun)
-        if ((g === 1 && hakbun !== email.slice(6, 11))
-            || (g < 1 || g > 3)
-            || (c < 1 || (g === 1 && c > 8) || (g >= 2 && c > 10))
+        if ((g < 1 || g > 3)
+            || (c < 1 || (g === 1 && c > 8) || (g === 2 && c > 8) || (g === 3 && c > 10))
             || (n < 1 || n > 31)) {
-            setErrMsg("이메일이 유효하지 않습니다.")
+            setErrMsg("학번이 유효하지 않습니다.")
             setLoading("button float-right")
             return
         }
 
-        if (g === 3) {
-            setErrMsg("현재 3학년은 지원하지 않고 있어요.\n이는 스쿨키친 회원코드와 학생증 정보가 일치하지 않기 때문이에요.\n다른 방법을 모색할게요. 죄송합니다 선배님들!!")
+        if (g === 1 && hakbun !== email.slice(6, 11)) {
+            setErrMsg("이메일이 유효하지 않습니다.")
             setLoading("button float-right")
             return
         }
@@ -321,8 +319,8 @@ const Register = () => {
                                 <label className={"my-2"} htmlFor={"email-input"}>구글 클래스룸 이메일 주소</label>
                                 <input type="email" value={email} onChange={event => setEmail(event.target.value)}
                                        className={"input"} id="email-input"
-                                       pattern="gch(18|19|20)-1[01]\d[0-3]\d@h.jne.go.kr"
-                                       placeholder={"ex) gch20-10901@h.jne.go.kr"} required
+                                       pattern="gch(19|20|21)-1[01]\d[0-3]\d@h.jne.go.kr"
+                                       placeholder="ex) gch21-10901@h.jne.go.kr" required
                                        inputMode="email"/>
                             </div>
                             <div className={"flex flex-column"}>
@@ -336,7 +334,9 @@ const Register = () => {
                             </div>
                             <div className={"flex items-center mt-4"}>
                                 <input type="checkbox" className={"checkbox mr-3"} id="tnc-input"
-                                       onChange={event => setTosRead(event.target.value)}/>
+                                       onChange={() => {
+                                           setTosRead(!tosRead)
+                                       }}/>
                                 <label className={"form-check-label"} htmlFor="tnc-input"><a
                                     href="http://simp.ly/p/fPd30c" rel="noopener noreferrer"
                                     target="_blank">이용약관</a>과 <a href="http://simp.ly/p/DXDwql"
@@ -377,8 +377,7 @@ const Register = () => {
     }, [step2Ok])
 
     return (
-        <>
-            <h1 className="page-title">회원가입</h1>
+        <Page title="회원가입">
             <article className={`card-box shadow-3`}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler"
@@ -397,7 +396,7 @@ const Register = () => {
             {step2}
             {step3}
             <ErrorBox>{errMsg}</ErrorBox>
-        </>
+        </Page>
     )
 }
 

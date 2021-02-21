@@ -47,13 +47,7 @@ const Main = () => {
         }
     }
 
-    if (loading) {
-        return <Page title="캠페인" back>
-            <div className="loader"/>
-        </Page>
-    }
-
-    return <Page title={<NavLink className="no-underline" to="/more"> 캠페인</NavLink>}>
+    return <Page title={<NavLink className="no-underline" to="/more"> 캠페인</NavLink>} loading={loading}>
         <div className="flex justify-center w-100 mb-6">
             <NavLink className="no-underline" to="/campaigns/new">
                 <button className="button"><PlusIcon/>새 캠페인 만들기</button>

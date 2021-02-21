@@ -34,7 +34,6 @@ const Events = () => {
 
     useEffect(() => {
         document.title = "일정 | 제고라이프"
-        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
 
         const fetchData = async () => {
             setErrMsg("")

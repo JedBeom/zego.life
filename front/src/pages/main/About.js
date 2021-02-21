@@ -1,10 +1,7 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import Page from '../../components/Page'
 
 const About = () => {
-    useEffect(() => {
-        document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }, [])
 
     return (
         <Page title="제작자" back>

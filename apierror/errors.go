@@ -34,13 +34,13 @@ func (e ApiError) Error() string {
 }
 
 var (
-	ErrUnknown   = NewApiError(502, -10, "unknown error was aborted")
+	ErrUnknown   = NewApiError(502, -10, "서버에 문제가 발생했습니다.")
 	ErrDBErr     = NewApiError(http.StatusInternalServerError, -11, "error occur")
 	ErrInterface = NewApiError(http.StatusInternalServerError, -12, "err occur")
 
-	ErrLoginFailed    = NewApiError(http.StatusUnauthorized, -100, "email or password is invalid")
+	ErrLoginFailed    = NewApiError(http.StatusUnauthorized, -100, "이메일 또는 암호가 올바르지 않습니다.")
 	ErrInvalidKey     = NewApiError(http.StatusUnauthorized, -101, "bad token")
-	ErrEmailNotUnique = NewApiError(http.StatusBadRequest, -102, "email already exists")
+	ErrEmailNotUnique = NewApiError(http.StatusBadRequest, -102, "이미 존재하는 이메일입니다.")
 
 	ErrFirstParse = NewApiError(http.StatusInternalServerError, -200, "error on first d2u parse")
 )

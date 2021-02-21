@@ -2,9 +2,10 @@ import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import Back from './Back'
 
-const Page = ({title, back, head, children, foot, className}) => {
+const Page = ({title, back, head, children, foot, className, noScroll, loading}) => {
     useEffect(() => {
         if (title) document.title = `${title} | 제고라이프`
+        if (!noScroll) document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
     }, [title])
 
     return (
@@ -15,16 +16,17 @@ const Page = ({title, back, head, children, foot, className}) => {
                     {back ? <Back content={title}/> : title}
                 </Title>
                 : null}
-            <div className="page">
-                {children}
-            </div>
+            {!loading ?
+                <div className="page">
+                    {children}
+                </div> : <div className="loader"/>}
             {foot}
         </Wrapper>
     )
 }
 
 const Wrapper = styled.div`
-margin: 2.3rem .75rem;
+margin: 2.3rem .5rem;
 `
 
 const Title = styled.h1`
