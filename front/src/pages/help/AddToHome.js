@@ -1,11 +1,10 @@
 import React from 'react'
-import Back from '../../components/Back'
+import Page from '../../components/Page'
 import ShareIcon from '../../icons/Share'
 
 const AddToHome = () => {
     return (
-        <>
-            <h1 className="page-title"><Back content="홈 화면 추가"/></h1>
+        <Page title="홈 화면 추가" back>
             <article className="card-box shadhow-3">
                 <h2 className="card-title">iOS의 경우</h2>
                 <ol>
@@ -23,7 +22,7 @@ const AddToHome = () => {
                     <li>'홈 화면에 추가'를 눌러 추가합니다.</li>
                 </ol>
             </article>
-        </>
+        </Page>
     )
 }
 

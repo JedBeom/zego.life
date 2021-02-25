@@ -5,7 +5,7 @@ let start = new Date(2020, 9, 30) // 새사, 진기쌤
 
 const DormInspector = ({date, correction}) => {
     let correctionValue = false
-    if (date.getHours() < 12) correction = true
+    if (date.getHours() < 12) correctionValue = true
     date.setHours(0, 0, 0, 0)
     let diff = ((start - date) / 1000 / 60 / 60 / 24) % 2
     if (correctionValue && correction) diff = !diff
@@ -17,7 +17,7 @@ const DormInspector = ({date, correction}) => {
                     <path d="M7 12l5 5l10 -10"/>
                     <path d="M2 12l5 5m5 -5l5 -5"/>
                 </svg>
-                {!correction ? "지금" : "이날"}의 사감
+                {correction ? "지금" : "이날"}의 사감
             </h2>
             <div className="float-right">
                 <Inspector>

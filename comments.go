@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"strings"
 
 	"github.com/JedBeom/zego.life/models"
 	"github.com/go-pg/pg"
@@ -16,7 +17,10 @@ func postComment(c echo.Context) error {
 		return echo.ErrBadRequest
 	}
 
-	if len(p.Content) < 7 {
+	p.Content = strings.TrimLeft(p.Content, "\t\n")
+	p.Content = strings.TrimRight(p.Content, "\t\n")
+
+	if len(p.Content) < 3 {
 		return echo.ErrBadRequest
 	}
 

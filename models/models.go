@@ -135,10 +135,10 @@ type TimetableTemplate struct {
 }
 
 type Timetable struct {
-	UserID    string `pg:",pk"`
-	Lessons   [][]Lesson
-	CreatedAt time.Time `sql:"default:now()"`
-	UpdatedAt time.Time
+	UserID       string `pg:",pk"`
+	ReplaceTable map[string]string
+	CreatedAt    time.Time `sql:"default:now()"`
+	UpdatedAt    time.Time
 }
 
 type Lesson struct {

@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
+import axios from 'axios'
+
+import Page from '../../components/Page'
 import {ErrorBox, InfoBox} from '../../components/AlertBox'
 import hakbunToGCN from '../../utils/hakbunToGCN'
 import {validateGCN} from '../../utils/validate'
 
-import axios from 'axios'
 
 const UserUpgrade = () => {
     const [loading, setLoading] = useState(false)
@@ -42,8 +44,7 @@ const UserUpgrade = () => {
     }
 
     return (
-        <>
-            <h1 className="page-title">새 반 정보 추가</h1>
+        <Page title="새 학번 입력">
             <InfoBox>
                 2021학년도의 새 학번을 입력해주세요.
             </InfoBox>
@@ -64,7 +65,7 @@ const UserUpgrade = () => {
                     </button>
                 </div>
             </form>
-        </>
+        </Page>
     )
 }
 

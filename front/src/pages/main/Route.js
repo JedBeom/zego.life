@@ -8,6 +8,7 @@ import More from './More'
 import About from './About'
 import Notice from './Notice'
 import Timetable from './Timetable'
+import TimetableSetCredit from './TimetableSetCredit'
 import Settings from './Settings'
 import NotFound from './NotFound'
 
@@ -20,7 +21,8 @@ function Router() {
             <Route path="/login" component={Login}/>
             <Route path="/more" component={More}/>
             <Route path="/notice" component={Notice}/>
-            <Route path="/timetable" component={Timetable}/>
+            <Route path="/timetable" exact component={Timetable}/>
+            <Route path="/timetable/set-credit" exact component={TimetableSetCredit}/>
             <Route path="/settings" component={Settings}/>
             <Route path="/about" component={About}/>
 

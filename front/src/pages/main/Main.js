@@ -20,7 +20,7 @@ import CampaignBox from "../../components/CampaignBox"
 const Main = () => {
     const [loading, setLoading] = useState(true)
     const [diet, setDiet] = useState({when: "", dietList: []})
-    const [campaign, setCampaign] = useState({Title: "로딩 중..."})
+    const [campaign, setCampaign] = useState(null)
     const [userUpgradable, setUserUpgradable] = useState(false)
     const [dday, setDDay] = useState([])
     const [ddayCount, setDDayCount] = useState(0)
@@ -127,7 +127,7 @@ const Main = () => {
             <DietReview a={isFocused}/>
             <DietCard diet={diet} applied={applied}/>
             {localStorage.getItem("me.residence") === "1" ?
-                <DormInspector date={new Date()} correction={false}/> : null}
+                <DormInspector date={new Date()} correction={true}/> : null}
         </Page>
     )
 }

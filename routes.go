@@ -67,7 +67,10 @@ func routes(e *echo.Echo) {
 			admin.PATCH("/notices/:id", patchNoticeByID)
 
 			// timetables
-			u.GET("/timetables/:grade/:class", getTimetableByGradeClass)
+			u.GET("/timetable-templates/:grade/:class", getTimetableTemplateByGradeClass)
+			u.GET("/timetables/me", getTimetableMe)
+			u.GET("/timetables/subjects", getTimetableSubjects)
+			u.POST("/timetables", postTimetable)
 
 			// talks
 			u.GET("/threads", getThreads)

@@ -17,7 +17,7 @@ func (t *Thread) CreateTx(tx *pg.Tx) error {
 
 func (t *Thread) IncrementCommentsNumTx(tx *pg.Tx) error {
 	t.UpdatedAt = time.Now()
-	_, err := tx.Exec("update threads set comments_num = comments_num + 1 where id = ?", t.ID)
+	_, err := tx.Exec("update threads set comments_num = comments_num + 1, updated_at = ? where id = ?", t.UpdatedAt, t.ID)
 	return err
 }
 

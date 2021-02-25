@@ -2,17 +2,17 @@ import React, {useEffect, useState} from 'react'
 import {getTimetable} from '../../common/api'
 
 const times = [
-    {s: "8:45", e: "9:30"},
-    {s: "9:40", e: "10:25"},
-    {s: "10:35", e: "11:20"},
-    {s: "12:40", e: "13:25"},
-    {s: "13:35", e: "14:20"},
-    {s: "14:30", e: "15:15"},
-    {s: "15:40", e: "16:25"},
-    {s: "16:35", e: "17:20"},
+    {s: "8:40", e: "9:30"},
+    {s: "9:40", e: "10:30"},
+    {s: "10:40", e: "11:30"},
+    {s: "11:40", e: "12:30"},
+    {s: "13:30", e: "14:20"},
+    {s: "14:30", e: "15:20"},
+    {s: "15:30", e: "16:20"},
+    {s: "16:40", e: "17:50"},
 ]
 
-const Timetable = ({meGrade, meClass}) => {
+const TimetableClass = ({meGrade, meClass, history}) => {
     const [lessons, setLessons] = useState([[]])
     const twd = new Date().getDay()
 
@@ -25,7 +25,7 @@ const Timetable = ({meGrade, meClass}) => {
             return
         }
         try {
-            const ls = await getTimetable(meGrade, meClass)
+            const ls = await getTimetable(meGrade, meClass, history)
             if (ls) {
                 setLessons(ls)
             }
@@ -73,4 +73,4 @@ const Timetable = ({meGrade, meClass}) => {
     )
 }
 
-export default Timetable
+export default TimetableClass

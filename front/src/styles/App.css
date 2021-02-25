@@ -30,6 +30,11 @@ body {
     background-color: var(--background-color);
     background-image: var(--background-image);
     background-position-x: var(--background-position);
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 100%;
+    margin-bottom: env(safe-area-inset-bottom);
 }
 
 html {
@@ -41,25 +46,12 @@ body, textarea {
     font-family: "Spoqa Han Sans Neo", sans-serif;
 }
 
-body {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    height: 100%;
-    margin-bottom: env(safe-area-inset-bottom);
-}
-
 .root-div {
     height: 100vh;
 }
 
 body::-webkit-scrollbar {
     display: none;
-}
-
-@media (prefers-color-scheme: light) {
-    .logo-img {
-        filter: invert(100%)
-    }
 }
 
 li {
@@ -91,7 +83,6 @@ option {
     padding-right: 1.7rem;
 }
 
-
 .site {
     margin-left: auto;
     margin-right: auto;
@@ -100,8 +91,6 @@ option {
     padding: .5em;
     padding-bottom: 10em;
     padding-top: calc(env(safe-area-inset-top) + 3em);
-    /* min-height: 100%; */
-
 }
 
 .site, .button, .input, .select, .textarea, .react-datepicker {

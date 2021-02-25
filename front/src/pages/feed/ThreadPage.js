@@ -1,9 +1,9 @@
-import React, {Fragment, useEffect, useState} from 'react'
-import {ErrorBox, SuccessBox} from '../../components/AlertBox'
-import Back from '../../components/Back'
+import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 
-import RefreshIcon from "../../icons/Refresh"
+import Page from '../../components/Page'
+import {ErrorBox, SuccessBox} from '../../components/AlertBox'
+import styled from 'styled-components'
 
 const ThreadPage = ({match}) => {
     const [thread, setThread] = useState(null)
@@ -35,7 +35,7 @@ const ThreadPage = ({match}) => {
         if (newComment === "") {
             setErrMsg("내용을 작성하세요.")
             return
-        } else if (newComment.length < 5) {
+        } else if (newComment.length < 6) {
             setErrMsg("너무 짧습니다.")
             return
         }
@@ -62,37 +62,38 @@ const ThreadPage = ({match}) => {
 
     if (thread === null) {
         return (
-            <>
-                <h1 className="page-title"><Back content="스레드 보기"/></h1>
+            <Page title="" back>
                 {loading ? <div className="loader"/> : null}
                 <ErrorBox>{errMsg}</ErrorBox>
-            </>
+            </Page>
         )
     }
 
     return (
-        <>
-            <h1 className="page-title"><Back content="스레드 보기"/></h1>
-            <h2 className="mb-3" onClick={get}>{thread.Title} <RefreshIcon/></h2>
+        <Page title={thread.Title} back>
             {thread.Comments.map(c => {
                 return (
-                    <Fragment key={c.ID}>
+                    <Comment key={c.ID}>
                         {`#${c.Num}`}
                         <div className="card-box" onClick={() => addAnchor(c.Num)}>{c.Content}</div>
-                    </Fragment>
+                    </Comment>
                 )
             })}
             <div className="flex flex-column mt-3">
-                <label className="my-2">코멘트 내용</label>
+                <label className="my-2">아래에 쓰기</label>
                 <textarea className="textarea" rows="5" placeholder="내용" value={newComment}
                           onChange={e => setNewComment(e.target.value)}/>
             </div>
             <ErrorBox>{errMsg}</ErrorBox>
             <SuccessBox>{okMsg}</SuccessBox>
-            <button onClick={postComment} className="button float-right">작성</button>
-        </>
+            <button onClick={postComment} className="button float-right">덧붙이기</button>
+        </Page>
     )
 
 }
+
+const Comment = styled.article`
+white-space: pre-line;
+`
 
 export default ThreadPage

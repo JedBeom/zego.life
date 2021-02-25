@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react'
+import {withRouter} from 'react-router-dom'
 
 import Page from '../../components/Page'
 import {InfoBox} from '../../components/AlertBox'
 
-/*
 const meGrade = localStorage.getItem("me.grade")
 const meClass = localStorage.getItem("me.class")
-*/
 
 const types = [
-//    `${meGrade}-${meClass}`,
+    `${meGrade}-${meClass}`,
 ]
 
-const Timetable = () => {
+const Timetable = ({history}) => {
     useEffect(() => {
         document.title = "시간표 | 제고라이프"
     }, [])
@@ -29,9 +28,10 @@ const Timetable = () => {
         <Page>
             <h1 className="page-title" onClick={setNext}>{types[type]} 시간표 {getNext(type) !== type ?
                 <span className="sub">{types[getNext(type)]}</span> : null}</h1>
-            <InfoBox>새 시간표로 찾아뵙겠습니다.</InfoBox>
+            <InfoBox>정식 시간표가 나오기를 기다리며...</InfoBox>
+            {/*type == 0 ? <TimetableClass history={history} meGrade={meGrade} meClass={meClass} /> : null*/}
         </Page>
     )
 }
 
-export default Timetable
+export default withRouter(Timetable)

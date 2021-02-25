@@ -2,7 +2,7 @@ import React from 'react'
 import {NavLink} from "react-router-dom"
 
 const CampaignBox = ({c}) => {
-    if (!c) return null
+    if (!c) c = {Title: "제고생활은 제고라이프로", SubTitle: "환영합니다!"}
 
     let ar = <article className="campaign-box shadow-3">
         <span className="campaign-icon">AD</span>

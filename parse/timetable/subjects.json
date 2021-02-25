@@ -1,0 +1,32 @@
+{
+  "Art": [
+    {
+      "Subject": "음악",
+      "Teacher": "송현미"
+    },
+    {
+      "Subject": "미술",
+      "Teacher": "성준우"
+    }
+  ],
+  "Foreign": [
+    {
+      "Subject": "일본어",
+      "Teacher": "박효정"
+    },
+    {
+      "Subject": "중국어",
+      "Teacher": "정에셀"
+    }
+  ],
+  "Credit": [
+    {
+      "Subject": "지학I",
+      "Teacher": "asdf"
+    },
+    {
+      "Subject": "화학I",
+      "Teacher": "asdf"
+    }
+  ]
+}

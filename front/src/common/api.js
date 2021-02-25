@@ -111,16 +111,36 @@ const getDietReviewPossible = async id => {
     return dietList
 }
 
-const getTimetable = async (meGrade, meClass) => {
+const getTimetable = async (meGrade, meClass, history) => {
     let key = `timetables/${meGrade}-${meClass}/20210101`
+    /*
     let item = localStorage.getItem(key)
     if (item != null) {
         return JSON.parse(item)
     }
+    */
 
-    const {data} = await axios.get(`timetables/${meGrade}/${meClass}`)
-    localStorage.setItem(key, JSON.stringify(data.Lessons))
-    return data.Lessons
+    let replaceTable = {}
+    try {
+        const {data} = await axios.get(`timetables/me`)
+        replaceTable = data.ReplaceTable
+    } catch (e) {
+        if (e.response.status === 404) {
+            history.push("/timetable/set-credit")
+            return
+        }
+        throw e
+    }
+
+    const {data: template} = await axios.get(`timetable-templates/${meGrade}/${meClass}`)
+    let lessons = JSON.stringify(template.Lessons)
+
+    for (const key in replaceTable) {
+        lessons = lessons.replaceAll(key, replaceTable[key])
+    }
+
+    localStorage.setItem(key, lessons)
+    return JSON.parse(lessons)
 }
 
 const getDDay = async () => {

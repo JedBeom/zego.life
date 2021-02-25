@@ -2,6 +2,7 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {isUser} from "../utils/getRoles"
 import CalendarIcon from '../icons/Calendar'
+import PencilIcon from '../icons/Pencil'
 
 const Nav = () => {
     return (
@@ -21,6 +22,11 @@ const Nav = () => {
                         <li>
                             <NavLink to="/calendar" activeClassName={"nav-active"}>
                                 <CalendarIcon/>
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/feed" activeClassName={"nav-active"}>
+                                <PencilIcon/>
                             </NavLink>
                         </li>
                         <li>

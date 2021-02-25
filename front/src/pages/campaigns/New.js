@@ -137,7 +137,7 @@ const CampaignNew = ({match, history}) => {
         }
 
         if ((start - today) / 1000 / 60 / 60 <= 24) {
-            setErrMsg("시작 날짜는 지금으로부터 24시간 이상 뒤여야 합니다.")
+            setErrMsg("시작 날짜는 현재로부터 24시간 이상 지나야 합니다.")
             setLoading(false)
             return
         }

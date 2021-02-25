@@ -4,26 +4,18 @@ import Page from '../../components/Page'
 const About = () => {
 
     return (
-        <Page title="제작자" back>
+        <Page title="팀 제고라이프" back>
             <article className="card-box shadow-3">
-                <h2>
-                    06+17+19
-                </h2>
-                <p>
-                    제고라이프 만드는 사람들이에요...
-                </p>
+                <h2>범준환: 개발 &amp; 운영</h2>
+                <p>기능을 기획하고, 개발하고, 운영합니다.</p>
             </article>
             <article className="card-box shadow-3">
-                <h2>개발 &#38; 운영: 06</h2>
-                <p>세특 쓰기 싫다...</p>
-            </article>
-            <article className="card-box shadow-3">
-                <h2>디자인 조언: 17</h2>
+                <h2>박하연: 디자인 조언</h2>
                 <p>디자인 조언을 합니다.</p>
             </article>
             <article className="card-box shadow-3">
-                <h2>운영: 19</h2>
-                <p>집 가고 싶다...</p>
+                <h2>윤소리: 운영 보조</h2>
+                <p>포스터 제작, 기능 테스트 등을 했습니다.</p>
             </article>
             <article className="card-box shadow-3">
                 <h2>제고라이프에 기여하실래요?</h2>

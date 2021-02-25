@@ -130,7 +130,7 @@ CREATE TABLE IF NOT EXISTS notices
 CREATE TABLE IF NOT EXISTS timetables
 (
     user_id    TEXT PRIMARY KEY,
-    lessons    JSONB,
+    replace_table JSONB,
     created_at TIMESTAMPTZ DEFAULT current_timestamp,
     updated_at TIMESTAMPTZ
 );

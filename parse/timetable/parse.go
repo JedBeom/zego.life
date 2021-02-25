@@ -25,7 +25,7 @@ var (
 	weekdays = []string{"monday", "tuesday", "wednesday", "thursday", "friday"}
 )
 
-func main() {
+func main1() {
 	for x := range classes {
 		for y := range classes[x] {
 			classes[x][y].Grade = x + 1
