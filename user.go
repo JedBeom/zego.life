@@ -209,7 +209,7 @@ func postUserUpgrade(c echo.Context) error {
 	}
 
 	conn := c.Get("conn").(*pg.Conn)
-	if err := u.SetUpgrade(conn); err != nil {
+	if err := u.UpgradeHakbun(conn); err != nil {
 		return echo.ErrInternalServerError
 	}
 

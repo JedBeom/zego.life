@@ -12,16 +12,15 @@ import DietCard from "../../components/DietCard"
 import DdayCounter from "../../components/DdayCounter"
 import DietReview from '../../components/DietReview'
 import DormInspector from "../../components/DormInspector"
-import {InfoBox} from '../../components/AlertBox'
 
 import AddToHome from "../../components/AddToHome"
 import CampaignBox from "../../components/CampaignBox"
+import saveUser from '../../utils/saveUser'
 
 const Main = () => {
     const [loading, setLoading] = useState(true)
     const [diet, setDiet] = useState({when: "", dietList: []})
     const [campaign, setCampaign] = useState(null)
-    const [userUpgradable, setUserUpgradable] = useState(false)
     const [dday, setDDay] = useState([])
     const [ddayCount, setDDayCount] = useState(0)
     const [applied, setApplied] = useState(-1)
@@ -82,9 +81,14 @@ const Main = () => {
             try {
                 const {data} = await axios.get(`home`)
                 setNoticeTitle(data.NoticeTitle)
-                localStorage.setItem("me.roles", data.Roles)
                 setCampaign(data.Campaign)
-                setUserUpgradable(data.UserUpgradable)
+
+                if (data.User.ID) {
+                    saveUser(data.User)
+                    if (data.User.EnterYear === 21 - data.User.Grade) {
+                        window.location.href = "/help/user-upgrade"
+                    }
+                }
             } catch (e) {
                 setNoticeTitle(`로딩 실패 ${e}`)
             }
@@ -115,12 +119,6 @@ const Main = () => {
                     {noticeTitle}
                 </div>
             </NavLink>
-            {userUpgradable ?
-                <NavLink to="/help/user-upgrade">
-                    <InfoBox>
-                        신학년 학번을 입력하세요!
-                    </InfoBox></NavLink> : null
-            }
             <AddToHome/>
             <DdayCounter events={dday} count={ddayCount}/>
             <CampaignBox c={campaign}/>

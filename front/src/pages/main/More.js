@@ -46,7 +46,7 @@ const More = () => {
     return (
         <Page title="더보기" foot={foot}>
             <article className="card-box shadow-3 card-box-me">
-                <h2 className="card-box-title font-s-core">{localStorage.getItem("me.grade")}학년 {localStorage.getItem("me.class")}반 {localStorage.getItem("me.name")}</h2>
+                <h2 className="card-box-title font-s-core">{localStorage.getItem("me.grade")}학년 {localStorage.getItem("me.class")}반 {localStorage.getItem("me.number")}번 {localStorage.getItem("me.name")}</h2>
                 <button className={logoutLoading ? "loading button float-right" : "button float-right"}
                         onClick={logout}>로그아웃
                 </button>

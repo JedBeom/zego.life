@@ -132,15 +132,10 @@ func (u *User) UpdateRoles(db *pg.Conn) error {
 	return err
 }
 
-func (u *User) SetUpgrade(db *pg.Conn) error {
-	uu := UserUpgrade{
-		ID:     u.ID,
-		Grade:  u.Grade,
-		Class:  u.Class,
-		Number: u.Number,
-	}
-
-	return db.Insert(&uu)
+func (u *User) UpgradeHakbun(db *pg.Conn) error {
+	u.UpdatedAt = time.Now()
+	_, err := db.Model(u).Column("grade", "class", "number", "updated_at").WherePK().Update()
+	return err
 }
 
 func UserUpgradeExistsByID(db *pg.Conn, id string) (bool, error) {

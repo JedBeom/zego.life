@@ -9,6 +9,7 @@ import '../../styles/campaigns.css'
 import KeyIcon from '../../icons/Key'
 import UserAddIcon from '../../icons/UserAdd'
 import {MoreBox, MoreBoxContainer} from '../../components/MoreBox'
+import saveUser from '../../utils/saveUser'
 
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -38,21 +39,11 @@ const Login = () => {
             setOkMsg("로그인 성공! 곧 메인 페이지로 이동합니다.")
             localStorage.setItem("token", data.token)
 
-            const respMe = await axios.get("me")
+            const {data: user} = await axios.get("me")
 
-            localStorage.setItem("me.name", respMe.data.Name)
-            localStorage.setItem("me.id", respMe.data.ID)
-            localStorage.setItem("me.barcode", respMe.data.Barcode)
-            localStorage.setItem("me.grade", respMe.data.Grade)
-            localStorage.setItem("me.class", respMe.data.Class)
-            localStorage.setItem("me.year", respMe.data.BirthYear)
-            localStorage.setItem("me.month", respMe.data.BirthMonth)
-            localStorage.setItem("me.day", respMe.data.BirthDay)
-            localStorage.setItem("me.sex", respMe.data.Sex)
-            localStorage.setItem("me.roles", respMe.data.Roles)
-            localStorage.setItem("me.residence", respMe.data.Residence)
+            saveUser(user)
 
-            if (respMe.data.Residence === undefined || respMe.data.Residence === 0) {
+            if (user.Residence === undefined || user.Residence === 0) {
                 window.location = "/help/slot-filling"
             } else {
                 window.location = "/"
