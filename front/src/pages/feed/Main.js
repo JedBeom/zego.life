@@ -44,7 +44,7 @@ const Main = () => {
             <NavLink className="no-underline" to="/feed/about">
                 <button className="button mb-3">담벼락이 무엇인가요?</button>
             </NavLink>
-            <NavLink className="no-underline" to="/feed/post">
+            <NavLink className="no-underline ml-3" to="/feed/post">
                 <button className="button mb-3"><PencilIcon className="icon"/>담벼락에 글 쓰기</button>
             </NavLink>
             <ErrorBox>{errMsg}</ErrorBox>

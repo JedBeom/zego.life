@@ -5,6 +5,16 @@ import Page from '../../components/Page'
 import {ErrorBox, SuccessBox} from '../../components/AlertBox'
 import styled from 'styled-components'
 
+const AnchorHighlight = (content) => {
+    return content.split(" ").map(e => {
+        if (/#\d+/.test(e)) {
+            return <><a href={e}>{e}</a> </>
+        }
+
+        return `${e} `
+    })
+}
+
 const ThreadPage = ({match}) => {
     const [thread, setThread] = useState(null)
     const [okMsg, setOkMsg] = useState("")
@@ -70,12 +80,12 @@ const ThreadPage = ({match}) => {
     }
 
     return (
-        <Page title={thread.Title} back>
+        <Page title={thread.Title} backTo="/feed">
             {thread.Comments.map(c => {
                 return (
-                    <Comment key={c.ID}>
+                    <Comment id={c.Num} key={c.ID}>
                         {`#${c.Num}`}
-                        <div className="card-box" onClick={() => addAnchor(c.Num)}>{c.Content}</div>
+                        <div className="card-box" onClick={() => addAnchor(c.Num)}>{AnchorHighlight(c.Content)}</div>
                     </Comment>
                 )
             })}
@@ -94,6 +104,15 @@ const ThreadPage = ({match}) => {
 
 const Comment = styled.article`
 white-space: pre-line;
+
+&:before {
+    content: '';
+    display: block;
+    position: relative;
+    width: 0;
+    height: 4em;
+    margin-top: -4em;
+}
 `
 
 export default ThreadPage

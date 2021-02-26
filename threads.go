@@ -28,6 +28,12 @@ func getThreads(c echo.Context) error {
 		return echo.ErrInternalServerError
 	}
 
+	/*
+		for i := range ts {
+			ts[i].User
+		}
+	*/
+
 	return c.JSON(200, Map{
 		"Threads": ts,
 		"Count":   count,

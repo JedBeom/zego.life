@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react'
+import {NavLink} from 'react-router-dom'
 import styled from 'styled-components'
 import Back from './Back'
 
-const Page = ({title, back, head, children, foot, className, noScroll, loading}) => {
+const Page = ({title, back, backTo, head, children, foot, className, noScroll, loading}) => {
     useEffect(() => {
         if (title) document.title = `${title} | 제고라이프`
         if (!noScroll) document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
@@ -13,7 +14,8 @@ const Page = ({title, back, head, children, foot, className, noScroll, loading})
             {head}
             {title ?
                 <Title>
-                    {back ? <Back content={title}/> : title}
+                    {backTo ? <NavLink className="no-underline" to={backTo}> {title}</NavLink> :
+                        (back ? <Back content={title}/> : title)}
                 </Title>
                 : null}
             {!loading ?

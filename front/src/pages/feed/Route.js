@@ -24,7 +24,7 @@ font-weight: normal;
 font-size: 1.25rem;
 
 & * {
-    font-family: "InkLipquid", var(--font-family) !important;
+    font-family: "KyoboHand", var(--font-family) !important;
 }
 `
 

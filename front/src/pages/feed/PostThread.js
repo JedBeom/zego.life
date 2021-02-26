@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import Page from "../../components/Page"
 import {ErrorBox, SuccessBox} from '../../components/AlertBox'
+import styled from 'styled-components'
 
 const PostThread = () => {
 
@@ -16,7 +17,7 @@ const PostThread = () => {
         e.preventDefault()
 
         if (title.length < 4) {
-            setErrMsg("담벼락 주제가 너무 짦아요...")
+            setErrMsg("담벼락 주제가 너무 짧아요...")
             setLoading(false)
             return
         }
@@ -46,7 +47,7 @@ const PostThread = () => {
 
     return (
         <Page title="담벼락에 글 쓰기" back>
-            <form onSubmit={submit}>
+            <Form onSubmit={submit}>
                 <div className="flex flex-column mt-3">
                     <label className="my-2">주제</label>
                     <input type="text" value={title} onChange={e => setTitle(e.target.value)}
@@ -62,9 +63,15 @@ const PostThread = () => {
                 <button className={loading ? "button float-right mt-2 loading" : "button float-right mt-2"}
                         type="submit">보내기!
                 </button>
-            </form>
+            </Form>
         </Page>
     )
 }
+
+const Form = styled.form`
+& input {
+    font-size: 1.25em;
+}
+`
 
 export default PostThread

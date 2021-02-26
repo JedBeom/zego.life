@@ -28,13 +28,13 @@ func (t *Thread) Delete(conn *pg.Conn) error {
 
 func ThreadByID(conn *pg.Conn, id string) (t Thread, err error) {
 	t.ID = id
-	err = conn.Model(&t).WherePK().Relation("Comments", func(q *orm.Query) (*orm.Query, error) {
-		return q.Order("num"), nil
+	err = conn.Model(&t).WherePK().ExcludeColumn("open_user_id").Relation("Comments", func(q *orm.Query) (*orm.Query, error) {
+		return q.Order("num").ExcludeColumn("user_id"), nil
 	}).Select()
 	return
 }
 
 func ThreadsAll(conn *pg.Conn, limit, page int) (ts []Thread, count int, err error) {
-	count, err = conn.Model(&ts).Limit(limit).Offset(limit * (page - 1)).Order("updated_at DESC").SelectAndCountEstimate(1000)
+	count, err = conn.Model(&ts).Limit(limit).ExcludeColumn("open_user_id").Offset(limit * (page - 1)).Order("updated_at DESC").SelectAndCountEstimate(1000)
 	return
 }
