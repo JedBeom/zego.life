@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"strconv"
 	"strings"
 
 	"github.com/JedBeom/zego.life/apierror"
@@ -10,6 +11,11 @@ import (
 	"github.com/go-pg/pg"
 	"github.com/labstack/echo"
 )
+
+func getRegisterAvailable(c echo.Context) error {
+	conn := c.Get("conn").(*pg.Conn)
+	return c.String(200, models.SettingByKey(conn, "register_available"))
+}
 
 func postRegister(c echo.Context) error {
 	p := struct {
@@ -69,6 +75,16 @@ func postRegister(c echo.Context) error {
 	}
 	if ure := u.CanRegister(conn); ure != nil {
 		return ure.Send(c)
+	}
+
+	var err error
+	u.EnterYear, err = strconv.Atoi(u.Email[3:5])
+	if err != nil {
+		return apierror.ApiError{
+			StatusCode: 400,
+			ErrorCode:  -18,
+			Message:    "이메일을 다시 확인해주세요.",
+		}
 	}
 
 	if err := u.Create(conn); err != nil {

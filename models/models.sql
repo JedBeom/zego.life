@@ -13,10 +13,11 @@ CREATE TABLE IF NOT EXISTS users
 (
     id               TEXT PRIMARY KEY,
 
+    enter_year INTEGER NOT NULL,
     grade            INTEGER     NOT NULL,
     class            INTEGER     NOT NULL,
     number           INTEGER     NOT NULL,
-    UNIQUE (grade, class, number),
+    UNIQUE (enter_year, grade, class, number),
     name             VARCHAR(10) NOT NULL,
 
     sex              INTEGER,

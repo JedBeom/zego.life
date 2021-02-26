@@ -96,6 +96,7 @@ func routes(e *echo.Echo) {
 			admin.POST("/dday-events", postDDayEvent)
 		}
 
+		api.GET("/register/available", getRegisterAvailable)
 		api.POST("/register", postRegister)
 		api.POST("/register/kitchen", postKitchenLogin)
 		api.GET("/first-parse/:email", getFirstParse)

@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'development') {
     server = window.location.protocol + "//" + window.location.hostname + ":8088";
 }
 
-let app_version = "20210102:01"
+let app_version = "20210226:02"
 sessionStorage.setItem("app_version", app_version)
 
 axios.defaults.baseURL = server + "/api/v1/"

@@ -49,6 +49,6 @@ zego.life
 .idea/
 desktop.ini
 /front/public/img/persona5.jpg
-cmd/
+cmd/main.go
 parse/timetable/input
 parse/timetable/output

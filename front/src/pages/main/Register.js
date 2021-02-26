@@ -4,7 +4,7 @@ import axios from 'axios'
 
 import Page from '../../components/Page'
 import CheckGreen from '../../components/CheckGreen'
-import {ErrorBox} from "../../components/AlertBox"
+import {ErrorBox, InfoBox} from "../../components/AlertBox"
 
 import hakbunToGCN from '../../utils/hakbunToGCN'
 import {validateGCN} from '../../utils/validate'
@@ -13,6 +13,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 
 const Register = () => {
+    const [available, setAvailable] = useState(false)
     const [videoActive, setVideoActive] = useState(false)
     const [barcode, setBarcode] = useState("")
     const [memCode, setMemCode] = useState("")
@@ -32,6 +33,20 @@ const Register = () => {
     const [tosRead, setTosRead] = useState(false)
     const [isLoading, setLoading] = useState("button float-right")
     const [kitchenLoading, setKitchenLoading] = useState(false)
+
+    const getAvailable = async () => {
+        try {
+            const {data} = await axios.get(`/register/available`)
+            if (data == true) {
+                setAvailable(true)
+                return
+            }
+            setErrMsg("죄송합니다. 지금은 가입할 수 없습니다. 제고라이프 인스타그램으로 다시 가입이 가능한 일시를 안내드리겠습니다.")
+        } catch (e) {
+            setErrMsg(`가입 가능 여부를 확인하던 중 문제가 발생했습니다. ${e}`)
+            return
+        }
+    }
 
     let r = Math.random()
     let rm = true
@@ -70,6 +85,7 @@ const Register = () => {
     }
 
     useEffect(() => {
+        getAvailable()
         return () => {
             codeReader.reset()
         }
@@ -116,6 +132,13 @@ const Register = () => {
             || (c < 1 || (g === 1 && c > 8) || (g === 2 && c > 8) || (g === 3 && c > 10))
             || (n < 1 || n > 31)) {
             setErrMsg("학번이 유효하지 않습니다.")
+            setLoading("button float-right")
+            return
+        }
+
+        const enterYear = email.slice(3, 5)
+        if ((enterYear === "20" && g < 2) || (enterYear === "19" && g < 3)) {
+            setErrMsg("2021년의 학번으로 입력해주십시오.")
             setLoading("button float-right")
             return
         }
@@ -169,7 +192,8 @@ const Register = () => {
             window.location = "/login"
         } catch (e) {
             let msg = e.response.data.Content
-            setErrMsg(msg)
+            if (msg) setErrMsg(msg)
+            else setErrMsg("뭔가 잘못되었습니다.")
         }
         setLoading("button float-right")
     }
@@ -299,10 +323,10 @@ const Register = () => {
                             <div className="flex flex-column">
                                 <label className="my-2" htmlFor="birthday-input">생년월일</label>
                                 <DatePicker className="input register-birthday" disabledKeyboardNavigation
-                                            placeholderText="ex) 2004년 09월 08일"
-                                            dateFormat="yyyy년 MM월 dd일" openToDate={new Date(2004, 8, 8)}
+                                            placeholderText="ex) 2005년 09월 08일"
+                                            dateFormat="yyyy년 MM월 dd일" openToDate={new Date(2005, 8, 8)}
                                             onChange={(d) => setDate(d)}
-                                            selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
+                                            selected={date} minDate={minDate} maxDate={maxDate}/>
                             </div>
                             <div className="flex flex-column">
                                 <label className="my-2" htmlFor="residence-input">성별(주민등록상)</label>
@@ -376,8 +400,16 @@ const Register = () => {
         }
     }, [step2Ok])
 
+    if (!available) {
+        return <Page title="회원가입">
+            <ErrorBox>{errMsg}</ErrorBox>
+            <p>회원가입 가능 여부를 확인하는 중 입니다.</p>
+        </Page>
+    }
+
     return (
         <Page title="회원가입">
+            <InfoBox>2021년 새 학번으로 가입해 주십시오.</InfoBox>
             <article className={`card-box shadow-3`}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler"

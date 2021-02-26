@@ -21,10 +21,11 @@ type Diet struct {
 type User struct {
 	ID string `pg:",pk"`
 
-	Grade  int `sql:",unique:gcn"`
-	Class  int `sql:",unique:gcn"`
-	Number int `sql:",unique:gcn"`
-	Name   string
+	EnterYear int `sql:",unique:gcn"`
+	Grade     int `sql:",unique:gcn"`
+	Class     int `sql:",unique:gcn"`
+	Number    int `sql:",unique:gcn"`
+	Name      string
 
 	Sex int // 1: male 2: female
 
