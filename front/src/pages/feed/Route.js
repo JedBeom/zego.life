@@ -7,8 +7,15 @@ import ThreadPage from "./ThreadPage"
 import About from './About'
 
 import NotFound from '../NotFound'
+import Page from '../../components/Page'
 
 function Router() {
+    if (localStorage.getItem("me.grade") == 1) {
+        return <Page title="죄송합니다.">
+            <p>1학년은 아직 담벼락을 이용할 수 없습니다. 다음을 기약해주세요!</p>
+        </Page>
+    }
+
     return <Wrapper>
         <Switch>
             <Route path="/feed" exact component={Main}/>
