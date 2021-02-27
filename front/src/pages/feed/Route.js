@@ -6,6 +6,8 @@ import PostThread from './PostThread'
 import ThreadPage from "./ThreadPage"
 import About from './About'
 
+import NotFound from '../NotFound'
+
 function Router() {
     return <Wrapper>
         <Switch>
@@ -13,7 +15,7 @@ function Router() {
             <Route path="/feed/about" component={About}/>
             <Route path="/feed/post" component={PostThread}/>
             <Route path="/feed/:id" component={ThreadPage}/>
-            <Route component={() => <h1 className="page-title">없는 페이지</h1>}/>
+            <Route component={NotFound}/>
         </Switch>
     </Wrapper>
 }

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {SuccessBox, WarningBox} from '../../components/AlertBox'
-import Back from '../../components/Back'
 
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
 
 import "react-datepicker/dist/react-datepicker.css";
+import Page from '../../components/Page'
 
 const DDayList = () => {
     const [errMsg, setErrMsg] = useState("")
@@ -61,8 +61,7 @@ const DDayList = () => {
         }
     }
 
-    return <>
-        <h1 className="page-title"><Back content="디데이 목록"/></h1>
+    return <Page title="디데이 목록" back>
         <WarningBox>{errMsg}</WarningBox>
         <SuccessBox>{okMsg}</SuccessBox>
         <form className="form mb-6" onSubmit={submit}>
@@ -100,7 +99,7 @@ const DDayList = () => {
                 </ul>
             </article>
         ))}
-    </>
+    </Page>
 }
 
 export default DDayList

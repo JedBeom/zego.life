@@ -2,17 +2,30 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import Page from '../../components/Page'
 
+import {Item, ItemDescription, ItemTitle, Section} from '../../components/Section'
+
 const Main = () => {
     return (
         <Page title="어드민" back>
-            <ul>
-                <li><NavLink to="/admin/users-all">사용자 열람</NavLink></li>
-                <li><NavLink to="/admin/notice-new">새 공지사항</NavLink></li>
-                <li><NavLink to="/admin/feedbacks">피드백 열람</NavLink></li>
-                <li><NavLink to="/admin/campaign-new">캠페인 생성</NavLink></li>
-                <li><NavLink to="/admin/campaign-move">캠페인 이동</NavLink></li>
-                <li><NavLink to="/admin/dday-list">디데이 목록</NavLink></li>
-            </ul>
+            <Section>
+                <Item>
+                    <ItemTitle>사용자 관리 &amp; 피드백 수렴</ItemTitle>
+                    <ItemDescription>사용자 목록을 확인할 수 있습니다.</ItemDescription>
+                    <li><NavLink to="/admin/users-all">사용자 목록 &amp; 검색</NavLink></li>
+                    <li><NavLink to="/admin/feedbacks">피드백 목록</NavLink></li>
+                </Item>
+                <Item>
+                    <ItemTitle>캠페인</ItemTitle>
+                    <ItemDescription>캠페인을 이동합니다.</ItemDescription>
+                    <li><NavLink to="/admin/campaign-move">캠페인 이동</NavLink></li>
+                </Item>
+                <Item>
+                    <ItemTitle>게시 관리</ItemTitle>
+                    <ItemDescription>웹사이트에 게시되는 대상을 관리합니다.</ItemDescription>
+                    <li><NavLink to="/admin/notice-new">새 공지사항</NavLink></li>
+                    <li><NavLink to="/admin/dday-list">디데이 만들기</NavLink></li>
+                </Item>
+            </Section>
         </Page>
     )
 }

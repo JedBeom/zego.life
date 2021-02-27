@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {timestampHangul} from "../utils/timestamp";
+
 const sex = ["?", "남", "여"]
 const residence = ["?", "기숙사", "비기숙사"]
 
@@ -16,7 +18,7 @@ const UserBox = ({u, children}) => {
                 <li>이메일: {u.Email}</li>
                 <li>거주: {residence[u.Residence]}</li>
                 <li>생일: {u.BirthYear}년 {u.BirthMonth}월 {u.BirthDay}일</li>
-                <li>가입: {new Date(u.CreatedAt).toLocaleDateString("kr")}</li>
+                <li>가입: {timestampHangul(u.CreatedAt, true)}</li>
                 <li>역할: {u.Roles}</li>
             </ul>
             {children}

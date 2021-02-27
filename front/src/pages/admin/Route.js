@@ -10,6 +10,8 @@ import CampaignInfo from "./CampaignInfo"
 import DDayList from './DDayList'
 import Main from "./Main"
 
+import NotFound from '../NotFound.js'
+
 function Router() {
     return (
         <Switch>
@@ -22,7 +24,7 @@ function Router() {
             <Route path="/admin/dday-list" component={DDayList}/>
             <Route path="/admin" exact component={Main}/>
 
-            <Route component={() => <h1 className="page-title">없는 페이지</h1>}/>
+            <Route component={NotFound}/>
         </Switch>
     )
 }

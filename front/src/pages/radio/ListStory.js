@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import Back from '../../components/Back'
+import Page from '../../components/Page'
 
 const ListStory = () => {
-    const [stories, setStories] = useState([{Content: "불러오는 중"}])
+    const [stories, setStories] = useState([])
 
     useEffect(() => {
         const getStories = async () => {
@@ -19,30 +19,18 @@ const ListStory = () => {
         getStories()
     }, [])
 
-    if (stories[0].SongRequest === undefined) {
-        return (
-            <>
-                <h1 className="page-title"><Back content="라디오 사연 보기"/></h1>
-                <div className="loader"/>
-            </>
-        )
-    }
-
-    return (
-        <>
-            <h1 className="page-title"><Back content="라디오 사연 보기"/></h1>
-            {stories.map((e, i) => {
-                return <article key={i} className="card-box radio-story shadow-3">
-                    <label>사연</label>
-                    <p>{e.Content}</p>
-                    {e.SongRequest !== "" ? <><label>신청곡</label><p>{e.SongRequest}</p></> : null}
-                    <div className="float-right">
-                        <p>{e.Anonymous ? "익명" : `${e.User.Grade}-${e.User.Class} ${e.User.Name}`}</p>
-                    </div>
-                </article>
-            })}
-        </>
-    )
+    return <Page title="라디오 사연 보기" back loading={stories.length === 0}>
+        {stories.map((e, i) => {
+            return <article key={i} className="card-box radio-story shadow-3">
+                <label>사연</label>
+                <p>{e.Content}</p>
+                {e.SongRequest !== "" ? <><label>신청곡</label><p>{e.SongRequest}</p></> : null}
+                <div className="float-right">
+                    <p>{e.Anonymous ? "익명" : `${e.User.Grade}-${e.User.Class} ${e.User.Name}`}</p>
+                </div>
+            </article>
+        })}
+    </Page>
 }
 
 export default ListStory

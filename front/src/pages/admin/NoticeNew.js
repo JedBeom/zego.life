@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react'
-import Back from "../../components/Back"
-import {SuccessBox, WarningBox} from "../../components/AlertBox"
 import axios from 'axios'
+
+import Page from "../../components/Page"
+import {SuccessBox, WarningBox} from "../../components/AlertBox"
 
 const NoticeNew = ({match}) => {
     const [okMsg, setOkMsg] = useState("")
@@ -71,8 +72,7 @@ const NoticeNew = ({match}) => {
     }, [match.params])
 
     return (
-        <>
-            <h1 className="page-title"><Back content="새 공지사항"/></h1>
+        <Page title="새 공지사항" back>
             <SuccessBox>{okMsg}</SuccessBox>
             <WarningBox>{errMsg}</WarningBox>
             <p>마크다운 형식으로 작성합니다.</p>
@@ -94,7 +94,7 @@ const NoticeNew = ({match}) => {
             <button className={loading ? "button float-right mt-2 loading" : "button float-right mt-2"}
                     onClick={onClick}> {isNew ? "글 제출" : "수정하기"}
             </button>
-        </>
+        </Page>
     )
 }
 

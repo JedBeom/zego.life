@@ -9,6 +9,8 @@ import PwChange from "./PwChange"
 import UserUpgrade from './UserUpgrade'
 import ForgotPassword from './ForgotPassword'
 
+import NotFound from '../NotFound'
+
 function HelpRoute() {
     return (
         <Switch>
@@ -19,7 +21,7 @@ function HelpRoute() {
             <Route path="/help/forgot-password" component={ForgotPassword}/>
             <Route path="/help/feedback" component={Feedback}/>
             <Route path="/help/pw-change/:token" component={PwChange}/>
-            <Route component={() => <h1 className="page-title">없는 페이지</h1>}/>
+            <Route component={NotFound}/>
         </Switch>
     )
 }

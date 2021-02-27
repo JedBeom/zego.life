@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import UserBox from '../../components/UserBox'
 import axios from 'axios'
 import {ErrorBox, InfoBox, SuccessBox} from '../../components/AlertBox'
-import Back from "../../components/Back"
+import Page from "../../components/Page"
 import copy from "../../utils/copy"
 
 const UsersAll = () => {
@@ -125,62 +125,50 @@ const UsersAll = () => {
         getCount()
     }, [])
 
-    if (count === "0") {
-        return (
-            <>
-                <h1 className="page-title"><Back content="사용자 일람"/></h1>
-            </>
-        )
-    }
-
-    return (
-        <>
-            {loading ? <div className="loader"/> : null}
-            <h1 className="page-title"><Back content="사용자 일람"/></h1>
-            <ErrorBox>{errMsg}</ErrorBox>
-            <article className="card-box shadow-3">
-                <h2>총 {count}명</h2>
-            </article>
-            <form className="form" onSubmit={submit}>
-                <div className="flex flex-column">
-                    <label className="my-2">표시할 수</label>
-                    <input type="numberic" pattern="[0-9]*" value={limit} onChange={e => setLimit(e.target.value)}
-                           required className="input" placeholder="10"/>
-                </div>
-                <div className="flex flex-column">
-                    <label className="my-2">페이지</label>
-                    <input type="numberic" pattern="[0-9]*" value={page} onChange={e => setPage(e.target.value)}
-                           required className="input" placeholder="1"/>
-                </div>
-                <div className="flex flex-column">
-                    <label className="my-2">이름 검색</label>
-                    <input type="text" value={name} onChange={e => setName(e.target.value)}
-                           className="input" placeholder="필요 시 입력"/>
-                </div>
-                <div className="flex flex-column">
-                    <label className="my-2">정렬 기준</label>
-                    <select className="select full" value={orderBy} onChange={e => setOrderBy(e.target.value)}>
-                        <option value="created_at ASC">가입 일자 (오래된 순)</option>
-                        <option value="created_at DESC">가입 일자 (최신 순)</option>
-                        <option value="name ASC">이름 (순행)</option>
-                        <option value="name DESC">이름 (역행)</option>
-                    </select>
-                </div>
-                <InfoBox>더 정밀한 조건 검색이 필요하면 개발자에게 문의하세요.</InfoBox>
-                <button type="submit" className="button" onClick={getResults}>가져오자!</button>
-            </form>
-            <h2 className="my-5">결과</h2>
-            <SuccessBox>{okMsg}</SuccessBox>
-            {users.map(u => {
-                return (
-                    <UserBox u={u} key={u.Email}>
-                        <button className="button float-right" onClick={() => getToken(u.ID)}>암호 재설정 링크</button>
-                        <button className="button float-right" onClick={() => updateRoles(u.ID, u.Roles)}>역할 수정</button>
-                    </UserBox>
-                )
-            })}
-        </>
-    )
+    return <Page loading={loading} title="사용자 목록" back>
+        <ErrorBox>{errMsg}</ErrorBox>
+        <article className="card-box shadow-3">
+            <h2>총 {count}명</h2>
+        </article>
+        <form className="form" onSubmit={submit}>
+            <div className="flex flex-column">
+                <label className="my-2">표시할 수</label>
+                <input type="numberic" pattern="[0-9]*" value={limit} onChange={e => setLimit(e.target.value)}
+                       required className="input" placeholder="10"/>
+            </div>
+            <div className="flex flex-column">
+                <label className="my-2">페이지</label>
+                <input type="numberic" pattern="[0-9]*" value={page} onChange={e => setPage(e.target.value)}
+                       required className="input" placeholder="1"/>
+            </div>
+            <div className="flex flex-column">
+                <label className="my-2">이름 검색</label>
+                <input type="text" value={name} onChange={e => setName(e.target.value)}
+                       className="input" placeholder="필요 시 입력"/>
+            </div>
+            <div className="flex flex-column">
+                <label className="my-2">정렬 기준</label>
+                <select className="select full" value={orderBy} onChange={e => setOrderBy(e.target.value)}>
+                    <option value="created_at ASC">가입 일자 (오래된 순)</option>
+                    <option value="created_at DESC">가입 일자 (최신 순)</option>
+                    <option value="name ASC">이름 (순행)</option>
+                    <option value="name DESC">이름 (역행)</option>
+                </select>
+            </div>
+            <InfoBox>더 정밀한 조건 검색이 필요하면 개발자에게 문의하세요.</InfoBox>
+            <button type="submit" className="button" onClick={getResults}>가져오자!</button>
+        </form>
+        <h2 className="my-5">결과</h2>
+        <SuccessBox>{okMsg}</SuccessBox>
+        {users.map(u => {
+            return (
+                <UserBox u={u} key={u.Email}>
+                    <button className="button float-right" onClick={() => getToken(u.ID)}>암호 재설정 링크</button>
+                    <button className="button float-right" onClick={() => updateRoles(u.ID, u.Roles)}>역할 수정</button>
+                </UserBox>
+            )
+        })}
+    </Page>
 }
 
 export default UsersAll

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
 import axios from 'axios'
 
 import Page from '../../components/Page'
@@ -6,9 +6,9 @@ import {ErrorBox, SuccessBox} from '../../components/AlertBox'
 import styled from 'styled-components'
 
 const AnchorHighlight = (content) => {
-    return content.split(" ").map(e => {
+    return content.split(" ").map((e, i) => {
         if (/#\d+/.test(e)) {
-            return <><a href={e}>{e}</a> </>
+            return <Fragment key={i + "anchor"}><a href={e}>{e}</a> </Fragment>
         }
 
         return `${e} `
@@ -83,7 +83,7 @@ const ThreadPage = ({match}) => {
         <Page title={thread.Title} backTo="/feed">
             {thread.Comments.map(c => {
                 return (
-                    <Comment id={c.Num} key={c.ID}>
+                    <Comment id={c.Num} key={c.Num}>
                         {`#${c.Num}`}
                         <div className="card-box" onClick={() => addAnchor(c.Num)}>{AnchorHighlight(c.Content)}</div>
                     </Comment>

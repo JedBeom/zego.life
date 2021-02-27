@@ -32,8 +32,7 @@ const CampaignMove = () => {
         }
     }
 
-    return <Page className="campaigns-site" loading={loading}>
-        <h1 className="page-title"><NavLink className="no-underline" to="/more"> 캠페인</NavLink></h1>
+    return <Page className="campaigns-site" loading={loading} title="캠페인 승인" back>
         <ErrorBox>{errMsg}</ErrorBox>
         <article className="campaigns">
             <h3>승인 대기 중인 캠페인</h3>

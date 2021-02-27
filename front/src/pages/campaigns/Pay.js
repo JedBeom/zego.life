@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {NavLink, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
 import Page from '../../components/Page'
@@ -81,7 +81,7 @@ const Pay = ({match, history}) => {
         }
     }
 
-    return <Page title={<NavLink className="no-underline" to="/campaigns"> 결제하기</NavLink>} loading={loading}>
+    return <Page title="결제하기" backTo="/campaigns" loading={loading}>
         <p className="page-sub mb-4">'{cmp.Title}'<br/>를 결제합니다</p>
 
         {cmp.PayLink ? <>

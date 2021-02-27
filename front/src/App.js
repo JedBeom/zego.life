@@ -16,13 +16,13 @@ import './themes/colors.css'
 import './themes/special.css'
 
 // components
-import Logo from './components/Logo'
 import NotSupported from './components/NotSupported'
 import Nav from './components/Nav'
 
 import {isAdmin} from "./utils/getRoles"
 
 import NoConnection from './pages/main/NoConnection'
+import styled from 'styled-components';
 
 const MainRoute = lazy(() => import("./pages/main/Route"))
 const Register = lazy(() => import("./pages/main/Register"))
@@ -50,8 +50,7 @@ function App({history}) {
 
     return (
         <>
-            <Logo/>
-            <div className="site">
+            <Site>
                 <Suspense fallback={<div className="loader"/>}>
                     <Switch>
                         {
@@ -67,10 +66,20 @@ function App({history}) {
                     </Switch>
                 </Suspense>
                 <NotSupported/>
-            </div>
+            </Site>
             <Nav/>
         </>
     )
 }
+
+const Site = styled.div`
+margin-left: auto;
+margin-right: auto;
+max-width: 900px;
+color: var(--site-text-color);
+padding: .5em;
+padding-bottom: 10em;
+padding-top: calc(env(safe-area-inset-top) + 1em);
+`
 
 export default withRouter(App);

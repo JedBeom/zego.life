@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect, useState} from 'react'
 
-import Page from '../../components/Page'
+import Page, {Title} from '../../components/Page'
 import {ErrorBox} from '../../components/AlertBox'
 import {getEvents} from '../../common/api'
 
@@ -55,8 +55,8 @@ const Events = () => {
     }, [year, month])
 
     return (
-        <Page>
-            <h1 className="page-title flex justify-between"><span>
+        <Page title={`${year}년 ${month}월`} hideTitle={true}>
+            <Title className="flex justify-between"><span>
             <svg className="icon icon-tabler" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <rect x="4" y="5" width="16" height="16" rx="2"/>
@@ -68,7 +68,7 @@ const Events = () => {
             </svg>
                 {year}년 {month}월</span>
                 <span><span className="mr-2" onClick={previous}> </span> <span onClick={next}></span></span>
-            </h1>
+            </Title>
             {loading ? <div className="loader"/> : null}
             <ErrorBox>{errMsg}</ErrorBox>
             {events === null ? <p>일정 없음</p> : null}

@@ -5,12 +5,14 @@ import ListStory from './ListStory'
 
 import {isAdmin, isThat} from '../../utils/getRoles'
 
+import NotFound from '../NotFound'
+
 function Router() {
     return (
         <Switch>
             <Route path="/radio/stories/post" component={PostStory}/>
             {isThat("radio") || isAdmin() ? <Route path="/radio/stories" exact component={ListStory}/> : null}
-            <Route component={() => <h1 className="page-title">없는 페이지</h1>}/>
+            <Route component={NotFound}/>
         </Switch>
     )
 }

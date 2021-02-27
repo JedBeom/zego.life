@@ -5,6 +5,7 @@ import Page from '../../components/Page'
 import {ErrorBox, SuccessBox} from '../../components/AlertBox'
 import UserBox from '../../components/UserBox'
 import CampaignBox from '../../components/CampaignBox'
+import {timestampHangul} from '../../utils/timestamp'
 
 import '../../styles/campaigns.css'
 
@@ -52,11 +53,11 @@ const CampaignInfo = ({match}) => {
             <article className="campaign-info">
                 <CampaignBox c={cnp}/>
                 <p>가격: {cnp.Price}원</p>
-                <p>시작: {cnp.StartAt}</p>
-                <p>끝: {cnp.EndAt}</p>
+                <p>시작: {timestampHangul(cnp.StartAt, true)}</p>
+                <p>끝: {timestampHangul(cnp.EndAt, true)}</p>
                 <p>입금수단: {cnp.Payment}</p>
                 <p>입금자명: 제라{cnp.PayCode}</p>
-                <p>입금일시: {cnp.PayedAt}</p>
+                <p>입금한 시간: {timestampHangul(cnp.PayedAt, true)}</p>
                 <p className="mt-3 mb-6">사용자</p>
                 <UserBox u={cnp.User}/>
             </article> : null}

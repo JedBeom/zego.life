@@ -10,7 +10,8 @@ import Notice from './Notice'
 import Timetable from './Timetable'
 import TimetableSetCredit from './TimetableSetCredit'
 import Settings from './Settings'
-import NotFound from './NotFound'
+
+import NotFound from '../NotFound'
 
 function Router() {
     return (

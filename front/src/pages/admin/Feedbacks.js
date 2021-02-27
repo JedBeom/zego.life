@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import Back from "../../components/Back"
-import {SuccessBox, WarningBox} from "../../components/AlertBox";
 import axios from 'axios'
+
+import Page from '../../components/Page';
+import {SuccessBox, WarningBox} from "../../components/AlertBox";
+
+import {timestampHangul} from '../../utils/timestamp'
 
 const Feedbacks = () => {
     const [okMsg, setOkMsg] = useState("")
@@ -40,20 +43,20 @@ const Feedbacks = () => {
     }, [])
 
     return (
-        <>
-            <h1 className="page-title"><Back content="피드백 열람"/></h1>
+        <Page title="피드백 보기" back>
             <WarningBox>{errMsg}</WarningBox>
             <SuccessBox>{okMsg}</SuccessBox>
             {
                 fs.map((f) =>
                     <article onClick={() => setAnswer(f)} key={f.ID} className="card-box shadow-3 feedback-box">
                         <p className="content">{f.Content} <span
-                            className="by">— {f.User.Grade}-{f.User.Class} {f.User.Name}</span></p>
+                            className="by">— {f.User.Grade}-{f.User.Class} {f.User.Name}({timestampHangul(f.CreatedAt, true)})</span>
+                        </p>
                         {f.Answer !== "" ? <p className="answer">답변: {f.Answer}</p> : null}
                     </article>
                 )
             }
-        </>
+        </Page>
     )
 }
 

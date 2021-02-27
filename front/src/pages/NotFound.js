@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
-import Page from '../../components/Page'
+import Page from '../components/Page'
 
 const NotFound = () => {
     return (

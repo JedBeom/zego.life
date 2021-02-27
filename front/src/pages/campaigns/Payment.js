@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {NavLink, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
 import Page from '../../components/Page'
@@ -74,7 +74,7 @@ const Payment = ({match, history}) => {
         return <div className="loader"/>
     }
 
-    return <Page title={<NavLink className="no-underline" to={`/campaigns/new/${match.params.id}`}>결제 수단</NavLink>}>
+    return <Page backTo={`/campaigns/new/${match.params.id}`} title="결제 수단">
         <ErrorBox>{errMsg}</ErrorBox>
         <p className="page-sub">'{title}'<br/>를 결제할 수단을 선택하세요</p>
 
