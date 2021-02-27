@@ -59,6 +59,7 @@ padding-top: calc(env(safe-area-inset-top) + .75rem);
 font-weight: 700;
 font-size: 1.2rem;
 
+visibility: ${props => (props.display ? "visible" : "hidden")};
 opacity: ${props => (props.display ? "1" : "0")};
 transition: opacity .3s;
 transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
