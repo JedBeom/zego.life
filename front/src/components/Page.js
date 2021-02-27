@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {NavLink} from 'react-router-dom'
 import styled from 'styled-components'
-import Back from './Back'
+import Back, {arrowText} from './Back'
 
 const Page = ({title, back, backTo, head, children, foot, className, noScroll, loading}) => {
     useEffect(() => {
@@ -14,7 +14,7 @@ const Page = ({title, back, backTo, head, children, foot, className, noScroll, l
             {head}
             {title ?
                 <Title>
-                    {backTo ? <NavLink className="no-underline" to={backTo}> {title}</NavLink> :
+                    {backTo ? <NavLink className="no-underline" to={backTo}>{arrowText(title)}</NavLink> :
                         (back ? <Back content={title}/> : title)}
                 </Title>
                 : null}
