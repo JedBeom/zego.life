@@ -5,6 +5,7 @@ import axios from 'axios'
 import Page from '../../components/Page'
 import {InfoBox} from '../../components/AlertBox'
 
+/*
 const payments = {
     toss: {
         code: "toss",
@@ -25,6 +26,7 @@ const payments = {
         bgColor: "rgb(1, 173, 1)"
     }
 }
+*/
 
 const Pay = ({match, history}) => {
     const [linkarea, setLinkarea] = useState(null)

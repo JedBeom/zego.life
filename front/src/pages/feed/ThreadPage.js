@@ -68,6 +68,7 @@ const ThreadPage = ({match}) => {
 
     useEffect(() => {
         get()
+        // eslint-disable-next-line
     }, [])
 
     if (thread === null) {

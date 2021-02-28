@@ -48,7 +48,7 @@ const Feedbacks = () => {
             <SuccessBox>{okMsg}</SuccessBox>
             {
                 fs.map((f) =>
-                    <article onClick={() => setAnswer(f)} key={f.ID} className="card-box shadow-3 feedback-box">
+                    <article onClick={() => setAnswer(f)} key={f.ID} className="card-box feedback-box">
                         <p className="content">{f.Content} <span
                             className="by">— {f.User.Grade}-{f.User.Class} {f.User.Name}({timestampHangul(f.CreatedAt, true)})</span>
                         </p>

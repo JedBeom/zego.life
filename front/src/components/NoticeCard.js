@@ -4,7 +4,7 @@ import PencilIcon from '../icons/Pencil'
 
 const NoticeCard = ({notice, children}) => {
     return (
-        <article className="card-box shadow-3 notice-box">
+        <article className="card-box notice-box">
             {notice.Title === "" ?
                 null :
                 <>

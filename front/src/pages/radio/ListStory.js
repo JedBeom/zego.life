@@ -21,7 +21,7 @@ const ListStory = () => {
 
     return <Page title="라디오 사연 보기" back loading={stories.length === 0}>
         {stories.map((e, i) => {
-            return <article key={i} className="card-box radio-story shadow-3">
+            return <article key={i} className="card-box radio-story">
                 <label>사연</label>
                 <p>{e.Content}</p>
                 {e.SongRequest !== "" ? <><label>신청곡</label><p>{e.SongRequest}</p></> : null}

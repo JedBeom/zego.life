@@ -68,7 +68,7 @@ const DietCard = ({diet, applied}) => {
 	}
 
 	return (
-		<article className={`card-box shadow-3`}>
+		<article className={`card-box`}>
 			<div className={"flex justify-between"}>
 				<h2 className={"card-title"}>
 					<DietIcon className="icon"/>

@@ -95,7 +95,7 @@ const DietReview = () => {
     }
 
     return (
-        <article className="card-box card-box-review shadow-3">
+        <article className="card-box card-box-review">
             <h2>급식 평가</h2>
             {!submitted ?
                 <>

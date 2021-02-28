@@ -11,7 +11,7 @@ const UserBox = ({u, children}) => {
     }
 
     return (
-        <article className="card-box shadow-3">
+        <article className="card-box">
             <h2>{u.Grade}-{u.Class} {u.Number} {u.Name}</h2>
             <ul>
                 <li>성별: {sex[u.Sex]}</li>

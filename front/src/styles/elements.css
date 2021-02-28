@@ -76,8 +76,8 @@ notice-line-badge
 
     font-size: .7rem;
 
-    color: white;
-    background-color: #5a4fcf;
+    color: var(--button-primary-text-color);
+    background-color: var(--button-primary-color);
 }
 
 /* 

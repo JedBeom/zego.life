@@ -4,27 +4,23 @@ import styled from 'styled-components'
 import Back, {arrowText} from './Back'
 
 const Page = ({title, hideTitle, back, backTo, head, children, foot, className, noScroll, loading}) => {
-    const [displayHead, setDisplayHead] = useState(false)
+    const [scrollDowned, setScrollDowned] = useState(false)
 
     useEffect(() => {
         if (title) document.title = `${title} | 제고라이프`
         if (!noScroll) document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }, [title])
+    }, [title, noScroll])
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll)
     }, [])
 
     const handleScroll = () => {
-        if (window.scrollY > 100) {
-            setDisplayHead(true)
-        } else {
-            setDisplayHead(false)
-        }
+        setScrollDowned(window.scrollY > 30)
     }
 
     return <>
-        <Header display={displayHead}>
+        <Header displayHead={scrollDowned}>
             {title}
         </Header>
         <Wrapper className={className}>
@@ -59,9 +55,9 @@ padding-top: calc(env(safe-area-inset-top) + .75rem);
 font-weight: 700;
 font-size: 1.2rem;
 
-visibility: ${props => (props.display ? "visible" : "hidden")};
-opacity: ${props => (props.display ? "1" : "0")};
-transition: opacity .3s;
+visibility: ${props => (props.displayHead ? "visible" : "hidden")};
+opacity: ${props => (props.displayHead ? "1" : "0")};
+transition: opacity .5s;
 transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 color: var(--site-logo-color);
 `

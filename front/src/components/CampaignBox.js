@@ -1,17 +1,19 @@
 import React from 'react'
 import {NavLink} from "react-router-dom"
+import styled from 'styled-components'
+import DefaultBox from './ui/DefaultBox'
 
 const CampaignBox = ({c}) => {
-    if (!c) c = {Title: "제고생활은 제고라이프로", SubTitle: "환영합니다!"}
+    if (!c) c = {Title: "...", SubTitle: "..."}
 
-    let ar = <article className="campaign-box shadow-3">
-        <span className="campaign-icon">AD</span>
+    let ar = <Article>
+        <span>AD</span>
         <h2>{c.Title}</h2>
         <p>{c.SubTitle}</p>
         {c.ImageSrc ?
             <img alt={c.Title} src={c.ImageSrc}/>
             : null}
-    </article>
+    </Article>
 
 
     if (c.Link && c.Link[0] === "/") {
@@ -30,5 +32,46 @@ const CampaignBox = ({c}) => {
 
     return ar
 }
+
+const Article = styled(DefaultBox)`
+padding: 1em;
+border-radius: 8px;
+position: relative;
+word-break: keep-all;
+
+& a {
+    text-decoration: none !important;
+}
+
+& h2 {
+    z-index: 1;
+    font-size: 1rem;
+}
+
+& p {
+    z-index: 1;
+    font-size: .75rem;
+}
+
+& span {
+    color: var(--site-text-color);
+    background-color: var(--background-color);
+    padding: .25rem;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: bold;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+& img {
+    opacity: .85;
+    position: absolute;
+    height: 3rem;
+    right: 1rem;
+    top: 1rem;
+}
+`
 
 export default CampaignBox

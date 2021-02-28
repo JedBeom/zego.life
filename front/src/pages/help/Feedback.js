@@ -79,7 +79,7 @@ const Feedback = () => {
             <h2 className="page-title-sub">내가 보낸 피드백</h2>
             {
                 feedbacks.map((f) => (
-                    <article key={f.ID} className="card-box shadow-3 feedback-box">
+                    <article key={f.ID} className="card-box feedback-box">
                         <p className="content">{f.Content}</p>
                         {f.Answer !== "" ? <p className="answer">답변: {f.Answer}</p> : null}
                     </article>

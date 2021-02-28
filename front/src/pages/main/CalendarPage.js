@@ -101,7 +101,7 @@ const DietPage = () => {
                 가기</a></InfoBox>
             */}
             <ErrorBox>{errMsg}</ErrorBox>
-            <article className="card-box shadow-3">
+            <article className="card-box">
                 <h2 className={"card-title font-s-core px-2"}>
                     <CalendarIcon className="icon icon-tabler"/>
                     날짜 선택
@@ -115,7 +115,7 @@ const DietPage = () => {
             </article>
             {isLoading ? <div className="loader"/> : <>
                 {events.length > 0 ?
-                    <article className="card-box shadow-3">
+                    <article className="card-box">
                         <h2><CalendarIcon className="icon"/>일정</h2>
                         <ul>
                             {events.map((e, j) => (

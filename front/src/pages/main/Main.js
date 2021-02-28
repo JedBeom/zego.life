@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
-
 import {getD2UByDiet, getDDay, getDietByDate} from '../../common/api'
-import {timestampDot} from '../../utils/timestamp'
-import whatMeal from '../../utils/whatMeal'
-import {isUser} from "../../utils/getRoles"
 
 import Page from "../../components/Page"
 import DietCard from "../../components/DietCard"
 import DdayCounter from "../../components/DdayCounter"
 import DietReview from '../../components/DietReview'
 import DormInspector from "../../components/DormInspector"
-
 import AddToHome from "../../components/AddToHome"
 import CampaignBox from "../../components/CampaignBox"
+
+import {timestampDot} from '../../utils/timestamp'
+import whatMeal from '../../utils/whatMeal'
+import {isUser} from "../../utils/getRoles"
+
 import saveUser from '../../utils/saveUser'
 
 const Main = () => {

@@ -37,6 +37,7 @@ const Register = () => {
     const getAvailable = async () => {
         try {
             const {data} = await axios.get(`/register/available`)
+            // eslint-disable-next-line
             if (data == true) {
                 setAvailable(true)
                 return
@@ -203,7 +204,7 @@ const Register = () => {
     useEffect(() => {
         if (!step0Ok) {
             setStep1(
-                <article className="card-box shadow-3">
+                <article className="card-box">
                     <h2 className="card-title font-s-core px-2">
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -225,7 +226,7 @@ const Register = () => {
         } else {
             if (isAuthBarcode) {
                 setStep1(
-                    <article className={`card-box shadow-3 register-scan-box`}>
+                    <article className={`card-box register-scan-box`}>
                         <h2 className={"card-title font-s-core px-2"}>STEP 1: 학생증 바코드 스캔</h2>
                         <div className={"register-scan-button"}>
                             {barcode === "" ?
@@ -244,7 +245,7 @@ const Register = () => {
                 )
             } else {
                 setStep1(
-                    <article className={`card-box shadow-3 register-step2-box`}>
+                    <article className={`card-box register-step2-box`}>
                         <h2 className={"card-title font-s-core px-2"}>STEP 1: 급식신청사이트(플라이키친) 로그인</h2>
                         {!step1Ok ?
                             <form className={"p-2"} onSubmit={postKitchen}>
@@ -285,7 +286,7 @@ const Register = () => {
     useEffect(() => {
         if (step1Ok) {
             setStep2(
-                <article className={`card-box shadow-3 register-step2-box`}>
+                <article className={`card-box register-step2-box`}>
                     <h2 className={"card-title font-s-core px-2"}>
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -388,7 +389,7 @@ const Register = () => {
     useEffect(() => {
         if (step2Ok) {
             setStep3(
-                <article className={`card-box shadow-3 register-step2-box in-progress`}>
+                <article className={`card-box register-step2-box in-progress`}>
                     <h2 className={"card-title font-s-core"}>STEP 3: 급식 정보 가져오는 중...</h2>
                     <div className={"register-scan-box"}>
                         <div className={"spinner bw-6"}/>
@@ -410,7 +411,7 @@ const Register = () => {
     return (
         <Page title="회원가입">
             <InfoBox>2021년 새 학번으로 가입해 주십시오.</InfoBox>
-            <article className={`card-box shadow-3`}>
+            <article className={`card-box`}>
                 <h2 className={"card-title font-s-core px-2"}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler"
                          viewBox="0 0 24 24">

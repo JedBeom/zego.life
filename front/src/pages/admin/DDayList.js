@@ -91,7 +91,7 @@ const DDayList = () => {
         </form>
         {events.map(e => (
             <article onClick={() => {
-            }} key={e.ID} className="card-box shadow-3">
+            }} key={e.ID} className="card-box">
                 <ul>
                     <li>이름: {e.Name}</li>
                     <li>대상: {e.Target}</li>

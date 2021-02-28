@@ -127,7 +127,7 @@ const UsersAll = () => {
 
     return <Page loading={loading} title="사용자 목록" back>
         <ErrorBox>{errMsg}</ErrorBox>
-        <article className="card-box shadow-3">
+        <article className="card-box">
             <h2>총 {count}명</h2>
         </article>
         <form className="form" onSubmit={submit}>

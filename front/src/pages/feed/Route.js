@@ -10,6 +10,7 @@ import NotFound from '../NotFound'
 import Page from '../../components/Page'
 
 function Router() {
+    // eslint-disable-next-line
     if (localStorage.getItem("me.grade") == 1) {
         return <Page title="죄송합니다.">
             <p>1학년은 아직 담벼락을 이용할 수 없습니다. 다음을 기약해주세요!</p>

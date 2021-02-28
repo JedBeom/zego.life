@@ -7,7 +7,7 @@ const DdayCounter = ({events, count}) => {
     let today = new Date()
     today.setHours(0, 0, 0, 0)
     return (
-        <article className="card-box shadow-3">
+        <article className="card-box">
             <h2 className="card-title">
                 <CalendarIcon className="icon"/>
                 디데이

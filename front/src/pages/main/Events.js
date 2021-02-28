@@ -74,7 +74,7 @@ const Events = () => {
             {events === null ? <p>일정 없음</p> : null}
             {events !== undefined && events !== null ?
 
-                <article className="card-box shadow-3">
+                <article className="card-box">
                     <div className="table-container">
                         <table className="events">
                             <tbody>

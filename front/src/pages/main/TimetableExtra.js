@@ -69,21 +69,21 @@ const TimetableExtra = () => {
                 </tbody>
             </table>
         </div>
-        <article className="mt-4 card-box shadow-3">
-            <h2>선택과목 입력 <SelectorIcon/></h2>
-            <div className="flex flex-column mt-3">
-                <label className="my-2">A강좌</label>
-                <input type="text" value={lessonA} onChange={e => setLessonA(e.target.value)}
-                        className="input" placeholder="물리학2/물리실"/>
-            </div>
-            <div className="flex flex-column mt-3">
-                <label className="my-2">B강좌</label>
-                <input type="text" value={lessonB} onChange={e => setLessonB(e.target.value)}
-                        className="input" placeholder="생윤/106"/>
-            </div>
-            <button className="mt-3 button float-right" onClick={saveLessons}>저장!</button>
-            <p className="mt-6">기기에 저장됩니다.</p>
-        </article>
+            <article className="mt-4 card-box">
+                <h2>선택과목 입력 <SelectorIcon/></h2>
+                <div className="flex flex-column mt-3">
+                    <label className="my-2">A강좌</label>
+                    <input type="text" value={lessonA} onChange={e => setLessonA(e.target.value)}
+                           className="input" placeholder="물리학2/물리실"/>
+                </div>
+                <div className="flex flex-column mt-3">
+                    <label className="my-2">B강좌</label>
+                    <input type="text" value={lessonB} onChange={e => setLessonB(e.target.value)}
+                           className="input" placeholder="생윤/106"/>
+                </div>
+                <button className="mt-3 button float-right" onClick={saveLessons}>저장!</button>
+                <p className="mt-6">기기에 저장됩니다.</p>
+            </article>
         </>
     )
 }
