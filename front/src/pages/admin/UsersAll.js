@@ -27,49 +27,46 @@ const UsersAll = () => {
         setLoading(false)
     }
 
-    const submit = e => {
+    const submit = async e => {
+        console.log({name})
+
         setOkMsg("")
         setErrMsg("")
         e.preventDefault()
 
         setUsers([])
 
-        if (name !== "") {
-            searchName()
-        } else {
-            getResults()
+        setLoading(true)
+
+        try {
+            if (name) {
+                await searchName()
+            } else {
+                await getResults()
+            }
+        } catch (e) {
+            setErrMsg(`문제 발생! ${e}`)
         }
+        setLoading(false)
     }
 
     const getResults = async () => {
-        setLoading(true)
-        try {
-            const {data} = await axios.get(`users/search/order-by/${orderBy}`, {params: {limit: limit, page: page}})
-            setUsers(data)
-        } catch (e) {
-            setErrMsg(`문제 발생 ${e}`)
-        }
-        setLoading(false)
+        const {data} = await axios.get(`users/search/order-by/${orderBy}`, {params: {limit: limit, page: page}})
+        setUsers(data)
     }
 
     const searchName = async () => {
-        setLoading(true)
-        try {
-            const {data} = await axios.get(`users/search/by-name/${name}/order-by/${orderBy}`, {
-                params: {
-                    limit: limit,
-                    page: page
-                }
-            })
-            if (!data) {
-                setErrMsg("데이터 없음")
-                return
+        const {data} = await axios.get(`users/search/by-name/${name}/order-by/${orderBy}`, {
+            params: {
+                limit: limit,
+                page: page
             }
-            setUsers(data)
-        } catch (e) {
-            setErrMsg(`문제 발생 ${e}`)
+        })
+        if (!data) {
+            setErrMsg("데이터 없음")
+            return
         }
-        setLoading(false)
+        setUsers(data)
     }
 
     const getToken = async (id) => {
@@ -125,7 +122,8 @@ const UsersAll = () => {
         getCount()
     }, [])
 
-    return <Page loading={loading} title="사용자 목록" back>
+    return <Page loading={count === "0"} title="사용자 목록" back>
+        {loading ? <div className="loader"/> : null}
         <ErrorBox>{errMsg}</ErrorBox>
         <article className="card-box">
             <h2>총 {count}명</h2>
@@ -156,7 +154,7 @@ const UsersAll = () => {
                 </select>
             </div>
             <InfoBox>더 정밀한 조건 검색이 필요하면 개발자에게 문의하세요.</InfoBox>
-            <button type="submit" className="button" onClick={getResults}>가져오자!</button>
+            <button type="submit" className="button">가져오자!</button>
         </form>
         <h2 className="my-5">결과</h2>
         <SuccessBox>{okMsg}</SuccessBox>
