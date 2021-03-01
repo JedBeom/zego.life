@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-let start = new Date(2020, 9, 30) // 새사, 진기쌤
+let start = new Date(2020, 9, 30) // 새사, 만수쌤
 
 const DormInspector = ({date, correction}) => {
     let correctionValue = false
@@ -22,7 +22,7 @@ const DormInspector = ({date, correction}) => {
             <div className="float-right">
                 <Inspector>
                     {localStorage.getItem("me.sex") === "1" ?
-                        (!diff ? "정진기" : "이만수")
+                        (!diff ? "이만수" : "정진기")
                         :
                         (!diff ? "이순덕(새사)" : "장정숙(장사)")
                     } 사감</Inspector>
