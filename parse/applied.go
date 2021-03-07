@@ -159,11 +159,12 @@ func GetApplyListOfUsers(db *pg.Conn, calendarType string, us []models.User) (er
 	wg := sync.WaitGroup{}
 	for _, u := range us {
 		for mealType := 1; mealType <= 3; mealType++ {
+			wg.Add(1)
 			go func(u models.User, mealType int) {
 				for try := 0; try < 2; try++ {
-					wg.Add(1)
 					if err := getAndCreateApplyListWg(db, u, calendarType, mealType, &wg); err != nil {
-						models.LogError(db, u.ID, "", "GetApplyListOfUsers", err)
+						wg.Add(1)
+						log.Println("getAndCreateApplyListWg", err)
 						time.Sleep(time.Second / 2)
 						continue
 					}
