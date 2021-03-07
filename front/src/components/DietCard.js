@@ -82,6 +82,7 @@ font-size: 1em;
 float: right;
 border-radius: 3rem;
 
+color: white;
 background-color: ${props => props.color};
 
 span {
