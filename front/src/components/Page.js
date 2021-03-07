@@ -55,9 +55,9 @@ padding-top: calc(env(safe-area-inset-top) + .75rem);
 font-weight: 700;
 font-size: 1.2rem;
 
-visibility: ${props => (props.displayHead ? "visible" : "hidden")};
+pointer-events: none;
 opacity: ${props => (props.displayHead ? "1" : "0")};
-transition: opacity .5s;
+transition: opacity .25s;
 transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 color: var(--site-logo-color);
 `
