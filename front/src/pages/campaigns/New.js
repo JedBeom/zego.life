@@ -136,8 +136,8 @@ const CampaignNew = ({match, history}) => {
             return
         }
 
-        if ((start - today) / 1000 / 60 / 60 <= 24) {
-            setErrMsg("시작 날짜는 현재로부터 24시간 이상 지나야 합니다.")
+        if ((start - today) / 1000 / 60 / 60 <= 12) {
+            setErrMsg("시작 날짜는 현재로부터 12시간 이상 지나야 합니다.")
             setLoading(false)
             return
         }
@@ -203,7 +203,7 @@ const CampaignNew = ({match, history}) => {
         }
     }
     return (
-        <Page title={isNew ? "캠페인 제작" : "캠페인 수정"} back loading={initialLoading}>
+        <Page title={isNew ? "캠페인 제작" : "캠페인 수정"} backTo="/campaigns" loading={initialLoading}>
             <SuccessBox>{okMsg}</SuccessBox>
             <WarningBox>{errMsg}</WarningBox>
             <div className="flex flex-column">

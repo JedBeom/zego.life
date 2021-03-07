@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
-import {SuccessBox, WarningBox} from '../../components/AlertBox'
-
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
 
-import "react-datepicker/dist/react-datepicker.css";
 import Page from '../../components/Page'
+import CardBox from '../../components/ui/CardBox'
+import {SuccessBox, WarningBox} from '../../components/AlertBox'
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const DDayList = () => {
     const [errMsg, setErrMsg] = useState("")
@@ -90,14 +91,14 @@ const DDayList = () => {
             <button type="submit" className="button" onClick={submit}>만들자!</button>
         </form>
         {events.map(e => (
-            <article onClick={() => {
-            }} key={e.ID} className="card-box">
+            <CardBox onClick={() => {
+            }} key={e.ID}>
                 <ul>
                     <li>이름: {e.Name}</li>
                     <li>대상: {e.Target}</li>
                     <li>날짜: {e.Date}</li>
                 </ul>
-            </article>
+            </CardBox>
         ))}
     </Page>
 }

@@ -29,6 +29,7 @@ const getDietByDate = async (date) => {
 
 const getD2UByDiet = async (id) => {
     let userID = localStorage.getItem("me.id")
+
     let key = `d2u/${userID}/${id}`
 
     let item = sessionStorage.getItem(key)

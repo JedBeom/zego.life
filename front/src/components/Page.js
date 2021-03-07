@@ -13,6 +13,9 @@ const Page = ({title, hideTitle, back, backTo, head, children, foot, className, 
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll)
+        return () => {
+            window.removeEventListener("scroll", handleScroll)
+        }
     }, [])
 
     const handleScroll = () => {

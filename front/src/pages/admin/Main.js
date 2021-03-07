@@ -16,8 +16,8 @@ const Main = () => {
                 </Item>
                 <Item>
                     <ItemTitle>캠페인</ItemTitle>
-                    <ItemDescription>캠페인을 이동합니다.</ItemDescription>
-                    <li><NavLink to="/admin/campaign-move">캠페인 이동</NavLink></li>
+                    <ItemDescription>결제 여부를 확인하고 캠페인을 승인합니다.</ItemDescription>
+                    <li><NavLink to="/admin/campaign-move">캠페인 승인</NavLink></li>
                 </Item>
                 <Item>
                     <ItemTitle>게시 관리</ItemTitle>

@@ -19,21 +19,11 @@ const Notice = () => {
         try {
             const {data} = await axios.get(`notices`)
 
-            if (data === null) {
+            if (!data) {
                 setNotices([{Title: "공지가 없어요 ㅠ"}])
                 return
             }
-
-            let ns = []
-            data.map(e => {
-                e.date = new Date(e.CreatedAt)
-                e.year = e.date.getFullYear()
-                e.month = e.date.getMonth() + 1
-                e.day = e.date.getDate()
-                ns.push(e)
-                return null
-            })
-            setNotices(ns)
+            setNotices(data)
         } catch (e) {
             setErrMsg(`공지사항을 불러올 수 없습니다. ${e}`)
         }
@@ -44,7 +34,7 @@ const Notice = () => {
     }, [])
 
     return (
-        <Page title="공지사항" back>
+        <Page title="공지사항" loading={!notices} back>
             {isAdmin() ?
                 <NavLink to="/admin/notice-new">
                     <button className="button mb-6">글쓰기</button>

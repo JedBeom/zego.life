@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import Page from '../../components/Page'
 import {SuccessBox, WarningBox} from "../../components/AlertBox";
+import FeedbackBox from '../../components/FeedbackBox';
 
 const Feedback = () => {
     const [okMsg, setOkMsg] = useState("")
@@ -78,12 +79,7 @@ const Feedback = () => {
             </button>
             <h2 className="page-title-sub">내가 보낸 피드백</h2>
             {
-                feedbacks.map((f) => (
-                    <article key={f.ID} className="card-box feedback-box">
-                        <p className="content">{f.Content}</p>
-                        {f.Answer !== "" ? <p className="answer">답변: {f.Answer}</p> : null}
-                    </article>
-                ))
+                feedbacks.map((f) => <FeedbackBox f={f}/>)
             }
         </Page>
     )

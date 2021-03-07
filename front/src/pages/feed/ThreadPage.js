@@ -3,6 +3,8 @@ import axios from 'axios'
 
 import Page from '../../components/Page'
 import {ErrorBox, SuccessBox} from '../../components/AlertBox'
+import CardBox from '../../components/ui/CardBox'
+
 import styled from 'styled-components'
 
 const AnchorHighlight = (content) => {
@@ -86,7 +88,7 @@ const ThreadPage = ({match}) => {
                 return (
                     <Comment id={c.Num} key={c.Num}>
                         {`#${c.Num}`}
-                        <div className="card-box" onClick={() => addAnchor(c.Num)}>{AnchorHighlight(c.Content)}</div>
+                        <CardBox onClick={() => addAnchor(c.Num)}>{AnchorHighlight(c.Content)}</CardBox>
                     </Comment>
                 )
             })}

@@ -4,11 +4,12 @@ import {getD2UByDiet, getDietByDate, getEventsByDate, getEventsDateOnly} from '.
 
 import Page from "../../components/Page"
 import {ErrorBox} from "../../components/AlertBox"
+import CardBox from "../../components/ui/CardBox"
 import DietCard from '../../components/DietCard'
 import DormInspector from '../../components/DormInspector'
 
 import {eventMake} from '../../utils/eventsMake'
-import {timestampDot, timestampHyphen} from '../../utils/timestamp'
+import {timestampDot, timestampHangulNoYear, timestampHyphen} from '../../utils/timestamp'
 import {isUser} from "../../utils/getRoles"
 import CalendarIcon from '../../icons/Calendar'
 
@@ -34,7 +35,7 @@ const DietPage = () => {
     minDate.setDate(now.getDate() - 7)
 
     const [diets, setDiets] = useState([])
-    const [applieds, setApplieds] = useState([undefined, undefined, undefined])
+    const [applieds, setApplieds] = useState(["-2", "-2", "-2"])
     const [isLoading, setLoading] = useState(false)
     const [date, setDate] = useState(now)
     const [dates, setDates] = useState(null)
@@ -49,7 +50,7 @@ const DietPage = () => {
         getEvents(timestampHyphen(d))
         setDate(d)
         setDiets([])
-        setApplieds([undefined, undefined, undefined])
+        setApplieds(["-2", "-2", "-2"])
         setLoading(true)
         try {
             let ds = await getDietByDate(timestampDot(d))
@@ -101,10 +102,10 @@ const DietPage = () => {
                 가기</a></InfoBox>
             */}
             <ErrorBox>{errMsg}</ErrorBox>
-            <article className="card-box">
+            <CardBox>
                 <h2 className={"card-title font-s-core px-2"}>
                     <CalendarIcon className="icon icon-tabler"/>
-                    날짜 선택
+                    {timestampHangulNoYear(date)}
                 </h2>
                 <div className="inline-calendar">
                     <DatePicker inline disabledKeyboardNavigation dateFormat="yyyy-MM-dd"
@@ -112,17 +113,17 @@ const DietPage = () => {
                                 highlightDates={dates} className="inline-calendar"
                                 selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
                 </div>
-            </article>
+            </CardBox>
             {isLoading ? <div className="loader"/> : <>
                 {events.length > 0 ?
-                    <article className="card-box">
+                    <CardBox>
                         <h2><CalendarIcon className="icon"/>일정</h2>
                         <ul>
                             {events.map((e, j) => (
                                 <li key={j}>{e.Name}{e.badges}</li>
                             ))}
                         </ul>
-                    </article>
+                    </CardBox>
                     : null}
                 {diets.map((value, index) => {
                     return <DietCard key={index} diet={value} applied={applieds[index]}/>

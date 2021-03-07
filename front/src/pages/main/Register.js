@@ -3,6 +3,7 @@ import {BrowserBarcodeReader} from '@zxing/library'
 import axios from 'axios'
 
 import Page from '../../components/Page'
+import CardBox from '../../components/ui/CardBox'
 import CheckGreen from '../../components/CheckGreen'
 import {ErrorBox, InfoBox} from "../../components/AlertBox"
 
@@ -204,8 +205,8 @@ const Register = () => {
     useEffect(() => {
         if (!step0Ok) {
             setStep1(
-                <article className="card-box">
-                    <h2 className="card-title font-s-core px-2">
+                <CardBox>
+                    <h2>
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <rect x="3" y="4" width="18" height="16" rx="3"/>
@@ -221,13 +222,13 @@ const Register = () => {
                         <button className="button button-auth-choose" onClick={authScan}>학생증 스캔</button>
                         <button className="button button-auth-choose" onClick={authLogin}>급식신청사이트 로그인</button>
                     </div>
-                </article>
+                </CardBox>
             )
         } else {
             if (isAuthBarcode) {
                 setStep1(
-                    <article className={`card-box register-scan-box`}>
-                        <h2 className={"card-title font-s-core px-2"}>STEP 1: 학생증 바코드 스캔</h2>
+                    <CardBox className="register-scan-box">
+                        <h2>STEP 1: 학생증 바코드 스캔</h2>
                         <div className={"register-scan-button"}>
                             {barcode === "" ?
                                 <>
@@ -241,12 +242,12 @@ const Register = () => {
                                     <h2>완료!</h2>
                                 </>}
                         </div>
-                    </article>
+                    </CardBox>
                 )
             } else {
                 setStep1(
-                    <article className={`card-box register-step2-box`}>
-                        <h2 className={"card-title font-s-core px-2"}>STEP 1: 급식신청사이트(플라이키친) 로그인</h2>
+                    <CardBox className="register-step2-box">
+                        <h2>STEP 1: 급식신청사이트(플라이키친) 로그인</h2>
                         {!step1Ok ?
                             <form className={"p-2"} onSubmit={postKitchen}>
                                 <div className={"flex flex-column"}>
@@ -275,7 +276,7 @@ const Register = () => {
                                 <CheckGreen/>
                                 <h2>인증 완료!</h2>
                             </div>}
-                    </article>
+                    </CardBox>
                 )
             }
         }
@@ -286,8 +287,8 @@ const Register = () => {
     useEffect(() => {
         if (step1Ok) {
             setStep2(
-                <article className={`card-box register-step2-box`}>
-                    <h2 className={"card-title font-s-core px-2"}>
+                <CardBox className="register-step2-box">
+                    <h2>
                         <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                             <circle cx="12" cy="12" r="9"/>
@@ -379,7 +380,7 @@ const Register = () => {
                             <h2>회원가입 성공!</h2>
                             <p>하지만 아직 끝난 게 아니에요... STEP 3까지 기다려주세요!</p>
                         </div>}
-                </article>
+                </CardBox>
             )
         }
         // eslint-disable-next-line
@@ -389,14 +390,14 @@ const Register = () => {
     useEffect(() => {
         if (step2Ok) {
             setStep3(
-                <article className={`card-box register-step2-box in-progress`}>
-                    <h2 className={"card-title font-s-core"}>STEP 3: 급식 정보 가져오는 중...</h2>
+                <CardBox className="register-step2-box in-progress">
+                    <h2>STEP 3: 급식 정보 가져오는 중...</h2>
                     <div className={"register-scan-box"}>
                         <div className={"spinner bw-6"}/>
                         <h2>잠시만 기다려주세요...</h2>
                         <p>급식 정보를 가져오고 있어요. 이 화면을 유지해주세요! 끝나면 로그인 화면으로 갈 거예요.</p>
                     </div>
-                </article>
+                </CardBox>
             )
         }
     }, [step2Ok])
@@ -411,8 +412,8 @@ const Register = () => {
     return (
         <Page title="회원가입">
             <InfoBox>2021년 새 학번으로 가입해 주십시오.</InfoBox>
-            <article className={`card-box`}>
-                <h2 className={"card-title font-s-core px-2"}>
+            <CardBox>
+                <h2>
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler"
                          viewBox="0 0 24 24">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -424,7 +425,7 @@ const Register = () => {
                 </h2>
                 <p>제고라이프는 광양제철고등학교 학생 누구나 이용할 수 있습니다.</p>
                 <p>iOS의 경우에는 Safari를, 안드로이드의 경우에는 Chrome을 사용해주세요. </p>
-            </article>
+            </CardBox>
             {step1}
             {step2}
             {step3}

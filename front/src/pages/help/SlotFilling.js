@@ -3,6 +3,7 @@ import axios from 'axios'
 import DatePicker from 'react-datepicker'
 
 import Page from '../../components/Page'
+import saveUser from '../../utils/saveUser'
 
 const SlotFilling = () => {
     const [date, setDate] = useState(null)
@@ -34,14 +35,8 @@ const SlotFilling = () => {
         try {
             await axios.patch(`users/${localStorage.getItem("me.id")}/v1`, p)
 
-            const respMe = await axios.get("me")
-
-            localStorage.setItem("me.year", respMe.data.BirthYear)
-            localStorage.setItem("me.month", respMe.data.BirthMonth)
-            localStorage.setItem("me.day", respMe.data.BirthDay)
-            localStorage.setItem("me.sex", respMe.data.Sex)
-            localStorage.setItem("me.residence", respMe.data.Residence)
-            localStorage.setItem("me.roles", respMe.data.Roles)
+            const {data} = await axios.get("me")
+            saveUser(data)
 
             alert("정보 추가에 성공했어요!")
             window.location = "/"

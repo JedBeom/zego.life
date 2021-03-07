@@ -50,7 +50,7 @@ const Main = () => {
             <ErrorBox>{errMsg}</ErrorBox>
             {threads.map((t, i) => {
                 return (
-                    <NavLink className="no-underline" to={`/feed/${t.ID}`}>
+                    <NavLink className="no-underline" to={`/feed/${t.ID}`} key={i}>
                         <Thread>
                             <h2>{t.Title}</h2>
                             <p><MessageIcon/>{t.CommentsNum}개</p>

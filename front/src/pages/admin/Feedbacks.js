@@ -3,8 +3,7 @@ import axios from 'axios'
 
 import Page from '../../components/Page';
 import {SuccessBox, WarningBox} from "../../components/AlertBox";
-
-import {timestampHangul} from '../../utils/timestamp'
+import FeedbackBox from '../../components/FeedbackBox';
 
 const Feedbacks = () => {
     const [okMsg, setOkMsg] = useState("")
@@ -47,14 +46,7 @@ const Feedbacks = () => {
             <WarningBox>{errMsg}</WarningBox>
             <SuccessBox>{okMsg}</SuccessBox>
             {
-                fs.map((f) =>
-                    <article onClick={() => setAnswer(f)} key={f.ID} className="card-box feedback-box">
-                        <p className="content">{f.Content} <span
-                            className="by">— {f.User.Grade}-{f.User.Class} {f.User.Name}({timestampHangul(f.CreatedAt, true)})</span>
-                        </p>
-                        {f.Answer !== "" ? <p className="answer">답변: {f.Answer}</p> : null}
-                    </article>
-                )
+                fs.map((f) => <FeedbackBox f={f} setAnswer={setAnswer}/>)
             }
         </Page>
     )

@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 
 import Page from "../../components/Page"
+import CardBox from '../../components/ui/CardBox'
 import {MoreBox, MoreBoxContainer} from '../../components/MoreBox'
 
 import {isAdmin, isUser} from '../../utils/getRoles'
@@ -45,12 +46,12 @@ const More = () => {
 
     return (
         <Page title="더보기" foot={foot}>
-            <article className="card-box card-box-me">
-                <h2 className="card-box-title font-s-core">{localStorage.getItem("me.grade")}학년 {localStorage.getItem("me.class")}반 {localStorage.getItem("me.number")}번 {localStorage.getItem("me.name")}</h2>
+            <CardBox>
+                <h2>{localStorage.getItem("me.grade")}학년 {localStorage.getItem("me.class")}반 {localStorage.getItem("me.number")}번 {localStorage.getItem("me.name")}</h2>
                 <button className={logoutLoading ? "loading button float-right" : "button float-right"}
                         onClick={logout}>로그아웃
                 </button>
-            </article>
+            </CardBox>
             <MoreBoxContainer>
                 <MoreBox icon={<SendIcon/>} title="피드백" to="/help/feedback"/>
                 <MoreBox icon={<MicIcon/>} title="라디오" to="/radio/stories/post"/>

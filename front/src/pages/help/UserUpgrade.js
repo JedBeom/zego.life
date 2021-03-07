@@ -5,6 +5,7 @@ import Page from '../../components/Page'
 import {ErrorBox, InfoBox} from '../../components/AlertBox'
 import hakbunToGCN from '../../utils/hakbunToGCN'
 import {validateGCN} from '../../utils/validate'
+import saveUser from '../../utils/saveUser'
 
 
 const UserUpgrade = () => {
@@ -31,6 +32,8 @@ const UserUpgrade = () => {
 
         try {
             await axios.post(`/me/upgrade`, p)
+            const {data} = await axios.get(`me`)
+            saveUser(data)
             alert("정보 추가에 성공했어요!")
             window.location = "/"
         } catch (e) {

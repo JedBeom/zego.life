@@ -132,90 +132,13 @@ a:has("div") {
     text-decoration: none;
 }
 
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: var(--card-box-opacity);
-    }
-}
-
 .w3-animate-right {
     position: relative;
     animation: animateright 0.4s
 }
 
-.card-box, .radio-description, .notice-line {
+.radio-description, .notice-line {
     margin: 0 .25rem 1rem .25rem;
-}
-
-.card-box {
-    padding: 1em;
-    border-radius: 8px;
-    background-color: var(--card-box-bg-color);
-    background-image: var(--card-box-bg-image);
-    color: var(--card-box-text-color);
-
-    word-break: keep-all;
-}
-
-.card-box, .in-progress {
-    opacity: var(--card-box-opacity);
-    animation-name: fadeIn;
-    animation-duration: .15s;
-    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
-}
-
-.card-box h2 {
-    font-weight: 500;
-    padding-left: .5rem !important;
-    padding-right: .5rem !important;
-}
-
-.card-box p {
-    font-size: 1rem;
-    margin-left: 0.5rem;
-}
-
-.card-box a, .card-box select, .card-box input {
-    color: var(--card-box-text-color);
-    border-color: var(--card-box-text-color);
-}
-
-.card-box optgroup {
-    color: black;
-}
-
-.card-button-more {
-    font-size: 1.0em;
-}
-
-.card-box::after, .login-box::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-@keyframes boing-boing {
-    50% {
-        transform: scale(.75);
-    }
-    85% {
-        transform: scale(.8);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.card-box:empty {
-    width: 100%;
-    height: 15em;
-    animation-name: boing-boing;
-    animation-duration: 1s;
-    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    animation-iteration-count: infinite;
 }
 
 .card-box-review p {
@@ -308,33 +231,6 @@ input.register-birthday {
 
 /* diet-card */
 
-.diet-when {
-    color: var(--highlight-color);
-    margin-right: .25rem;
-    font-weight: 500;
-}
-
-.diet-list {
-    list-style-type: square;
-    line-height: 1.8em;
-    font-size: 1.1em;
-}
-
-.diet-apply {
-    padding: 0.1em;
-    font-weight: 700;
-    font-size: 1em;
-}
-
-.diet-apply span {
-    line-height: 1em;
-    height: 1em;
-}
-
-.diet-badge {
-    padding-top: .37rem;
-    font-weight: 500;
-}
 
 /* 얼마나 남았나? */
 
@@ -384,70 +280,9 @@ input.register-birthday {
     transform: scale(1.025);
     border-color: inherit;
 }
-
-/* /me barcode */
-
-.card-box-me svg {
-    width: 70%;
-    display: block;
-}
-
-.barcode-wrap {
-    width: 100%;
-    padding-top: 1.3em;
-}
-
 /* notice */
 
-.notice-meta {
-    margin-top: 0.75rem;
-    margin-bottom: 0.75rem;
-    text-align: center;
-}
-
-.notice-meta p {
-    display: inline;
-}
-
-.notice-box p {
-    margin-bottom: .25rem;
-}
-
-.notice-box h1 {
-    margin-left: 0;
-}
-
-.notice-box h2 {
-    font-weight: 700;
-    padding-left: 0 !important;
-    margin: 1rem .1rem .5rem 0;
-}
-
-.notice-box h3 {
-    font-weight: 700;
-    margin: 1rem .1rem .5rem 0;
-}
-
-.notice-box ul {
-    list-style-type: square;
-    margin-top: .75em;
-    margin-bottom: .75em;
-}
-
 /* feedbacks */
-.feedback-box .answer {
-    margin-top: .25rem;
-    padding: .25rem;
-    font-style: italic;
-    border-top-color: var(--card-box-text-color);
-    border-top-width: .1em;
-    border-top-style: dotted;
-}
-
-.feedback-box .by {
-    opacity: 0.8;
-}
-
 /* timetable */
 .timetable-container {
     overflow-x: scroll;
@@ -551,15 +386,6 @@ input.register-birthday {
 .textarea, .input, .select {
     border: 2px solid var(--site-text-color);
 }
-
-.radio-story label {
-    font-size: .75rem;
-    border-radius: 6px;
-    background-color: #3F33BD;
-    color: white;
-    padding: .25em;
-}
-
 /* responsible */
 
 @media (min-width: 300px) {

@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useState} from 'react'
 
 import Page, {Title} from '../../components/Page'
+import CardBox from "../../components/ui/CardBox"
 import {ErrorBox} from '../../components/AlertBox'
 import {getEvents} from '../../common/api'
 
@@ -74,7 +75,7 @@ const Events = () => {
             {events === null ? <p>일정 없음</p> : null}
             {events !== undefined && events !== null ?
 
-                <article className="card-box">
+                <CardBox>
                     <div className="table-container">
                         <table className="events">
                             <tbody>
@@ -99,7 +100,7 @@ const Events = () => {
                         </table>
                     </div>
                     <p className="mt-4">일정은 정확하지 않을 수 있습니다.</p>
-                </article>
+                </CardBox>
 
                 : null}
         </Page>

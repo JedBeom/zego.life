@@ -125,9 +125,7 @@ const UsersAll = () => {
     return <Page loading={count === "0"} title="사용자 목록" back>
         {loading ? <div className="loader"/> : null}
         <ErrorBox>{errMsg}</ErrorBox>
-        <article className="card-box">
-            <h2>총 {count}명</h2>
-        </article>
+        <h2>총 {count}명</h2>
         <form className="form" onSubmit={submit}>
             <div className="flex flex-column">
                 <label className="my-2">표시할 수</label>

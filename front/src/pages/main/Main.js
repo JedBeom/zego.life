@@ -15,8 +15,6 @@ import {timestampDot} from '../../utils/timestamp'
 import whatMeal from '../../utils/whatMeal'
 import {isUser} from "../../utils/getRoles"
 
-import saveUser from '../../utils/saveUser'
-
 const Main = () => {
     const [loading, setLoading] = useState(true)
     const [diet, setDiet] = useState({when: "", dietList: []})
@@ -68,6 +66,7 @@ const Main = () => {
         const fetchD2U = async () => {
             setDietID(dietIDnow)
             if (!isUser()) {
+                setApplied(-2)
                 return
             }
             try {
@@ -84,7 +83,6 @@ const Main = () => {
                 setCampaign(data.Campaign)
 
                 if (data.User.ID) {
-                    saveUser(data.User)
                     if (data.User.EnterYear === 21 - data.User.Grade) {
                         window.location.href = "/help/user-upgrade"
                     }

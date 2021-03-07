@@ -1,5 +1,7 @@
 import React from 'react'
 
+import CardBox from '../components/ui/CardBox'
+
 import {timestampHangul} from "../utils/timestamp";
 
 const sex = ["?", "남", "여"]
@@ -11,7 +13,7 @@ const UserBox = ({u, children}) => {
     }
 
     return (
-        <article className="card-box">
+        <CardBox>
             <h2>{u.Grade}-{u.Class} {u.Number} {u.Name}</h2>
             <ul>
                 <li>성별: {sex[u.Sex]}</li>
@@ -22,7 +24,7 @@ const UserBox = ({u, children}) => {
                 <li>역할: {u.Roles}</li>
             </ul>
             {children}
-        </article>
+        </CardBox>
     )
 }
 

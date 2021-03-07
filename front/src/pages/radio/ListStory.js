@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import Page from '../../components/Page'
+import CardBox from '../../components/ui/CardBox'
+import styled from 'styled-components'
 
 const ListStory = () => {
     const [stories, setStories] = useState([])
@@ -21,16 +23,25 @@ const ListStory = () => {
 
     return <Page title="라디오 사연 보기" back loading={stories.length === 0}>
         {stories.map((e, i) => {
-            return <article key={i} className="card-box radio-story">
-                <label>사연</label>
+            return <CardBox key={i}>
+                <Label>사연</Label>
                 <p>{e.Content}</p>
-                {e.SongRequest !== "" ? <><label>신청곡</label><p>{e.SongRequest}</p></> : null}
+                {e.SongRequest !== "" ? <><Label>신청곡</Label><p>{e.SongRequest}</p></> : null}
                 <div className="float-right">
                     <p>{e.Anonymous ? "익명" : `${e.User.Grade}-${e.User.Class} ${e.User.Name}`}</p>
                 </div>
-            </article>
+            </CardBox>
         })}
     </Page>
 }
+
+const Label = styled.label`
+font-size: .75rem;
+border-radius: 6px;
+background-color: #3F33BD;
+color: white;
+padding: .25em;
+
+`
 
 export default ListStory

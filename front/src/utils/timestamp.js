@@ -27,21 +27,21 @@ const ymd = (date, pad) => {
     return d
 }
 
-const timestampDot = (date) => {
+export const timestampDot = (date) => {
     const {y, m, d} = ymd(date, true)
     return y + "." + m + "." + d
 };
 
-const timestampHyphen = date => {
+export const timestampHyphen = date => {
     const {y, m, d} = ymd(date, true)
     return y + "-" + m + "-" + d
 }
 
-const timestampHyphenToDot = ts => {
+export const timestampHyphenToDot = ts => {
     return ts.slice(0, 4) + "." + ts.slice(5, 7) + "." + ts.slice(8, 10)
 }
 
-const timestampHangul = (date, wantTime) => {
+export const timestampHangul = (date, wantTime) => {
     const {y, m, d, h, min} = ymd(date)
     const front = `${y}년 ${m}월 ${d}일`
     if (!wantTime) {
@@ -51,4 +51,12 @@ const timestampHangul = (date, wantTime) => {
     return front + ` ${h}시 ${min}분`
 }
 
-export {timestampDot, timestampHyphen, timestampHyphenToDot, timestampHangul}
+export const timestampHangulNoYear = (date, wantTime) => {
+    const {m, d, h, min} = ymd(date)
+    const front = `${m}월 ${d}일`
+    if (!wantTime) {
+        return front
+    }
+
+    return front + ` ${h}시 ${min}분`
+}

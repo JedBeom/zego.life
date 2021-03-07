@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import CardBox from '../components/ui/CardBox'
+
 let start = new Date(2020, 9, 30) // 새사, 만수쌤
 
 const DormInspector = ({date, correction}) => {
@@ -10,7 +12,7 @@ const DormInspector = ({date, correction}) => {
     let diff = ((start - date) / 1000 / 60 / 60 / 24) % 2
     if (correctionValue && correction) diff = !diff
     return (
-        <article className="card-box">
+        <CardBox>
             <h2 className="card-title">
                 <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler" viewBox="0 0 24 24">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -27,7 +29,7 @@ const DormInspector = ({date, correction}) => {
                         (!diff ? "이순덕(새사)" : "장정숙(장사)")
                     } 사감</Inspector>
             </div>
-        </article>
+        </CardBox>
     )
 }
 
