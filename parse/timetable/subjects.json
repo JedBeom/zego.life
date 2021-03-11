@@ -2,31 +2,238 @@
   "Art": [
     {
       "Subject": "음악",
-      "Teacher": "송현미"
+      "Teacher": "송현미",
+      "Room": "음악실"
     },
     {
       "Subject": "미술",
-      "Teacher": "성준우"
+      "Teacher": "성은우",
+      "Room": "미술실"
     }
   ],
-  "Foreign": [
+  "Foreign-1": [
+    {}
+  ],
+  "Foreign-2": [
+    {
+      "Subject": "중어16",
+      "Teacher": "정에셀",
+      "Room": "2-1"
+    },
+    {
+      "Subject": "중어23",
+      "Teacher": "정에셀",
+      "Room": "2-2"
+    },
+    {
+      "Subject": "중어47",
+      "Teacher": "정에셀",
+      "Room": "2-4"
+    },
+    {
+      "Subject": "중어58",
+      "Teacher": "정에셀",
+      "Room": "2-8"
+    },
+    {
+      "Subject": "일어16",
+      "Teacher": "박효정",
+      "Room": "2-6"
+    },
+    {
+      "Subject": "일어23",
+      "Teacher": "박효정",
+      "Room": "2-3"
+    },
+    {
+      "Subject": "일어47",
+      "Teacher": "박효정",
+      "Room": "2-7"
+    },
+    {
+      "Subject": "일어58",
+      "Teacher": "박효정",
+      "Room": "2-8"
+    }
+  ],
+  "Foreign-3": [
     {
       "Subject": "일본어",
-      "Teacher": "박효정"
+      "Teacher": "박효정",
+      "Room": "다목적Ⅲ"
     },
     {
       "Subject": "중국어",
-      "Teacher": "정에셀"
-    }
-  ],
-  "Credit": [
-    {
-      "Subject": "지학I",
-      "Teacher": "asdf"
+      "Teacher": "정에셀",
+      "Room": "다목적Ⅲ"
     },
     {
-      "Subject": "화학I",
-      "Teacher": "asdf"
+      "Subject": "공학",
+      "Teacher": "최용보",
+      "Room": "다목적Ⅲ"
+    }
+  ],
+  "Extra": [
+    {
+      "Subject": "민주",
+      "Teacher": "이원규",
+      "Room": "구3-7"
+    },
+    {
+      "Subject": "심리",
+      "Teacher": "정진욱",
+      "Room": "구3-7"
+    },
+    {
+      "Subject": "보건",
+      "Teacher": "조서윤",
+      "Room": "구3-7"
+    }
+  ],
+  "Credit-1": [
+    {}
+  ],
+  "Credit-2": [
+    {
+      "Subject": "화작",
+      "Teacher": "김미야",
+      "Room": "2-7"
+    },
+    {
+      "Subject": "언매",
+      "Teacher": "강현희",
+      "Room": "2-1"
+    },
+    {
+      "Subject": "확통",
+      "Teacher": "이대희",
+      "Room": "2-6"
+    },
+    {
+      "Subject": "영문",
+      "Teacher": "최영해",
+      "Room": "2-2"
+    },
+    {
+      "Subject": "영미",
+      "Teacher": "반착한",
+      "Room": "어학실"
+    },
+    {
+      "Subject": "심수Ⅰ",
+      "Teacher": "하성영",
+      "Room": "심수실"
+    },
+    {
+      "Subject": "세지",
+      "Teacher": "윤혜연",
+      "Room": "2-4"
+    },
+    {
+      "Subject": "동사",
+      "Teacher": "강성길",
+      "Room": "2-2"
+    },
+    {
+      "Subject": "경제",
+      "Teacher": "신지영",
+      "Room": "2-5"
+    },
+    {
+      "Subject": "사문",
+      "Teacher": "이현호",
+      "Room": "2-8"
+    },
+    {
+      "Subject": "화학Ⅰ",
+      "Teacher": "김창수",
+      "Room": "2-3"
+    },
+    {
+      "Subject": "생명Ⅰ",
+      "Teacher": "오미영",
+      "Room": "생명실"
+    },
+    {
+      "Subject": "지구Ⅰ",
+      "Teacher": "최경아",
+      "Room": "지학실"
+    }
+  ],
+  "Credit-3": [
+    {
+      "Subject": "자습",
+      "Teacher": "담당"
+    },
+    {
+      "Subject": "고급Ⅰ",
+      "Teacher": "고건희",
+      "Room": "3-1"
+    },
+    {
+      "Subject": "물리Ⅱ",
+      "Teacher": "권선영",
+      "Room": "3-2"
+    },
+    {
+      "Subject": "지구Ⅱ",
+      "Teacher": "유병수",
+      "Room": "3-3"
+    },
+    {
+      "Subject": "문학A",
+      "Teacher": "성락용",
+      "Room": "3-4"
+    },
+    {
+      "Subject": "문학C",
+      "Teacher": "박소은",
+      "Room": "3-4"
+    },
+    {
+      "Subject": "화학Ⅱ",
+      "Teacher": "유병수",
+      "Room": "3-5"
+    },
+    {
+      "Subject": "경제",
+      "Teacher": "정주영",
+      "Room": "3-5"
+    },
+    {
+      "Subject": "생명Ⅱ",
+      "Teacher": "김신예",
+      "Room": "3-6"
+    },
+    {
+      "Subject": "세계",
+      "Teacher": "강성길",
+      "Room": "3-7"
+    },
+    {
+      "Subject": "정치",
+      "Teacher": "곽진주",
+      "Room": "3-7"
+    },
+    {
+      "Subject": "현대",
+      "Teacher": "정진욱",
+      "Room": "3-8"
+    },
+    {
+      "Subject": "국제",
+      "Teacher": "신지영",
+      "Room": "3-9"
+    },
+    {
+      "Subject": "고전",
+      "Teacher": "김미야",
+      "Room": "3-9"
+    },
+    {
+      "Subject": "사문",
+      "Teacher": "담당",
+      "Room": "3-10"
     }
   ]
 }

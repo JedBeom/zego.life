@@ -14,6 +14,11 @@ func (u User) Timetable(db *pg.Conn) (table Timetable, err error) {
 	return
 }
 
+func (t *Timetable) Delete(db *pg.Conn) error {
+	_, err := db.Model(t).Where("user_id = ?", t.UserID).Delete()
+	return err
+}
+
 func (t *Timetable) Create(db *pg.Conn) error {
 	return db.Insert(t)
 }

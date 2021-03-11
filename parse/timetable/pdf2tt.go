@@ -8,21 +8,23 @@ import (
 	"github.com/JedBeom/zego.life/models"
 )
 
-func main() {
+func main1() {
 	pdf2tt()
 }
 
+/*
 var csTable = map[string]string{
 	"선A": "cs01",
 	"선B": "cs02",
 	"선C": "cs03",
 	"선D": "cs04",
 }
+*/
 
 var subjectsInWeek = [3][]int{
-	[]int{7, 7, 7, 7, 7},
-	[]int{7, 7, 7, 6, 7},
-	[]int{6, 6, 7, 6, 6},
+	{7, 7, 7, 7, 7},
+	{7, 7, 7, 6, 7},
+	{6, 6, 7, 6, 6},
 }
 
 func sum(a []int) int {

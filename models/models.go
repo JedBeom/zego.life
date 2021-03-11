@@ -137,7 +137,7 @@ type TimetableTemplate struct {
 
 type Timetable struct {
 	UserID       string `pg:",pk"`
-	ReplaceTable map[string]string
+	ReplaceTable map[string]interface{}
 	CreatedAt    time.Time `sql:"default:now()"`
 	UpdatedAt    time.Time
 }

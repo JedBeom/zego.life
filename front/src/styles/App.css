@@ -280,9 +280,7 @@ input.register-birthday {
     transform: scale(1.025);
     border-color: inherit;
 }
-/* notice */
 
-/* feedbacks */
 /* timetable */
 .timetable-container {
     overflow-x: scroll;
@@ -353,6 +351,13 @@ input.register-birthday {
 }
 
 .teacher {
+    word-break: keep-all;
+    font-size: .75em;
+    font-weight: 500;
+    display: block;
+}
+
+.room {
     word-break: keep-all;
     font-size: .75em;
     font-weight: 500;

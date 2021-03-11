@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import {withRouter} from 'react-router-dom'
 
+import TimetableClass from './TimetableClass'
+
 import Page, {Title} from '../../components/Page'
-import {InfoBox} from '../../components/AlertBox'
 
 const meGrade = localStorage.getItem("me.grade")
 const meClass = localStorage.getItem("me.class")
@@ -21,11 +22,11 @@ const Timetable = ({history}) => {
     }
 
     return (
-        <Page title={`${types[type]} 시간표`} hideTitle>
-            <Title onClick={setNext}>{types[type]} 시간표 {getNext(type) !== type ?
+        <Page title={`내 시간표`} hideTitle>
+            <Title onClick={setNext}>내 시간표 {getNext(type) !== type ?
                 <span className="sub">{types[getNext(type)]}</span> : null}</Title>
-            <InfoBox>정식 시간표가 나오기를 기다리며...</InfoBox>
-            {/*type == 0 ? <TimetableClass history={history} meGrade={meGrade} meClass={meClass} /> : null*/}
+            {type === 0 ? <TimetableClass history={history} meGrade={meGrade} meClass={meClass}/> : null}
+            <footer className="copyright">Speical Thanks to 박현정, 정민기, 박지수 of OnAir</footer>
         </Page>
     )
 }

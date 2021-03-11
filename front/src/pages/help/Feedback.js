@@ -79,7 +79,7 @@ const Feedback = () => {
             </button>
             <h2 className="page-title-sub">내가 보낸 피드백</h2>
             {
-                feedbacks.map((f) => <FeedbackBox f={f}/>)
+                feedbacks.map((f) => <FeedbackBox key={f.ID} f={f}/>)
             }
         </Page>
     )

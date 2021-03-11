@@ -4,6 +4,7 @@ import axios from 'axios'
 import CheckGreen from '../components/CheckGreen'
 import {isUser} from "../utils/getRoles"
 import {getDietReviewPossible} from '../common/api'
+import CardBox from './ui/CardBox'
 
 const DietReview = () => {
     const [id, setID] = useState("")
@@ -45,10 +46,10 @@ const DietReview = () => {
             if (h >= 7.33 && h <= 8.33) { // 약 7시 20분 ~ 약 8시 20분
                 when = 1
                 setDietWhen("아침")
-            } else if (h >= 11.33 && h <= 12.33) { // 약 11시 20분 ~ 약 12시 20분
+            } else if (h >= 12.5 && h <= 13.5) { // 약 12시 30분 ~ 약 13시 30분
                 when = 2
                 setDietWhen("점심")
-            } else if (h >= 17.5 && h <= 18.5) { // 17시 30분 ~ 18시 30분
+            } else if (h >= 18 && h <= 19.5) { // 18시 ~ 19시 30분
                 when = 3
                 setDietWhen("저녁")
             } else {
@@ -95,7 +96,7 @@ const DietReview = () => {
     }
 
     return (
-        <article className="card-box card-box-review">
+        <CardBox className="card-box-review">
             <h2>급식 평가</h2>
             {!submitted ?
                 <>
@@ -124,7 +125,7 @@ const DietReview = () => {
                     <p style={{display: "inline"}}>평가 완료!</p>
                 </>
             }
-        </article>
+        </CardBox>
     )
 }
 

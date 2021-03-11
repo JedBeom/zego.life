@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"strconv"
 
 	"github.com/JedBeom/zego.life/models"
@@ -50,19 +51,35 @@ func postTimetable(c echo.Context) error {
 	u := c.Get("user").(models.User)
 	conn := c.Get("conn").(*pg.Conn)
 
-	p := struct {
-		ReplaceTable map[string]string
-	}{}
+	p := make(map[string]interface{})
 	if err := c.Bind(&p); err != nil {
 		return echo.ErrBadRequest
 	}
 
 	table := models.Timetable{
 		UserID:       u.ID,
-		ReplaceTable: p.ReplaceTable,
+		ReplaceTable: p,
 	}
 
 	if err := table.Create(conn); err != nil {
+		return err
+	}
+
+	return c.NoContent(200)
+}
+
+func deleteTimetableMe(c echo.Context) error {
+	u := c.Get("user").(models.User)
+	conn := c.Get("conn").(*pg.Conn)
+
+	tt, err := u.Timetable(conn)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
+
+	if err := tt.Delete(conn); err != nil {
+		log.Println(err)
 		return err
 	}
 

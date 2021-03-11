@@ -11,7 +11,7 @@ async function asyncForEach(array, callback) {
     }
 }
 
-const getDietByDate = async (date) => {
+export const getDietByDate = async (date) => {
     let key = "diet/" + date
     let item = sessionStorage.getItem(key)
     if (item != null) {
@@ -27,7 +27,7 @@ const getDietByDate = async (date) => {
     return diets
 }
 
-const getD2UByDiet = async (id) => {
+export const getD2UByDiet = async (id) => {
     let userID = localStorage.getItem("me.id")
 
     let key = `d2u/${userID}/${id}`
@@ -53,7 +53,7 @@ const getD2UByDiet = async (id) => {
     return applied
 }
 
-const getEvents = async (year, month) => {
+export const getEvents = async (year, month) => {
     let key = `events-month/${year}/${month}`
     let item = sessionStorage.getItem(key)
     let data
@@ -68,7 +68,7 @@ const getEvents = async (year, month) => {
     return await eventsMake(data)
 }
 
-const getEventsByDate = async date => {
+export const getEventsByDate = async date => {
     let key = `events-date/${date}`
     let item = sessionStorage.getItem(key)
     if (item != null) {
@@ -84,7 +84,7 @@ const getEventsByDate = async date => {
     return data
 }
 
-const getEventsDateOnly = async () => {
+export const getEventsDateOnly = async () => {
     let key = `events-date-only/${timestampHyphen(new Date())}`
     let item = sessionStorage.getItem(key)
     if (item != null) {
@@ -96,7 +96,7 @@ const getEventsDateOnly = async () => {
     return data
 }
 
-const getDietReviewPossible = async id => {
+export const getDietReviewPossible = async id => {
     let userID = localStorage.getItem("me.id")
     let key = `diet-reviews/${userID}/${id}`
 
@@ -112,19 +112,17 @@ const getDietReviewPossible = async id => {
     return dietList
 }
 
-const getTimetable = async (meGrade, meClass, history) => {
-    let key = `timetables/${meGrade}-${meClass}/20210101`
-    /*
-    let item = localStorage.getItem(key)
+export const getTimetable = async (history) => {
+    let key = `timetables/me/20210309`
+    let item = sessionStorage.getItem(key)
     if (item != null) {
         return JSON.parse(item)
     }
-    */
 
-    let replaceTable = {}
+    let datas = {}
     try {
         const {data} = await axios.get(`timetables/me`)
-        replaceTable = data.ReplaceTable
+        datas = data.ReplaceTable
     } catch (e) {
         if (e.response.status === 404) {
             history.push("/timetable/set-credit")
@@ -133,18 +131,22 @@ const getTimetable = async (meGrade, meClass, history) => {
         throw e
     }
 
-    const {data: template} = await axios.get(`timetable-templates/${meGrade}/${meClass}`)
-    let lessons = JSON.stringify(template.Lessons)
-
-    for (const key in replaceTable) {
-        lessons = lessons.replaceAll(key, replaceTable[key])
-    }
-
-    localStorage.setItem(key, lessons)
-    return JSON.parse(lessons)
+    sessionStorage.setItem(key, JSON.stringify(datas))
+    return datas
 }
 
-const getDDay = async () => {
+export const getTimetableTemplate = async (meGrade, meClass) => {
+    let key = `timetables/${meGrade}-${meClass}/20210309`
+    let item = sessionStorage.getItem(key)
+    if (item != null) {
+        return JSON.parse(item)
+    }
+    const {data} = await axios.get(`timetable-templates/${meGrade}/${meClass}`)
+    sessionStorage.setItem(key, JSON.stringify(data.Lessons))
+    return data.Lessons
+}
+
+export const getDDay = async () => {
     let today = new Date()
     let key = `dday-events/${timestampHyphen(today)}`
     let item = sessionStorage.getItem(key)
@@ -157,15 +159,4 @@ const getDDay = async () => {
     const {data} = await axios.get(`dday-events/${grade}`)
     sessionStorage.setItem(key, JSON.stringify(data))
     return ddayMake(data, today)
-}
-
-export {
-    getDietByDate,
-    getD2UByDiet,
-    getEvents,
-    getEventsByDate,
-    getEventsDateOnly,
-    getDietReviewPossible,
-    getTimetable,
-    getDDay
 }

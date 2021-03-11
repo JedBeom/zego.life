@@ -69,6 +69,7 @@ func routes(e *echo.Echo) {
 			// timetables
 			u.GET("/timetable-templates/:grade/:class", getTimetableTemplateByGradeClass)
 			u.GET("/timetables/me", getTimetableMe)
+			u.DELETE("/timetables/me", deleteTimetableMe)
 			u.GET("/timetables/subjects", getTimetableSubjects)
 			u.POST("/timetables", postTimetable)
 

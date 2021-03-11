@@ -9,5 +9,5 @@ import (
 func main() {
 	db := models.Connect()
 	conn := db.Conn()
-	parse.GetEventsByYearMonth(conn, 2020, 2)
+	parse.GetMonthDiets(conn, 2021, 3)
 }

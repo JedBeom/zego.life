@@ -1,19 +1,22 @@
 import React, {useEffect, useState} from 'react'
-import {getTimetable} from '../../common/api'
+import {getTimetable, getTimetableTemplate} from '../../common/api'
+
+import TimetableTd from '../../components/TimetableTd'
 
 const times = [
     {s: "8:40", e: "9:30"},
     {s: "9:40", e: "10:30"},
     {s: "10:40", e: "11:30"},
     {s: "11:40", e: "12:30"},
-    {s: "13:30", e: "14:20"},
-    {s: "14:30", e: "15:20"},
-    {s: "15:30", e: "16:20"},
-    {s: "16:40", e: "17:50"},
+    {s: "13:40", e: "14:30"},
+    {s: "14:40", e: "15:30"},
+    {s: "15:40", e: "16:30"},
+    {s: "16:50", e: "18:00"},
 ]
 
 const TimetableClass = ({meGrade, meClass, history}) => {
     const [lessons, setLessons] = useState([[]])
+    const [credits, setCredits] = useState({})
     const twd = new Date().getDay()
 
     useEffect(() => {
@@ -25,13 +28,20 @@ const TimetableClass = ({meGrade, meClass, history}) => {
             return
         }
         try {
-            const ls = await getTimetable(meGrade, meClass, history)
+            const cs = await getTimetable(history)
+            if (cs) {
+                setCredits(cs)
+            }
+
+            const ls = await getTimetableTemplate(meGrade, meClass)
             if (ls) {
                 setLessons(ls)
             }
+
         } catch (e) {
-            alert(`시간표 가져오기를 실패했습니다. ${e}`)
+            console.log(`시간표 가져오기를 실패했습니다. ${e}`)
         }
+
     }
 
     return (
@@ -55,13 +65,14 @@ const TimetableClass = ({meGrade, meClass, history}) => {
                                     <span className="start-end">終{times[li].e}</span>
                                 </td>
                                 {[0, 1, 2, 3, 4].map(wd => { // week day
-                                    return <td className={wd + 1 === twd ? "today" : ""}
-                                               key={`${li}${wd}`}> {lessons[wd][li] !== undefined ? <>
-                                        <span className="subject">{lessons[wd][li].Subject}</span>
-                                        <span
-                                            className="teacher">{lessons[wd][li].Teacher !== "" && lessons[wd][li].Teacher !== undefined && lessons[wd][li].Subject[0] !== "선" ? lessons[wd][li].Teacher : "담당"}</span>
-                                    </> : null}
-                                    </td>
+
+                                    if (lessons[wd][li] && lessons[wd][li].Subject in credits) {
+                                        return <TimetableTd key={`${wd}${li}`} today={twd === wd + 1}
+                                                            lesson={credits[lessons[wd][li].Subject]}/>
+                                    }
+
+                                    return <TimetableTd key={`${wd}${li}`} today={twd === wd + 1}
+                                                        lesson={lessons[wd][li]}/>
                                 })}
                             </tr>
                         })

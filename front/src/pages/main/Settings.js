@@ -1,18 +1,39 @@
+import axios from 'axios'
 import React, {useState} from 'react'
 import Page from '../../components/Page'
+import {ErrorBox, SuccessBox} from '../../components/AlertBox'
 
 import {Item, ItemDescription, ItemTitle, Section} from '../../components/Section'
 
 const Settings = () => {
     const [theme, setTheme] = useState(localStorage.getItem("theme"))
+    const [okMsg, setOkMsg] = useState()
+    const [errMsg, setErrMsg] = useState()
 
     const changeTheme = e => {
         setTheme(e.target.value)
         localStorage.setItem("theme", e.target.value)
+        window.location.href = "/settings"
+    }
+
+    const reload = () => {
+        sessionStorage.clear()
         window.location.reload()
     }
 
+    const deleteTimetable = async () => {
+        sessionStorage.clear()
+        try {
+            await axios.delete(`timetables/me`)
+            setOkMsg("시간표를 초기화했습니다.")
+        } catch {
+            setErrMsg("시간표 초기화에 실패했습니다.")
+        }
+    }
+
     return <Page title="설정" back>
+        <SuccessBox>{okMsg}</SuccessBox>
+        <ErrorBox>{errMsg}</ErrorBox>
         <Section>
             <Item>
                 <ItemTitle>테마</ItemTitle>
@@ -42,7 +63,12 @@ const Settings = () => {
             <Item>
                 <ItemTitle>앱 새로고침</ItemTitle>
                 <ItemDescription>업데이트가 필요하거나, 기능이 잘 작동하지 않을 때.</ItemDescription>
-                <button className="button" onClick={() => window.location.reload()}>새로고침</button>
+                <button className="button" onClick={reload}>새로고침</button>
+            </Item>
+            <Item>
+                <ItemTitle>시간표 초기화</ItemTitle>
+                <ItemDescription>내 선택과목을 초기화합니다.</ItemDescription>
+                <button className="button" onClick={deleteTimetable}>초기화</button>
             </Item>
         </Section>
     </Page>

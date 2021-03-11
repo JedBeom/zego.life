@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/csv"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
@@ -15,17 +14,31 @@ import (
 var (
 	classes = [][]models.TimetableTemplate{
 		{{}, {}, {}, {}, {}, {}, {}, {}},
-		{{}, {}, {}, {}, {}, {}, {}, {}, {}, {}},
+		{{}, {}, {}, {}, {}, {}, {}, {}},
 		{{}, {}, {}, {}, {}, {}, {}, {}, {}, {}},
 	}
 	// grade class weekday
 )
 
+var csTable = map[string]string{
+	"선A":  "cs01",
+	"선A1": "cs011",
+	"선A2": "cs012",
+	"선B":  "cs02",
+	"선C":  "cs03",
+	"선C1": "cs031",
+	"선C2": "cs032",
+	"선D":  "cs04",
+	"음미":  "csArt",
+	"외국":  "csFor",
+	"교양":  "csExt",
+}
+
 var (
 	weekdays = []string{"monday", "tuesday", "wednesday", "thursday", "friday"}
 )
 
-func main1() {
+func main() {
 	for x := range classes {
 		for y := range classes[x] {
 			classes[x][y].Grade = x + 1
@@ -39,12 +52,10 @@ func main1() {
 	for x := range classes {
 		for y := range classes[x] {
 			if err := db.Insert(&classes[x][y]); err != nil {
-				fmt.Println(err)
+				log.Println(err)
 			}
 		}
 	}
-	fmt.Println(classes[0][0].Lessons[1])
-	fmt.Println(classes[0][0].Lessons[2])
 }
 
 func parse(weekNum int, weekDay string) {
@@ -73,25 +84,36 @@ func parse(weekNum int, weekDay string) {
 		if i%2 == 0 { // 짝수 = 과목
 			subjectAmount = len(record)
 			for j, lessonName := range record {
-				if lessonName == "" {
+				if strings.TrimSpace(lessonName) == "" {
 					subjectAmount -= 1
 					continue
 				}
+				log.Println(lessonName, subjectAmount)
 
 				l := models.Lesson{
 					Weekday: weekNum,
 					Order:   j,
-					Subject: lessonName,
+					Subject: strings.TrimSpace(lessonName),
 				}
 				timetable = append(timetable, l)
 			}
 
 		} else {
 			for j, teacherName := range record {
+				index := len(timetable) - subjectAmount + j
+
 				if teacherName == "" {
 					continue
 				}
-				timetable[len(timetable)-subjectAmount+j].Teacher = strings.Replace(teacherName, "\n", ",", -1)
+
+				csValue, ok := csTable[timetable[index].Subject]
+
+				if ok {
+					timetable[index].Subject = csValue
+					timetable[index].Teacher = csValue + "T"
+				} else {
+					timetable[index].Teacher = strings.TrimSpace(teacherName)
+				}
 			}
 
 			classes[grade-1][class-1].Lessons = append(classes[grade-1][class-1].Lessons, timetable)
@@ -101,7 +123,7 @@ func parse(weekNum int, weekDay string) {
 			if grade == 1 && class > 8 {
 				grade++
 				class = 1
-			} else if grade == 2 && class > 10 {
+			} else if grade == 2 && class > 8 {
 				grade++
 				class = 1
 			} else if grade == 3 && class > 10 {
