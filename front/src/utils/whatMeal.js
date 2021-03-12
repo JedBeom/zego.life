@@ -12,9 +12,9 @@ const whatMeal = () => {
             what = 2
         }
     } else {
-        if (h >= 8.25 && h <= 11.80) {
+        if (h >= 8.25 && h <= 13.85) {
             what = 1 // lunch
-        } else if (h > 11.80 && h <= 19.2) {
+        } else if (h > 13.85 && h <= 19.2) {
             what = 2 // dinner
         }
     }

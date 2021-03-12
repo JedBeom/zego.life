@@ -88,7 +88,11 @@
       "Subject": "보건",
       "Teacher": "조서윤",
       "Room": "구3-7"
-    }
+    },
+	{
+      "Subject": "진직",
+      "Teacher": "담당"
+	}
   ],
   "Credit-1": [
     {}
@@ -181,12 +185,12 @@
       "Room": "3-3"
     },
     {
-      "Subject": "문학A",
+      "Subject": "문매A",
       "Teacher": "성락용",
       "Room": "3-4"
     },
     {
-      "Subject": "문학C",
+      "Subject": "문매C",
       "Teacher": "박소은",
       "Room": "3-4"
     },
@@ -213,7 +217,7 @@
     {
       "Subject": "정치",
       "Teacher": "곽진주",
-      "Room": "3-7"
+      "Room": "다목적2"
     },
     {
       "Subject": "현대",
@@ -232,8 +236,13 @@
     },
     {
       "Subject": "사문",
-      "Teacher": "담당",
-      "Room": "3-10"
+      "Teacher": "임두봉",
+      "Room": "사회과실"
+    },
+    {
+      "Subject": "기하",
+      "Teacher": "정장균",
+      "Room": "수학과실"
     }
   ]
 }

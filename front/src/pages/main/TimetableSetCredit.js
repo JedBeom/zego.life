@@ -118,13 +118,14 @@ const TimetableSetCredit = () => {
                                                                          value={i}>{s.Teacher} - {s.Subject}</option>)}
                     </select>
                 </div>
+                {meGrade === 2 ?
                 <div className="flex flex-column">
                     <label>선D</label>
                     <select className="select" value={dOpt} onChange={e => setDOpt(e.target.value)}>
                         {list[`Credit-${meGrade}`].map((s, i) => <option key={s.Subject}
                                                                          value={i}>{s.Teacher} - {s.Subject}</option>)}
                     </select>
-                </div>
+                </div> : null }
             </> : null}
             {meGrade === 3 ? <>
                 <div className="flex flex-column">
