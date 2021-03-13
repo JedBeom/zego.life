@@ -4,6 +4,7 @@ import Page, {Title} from '../../components/Page'
 import CardBox from "../../components/ui/CardBox"
 import {ErrorBox} from '../../components/AlertBox'
 import {getEvents} from '../../common/api'
+import Loading from '../../components/ui/Loading'
 
 const weekdays = ['일', '월', '화', '수', '목', '금', '토']
 
@@ -70,7 +71,7 @@ const Events = () => {
                 {year}년 {month}월</span>
                 <span><span className="mr-2" onClick={previous}> </span> <span onClick={next}></span></span>
             </Title>
-            {loading ? <div className="loader"/> : null}
+            <Loading visible={loading}/>
             <ErrorBox>{errMsg}</ErrorBox>
             {events === null ? <p>일정 없음</p> : null}
             {events !== undefined && events !== null ?

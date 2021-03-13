@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import Page from '../../components/Page'
 import {ErrorBox} from '../../components/AlertBox'
+import Loading from '../../components/ui/Loading'
 
 const payments = [
     {
@@ -71,7 +72,7 @@ const Payment = ({match, history}) => {
     }
 
     if (initialLoading) {
-        return <div className="loader"/>
+        return <Loading visible={true}/>
     }
 
     return <Page backTo={`/campaigns/new/${match.params.id}`} title="결제 수단">

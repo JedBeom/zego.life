@@ -2,21 +2,23 @@ import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import styled from 'styled-components'
 import Back, {arrowText} from './Back'
+import Loading from './ui/Loading'
 
-const Page = ({title, hideTitle, back, backTo, head, children, foot, className, noScroll, loading}) => {
+const Page = ({title, hideTitle, back, backTo, head, children, foot, className, noScrollToTop, loading}) => {
     const [scrollDowned, setScrollDowned] = useState(false)
 
     useEffect(() => {
         if (title) document.title = `${title} | 제고라이프`
-        if (!noScroll) document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
-    }, [title, noScroll])
+    }, [title])
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll)
+        if (!noScrollToTop) document.body.scrollIntoView({behavior: 'smooth', block: 'start'});
+        setTimeout(() => window.addEventListener("scroll", handleScroll), 200)
+        
         return () => {
             window.removeEventListener("scroll", handleScroll)
         }
-    }, [])
+    }, [noScrollToTop])
 
     const handleScroll = () => {
         setScrollDowned(window.scrollY > 30)
@@ -33,11 +35,11 @@ const Page = ({title, hideTitle, back, backTo, head, children, foot, className, 
                     {backTo ? <NavLink className="no-underline" to={backTo}>{arrowText(title)}</NavLink> :
                         (back ? <Back content={title}/> : title)}
                 </Title>
-                : null}
-            {!loading ?
-                <div className="page">
-                    {children}
-                </div> : <div className="loader"/>}
+            : null}
+            <div className="page">
+                {children}
+            </div>
+            <Loading visible={loading}/>
             {foot}
         </Wrapper>
     </>

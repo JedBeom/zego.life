@@ -31,7 +31,6 @@ function Router() {
 const Wrapper = styled.div`
 & .page {
     font-family: "KyoboHand", var(--font-family) !important;
-    font-size: 1.1rem;
     font-weight: normal;
 }
 `

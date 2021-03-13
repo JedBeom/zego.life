@@ -33,19 +33,20 @@ const DietCard = ({diet, applied}) => {
 			</h2>
 			<Timestamp>{timestampHangul(diet.Date)}</Timestamp>
 		</Header>
+		{diet.dietList.length > 1 ? <>
 		<List>
-			{diet.dietList.length > 1 ? diet.dietList.map((value) => {
+			{diet.dietList.map((value) => {
 				return (
 					<li key={value}>{value}</li>
 				)
-			}) : <li>급식이 없어요.</li>}
+			})}
 		</List>
 		<Badge color={color}>
 			{icon}
 			<span>
 					{msg}
 			</span>
-		</Badge>
+		</Badge></> : <NoDiet>급식이 없습니다.</NoDiet>}
 	</CardBox>
 };
 
@@ -89,6 +90,10 @@ span {
     line-height: 1em;
     height: 1em;
 }
+`
+
+const NoDiet = styled.p`
+text-align: center;
 `
 
 export default DietCard

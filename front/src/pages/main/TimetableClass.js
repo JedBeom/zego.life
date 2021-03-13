@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react'
+import styled from 'styled-components'
 import {getTimetable, getTimetableTemplate} from '../../common/api'
 
 import TimetableTd from '../../components/TimetableTd'
+import Loading from '../../components/ui/Loading'
 
 const times = [
     {s: "8:40", e: "9:30"},
@@ -17,6 +19,7 @@ const times = [
 const TimetableClass = ({meGrade, meClass, history}) => {
     const [lessons, setLessons] = useState([[]])
     const [credits, setCredits] = useState({})
+    const [loading, setLoading] = useState(true)
     const twd = new Date().getDay()
 
     useEffect(() => {
@@ -40,30 +43,33 @@ const TimetableClass = ({meGrade, meClass, history}) => {
 
         } catch (e) {
             console.log(`시간표 가져오기를 실패했습니다. ${e}`)
+        } finally {
+            setLoading(false)
         }
 
     }
 
     return (
-        <div className="table-container timetable-container">
+        <Container>
+            <Loading visible={loading}/>
             {lessons.length !== 1 ?
-                <table className="timetable">
-                    <thead>
+                <Table>
+                    <Thead>
                     <tr>
                         {["", "월", "화", "수", "목", "금"].map((v, i) =>
                             <td className={i === twd ? "today" : ""} key={i}>{v}</td>
                         )}
                     </tr>
-                    </thead>
+                    </Thead>
                     <tbody>
                     {
                         [0, 1, 2, 3, 4, 5, 6].map(li => { // lessons index 
                             return <tr key={li}>
-                                <td>
-                                    <span className="subject">{li + 1}교시</span>
-                                    <span className="start-end">始{times[li].s}</span>
-                                    <span className="start-end">終{times[li].e}</span>
-                                </td>
+                                <Order>
+                                    {li+1}교시
+                                    <StartEnd>始{times[li].s}</StartEnd>
+                                    <StartEnd>終{times[li].e}</StartEnd>
+                                </Order>
                                 {[0, 1, 2, 3, 4].map(wd => { // week day
 
                                     if (lessons[wd][li] && lessons[wd][li].Subject in credits) {
@@ -78,10 +84,44 @@ const TimetableClass = ({meGrade, meClass, history}) => {
                         })
                     }
                     </tbody>
-                </table>
-                : <div className="loader"/>}
-        </div>
+                </Table>
+                : null }
+        </Container>
     )
 }
+
+const Container = styled.div`
+width: 100%;
+overflow-x: scroll;
+`
+
+const Table = styled.table`
+width: 100%;
+border: none !important;
+font-size: 1rem;
+border-spacing: 0.5rem;
+border-collapse: separate !important;
+border-radius: .4em;
+`
+
+const Thead = styled.thead`
+td {
+    text-align: center;
+    min-width: 3.5rem;
+}
+`
+
+const Order = styled.td`
+font-size: .75em;
+font-weight: 900;
+opacity: 1;
+`
+
+const StartEnd = styled.p`
+font-size: 1em;
+display: block;
+font-weight: 300;
+word-break: keep-all;
+`
 
 export default TimetableClass

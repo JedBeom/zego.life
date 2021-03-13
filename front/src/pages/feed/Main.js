@@ -11,11 +11,14 @@ import {timestampHangul} from '../../utils/timestamp'
 import MessageIcon from '../../icons/Message'
 import PencilIcon from '../../icons/Pencil'
 import CalendarIcon from '../../icons/Calendar'
+import Loading from '../../components/ui/Loading'
 
 const Main = () => {
 
     const [threads, setThreads] = useState([])
     const [errMsg, setErrMsg] = useState("")
+
+    const [loading, setLoading] = useState(true)
 
     const getThreads = async () => {
         try {
@@ -27,11 +30,13 @@ const Main = () => {
             })
             if (data.Count === 0) {
                 setErrMsg("스레드가 없습니다.")
-                return
+            } else {
+                setThreads(data.Threads)
             }
-            setThreads(data.Threads)
         } catch (e) {
             setErrMsg("불러오지 못했습니다.")
+        } finally {
+            setLoading(false)
         }
     }
 
@@ -39,7 +44,8 @@ const Main = () => {
         getThreads()
     }, [])
 
-    return <Page title="담벼락(베타)" loading={threads === []}>
+    return <Page title="담벼락(베타)">
+        <Loading visible={loading}/>
         <Wrapper>
             <NavLink className="no-underline" to="/feed/about">
                 <button className="button mb-3">담벼락이 무엇인가요?</button>

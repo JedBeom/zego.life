@@ -6,6 +6,7 @@ import Page from '../../components/Page'
 import {ErrorBox, SuccessBox} from "../../components/AlertBox"
 
 import {isAdmin, isThat, isUser} from '../../utils/getRoles'
+import CardBox from '../../components/ui/CardBox';
 
 const PostStory = () => {
     useEffect(() => {
@@ -65,13 +66,13 @@ const PostStory = () => {
                     <button className="button mb-6">사연 보기</button>
                 </NavLink> : null
             }
-            <div className="radio-description">
+            <CardBox>
                 <p>하고 싶었던 말, 여기에 전부 적어주세요.
                     연애고민, 성적고민, 온라인 기간의 이야기, 평소 학교생활, 말하지 못했던 이야기 등등
                     &nbsp;<span className="fw-bold linear-orange bg-no-repeat bg-b bg-100-10 hover-bg-100-100 ease-100">여러분들의 이야기</span>를
                     들려주세요! </p>
                 <p>익명 투고 시 익명성이 확실히 보장됩니다!</p>
-            </div>
+            </CardBox>
             <form onSubmit={submit}>
                 <input type="checkbox" checked={anonymous} className="checkbox" id="anonymous"
                        onChange={e => setAnonymous(e.target.checked)}/>

@@ -4,9 +4,10 @@ import axios from 'axios'
 import {ErrorBox, InfoBox, SuccessBox} from '../../components/AlertBox'
 import Page from "../../components/Page"
 import copy from "../../utils/copy"
+import Loading from '../../components/ui/Loading'
 
 const UsersAll = () => {
-    const [count, setCount] = useState("0")
+    const [count, setCount] = useState("?")
     const [limit, setLimit] = useState(10)
     const [page, setPage] = useState(1)
     const [name, setName] = useState("")
@@ -28,8 +29,6 @@ const UsersAll = () => {
     }
 
     const submit = async e => {
-        console.log({name})
-
         setOkMsg("")
         setErrMsg("")
         e.preventDefault()
@@ -46,8 +45,9 @@ const UsersAll = () => {
             }
         } catch (e) {
             setErrMsg(`문제 발생! ${e}`)
+        } finally {
+            setLoading(false)
         }
-        setLoading(false)
     }
 
     const getResults = async () => {
@@ -122,8 +122,8 @@ const UsersAll = () => {
         getCount()
     }, [])
 
-    return <Page loading={count === "0"} title="사용자 목록" back>
-        {loading ? <div className="loader"/> : null}
+    return <Page title="사용자 목록" back>
+        <Loading visible={loading}/>
         <ErrorBox>{errMsg}</ErrorBox>
         <h2>총 {count}명</h2>
         <form className="form" onSubmit={submit}>

@@ -6,6 +6,7 @@ import {ErrorBox, SuccessBox} from '../../components/AlertBox'
 import CardBox from '../../components/ui/CardBox'
 
 import styled from 'styled-components'
+import Loading from '../../components/ui/Loading'
 
 const AnchorHighlight = (content) => {
     return content.split(" ").map((e, i) => {
@@ -76,14 +77,14 @@ const ThreadPage = ({match}) => {
     if (thread === null) {
         return (
             <Page title="" back>
-                {loading ? <div className="loader"/> : null}
+                <Loading visible={loading}/>
                 <ErrorBox>{errMsg}</ErrorBox>
             </Page>
         )
     }
 
     return (
-        <Page title={thread.Title} backTo="/feed">
+        <Page title={thread.Title} backTo="/feed" noScrollToTop>
             {thread.Comments.map(c => {
                 return (
                     <Comment id={c.Num} key={c.Num}>

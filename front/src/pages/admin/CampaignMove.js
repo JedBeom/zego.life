@@ -46,7 +46,6 @@ const CampaignMove = () => {
                 </NavLink>
             </div>)}
         </article>
-        <p className="info">도움이 필요하신가요? 피드백을 남겨주세요.</p>
     </Page>
 }
 

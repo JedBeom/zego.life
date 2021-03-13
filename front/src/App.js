@@ -23,6 +23,7 @@ import {isAdmin} from "./utils/getRoles"
 
 import NoConnection from './pages/main/NoConnection'
 import styled from 'styled-components';
+import Loading from './components/ui/Loading';
 
 const MainRoute = lazy(() => import("./pages/main/Route"))
 const Register = lazy(() => import("./pages/main/Register"))
@@ -51,7 +52,7 @@ function App({history}) {
     return (
         <>
             <Site>
-                <Suspense fallback={<div className="loader"/>}>
+                <Suspense fallback={<Loading visible={true}/>}>
                     <Switch>
                         {
                             isAdmin() ? <Route path="/admin" component={AdminRoute}/> : null

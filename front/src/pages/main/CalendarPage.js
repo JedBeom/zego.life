@@ -7,10 +7,10 @@ import {ErrorBox} from "../../components/AlertBox"
 import CardBox from "../../components/ui/CardBox"
 import DietCard from '../../components/DietCard'
 import DormInspector from '../../components/DormInspector'
+import Loading from '../../components/ui/Loading';
 
 import {eventMake} from '../../utils/eventsMake'
 import {timestampDot, timestampHangulNoYear, timestampHyphen} from '../../utils/timestamp'
-import {isUser} from "../../utils/getRoles"
 import CalendarIcon from '../../icons/Calendar'
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -36,9 +36,9 @@ const DietPage = () => {
 
     const [diets, setDiets] = useState([])
     const [applieds, setApplieds] = useState(["-2", "-2", "-2"])
-    const [isLoading, setLoading] = useState(false)
+    const [isLoading, setLoading] = useState(true)
     const [date, setDate] = useState(now)
-    const [dates, setDates] = useState(null)
+    const [dates, setDates] = useState([])
     const [events, setEvents] = useState([])
 
     const [errMsg, setErrMsg] = useState("")
@@ -46,23 +46,21 @@ const DietPage = () => {
         if (d === undefined || d === null || d === date) {
             return
         }
+        setLoading(true)
 
         getEvents(timestampHyphen(d))
         setDate(d)
         setDiets([])
-        setApplieds(["-2", "-2", "-2"])
-        setLoading(true)
+        setApplieds(["-1", "-1", "-1"])
         try {
             let ds = await getDietByDate(timestampDot(d))
             setDiets(ds)
             setLoading(false)
-            if (isUser()) {
-                let aps = [...applieds]
-                for (let i = 0; i < 3; i++) {
-                    aps[i] = await getD2UByDiet(ds[i].ID)
-                }
-                setApplieds(aps)
+            let aps = [...applieds]
+            for (let i = 0; i < 3; i++) {
+                aps[i] = await getD2UByDiet(ds[i].ID)
             }
+            setApplieds(aps)
         } catch (e) {
             setErrMsg("불러오는 중 문제가 발생했어요.")
         }
@@ -90,8 +88,8 @@ const DietPage = () => {
     useEffect(() => {
         let now = new Date()
         now.setHours(0, 0, 0, 0)
-        onClick(now)
         getDates()
+        onClick(now)
         // eslint-disable-next-line
     }, [])
 
@@ -103,7 +101,7 @@ const DietPage = () => {
             */}
             <ErrorBox>{errMsg}</ErrorBox>
             <CardBox>
-                <h2 className={"card-title font-s-core px-2"}>
+                <h2>
                     <CalendarIcon className="icon icon-tabler"/>
                     {timestampHangulNoYear(date)}
                 </h2>
@@ -114,7 +112,8 @@ const DietPage = () => {
                                 selected={date} minDate={minDate} maxDate={maxDate} todayButton="오늘"/>
                 </div>
             </CardBox>
-            {isLoading ? <div className="loader"/> : <>
+            <Loading visible={isLoading}/>
+            {!isLoading ?  <>
                 {events.length > 0 ?
                     <CardBox>
                         <h2><CalendarIcon className="icon"/>일정</h2>
@@ -129,7 +128,7 @@ const DietPage = () => {
                     return <DietCard key={index} diet={value} applied={applieds[index]}/>
                 })}
                 {localStorage.getItem("me.residence") === "1" ? <DormInspector date={date} correction={false}/> : null}
-            </>
+            </> : null
             }
         </Page>
     )

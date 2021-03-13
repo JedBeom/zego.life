@@ -4,6 +4,7 @@ import axios from 'axios'
 import Page from '../../components/Page';
 import {SuccessBox, WarningBox} from "../../components/AlertBox";
 import FeedbackBox from '../../components/FeedbackBox';
+import Loading from '../../components/ui/Loading';
 
 const Feedbacks = () => {
     const [okMsg, setOkMsg] = useState("")
@@ -43,6 +44,7 @@ const Feedbacks = () => {
 
     return (
         <Page title="피드백 보기" back>
+            <Loading visible={!fs}/>
             <WarningBox>{errMsg}</WarningBox>
             <SuccessBox>{okMsg}</SuccessBox>
             {

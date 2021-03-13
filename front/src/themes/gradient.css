@@ -45,6 +45,7 @@
     --nav-bar-bg-color: rgba(0, 0, 0, 0.8);
     --nav-bar-bg-image: linear-gradient(to right, #837AE6 0%, #3F33BD 100%);
     --button-primary-color: #CC88F7;
+    --button-primary-text-color: white;
 
     --loader-color: 0, 0, 0;
 }

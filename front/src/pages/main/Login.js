@@ -37,10 +37,12 @@ const Login = () => {
         try {
             const {data} = await axios.post("login", req)
             setOkMsg("로그인 성공! 곧 메인 페이지로 이동합니다.")
+
+            localStorage.clear()
+            sessionStorage.clear()
+
             localStorage.setItem("token", data.token)
-
             const {data: user} = await axios.get("me")
-
             saveUser(user)
 
             if (user.Residence === undefined || user.Residence === 0) {

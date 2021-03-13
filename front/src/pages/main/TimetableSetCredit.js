@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import Page from '../../components/Page'
 import {ErrorBox} from '../../components/AlertBox'
+import Loading from '../../components/ui/Loading'
 
 const meGrade = Number(localStorage.getItem("me.grade"))
 
@@ -68,7 +69,7 @@ const TimetableSetCredit = () => {
         getList()
     }, [])
 
-    if (!list) return <div className="loader"/>
+    if (!list) return <Loading visible={true}/>
 
     return <Page title="선택과목 설정">
         <p>시간표를 보기 위해서는, 내 선택과목을 입력해야합니다. </p>

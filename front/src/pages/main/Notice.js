@@ -13,14 +13,14 @@ import {isAdmin} from "../../utils/getRoles";
 const Notice = () => {
 
     const [errMsg, setErrMsg] = useState("")
-    const [notices, setNotices] = useState([{Title: ""}])
+    const [notices, setNotices] = useState([])
 
     const get = async () => {
         try {
             const {data} = await axios.get(`notices`)
 
             if (!data) {
-                setNotices([{Title: "공지가 없어요 ㅠ"}])
+                setErrMsg("공지가 없습니다.")
                 return
             }
             setNotices(data)

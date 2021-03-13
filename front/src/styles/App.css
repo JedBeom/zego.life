@@ -2,27 +2,6 @@
     viewport-fit: cover;
 }
 
-.loader:empty {
-    position: absolute;
-    top: calc(50% - 4rem);
-    left: calc(50% - 3.4rem);
-    width: 6rem;
-    height: 6rem !important;
-    border: .5rem solid rgba(var(--loader-color), 0.2);
-    border-left: .5rem solid rgb(var(--loader-color));
-    border-radius: 50%;
-    animation: load8 1.1s infinite linear;
-}
-
-@keyframes load8 {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
 body {
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -111,18 +90,6 @@ nav, header, .campaign-box img {
     width: 100%;
 }
 
-.page-title {
-    font-size: 2.3em;
-    margin-bottom: .75rem;
-
-    -webkit-text-stroke-color: var(--page-title-bg-color);
-}
-
-.page-title .sub {
-    font-size: .65em;
-    opacity: .6;
-}
-
 .page-title-sub {
     margin-top: 2em;
     margin-bottom: 1em;
@@ -130,15 +97,6 @@ nav, header, .campaign-box img {
 
 a:has("div") {
     text-decoration: none;
-}
-
-.w3-animate-right {
-    position: relative;
-    animation: animateright 0.4s
-}
-
-.radio-description, .notice-line {
-    margin: 0 .25rem 1rem .25rem;
 }
 
 .card-box-review p {
@@ -225,13 +183,6 @@ input.register-birthday {
     color: var(--card-box-text-color);
 }
 
-.light-blue-horizion {
-    background-image: linear-gradient(to bottom, #82c0ff 0%, #5A4FCF 100%);
-}
-
-/* diet-card */
-
-
 /* 얼마나 남았나? */
 
 .dday-name {
@@ -281,128 +232,10 @@ input.register-birthday {
     border-color: inherit;
 }
 
-/* timetable */
-.timetable-container {
-    overflow-x: scroll;
-}
-
-.timetable {
-    border: none !important;
-    font-size: 1rem;
-    border-spacing: 0.5rem;
-    border-collapse: separate !important;
-    border-radius: .4em;
-}
-
-@keyframes fadeInTTdisable {
-    0% {
-        opacity: 0;
-        transform: scale(0);
-    }
-    75% {
-        opacity: .7;
-        transform: scale(.85);
-    }
-    100% {
-        transform: scale(1)
-    }
-}
-
-.timetable td {
-    color: var(--card-box-text-color);
-    padding: .4em !important;
-    background: var(--card-box-bg-color);
-    opacity: .7;
-    border-radius: .5em;
-    text-align: center;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    transition: .3s;
-
-    min-width: 3.5rem;
-
-    word-break: keep-all;
-    animation-name: fadeInTTdisable;
-    animation-duration: .25s;
-    animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-}
-
-.timetable td:nth-child(1) { /* n교시 */
-    font-size: .75em;
-    font-weight: 900;
-    opacity: 1;
-}
-
-.timetable td:hover, .today {
-    opacity: 1 !important;
-}
-
-.timetable thead td {
-    text-align: center;
-}
-
-.timetable thead td:nth-child(1) { /* 교시와 요일 가운데의 빈공간 */
-    box-shadow: none;
-    background: none;
-}
-
-.subject {
-    font-weight: 700;
-    display: block;
-}
-
-.teacher {
-    word-break: keep-all;
-    font-size: .75em;
-    font-weight: 500;
-    display: block;
-}
-
-.room {
-    word-break: keep-all;
-    font-size: .75em;
-    font-weight: 500;
-    display: block;
-}
-
-.timetable .start-end {
-    font-size: 1em;
-    display: block;
-    font-weight: 300;
-    word-break: keep-all;
-}
-
-.timetable-exam td {
-    opacity: 1;
-}
-
-.timetable-exam td:empty {
-    opacity: .5;
-}
-
 /* radio */
-.radio-description {
-    background-color: var(--card-box-bg-color);
-    color: var(--card-box-text-color);
-    padding: 1em;
-    border-radius: 6px;
-    margin-bottom: .75em;
-}
 
 .textarea, .input, .select {
     border: 2px solid var(--site-text-color);
-}
-/* responsible */
-
-@media (min-width: 300px) {
-    .page-title {
-        margin-top: 1em;
-    }
-}
-
-@media (min-width: 800px) {
-    .page-title {
-        margin-top: 1em;
-    }
 }
 
 .copyright {

@@ -4,6 +4,7 @@ import axios from 'axios'
 import Page from '../../components/Page'
 import {SuccessBox, WarningBox} from "../../components/AlertBox";
 import FeedbackBox from '../../components/FeedbackBox';
+import Loading from '../../components/ui/Loading';
 
 const Feedback = () => {
     const [okMsg, setOkMsg] = useState("")
@@ -67,6 +68,7 @@ const Feedback = () => {
 
     return (
         <Page title="피드백 보내기" back>
+            <Loading visible={!feedbacks}/>
             <SuccessBox>{okMsg}</SuccessBox>
             <WarningBox>{errMsg}</WarningBox>
             <p>제고라이프는 여러분의 피드백으로 발전합니다. 사용하면서 필요한 기능이나 불편한 점이 있다면
