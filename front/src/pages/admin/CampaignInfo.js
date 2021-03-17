@@ -4,6 +4,7 @@ import axios from 'axios'
 import Page from '../../components/Page'
 import {ErrorBox, SuccessBox} from '../../components/AlertBox'
 import CampaignBox from '../../components/CampaignBox'
+import UserBox from '../../components/UserBox'
 import {timestampHangul} from '../../utils/timestamp'
 
 import '../../styles/campaigns.css'
@@ -59,9 +60,7 @@ const CampaignInfo = ({match}) => {
                 <p>입금한 시간: {timestampHangul(cnp.PayedAt, true)}</p>
                 <p className="mt-3 mb-6">사용자</p>
 
-                {/*
                 <UserBox u={cnp.User}/>
-                */}
             </article> : null}
         <button onClick={moveCampaign} className={`button float-right ${loading ? "loading" : null}`}>승인하기</button>
     </Page>

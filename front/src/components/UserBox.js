@@ -8,7 +8,7 @@ const sex = ["?", "남", "여"]
 const residence = ["?", "기숙사", "비기숙사"]
 
 const UserBox = ({u, children}) => {
-    if (u === null) {
+    if (!u) {
         return null
     }
 
