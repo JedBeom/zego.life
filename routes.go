@@ -73,11 +73,13 @@ func routes(e *echo.Echo) {
 			u.GET("/timetables/subjects", getTimetableSubjects)
 			u.POST("/timetables", postTimetable)
 
-			// talks
-			u.GET("/threads", getThreads)
-			u.GET("/threads/:id", getThreadByID)
-			u.POST("/threads", postThread)
-			u.POST("/threads/:id/comments", postComment)
+			/*
+				// talks
+				u.GET("/threads", getThreads)
+				u.GET("/threads/:id", getThreadByID)
+				u.POST("/threads", postThread)
+				u.POST("/threads/:id/comments", postComment)
+			*/
 
 			// campaigns (cmp, cmps)
 			u.POST("/campaigns", postCampaignNotPayed)

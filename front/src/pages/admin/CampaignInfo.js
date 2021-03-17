@@ -3,7 +3,6 @@ import axios from 'axios'
 
 import Page from '../../components/Page'
 import {ErrorBox, SuccessBox} from '../../components/AlertBox'
-import UserBox from '../../components/UserBox'
 import CampaignBox from '../../components/CampaignBox'
 import {timestampHangul} from '../../utils/timestamp'
 
@@ -46,7 +45,7 @@ const CampaignInfo = ({match}) => {
         }
     }
 
-    return <Page className="campaigns-site" loading={initialLoading} title="캠페인 세부 정보" back>
+    return <Page className="campaigns-site" title="캠페인 세부 정보" back>
         <ErrorBox>{errMsg}</ErrorBox>
         <SuccessBox>{okMsg}</SuccessBox>
         {cnp ?
@@ -59,7 +58,10 @@ const CampaignInfo = ({match}) => {
                 <p>입금자명: 제라{cnp.PayCode}</p>
                 <p>입금한 시간: {timestampHangul(cnp.PayedAt, true)}</p>
                 <p className="mt-3 mb-6">사용자</p>
+
+                {/*
                 <UserBox u={cnp.User}/>
+                */}
             </article> : null}
         <button onClick={moveCampaign} className={`button float-right ${loading ? "loading" : null}`}>승인하기</button>
     </Page>

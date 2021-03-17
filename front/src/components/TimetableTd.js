@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 export default function TimetableTd({today, lesson}) {
-    if (!lesson) return <td></td>
+    if (!lesson) return <td/>
 
     return <WrapTd today={today}>
         <Subject>{lesson.Subject}</Subject>
