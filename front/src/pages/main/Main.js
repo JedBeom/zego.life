@@ -43,7 +43,7 @@ const Main = () => {
         setLoading(true)
 
         let day = new Date()
-        if (day.getHours() + (day.getMinutes() / 60) > 18.5) {
+        if (day.getHours() + (day.getMinutes() / 60) > 19.2) {
             day.setDate(day.getDate() + 1)
         }
 
