@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import DatePicker from 'react-datepicker'
 import {getD2UByDiet, getDietByDate, getEventsByDate, getEventsDateOnly} from '../../common/api'
 
-import Page from "../../components/Page"
+import Page, { Title } from "../../components/Page"
 import {ErrorBox} from "../../components/AlertBox"
 import CardBox from "../../components/ui/CardBox"
 import DietCard from '../../components/DietCard'
@@ -94,17 +94,14 @@ const DietPage = () => {
     }, [])
 
     return (
-        <Page title="캘린더" loading={dates === null}>
+        <Page title={timestampHangulNoYear(date)} hideTitle loading={dates === null}>
+            <Title>캘린더</Title>
             {/*}
             <InfoBox>2월 급식 신청 기간입니다. <a href="http://gwang.i-zone.kr" rel="noopener noreferrer" target="_blank">플라이키친
                 가기</a></InfoBox>
             */}
             <ErrorBox>{errMsg}</ErrorBox>
             <CardBox>
-                <h2>
-                    <CalendarIcon className="icon icon-tabler"/>
-                    {timestampHangulNoYear(date)}
-                </h2>
                 <div className="inline-calendar">
                     <DatePicker inline disabledKeyboardNavigation dateFormat="yyyy-MM-dd"
                                 onChange={onClick} name="날짜 선택" title="날짜 선택" allowSameDay={false}
@@ -125,7 +122,7 @@ const DietPage = () => {
                     </CardBox>
                     : null}
                 {diets.map((value, index) => {
-                    return <DietCard key={index} diet={value} applied={applieds[index]}/>
+                    return <DietCard key={index} diet={value} applied={applieds[index]} hideDate/>
                 })}
                 {localStorage.getItem("me.residence") === "1" ? <DormInspector date={date} correction={false}/> : null}
             </> : null

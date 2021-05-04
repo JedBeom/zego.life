@@ -17,7 +17,7 @@ const appliedBadges = {
 	"2": {msg: "알수없음", icon: <Exclaimination/>, color: "#1773CE"},
 }
 
-const DietCard = ({diet, applied}) => {
+const DietCard = ({diet, applied, hideDate}) => {
 	if (diet.dietList.length <= 1) {
 		applied = "-2"
 	}
@@ -31,9 +31,9 @@ const DietCard = ({diet, applied}) => {
 				<Highlighted>{diet.when}</Highlighted>
 				급식
 			</h2>
-			<Timestamp>{timestampHangul(diet.Date)}</Timestamp>
+			{!hideDate ? <Timestamp>{timestampHangul(diet.Date)}</Timestamp> : null }
 		</Header>
-		{diet.dietList.length > 1 ? <>
+		{diet.dietList.length !== -1 ? <>
 		<List>
 			{diet.dietList.map((value) => {
 				return (
