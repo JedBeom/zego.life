@@ -1,5 +1,7 @@
 import React from 'react'
+import styled from 'styled-components'
 import Page from '../../components/Page'
+import Pomi from '../../components/Pomi'
 
 const NoConnection = () => {
     const onClick = async () => {
@@ -9,6 +11,8 @@ const NoConnection = () => {
     return (
         <Page title="연결 없음">
             <style>{"nav {opacity:0}"}</style>
+            <Wrapper>
+            <Pomi/>
             <p>다음 상황 중 하나입니다.</p>
             <ul>
                 <li>학교 와이파이 사용 중</li>
@@ -17,8 +21,19 @@ const NoConnection = () => {
             </ul>
             <p>아래 새로고침 버튼을 눌러 재시도 해보세요.</p>
             <button onClick={onClick} className="button">새로고침</button>
+            </Wrapper>
         </Page>
     )
 }
+
+const Wrapper = styled.div`
+& img {
+    height: 15rem;
+}
+
+& ul {
+    margin: .5rem;
+}
+`
 
 export default NoConnection

@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom'
 import {isUser} from "../utils/getRoles"
 
 import CalendarIcon from '../icons/Calendar'
-import PencilIcon from '../icons/Pencil'
+import BookmarksIcon from '../icons/Bookmarks'
 
 import styled from 'styled-components'
 
@@ -28,8 +28,8 @@ const Nav = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/feed" activeClassName={"nav-active"}>
-                            <PencilIcon/>
+                        <NavLink to="/bookmarks" activeClassName={"nav-active"}>
+                            <BookmarksIcon/>
                         </NavLink>
                     </li>
                     <li>

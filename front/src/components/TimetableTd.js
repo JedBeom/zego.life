@@ -22,7 +22,6 @@ opacity: ${props => props.today ? 1 : 0.7};
 
 padding: .4em !important;
 border-radius: .5em;
-box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 
 min-width: 3.5rem;
 
