@@ -9,5 +9,5 @@ import (
 func main() {
 	db := models.Connect()
 	conn := db.Conn()
-	parse.GetMonthDiets(conn, 2021, 3)
+	parse.GetApplyListOfAllUsersCMD(conn, "D00039")
 }
