@@ -19,7 +19,7 @@ func ConnectAWS() {
 			Region: aws.String(endpoints.ApNortheast2RegionID),
 		},
 		SharedConfigState: session.SharedConfigEnable,
-		// SharedConfigFiles: []string{"C:\\.aws\\credential"},
+		SharedConfigFiles: []string{"/home/yuu/.aws/credentials", "~/.aws/credentials"},
 	})
 
 	if err != nil {

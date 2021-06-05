@@ -65,10 +65,15 @@ opacity: ${props => (props.displayHead ? "1" : "0")};
 transition: opacity .25s;
 transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 color: var(--site-logo-color);
+
+box-shadow: 0px 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 `
 
 const Wrapper = styled.div`
-margin: 0rem .5rem;
+margin-left: auto;
+margin-right: auto;
+max-width: 900px;
+padding: .5rem;
 `
 
 export const Title = styled.h1`

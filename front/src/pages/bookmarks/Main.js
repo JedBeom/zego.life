@@ -3,18 +3,17 @@ import styled from 'styled-components'
 import Page from '../../components/Page'
 
 const sites = [
-    {title: "학교 사이트", color: "#ef476f", to: "http://gwangcheol.hs.jne.kr"},
-    {title: "한빛 커뮤니티", color: "#FFD166", to: "https://cafe.naver.com/gwangcheolclub"},
-    {title: "제라 인스타그램", color: "#118AB2", to: "https://instagram.com/zegolife"},
+    {title: "학교 사이트", color: "#87ceeb", white: false, to: "http://gwangcheol.hs.jne.kr"},
+    {title: "한빛 커뮤니티", color: "#03C75A", white: true, to: "https://cafe.naver.com/gwangcheolclub"},
+    {title: "제라 인스타그램", color: "#8a3ab9", white: true, to: "https://instagram.com/zegolife"},
+    {title: "급식 신청", color: "#586ba3", white: true, to: "http://gwang.i-zone.kr"},
+    {title: "자가진단", color: "#073765", white: true, to: "https://hcs.eduro.go.kr"},
 ]
 
-let foot = <footer className="copyright">
-    '바로가기' 대신에 좋은 기능이 있을까요? '피드백 보내기'로 알려주세요.
-</footer>
-
 const Main = () => {
-    return <Page title="바로가기" foot={foot}>
-        {sites.map(s => <WrapA rel="noopener noreferrer" target="_blank" href={s.to}><WebsiteBox color={s.color}>{s.title}</WebsiteBox></WrapA>)}
+    return <Page title="바로가기">
+        {sites.map(s => <WrapA rel="noopener noreferrer" target="_blank" href={s.to}><WebsiteBox color={s.color}
+                                                                                                 white={s.white}>{s.title}</WebsiteBox></WrapA>)}
     </Page>
 }
 
@@ -24,6 +23,7 @@ text-decoration: none;
 
 const WebsiteBox = styled.article`
 background-color: ${props => props.color};
+color: ${props => props.white ? "white" : "black"};
 padding: 1.5rem;
 margin: 1rem;
 border-radius: .5rem;

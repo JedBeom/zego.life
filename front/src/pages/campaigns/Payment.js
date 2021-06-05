@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 
 import Page from '../../components/Page'
-import {ErrorBox} from '../../components/AlertBox'
+import {ErrorBox, WarningBox} from '../../components/AlertBox'
 import Loading from '../../components/ui/Loading'
 
 const payments = [
@@ -40,6 +40,7 @@ const Payment = ({match, history}) => {
     const [selection, setSelection] = useState(0)
     const [title, setTitle] = useState("")
     const [errMsg, setErrMsg] = useState()
+    const [warningMsg, setWarningMsg] = useState()
     const [loading, setLoading] = useState(false)
     const [initialLoading, setInitialLoading] = useState(true)
 
@@ -53,6 +54,10 @@ const Payment = ({match, history}) => {
         try {
             const {data} = await axios.get(`campaigns-not-payed/${match.params.id}`)
             setTitle(data.Title)
+            if ((new Date(data.StartAt) - new Date()) / 1000 / 60 / 60 <= 12) {
+                setWarningMsg("시작 시간이 지났거나 얼마 안 남았습니다. 관리자의 승인이 늦어져 게시가 지연될 수 있음을 알아두세요.")
+            }
+
         } catch (e) {
             setErrMsg("로딩에 실패했어요.")
         } finally {
@@ -78,6 +83,8 @@ const Payment = ({match, history}) => {
     return <Page backTo={`/campaigns/new/${match.params.id}`} title="결제 수단">
         <ErrorBox>{errMsg}</ErrorBox>
         <p className="page-sub">'{title}'<br/>를 결제할 수단을 선택하세요</p>
+
+        <WarningBox>{warningMsg}</WarningBox>
 
         <div className="flex flex-column">
             <label>결제 수단</label>

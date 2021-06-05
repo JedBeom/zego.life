@@ -10,10 +10,10 @@ let server = "https://zego.life"
 if (process.env.NODE_ENV === 'development') {
     // server = "https://zego.life"
     // server = "http://localhost:8080"
-    // server = window.location.protocol + "//" + window.location.hostname + ":8080";
+    server = window.location.protocol + "//" + window.location.hostname + ":8080";
 }
 
-let app_version = "20210226:02"
+let app_version = "20210605:01"
 sessionStorage.setItem("app_version", app_version)
 
 axios.defaults.baseURL = server + "/api/v1/"

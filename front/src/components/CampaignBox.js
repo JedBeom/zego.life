@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import DefaultBox from './ui/DefaultBox'
 
 const CampaignBox = ({c}) => {
-    if (!c) c = {Title: "...", SubTitle: "..."}
+    if (!c) return null
 
     let ar = <Article>
         <span>AD</span>

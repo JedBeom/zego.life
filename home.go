@@ -23,15 +23,14 @@ func getHome(c echo.Context) error {
 	}
 
 	cmp, err := models.CampaignRandomOne(conn)
+	cmpp := &cmp
 	if err != nil {
-		// default on error
-		cmp.Title = "제고생활은 제고라이프로"
-		cmp.SubTitle = "다음 업데이트를 기대하세요!"
+		cmpp = nil
 	}
 
 	return c.JSON(200, Map{
 		"NoticeTitle": last.Title,
-		"Campaign":    cmp,
+		"Campaign":    cmpp,
 		"User":        u,
 	})
 }

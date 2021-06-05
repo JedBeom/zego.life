@@ -76,7 +76,7 @@ right: 0;
 
 padding-bottom: env(safe-area-inset-bottom, .75em);
 
-box-shadow: 3px -20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04);
+box-shadow: 0px -20px 25px -5px rgba(0, 0, 0, 0.1), 0 -10px 10px -5px rgba(0, 0, 0, 0.04);
 
 border-top-left-radius: 1.25rem;
 border-top-right-radius: 1.25rem;
