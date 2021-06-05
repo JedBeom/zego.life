@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import DatePicker from 'react-datepicker'
 import {getD2UByDiet, getDietByDate, getEventsByDate, getEventsDateOnly} from '../../common/api'
 
-import Page, { Title } from "../../components/Page"
+import Page, {Title} from "../../components/Page"
 import {ErrorBox} from "../../components/AlertBox"
 import CardBox from "../../components/ui/CardBox"
 import DietCard from '../../components/DietCard'
@@ -46,6 +46,7 @@ const DietPage = () => {
         if (d === undefined || d === null || d === date) {
             return
         }
+        setErrMsg("")
         setLoading(true)
 
         getEvents(timestampHyphen(d))

@@ -188,7 +188,6 @@ func GetApplyListOfUser(db *pg.Conn, u models.User, calendarType string) error {
 	for mealType := 1; mealType <= 3; mealType++ {
 		for try := 0; try < 2; try++ {
 			if err := getAndCreateApplyList(db, u, calendarType, mealType); err != nil {
-				fmt.Println(err)
 				time.Sleep(time.Second / 2)
 				continue
 			}

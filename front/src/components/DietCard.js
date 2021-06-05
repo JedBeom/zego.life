@@ -5,6 +5,7 @@ import CardBox from './ui/CardBox'
 import {timestampHangul} from '../utils/timestamp'
 
 import DietIcon from '../icons/Diet'
+import BanIcon from '../icons/Ban';
 import {Check, Cross, Exclaimination} from '../icons/Applied'
 
 import styled from 'styled-components';
@@ -31,22 +32,22 @@ const DietCard = ({diet, applied, hideDate}) => {
 				<Highlighted>{diet.when}</Highlighted>
 				급식
 			</h2>
-			{!hideDate ? <Timestamp>{timestampHangul(diet.Date)}</Timestamp> : null }
+			{!hideDate ? <Timestamp>{timestampHangul(diet.Date)}</Timestamp> : null}
 		</Header>
-		{diet.dietList.length !== -1 ? <>
-		<List>
-			{diet.dietList.map((value) => {
-				return (
-					<li key={value}>{value}</li>
-				)
-			})}
-		</List>
-		<Badge color={color}>
-			{icon}
-			<span>
+		{diet.dietList.length !== 0 ? <>
+			<List>
+				{diet.dietList.map((value) => {
+					return (
+						<li key={value}>{value}</li>
+					)
+				})}
+			</List>
+			<Badge color={color}>
+				{icon}
+				<span>
 					{msg}
 			</span>
-		</Badge></> : <NoDiet>급식이 없습니다.</NoDiet>}
+			</Badge></> : <NoDiet><BanIcon/>급식이 없습니다.</NoDiet>}
 	</CardBox>
 };
 
@@ -94,6 +95,8 @@ span {
 
 const NoDiet = styled.p`
 text-align: center;
+font-size: 1.25rem !important;
+font-weight: 600;
 `
 
 export default DietCard
