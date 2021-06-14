@@ -71,7 +71,7 @@ font-weight: 500;
 const List = styled.ul`
 list-style-type: square;
 line-height: 1.8em;
-font-size: 1.1em;
+font-size: 1em;
 
 margin-top: .5rem;
 `
