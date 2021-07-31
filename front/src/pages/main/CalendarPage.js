@@ -97,10 +97,6 @@ const DietPage = () => {
     return (
         <Page title={timestampHangulNoYear(date)} hideTitle loading={dates === null}>
             <Title>캘린더</Title>
-            {/*}
-            <InfoBox>2월 급식 신청 기간입니다. <a href="http://gwang.i-zone.kr" rel="noopener noreferrer" target="_blank">플라이키친
-                가기</a></InfoBox>
-            */}
             <ErrorBox>{errMsg}</ErrorBox>
             <CardBox>
                 <div className="inline-calendar">
