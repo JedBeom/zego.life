@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {withRouter} from 'react-router-dom'
 
-import TimetableClass from './TimetableClass'
+import {InfoBox} from "../../components/AlertBox"
 
 import Page, {Title} from '../../components/Page'
 
@@ -25,8 +25,7 @@ const Timetable = ({history}) => {
         <Page title={`내 시간표`} hideTitle>
             <Title onClick={setNext}>내 시간표 {getNext(type) !== type ?
                 <span className="sub">{types[getNext(type)]}</span> : null}</Title>
-            {type === 0 ? <TimetableClass history={history} meGrade={meGrade} meClass={meClass}/> : null}
-            <footer className="copyright">Speical Thanks to 박현정, 정민기, 박지수 of OnAir</footer>
+                <InfoBox>새 시간표로 돌아올게요.</InfoBox>
         </Page>
     )
 }
