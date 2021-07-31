@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react';
 import {NavLink} from 'react-router-dom'
 import axios from 'axios'
 import {getD2UByDiet, getDDay, getDietByDate} from '../../common/api'

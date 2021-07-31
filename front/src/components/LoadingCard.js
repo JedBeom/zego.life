@@ -1,5 +1,3 @@
-import React from 'react'
-
 const loadingCard = () => {
     return (
         <article className={"card-box flex justify-around in-progress cursor-progress"}>

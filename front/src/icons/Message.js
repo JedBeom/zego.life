@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Message = ({className}) => {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" className={`icon ${className}`} viewBox="0 0 24 24">

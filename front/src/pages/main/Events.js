@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react'
+import { Fragment, useEffect, useState } from 'react';
 
 import Page, {Title} from '../../components/Page'
 import CardBox from "../../components/ui/CardBox"

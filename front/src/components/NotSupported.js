@@ -1,4 +1,3 @@
-import React from 'react'
 import isSupported from '../utils/isSupported'
 import {WarningBox} from '../components/AlertBox'
 

@@ -1,5 +1,3 @@
-import React from 'react'
-
 const ls = [
     [
         ["국어", "", "한국사"],

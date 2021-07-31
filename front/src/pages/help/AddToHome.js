@@ -1,4 +1,3 @@
-import React from 'react'
 import Page from '../../components/Page'
 import CardBox from '../../components/ui/CardBox'
 import ShareIcon from '../../icons/Share'

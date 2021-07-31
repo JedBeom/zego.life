@@ -1,5 +1,3 @@
-import React from 'react'
-
 let className = "inline-block px-2 fs-s2 br-round ml-2 "
 
 const eventMake = event => {

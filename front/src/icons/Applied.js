@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const Cross = () => (
     <svg className="icon" viewBox="0 0 365.696 365.696" width="365.696pt" xmlns="http://www.w3.org/2000/svg">
         <path

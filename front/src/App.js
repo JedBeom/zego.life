@@ -1,4 +1,4 @@
-import React, {lazy, Suspense, useEffect} from 'react'
+import { lazy, Suspense, useEffect } from 'react';
 import {Route, Switch, withRouter} from 'react-router-dom'
 import axios from 'axios'
 import {registerLocale, setDefaultLocale} from "react-datepicker";

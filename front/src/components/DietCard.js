@@ -1,5 +1,3 @@
-import React from 'react';
-
 import CardBox from './ui/CardBox'
 
 import {timestampHangul} from '../utils/timestamp'

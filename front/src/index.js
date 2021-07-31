@@ -1,4 +1,4 @@
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import Root from './Root';
 import * as serviceWorker from './serviceWorker';
@@ -39,9 +39,9 @@ if (theme === null) {
 document.querySelector("body").classList.add(`theme-${theme}`)
 
 ReactDOM.render(
-    <React.StrictMode>
+    <StrictMode>
         <Root/>
-    </React.StrictMode>,
+    </StrictMode>,
     document.getElementById('root')
 );
 

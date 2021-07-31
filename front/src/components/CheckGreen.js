@@ -1,5 +1,3 @@
-import React from 'react'
-
 const CheckGreen = ({style}) => {
     return (
         <svg style={style} className={"icon check-green-circle"} version="1.1" xmlns="http://www.w3.org/2000/svg"

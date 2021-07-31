@@ -1,4 +1,3 @@
-import React from 'react'
 import CircleCheckIcon from '../icons/CircleCheck'
 import AlertTriangleIcon from '../icons/AlertTriangle'
 import AlertOctagonIcon from '../icons/AlertOctagon'

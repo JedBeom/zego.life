@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react';
 import UserBox from '../../components/UserBox'
 import axios from 'axios'
 import {ErrorBox, InfoBox, SuccessBox} from '../../components/AlertBox'

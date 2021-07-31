@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Radio = () => (
     <svg className="icon icon-not-tabler" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
         <path
