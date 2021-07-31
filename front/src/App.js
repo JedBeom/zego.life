@@ -29,7 +29,6 @@ const MainRoute = lazy(() => import("./pages/main/Route"))
 const Register = lazy(() => import("./pages/main/Register"))
 const HelpRoute = lazy(() => import('./pages/help/Route'))
 const Bookmarks = lazy(() => import("./pages/bookmarks/Main"))
-const RadioRoute = lazy(() => import('./pages/radio/Route'))
 const CampaignsRoute = lazy(() => import('./pages/campaigns/Route'))
 const AdminRoute = isAdmin() ? lazy(() => import('./pages/admin/Route')) : null
 
@@ -58,7 +57,6 @@ function App({history}) {
                             isAdmin() ? <Route path="/admin" component={AdminRoute}/> : null
                         }
                         <Route path="/help" component={HelpRoute}/>
-                        <Route path="/radio" component={RadioRoute}/>
                         <Route path="/campaigns" component={CampaignsRoute}/>
                         <Route path="/bookmarks" component={Bookmarks}/>
                         <Route path="/register" component={Register}/>
@@ -74,11 +72,7 @@ function App({history}) {
 }
 
 const Site = styled.div`
-margin-left: auto;
-margin-right: auto;
-max-width: 900px;
 color: var(--site-text-color);
-padding: .5em;
 padding-bottom: 10em;
 padding-top: calc(env(safe-area-inset-top) + 1em);
 `

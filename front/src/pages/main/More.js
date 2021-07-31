@@ -9,7 +9,6 @@ import {MoreBox, MoreBoxContainer} from '../../components/MoreBox'
 import {isAdmin, isUser} from '../../utils/getRoles'
 
 import SendIcon from '../../icons/Send'
-import MicIcon from '../../icons/Mic'
 import AdIcon from '../../icons/Ad'
 import LockAccessIcon from '../../icons/LockAccess'
 import SettingsIcon from '../../icons/Settings'
@@ -49,7 +48,6 @@ const More = () => {
             </CardBox>
             <MoreBoxContainer>
                 <MoreBox icon={<SendIcon/>} title="피드백" to="/help/feedback"/>
-                <MoreBox icon={<MicIcon/>} title="라디오" to="/radio/stories/post"/>
                 <MoreBox icon={<AdIcon/>} title="캠페인" to="/campaigns"/>
                 {isAdmin() ? <MoreBox icon={<LockAccessIcon/>} title="관리" to="/admin"/> : null}
                 <MoreBox icon={<SettingsIcon/>} title="설정" to="/settings"/>

@@ -14,9 +14,6 @@ const DdayCounter = ({events, count}) => {
                 <p className="days">{e.Left === 0 ? "D-DAY" : `D${e.Left}`}</p>
             </DdayItem>
         })}
-        {count === 0 ? <div className="dday-item">
-            <p className="dday-name my-3">일정 없음</p>
-        </div> : null}
     </>
 }
 

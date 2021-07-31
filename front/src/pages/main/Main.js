@@ -119,8 +119,8 @@ const Main = () => {
             </NavLink>
             <AddToHome/>
             <DdayCounter events={dday} count={ddayCount}/>
-            <CampaignBox c={campaign}/>
             <DietReview a={isFocused}/>
+            <CampaignBox c={campaign}/>
             <DietCard diet={diet} applied={applied}/>
             {localStorage.getItem("me.residence") === "1" ?
                 <DormInspector date={new Date()} correction={true}/> : null}
