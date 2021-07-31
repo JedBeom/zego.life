@@ -149,53 +149,6 @@ type Lesson struct {
 	Teacher string
 }
 
-type RadioStory struct {
-	ID     string
-	UserID string
-	User   *User
-
-	Content     string `pg:",use_zero" sql:",notnull"`
-	SongRequest string `pg:",use_zero" sql:",notnull"`
-
-	Guest     bool `pg:",use_zero" sql:",notnull"`
-	Anonymous bool `pg:",use_zero" sql:",notnull"`
-
-	CreatedAt time.Time
-}
-
-type Thread struct {
-	ID         string
-	OpenUserID string
-	OpenUser   *User
-
-	Title string
-
-	Visible bool
-
-	CommentsNum int        `pg:",use_zero" sql:",notnull"`
-	Comments    []*Comment `pg:"rel:has-many"`
-
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt time.Time `pg:",soft_delete"`
-}
-
-type Comment struct {
-	ID  string
-	Num int `pg:",use_zero" sql:",notnull"`
-
-	ThreadID string
-	Thread   *Thread
-
-	UserID  string
-	Visible bool
-
-	Content string
-
-	CreatedAt time.Time
-	DeletedAt time.Time `pg:",soft_delete"`
-}
-
 type CampaignBase struct {
 	ID      string
 	IsReady bool
@@ -228,12 +181,6 @@ type CampaignNotPayed struct {
 	TableName struct{} `sql:"campaigns_not_payed" json:"-"`
 	CampaignBase
 	PayLink string
-}
-
-type Vote struct {
-	ID                 int
-	S1, S2, S3, S4, S5 bool
-	CreatedAt          time.Time
 }
 
 type Session struct {
