@@ -27,6 +27,7 @@ import Loading from './components/ui/Loading';
 
 const MainRoute = lazy(() => import("./pages/main/Route"))
 const Register = lazy(() => import("./pages/main/Register"))
+const NoticesRoute = lazy(() => import("./pages/notices/Route"))
 const HelpRoute = lazy(() => import('./pages/help/Route'))
 const Bookmarks = lazy(() => import("./pages/bookmarks/Main"))
 const CampaignsRoute = lazy(() => import('./pages/campaigns/Route'))
@@ -60,6 +61,7 @@ function App({history}) {
                         <Route path="/campaigns" component={CampaignsRoute}/>
                         <Route path="/bookmarks" component={Bookmarks}/>
                         <Route path="/register" component={Register}/>
+                        <Route path="/notices" component={NoticesRoute}/>
                         <Route path="/no-connection" component={NoConnection}/>
                         <Route path="/" component={MainRoute}/>
                     </Switch>

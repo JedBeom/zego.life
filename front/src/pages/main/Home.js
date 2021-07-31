@@ -15,14 +15,13 @@ import {timestampDot} from '../../utils/timestamp'
 import whatMeal from '../../utils/whatMeal'
 import {isUser} from "../../utils/getRoles"
 
-const Main = () => {
+const Home = () => {
     const [loading, setLoading] = useState(true)
     const [diet, setDiet] = useState({when: "", dietList: []})
     const [campaign, setCampaign] = useState(null)
     const [dday, setDDay] = useState([])
     const [ddayCount, setDDayCount] = useState(0)
     const [applied, setApplied] = useState(-1)
-    const [noticeTitle, setNoticeTitle] = useState("로딩 중...")
     const [isFocused, setFocused] = useState(true)
     const [dietID, setDietID] = useState("")
 
@@ -59,7 +58,6 @@ const Main = () => {
                 setDiet(ds[whatMeal()])
             } catch (e) {
             }
-            setLoading(false)
         };
 
 
@@ -79,8 +77,13 @@ const Main = () => {
         const fetchHome = async () => {
             try {
                 const {data} = await axios.get(`home`)
-                setNoticeTitle(data.NoticeTitle)
                 setCampaign(data.Campaign)
+
+                let lastNotice = localStorage.getItem("last_notice")
+                if (lastNotice !== data.NoticeID) {
+                    localStorage.setItem("last_notice", data.NoticeID)
+                    window.location.href = `/notices/${data.NoticeID}`
+                }
 
                 if (data.User.ID) {
                     if (data.User.EnterYear === 21 - data.User.Grade) {
@@ -88,7 +91,6 @@ const Main = () => {
                     }
                 }
             } catch (e) {
-                setNoticeTitle(`로딩 실패 ${e}`)
             }
         }
 
@@ -100,6 +102,7 @@ const Main = () => {
             } catch (e) {
 
             }
+            setLoading(false)
         }
 
         fetchDiet()
@@ -111,12 +114,6 @@ const Main = () => {
 
     return (
         <Page title="홈" loading={loading}>
-            <NavLink to="/notice" className="no-underline">
-                <div className="notice-line">
-                    <div className="notice-line-badge">공지</div>
-                    {noticeTitle}
-                </div>
-            </NavLink>
             <AddToHome/>
             <DdayCounter events={dday} count={ddayCount}/>
             <DietReview a={isFocused}/>
@@ -129,4 +126,4 @@ const Main = () => {
 }
 
 
-export default Main
+export default Home 

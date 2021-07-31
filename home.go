@@ -29,8 +29,8 @@ func getHome(c echo.Context) error {
 	}
 
 	return c.JSON(200, Map{
-		"NoticeTitle": last.Title,
-		"Campaign":    cmpp,
-		"User":        u,
+		"NoticeID": last.ID,
+		"Campaign": cmpp,
+		"User":     u,
 	})
 }

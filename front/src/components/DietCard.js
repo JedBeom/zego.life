@@ -23,6 +23,10 @@ const DietCard = ({diet, applied, hideDate}) => {
 
 	const {msg, icon, color} = appliedBadges[applied]
 
+	if (!diet.Date) {
+		return <Skeleton/>
+	}
+
 	return <CardBox>
 		<Header>
 			<h2>
@@ -48,6 +52,26 @@ const DietCard = ({diet, applied, hideDate}) => {
 			</Badge></> : <NoDiet><BanIcon/>급식이 없습니다.</NoDiet>}
 	</CardBox>
 };
+
+const Skeleton = styled(CardBox)`
+height: 20em;
+
+background-repeat: no-repeat;
+background-image:
+	linear-gradient(#37345D 99%, transparent 0),
+	linear-gradient(#37345D 200px, transparent 0),
+	linear-gradient(var(--card-box-bg-color) 0%, transparent 0);
+
+background-size:
+	200px 40px,
+	200px 900px,
+	100% 100%;
+
+background-position:
+	24px 24px,
+	24px 100px,
+	0 0;
+`
 
 const Header = styled.div`
 display: flex;

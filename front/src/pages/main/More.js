@@ -11,6 +11,7 @@ import {isAdmin, isUser} from '../../utils/getRoles'
 import SendIcon from '../../icons/Send'
 import AdIcon from '../../icons/Ad'
 import LockAccessIcon from '../../icons/LockAccess'
+import SpeakerphoneIcon from '../../icons/Speakerphone'
 import SettingsIcon from '../../icons/Settings'
 import HeartIcon from '../../icons/Heart'
 
@@ -49,6 +50,7 @@ const More = () => {
             <MoreBoxContainer>
                 <MoreBox icon={<SendIcon/>} title="피드백" to="/help/feedback"/>
                 <MoreBox icon={<AdIcon/>} title="캠페인" to="/campaigns"/>
+                <MoreBox icon={<SpeakerphoneIcon/>} title="공지사항" to="/notices"/>
                 {isAdmin() ? <MoreBox icon={<LockAccessIcon/>} title="관리" to="/admin"/> : null}
                 <MoreBox icon={<SettingsIcon/>} title="설정" to="/settings"/>
             </MoreBoxContainer>

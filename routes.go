@@ -46,10 +46,6 @@ func routes(e *echo.Echo) {
 
 			u.GET("/users/:user_id/pw-change", getPwChangeToken)
 
-			// radio-stories
-			u.GET("/radio-stories", getRadioStoriesAll)
-			u.POST("/radio-stories", postRadioStory)
-
 			// diets
 			u.GET("/users/:user_id/diet2user/:diet_id", getDiet2UserByDietAndUser)
 			u.GET("/diet-reviews/:diet_id", getDietReviewPossible)
@@ -72,14 +68,6 @@ func routes(e *echo.Echo) {
 			u.DELETE("/timetables/me", deleteTimetableMe)
 			u.GET("/timetables/subjects", getTimetableSubjects)
 			u.POST("/timetables", postTimetable)
-
-			/*
-				// talks
-				u.GET("/threads", getThreads)
-				u.GET("/threads/:id", getThreadByID)
-				u.POST("/threads", postThread)
-				u.POST("/threads/:id/comments", postComment)
-			*/
 
 			// campaigns (cmp, cmps)
 			u.POST("/campaigns", postCampaignNotPayed)

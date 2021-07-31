@@ -1,5 +1,5 @@
 import {Route, Switch} from 'react-router-dom'
-import Main from './Main'
+import Home from './Home'
 import CalendarPage from './CalendarPage'
 import Events from './Events'
 import Login from './Login'
@@ -15,7 +15,7 @@ import NotFound from '../NotFound'
 function Router() {
     return (
         <Switch>
-            <Route exact path="/" component={Main}/>
+            <Route exact path="/" component={Home}/>
             <Route path="/calendar" component={CalendarPage}/>
             <Route path="/events" component={Events}/>
             <Route path="/login" component={Login}/>
