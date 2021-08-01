@@ -16,7 +16,6 @@ const Notices = ({match}) => {
     const getNotice = async (id) => {
         try {
             const {data} = await axios.get(`notices/${id}`)
-            console.log(data)
             setNotice(data)
         } catch {
             setErrMsg("문제가 발생했습니다.")

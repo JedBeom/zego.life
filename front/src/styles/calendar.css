@@ -14,6 +14,11 @@
     margin-right: auto;
 }
 
+/* 화살표 */
+.react-datepicker__navigation-icon::before, .react-datepicker__year-read-view--down-arrow, .react-datepicker__month-read-view--down-arrow, .react-datepicker__month-year-read-view--down-arrow {
+    height: 1.2em;
+}
+
 .inline-calendar .react-datepicker__day, .inline-calendar .react-datepicker__month-text, .inline-calendar .react-datepicker__quarter-text, .inline-calendar .react-datepicker__year-text {
     border-color: transparent;
     transition: .5s;

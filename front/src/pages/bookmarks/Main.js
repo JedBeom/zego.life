@@ -11,7 +11,7 @@ const sites = [
 
 const Main = () => {
     return <Page title="바로가기">
-        {sites.map(s => <WrapA rel="noopener noreferrer" target="_blank" href={s.to}><WebsiteBox color={s.color}
+        {sites.map(s => <WrapA key={s.title} rel="noopener noreferrer" target="_blank" href={s.to}><WebsiteBox color={s.color}
                                                                                                  white={s.white}>{s.title}</WebsiteBox></WrapA>)}
     </Page>
 }
