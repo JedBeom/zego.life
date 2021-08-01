@@ -16,11 +16,11 @@ const AddToHome = () => {
                 <line x1="12" y1="12" x2="12" y2="21"/>
                 <line x1="12" y1="12" x2="4" y2="7.5"/>
             </svg>
-            홈 화면에 추가하세요.
+            앱으로 설치하세요. 
         </h2>
-        <p>제고라이프를 홈화면에 추가해서 앱처럼 사용하세요.</p>
+        <p>제고라이프를 앱처럼 사용하세요.</p>
         <NavLink to="/help/add-to-home">
-            <button className="button float-right">추가 방법 보기</button>
+            <button className="button float-right">어떻게요?</button>
         </NavLink>
     </CardBox>
 }

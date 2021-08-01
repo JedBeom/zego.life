@@ -17,15 +17,15 @@ const appliedBadges = {
 }
 
 const DietCard = ({diet, applied, hideDate}) => {
+	if (!diet) {
+		return <Skeleton/>
+	}
+
 	if (diet.dietList.length <= 1) {
 		applied = "-2"
 	}
 
 	const {msg, icon, color} = appliedBadges[applied]
-
-	if (!diet.Date) {
-		return <Skeleton/>
-	}
 
 	return <CardBox>
 		<Header>
@@ -55,22 +55,6 @@ const DietCard = ({diet, applied, hideDate}) => {
 
 const Skeleton = styled(CardBox)`
 height: 20em;
-
-background-repeat: no-repeat;
-background-image:
-	linear-gradient(#37345D 99%, transparent 0),
-	linear-gradient(#37345D 200px, transparent 0),
-	linear-gradient(var(--card-box-bg-color) 0%, transparent 0);
-
-background-size:
-	200px 40px,
-	200px 900px,
-	100% 100%;
-
-background-position:
-	24px 24px,
-	24px 100px,
-	0 0;
 `
 
 const Header = styled.div`

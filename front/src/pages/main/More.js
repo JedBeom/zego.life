@@ -48,9 +48,9 @@ const More = () => {
                 </button>
             </CardBox>
             <MoreBoxContainer>
+                <MoreBox icon={<SpeakerphoneIcon/>} title="공지사항" to="/notices"/>
                 <MoreBox icon={<SendIcon/>} title="피드백" to="/help/feedback"/>
                 <MoreBox icon={<AdIcon/>} title="캠페인" to="/campaigns"/>
-                <MoreBox icon={<SpeakerphoneIcon/>} title="공지사항" to="/notices"/>
                 {isAdmin() ? <MoreBox icon={<LockAccessIcon/>} title="관리" to="/admin"/> : null}
                 <MoreBox icon={<SettingsIcon/>} title="설정" to="/settings"/>
             </MoreBoxContainer>

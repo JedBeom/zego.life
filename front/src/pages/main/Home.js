@@ -17,7 +17,7 @@ import {isUser} from "../../utils/getRoles"
 
 const Home = () => {
     const [loading, setLoading] = useState(true)
-    const [diet, setDiet] = useState({when: "", dietList: []})
+    const [diet, setDiet] = useState()
     const [campaign, setCampaign] = useState(null)
     const [dday, setDDay] = useState([])
     const [ddayCount, setDDayCount] = useState(0)
@@ -102,13 +102,9 @@ const Home = () => {
             } catch (e) {
 
             }
-            setLoading(false)
         }
 
-        fetchDiet()
-        fetchD2U()
-        fetchHome()
-        fetchDDay()
+        Promise.all([fetchDiet(), fetchD2U(), fetchHome(), fetchDDay()]).then(_ => setLoading(false))
         // eslint-disable-next-line
     }, [isFocused])
 

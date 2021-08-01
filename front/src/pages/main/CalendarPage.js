@@ -95,8 +95,7 @@ const DietPage = () => {
     }, [])
 
     return (
-        <Page title={timestampHangulNoYear(date)} hideTitle loading={dates === null}>
-            <Title>캘린더</Title>
+        <Page title={timestampHangulNoYear(date)} loading={dates === null}>
             <ErrorBox>{errMsg}</ErrorBox>
             <CardBox>
                 <div className="inline-calendar">

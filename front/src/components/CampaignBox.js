@@ -6,7 +6,7 @@ const CampaignBox = ({c}) => {
     if (!c) return null
 
     let ar = <Article>
-        <span>AD</span>
+        <span>IN-AD</span>
         <h2>{c.Title}</h2>
         <p>{c.SubTitle}</p>
         {c.ImageSrc ?
