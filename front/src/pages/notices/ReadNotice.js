@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react"
 import { withRouter } from "react-router"
+import {NavLink} from 'react-router-dom'
 import { ErrorBox } from "../../components/AlertBox"
 import Page from "../../components/Page"
 import axios from 'axios'
 import styled from "styled-components"
+
+import {isAdmin} from "../../utils/getRoles";
 
 const Notices = ({match}) => {
     const [loading, setLoading] = useState(true)
@@ -37,6 +40,11 @@ const Notices = ({match}) => {
     }
 
     return <Page title={notice.Title} back>
+        {isAdmin() ?
+            <NavLink to="/admin/notice-new">
+                <button className="button mb-6">글쓰기</button>
+            </NavLink> : null
+        }
         <Content dangerouslySetInnerHTML={{__html: notice.ContentHTML}}/>
     </Page>
 }
