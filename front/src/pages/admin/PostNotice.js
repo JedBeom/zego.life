@@ -3,8 +3,9 @@ import axios from 'axios'
 
 import Page from "../../components/Page"
 import {SuccessBox, WarningBox} from "../../components/AlertBox"
+import styled from 'styled-components';
 
-const NoticeNew = ({match}) => {
+const PostNotice = ({match}) => {
     const [okMsg, setOkMsg] = useState("")
     const [errMsg, setErrMsg] = useState("")
     const [isNew, setIsNew] = useState(true)
@@ -72,7 +73,7 @@ const NoticeNew = ({match}) => {
     }, [match.params])
 
     return (
-        <Page title="새 공지사항" back>
+        <Page title={isNew ? "새 공지사항" : "공지사항 수정"} back>
             <SuccessBox>{okMsg}</SuccessBox>
             <WarningBox>{errMsg}</WarningBox>
             <p>마크다운 형식으로 작성합니다.</p>
@@ -88,7 +89,7 @@ const NoticeNew = ({match}) => {
             </div>
             <div className="flex flex-column">
                 <label className="my-2">본문</label>
-                <textarea className="textarea" rows="5" placeholder="내용" value={content}
+                <TextArea className="textarea" rows="5" placeholder="내용" value={content}
                           onChange={e => setContent(e.target.value)}/>
             </div>
             <button className={loading ? "button float-right mt-2 loading" : "button float-right mt-2"}
@@ -98,4 +99,8 @@ const NoticeNew = ({match}) => {
     )
 }
 
-export default NoticeNew
+const TextArea = styled.textarea`
+height: 40em;
+`
+
+export default PostNotice

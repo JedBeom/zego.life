@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {NavLink} from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import axios from 'axios'
 import {getD2UByDiet, getDDay, getDietByDate} from '../../common/api'
 
@@ -14,8 +14,9 @@ import CampaignBox from "../../components/CampaignBox"
 import {timestampDot} from '../../utils/timestamp'
 import whatMeal from '../../utils/whatMeal'
 import {isUser} from "../../utils/getRoles"
+import GoogleAd from '../../components/GoogleAd';
 
-const Home = () => {
+const Home = ({history}) => {
     const [loading, setLoading] = useState(true)
     const [diet, setDiet] = useState()
     const [campaign, setCampaign] = useState(null)
@@ -60,7 +61,6 @@ const Home = () => {
             }
         };
 
-
         const fetchD2U = async () => {
             setDietID(dietIDnow)
             if (!isUser()) {
@@ -80,15 +80,17 @@ const Home = () => {
                 setCampaign(data.Campaign)
 
                 let lastNotice = localStorage.getItem("last_notice")
-                if (lastNotice !== data.NoticeID) {
-                    localStorage.setItem("last_notice", data.NoticeID)
-                    window.location.href = `/notices/${data.NoticeID}`
-                }
-
                 if (data.User.ID) {
                     if (data.User.EnterYear === 21 - data.User.Grade) {
-                        window.location.href = "/help/user-upgrade"
+                        history.replace("/help/user-upgrade")
+                        return
                     }
+
+                    if (lastNotice !== data.NoticeID) {
+                        localStorage.setItem("last_notice", data.NoticeID)
+                        history.push(`/notices/${data.NoticeID}`)
+                    }
+
                 }
             } catch (e) {
             }
@@ -112,6 +114,7 @@ const Home = () => {
         <Page title="홈" loading={loading}>
             <AddToHome/>
             <DdayCounter events={dday} count={ddayCount}/>
+            <GoogleAd/>
             <DietReview a={isFocused}/>
             <CampaignBox c={campaign}/>
             <DietCard diet={diet} applied={applied}/>
@@ -122,4 +125,4 @@ const Home = () => {
 }
 
 
-export default Home 
+export default withRouter(Home)

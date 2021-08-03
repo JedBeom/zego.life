@@ -46,7 +46,7 @@ const CampaignInfo = ({match}) => {
         }
     }
 
-    return <Page className="campaigns-site" title="캠페인 세부 정보" back>
+    return <Page className="campaigns-site" title="캠페인 세부 정보" loading={initialLoading} back>
         <ErrorBox>{errMsg}</ErrorBox>
         <SuccessBox>{okMsg}</SuccessBox>
         {cnp ?

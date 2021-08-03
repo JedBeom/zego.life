@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import { withRouter } from "react-router"
 import {NavLink} from 'react-router-dom'
-import { ErrorBox } from "../../components/AlertBox"
-import Page from "../../components/Page"
 import axios from 'axios'
 import styled from "styled-components"
 
+import { ErrorBox } from "../../components/AlertBox"
+import Page from "../../components/Page"
+import {MoreBox} from "../../components/MoreBox"
+import SendIcon from '../../icons/Send'
+import SpeakerphoneIcon from "../../icons/Speakerphone"
 import {isAdmin} from "../../utils/getRoles";
 
 const Notices = ({match}) => {
@@ -29,7 +32,7 @@ const Notices = ({match}) => {
     }, [match])
 
     if (loading) {
-        return <Page loading title="불러오는 중" back />
+        return <Page title="공지사항" loading back />
     }
 
     if (errMsg || !notice) {
@@ -38,13 +41,21 @@ const Notices = ({match}) => {
         </Page>
     }
 
-    return <Page title={notice.Title} back>
+    return <Page title="공지사항" back>
+        <h1><SpeakerphoneIcon/>{notice.Title}</h1>
         {isAdmin() ?
-            <NavLink to="/admin/notice-new">
+            <>
+            <NavLink to="/admin/post-notice">
                 <button className="button mb-6">글쓰기</button>
-            </NavLink> : null
+            </NavLink>
+            <NavLink to={`/admin/post-notice/${notice.ID}`}>
+                <button className="button mb-6">수정하기</button>
+            </NavLink>
+            </> : null
         }
         <Content dangerouslySetInnerHTML={{__html: notice.ContentHTML}}/>
+
+        <SendFeedback icon={<SendIcon/>} title="피드백 보내기" to="/help/feedback"/>
     </Page>
 }
 
@@ -83,6 +94,9 @@ ul {
     margin-top: .75em;
     margin-bottom: .75em;
 }
+`
+
+const SendFeedback = styled(MoreBox)`
 `
 
 export default withRouter(Notices)

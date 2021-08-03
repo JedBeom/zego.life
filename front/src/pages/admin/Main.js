@@ -21,7 +21,7 @@ const Main = () => {
                 <Item>
                     <ItemTitle>게시 관리</ItemTitle>
                     <ItemDescription>웹사이트에 게시되는 대상을 관리합니다.</ItemDescription>
-                    <li><NavLink to="/admin/notice-new">새 공지사항</NavLink></li>
+                    <li><NavLink to="/admin/post-notice">새 공지사항</NavLink></li>
                     <li><NavLink to="/admin/dday-list">디데이 만들기</NavLink></li>
                 </Item>
             </Section>

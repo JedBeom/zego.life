@@ -1,12 +1,13 @@
+import { withRouter } from "react-router-dom"
 import Page from "../../components/Page"
 
-const ListNotices = () => {
+const ListNotices = ({history}) => {
     // TODO: list notices later.
     // This component redirects to the latest notice.
-    document.location.replace(`/notices/${localStorage.getItem("last_notice")}`)
+    history.replace(`/notices/${localStorage.getItem("last_notice")}`)
 
     return <Page loading />
 }
 
 
-export default ListNotices
+export default withRouter(ListNotices)
