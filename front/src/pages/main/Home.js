@@ -15,6 +15,7 @@ import {timestampDot} from '../../utils/timestamp'
 import whatMeal from '../../utils/whatMeal'
 import {isUser} from "../../utils/getRoles"
 import GoogleAd from '../../components/GoogleAd';
+import { WarningBox } from '../../components/AlertBox';
 
 const Home = ({history}) => {
     const [loading, setLoading] = useState(true)
@@ -112,6 +113,9 @@ const Home = ({history}) => {
 
     return (
         <Page title="홈" loading={loading}>
+            <WarningBox>
+                제고라이프는 9월 1일부로 서비스를 종료합니다. <a href="closing-page/index.html" rel="noopener noreferrer" target="_blank">자세히 알아보기</a>
+            </WarningBox>
             <AddToHome/>
             <DdayCounter events={dday} count={ddayCount}/>
             <GoogleAd/>

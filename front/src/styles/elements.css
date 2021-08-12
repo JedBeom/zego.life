@@ -28,6 +28,10 @@ error
     stroke-width: 3;
 }
 
+.alert-box a {
+    color: inherit;
+}
+
 .alert-box-success {
     color: black;
     background-color: hsl(141, 53%, 53%);
