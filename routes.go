@@ -63,11 +63,11 @@ func routes(e *echo.Echo) {
 			admin.PATCH("/notices/:id", patchNoticeByID)
 
 			// timetables
-			u.GET("/timetable-templates/:grade/:class", getTimetableTemplateByGradeClass)
-			u.GET("/timetables/me", getTimetableMe)
-			u.DELETE("/timetables/me", deleteTimetableMe)
-			u.GET("/timetables/subjects", getTimetableSubjects)
-			u.POST("/timetables", postTimetable)
+			u.GET("/class-timetable/:grade/:class", getClassTimetable)
+			u.GET("/electric-subjects/me", getElectiveSubjects)
+			u.DELETE("/electric-subjects/me", deleteElectiveSubjectsMe)
+			u.GET("/electric-subjects/subjects", getTimetableSubjects)
+			u.POST("/electric-subjects", postElectiveSubjects)
 
 			// campaigns (cmp, cmps)
 			u.POST("/campaigns", postCampaignNotPayed)

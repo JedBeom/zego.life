@@ -128,22 +128,35 @@ CREATE TABLE IF NOT EXISTS notices
     deleted_at   TIMESTAMPTZ
 );
 
-CREATE TABLE IF NOT EXISTS timetables
+CREATE TABLE IF NOT EXISTS elective_subjects
 (
-    user_id    TEXT PRIMARY KEY,
-    replace_table JSONB,
-    created_at TIMESTAMPTZ DEFAULT current_timestamp,
-    updated_at TIMESTAMPTZ
+    id            SERIAL PRIMARY KEY,
+    grade         INTEGER,
+    short_name    TEXT,
+    full_name     TEXT,
+    teacher       TEXT,
+    room          TEXT,
+    available_bit INTEGER
 );
 
-CREATE TABLE IF NOT EXISTS timetable_templates
+CREATE TABLE IF NOT EXISTS elective_subjects_to_users
 (
-    grade      INTEGER,
-    class      INTEGER,
-    PRIMARY KEY (grade, class),
-    lessons    JSONB,
+    user_id    TEXT PRIMARY KEY,
     created_at TIMESTAMPTZ DEFAULT current_timestamp,
-    updated_at TIMESTAMPTZ
+    updated_at TIMESTAMPTZ,
+
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS class_timetables
+(
+    grade                     INTEGER,
+    class                     INTEGER,
+    PRIMARY KEY (grade, class),
+    subjects                  JSONB,
+    elective_subject_template TEXT[],
+    created_at                TIMESTAMPTZ DEFAULT current_timestamp,
+    updated_at                TIMESTAMPTZ
 );
 
 CREATE TABLE IF NOT EXISTS campaigns

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"strconv"
 
 	"github.com/JedBeom/zego.life/models"
@@ -10,7 +9,7 @@ import (
 	"github.com/labstack/echo"
 )
 
-func getTimetableTemplateByGradeClass(c echo.Context) error {
+func getClassTimetable(c echo.Context) error {
 	grade, err := strconv.Atoi(c.Param("grade"))
 	if err != nil {
 		return echo.ErrBadRequest
@@ -22,7 +21,7 @@ func getTimetableTemplateByGradeClass(c echo.Context) error {
 	}
 
 	conn := c.Get("conn").(*pg.Conn)
-	table, err := models.TimetableTemplateByGradeClass(conn, grade, class)
+	table, err := models.ClassTimetableByGradeClass(conn, grade, class)
 	if err != nil {
 		if err == pg.ErrNoRows {
 			return echo.ErrNotFound
@@ -33,11 +32,11 @@ func getTimetableTemplateByGradeClass(c echo.Context) error {
 	return c.JSON(200, table)
 }
 
-func getTimetableMe(c echo.Context) error {
+func getElectiveSubjects(c echo.Context) error {
 	u := c.Get("user").(models.User)
 	conn := c.Get("conn").(*pg.Conn)
 
-	table, err := u.Timetable(conn)
+	table, err := u.ElectiveSubjects(conn)
 	if err == pg.ErrNoRows {
 		return echo.ErrNotFound
 	} else if err != nil {
@@ -47,18 +46,19 @@ func getTimetableMe(c echo.Context) error {
 	return c.JSON(200, table)
 }
 
-func postTimetable(c echo.Context) error {
+// TODO: EDIT & TEST
+func postElectiveSubjects(c echo.Context) error {
 	u := c.Get("user").(models.User)
 	conn := c.Get("conn").(*pg.Conn)
 
-	p := make(map[string]interface{})
+	p := make(map[string]int)
 	if err := c.Bind(&p); err != nil {
 		return echo.ErrBadRequest
 	}
 
-	table := models.Timetable{
-		UserID:       u.ID,
-		ReplaceTable: p,
+	table := models.ElectiveSubjectsToUser{
+		UserID:             u.ID,
+		ElectiveSubjectIDs: p,
 	}
 
 	if err := table.Create(conn); err != nil {
@@ -68,18 +68,16 @@ func postTimetable(c echo.Context) error {
 	return c.NoContent(200)
 }
 
-func deleteTimetableMe(c echo.Context) error {
+func deleteElectiveSubjectsMe(c echo.Context) error {
 	u := c.Get("user").(models.User)
 	conn := c.Get("conn").(*pg.Conn)
 
-	tt, err := u.Timetable(conn)
+	tt, err := u.ElectiveSubjects(conn)
 	if err != nil {
-		log.Println(err)
 		return err
 	}
 
 	if err := tt.Delete(conn); err != nil {
-		log.Println(err)
 		return err
 	}
 
@@ -87,5 +85,5 @@ func deleteTimetableMe(c echo.Context) error {
 }
 
 func getTimetableSubjects(c echo.Context) error {
-	return c.File("./parse/timetable/subjects.json")
+	return c.File("parse/timetable/2021-2/subjects.json")
 }

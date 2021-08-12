@@ -130,23 +130,44 @@ type Feedback struct {
 	CreatedAt time.Time
 }
 
-type TimetableTemplate struct {
+type ClassTimetable struct {
 	Grade, Class int
-	Lessons      [][]Lesson
+	Subjects     [][]Subject
 }
 
-type Timetable struct {
-	UserID       string `pg:",pk"`
-	ReplaceTable map[string]interface{}
-	CreatedAt    time.Time `sql:"default:now()"`
-	UpdatedAt    time.Time
+type ElectiveSubjectsToUser struct {
+	UserID             string `pg:",pk"`
+	ElectiveSubjectIDs map[string]int
+
+	CreatedAt time.Time `sql:"default:now()"`
+	UpdatedAt time.Time
 }
 
-type Lesson struct {
-	Weekday int
-	Order   int
-	Subject string
-	Teacher string
+type Subject struct {
+	tableName struct{} `pg:"elective_subjects"`
+
+	ID        int `pg:",pk" json:",omitempty"`
+	Grade     int
+	ShortName string
+	FullName  string
+	Teacher   string
+	Room      string
+
+	/*
+		형식은 0000000, 각각
+		1) 예술 과목 여부
+		2) 교양 과목 여부
+		3) 외국어 과목 여부
+		4) 선택A
+		5) 선택B
+		6) 선택C
+		7) 선택D
+		...를 나타낸다.
+
+		ClassTimetables 테이블에서는 1이 0개 또는 1개 존재해야한다.
+		ElectiveSubjects 테이블에서는 1개 이상 존재해야 한다.
+	*/
+	AvailableBit int
 }
 
 type CampaignBase struct {
