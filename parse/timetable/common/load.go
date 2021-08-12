@@ -1,4 +1,4 @@
-package main
+package common
 
 import (
 	"bytes"
@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 )
 
-func loadAndReadCSV(path string) (*csv.Reader, error) {
+func LoadAndReadCSV(path string) (*csv.Reader, error) {
 	file, err := ioutil.ReadFile(path)
 	if err != nil {
 		return nil, err

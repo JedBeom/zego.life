@@ -1,6 +1,8 @@
 package main
 
 import (
+	"flag"
+
 	"github.com/JedBeom/zego.life/models"
 )
 
@@ -18,7 +20,8 @@ import (
 */
 
 func main() {
-	timetablesByGrades := Run("parse/timetable/data/2021-2/origin_teacher_fixed.csv")
+	pathPtr := flag.String("path", "", "시간표 csv 파일 경로")
+	timetablesByGrades := Run(*pathPtr)
 
 	conn := models.Connect()
 

@@ -3,11 +3,13 @@ package main
 import (
 	"log"
 
+	"github.com/JedBeom/zego.life/parse/timetable/common"
+
 	"github.com/JedBeom/zego.life/models"
 )
 
 func Run(path string) (timetablesByGrades [][]models.ClassTimetable) {
-	r, err := loadAndReadCSV(path)
+	r, err := common.LoadAndReadCSV(path)
 	if err != nil {
 		panic(err)
 	}
