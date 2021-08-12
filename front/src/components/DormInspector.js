@@ -25,7 +25,7 @@ const DormInspector = ({date, correction}) => {
                     {localStorage.getItem("me.sex") === "1" ?
                         (!diff ? "이만수" : "정진기")
                         :
-                        (!diff ? "이순덕(새사)" : "장정숙(장사)")
+                        (!diff ? "장정숙(장사)" : "이순덕(새사)")
                     } 사감</Inspector>
             </div>
         </CardBox>
