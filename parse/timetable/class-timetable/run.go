@@ -7,7 +7,7 @@ import (
 )
 
 func Run(path string) (timetablesByGrades [][]models.ClassTimetable) {
-	r, err := loadCSVAndNewReader(path)
+	r, err := loadAndReadCSV(path)
 	if err != nil {
 		panic(err)
 	}
@@ -48,19 +48,4 @@ func Run(path string) (timetablesByGrades [][]models.ClassTimetable) {
 	}
 
 	return
-}
-
-func main() {
-	timetablesByGrades := Run("parse/timetable/data/2021-2/origin_teacher_fixed.csv")
-
-	conn := models.Connect()
-
-	for _, byGrade := range timetablesByGrades {
-		for _, byClass := range byGrade {
-			err := conn.Insert(&byClass)
-			if err != nil {
-				panic(err)
-			}
-		}
-	}
 }
