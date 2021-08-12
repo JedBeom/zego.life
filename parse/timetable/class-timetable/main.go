@@ -21,6 +21,10 @@ import (
 
 func main() {
 	pathPtr := flag.String("path", "", "시간표 csv 파일 경로")
+	if *pathPtr == "" {
+		panic("No path")
+	}
+
 	timetablesByGrades := Run(*pathPtr)
 
 	conn := models.Connect()
