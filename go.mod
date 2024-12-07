@@ -31,7 +31,7 @@ require (
 	github.com/temoto/robotstxt v1.1.1 // indirect
 	golang.org/x/crypto v0.17.0
 	google.golang.org/appengine v1.6.6 // indirect
-	google.golang.org/protobuf v1.24.0 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20190902080502-41f04d3bba15 // indirect
 	mellium.im/sasl v0.3.1 // indirect
 )
